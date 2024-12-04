@@ -16,7 +16,7 @@ class SignUpViewBody extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
       if (state is RegisterSuccess) {
-        GoRouter.of(context).push('/');
+        GoRouter.of(context).push('/verify');
       } else if (state is RegisterFailure) {
         print(state.error);
       }

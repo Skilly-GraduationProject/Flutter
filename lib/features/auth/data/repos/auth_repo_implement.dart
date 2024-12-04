@@ -34,7 +34,7 @@ class AuthRepoImplement implements AuthRepo {
     required String secondName,
     required String email,
     required String password,
-    required int phone,
+    required String phone,
     required int userType,
   }) async {
     final response = await apiService.post(
@@ -45,7 +45,7 @@ class AuthRepoImplement implements AuthRepo {
         "phoneNumber": phone,
         "email": email,
         "password": password,
-        "userType": 0
+        "userType": userType
       },
     );
     print('${response.data}');

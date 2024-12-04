@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../manager/RegisterCubit/register_cubit.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -14,9 +12,9 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? firstName, secondName, email, password;
-  int? phone;
+ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? firstName, secondName, email, password,phone;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -55,7 +53,7 @@ class _SignUpFormState extends State<SignUpForm> {
             title: 'رقم الهاتف',
             icon: Image.asset('assets/images/EG.png'),
             onSaved: (val) {
-                  phone = int.tryParse(val!)??0;
+                  phone = val;
                 },
           ),
           const SizedBox(
@@ -78,7 +76,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 formKey.currentState!.save();
                 BlocProvider.of<RegisterCubit>(context).register(
                     firstName!, secondName!, email!, password!, phone!,0);
-                GoRouter.of(context).push('/verify');
+   
               }
             },
           ),
