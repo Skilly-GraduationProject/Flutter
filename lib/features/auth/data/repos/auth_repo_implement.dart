@@ -11,7 +11,7 @@ class AuthRepoImplement implements AuthRepo {
 
   @override
   Future<AuthResponse> login(
-      {required int phone,
+      {required String phone,
       required String password,
       required bool remember}) async {
     final response = await apiService.post(

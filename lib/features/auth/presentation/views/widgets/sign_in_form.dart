@@ -15,12 +15,12 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? password;
-  int? phone;
+  String? password, phone;
   bool? remember;
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: formKey,
       child: Column(
         children: [
           CustomTextField(
@@ -29,7 +29,7 @@ class _SignInFormState extends State<SignInForm> {
               'assets/images/EG.png',
             ),
             onSaved: (val) {
-              phone = int.tryParse(val!) ?? 0;
+              phone = val;
             },
           ),
           const SizedBox(
@@ -93,8 +93,7 @@ class _SignInFormState extends State<SignInForm> {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
                 BlocProvider.of<LoginCubit>(context)
-                    .login(phone!, password!, remember!);
-                //GoRouter.of(context).push('/home');
+                    .login(phone!, password!, true);
               }
             },
           )

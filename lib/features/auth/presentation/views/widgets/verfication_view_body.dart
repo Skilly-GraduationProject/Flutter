@@ -73,7 +73,7 @@ class _VerficationViewBodyState extends State<VerficationViewBody> {
             CustomButton(
               text: 'التالي',
               onTap: () {
-                GoRouter.of(context).push('/reset');
+                GoRouter.of(context).push('/login');
                 // final code = controller1.text +
                 //     controller2.text +
                 //     controller3.text +

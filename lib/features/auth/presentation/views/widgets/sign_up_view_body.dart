@@ -31,6 +31,9 @@ class SignUpViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(
+                  height: 70,
+                ),
                 Center(
                   child: Image.asset('assets/images/logo.png'),
                 ),
