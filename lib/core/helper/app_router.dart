@@ -1,14 +1,14 @@
 import 'package:go_router/go_router.dart';
 
-import '../../features/auth/presentation/views/forgot_pass_view.dart';
-import '../../features/auth/presentation/views/provider_data_view.dart';
-import '../../features/auth/presentation/views/reset_pass_view.dart';
-import '../../features/auth/presentation/views/sign_in_view.dart';
-import '../../features/auth/presentation/views/sign_up_view.dart';
-import '../../features/auth/presentation/views/user_data_view.dart';
-import '../../features/auth/presentation/views/user_type_view.dart';
-import '../../features/auth/presentation/views/verfication_view.dart';
-import '../../features/splash/presentation/views/splash_view.dart';
+import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
+import '../../features/shared/auth/presentation/views/provider_data_view.dart';
+import '../../features/shared/auth/presentation/views/reset_pass_view.dart';
+import '../../features/shared/auth/presentation/views/sign_in_view.dart';
+import '../../features/shared/auth/presentation/views/sign_up_view.dart';
+import '../../features/shared/auth/presentation/views/user_data_view.dart';
+import '../../features/shared/auth/presentation/views/user_type_view.dart';
+import '../../features/shared/auth/presentation/views/verfication_view.dart';
+import '../../features/shared/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
