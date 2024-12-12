@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../../../constants.dart';
 import '../../../../../../core/helper/loading_indicator.dart';
-import '../../manager/VerifyCodeCubit/verifycode_cubit.dart';
 import '../../manager/VerifyCodeCubit/verifycode_states.dart';
+import '../../manager/VerifyEmailCubit/verifyemail_cubit.dart';
+import '../../manager/VerifyEmailCubit/verifyemail_states.dart';
 import 'code_numbers.dart';
 import 'custom_button.dart';
 
-class VerficationViewBody extends StatefulWidget {
-  const VerficationViewBody({super.key});
+class VerficationEmailViewBody extends StatefulWidget {
+  const VerficationEmailViewBody({super.key});
 
   @override
-  State<VerficationViewBody> createState() => _VerficationViewBodyState();
+  State<VerficationEmailViewBody> createState() =>
+      _VerficationEmailViewBodyState();
 }
 
-class _VerficationViewBodyState extends State<VerficationViewBody> {
+class _VerficationEmailViewBodyState extends State<VerficationEmailViewBody> {
   final TextEditingController controller1 = TextEditingController();
   final TextEditingController controller2 = TextEditingController();
   final TextEditingController controller3 = TextEditingController();
@@ -24,11 +25,16 @@ class _VerficationViewBodyState extends State<VerficationViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<VerifycodeCubit, VerifyCodeState>(
+    final extra = GoRouterState.of(context).extra as Map<String, dynamic>;
+    final email = extra['email'] ?? '';
+    final phone = extra['phone'] ?? '';
+    print(email);
+    print(phone);
+    return BlocConsumer<VerifyEmailCubit, VerifyEmailState>(
         listener: (context, state) {
-      if (state is VerifyCodeSuccess) {
+      if (state is VerifyEmailSuccess) {
         GoRouter.of(context).push('/signIn');
-      } else if (state is VerifyCodeFailure) {
+      } else if (state is VerifyEmailFailure) {
         print(state.error);
       }
     }, builder: (context, state) {
@@ -69,9 +75,9 @@ class _VerficationViewBodyState extends State<VerficationViewBody> {
               const SizedBox(
                 height: 5,
               ),
-              const Text(
-                '+201020301328',
-                style: TextStyle(
+              Text(
+                '$phone',
+                style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
                     color: kPrimaryColor),
@@ -93,10 +99,9 @@ class _VerficationViewBodyState extends State<VerficationViewBody> {
                       controller2.text +
                       controller3.text +
                       controller4.text;
-                  final email = GoRouterState.of(context).extra as String?;
-                  print(email);
-                  BlocProvider.of<VerifycodeCubit>(context)
-                      .verify(code: code, email: email!);
+
+                  BlocProvider.of<VerifyEmailCubit>(context)
+                      .verifyEmail(code: code, email: email!);
                 },
               )
             ]),

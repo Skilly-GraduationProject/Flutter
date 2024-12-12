@@ -1,11 +1,11 @@
 import '../repos/auth_repo.dart';
 
-class VerifyUseCase {
+class VerifyEmailUseCase {
   final AuthRepo authRepo;
 
-  VerifyUseCase({required this.authRepo});
+  VerifyEmailUseCase({required this.authRepo});
 
   Future<void> call({required String code, required String email}) {
-    return authRepo.verify(code: code, email: email);
+    return authRepo.verifyEmail(code: code, email: email);
   }
 }

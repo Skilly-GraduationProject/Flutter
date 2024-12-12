@@ -52,7 +52,7 @@ class ForgotPassViewBody extends StatelessWidget {
             ),
             CustomButton(
               text: 'التالي',
-              onTap: () => GoRouter.of(context).push('/verify'),
+              onTap: () => GoRouter.of(context).push('/verifyCode'),
             ),
           ]),
     );

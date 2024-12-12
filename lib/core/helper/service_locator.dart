@@ -1,14 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import '../../features/shared/auth/domain/usecases/verify_code_usecase.dart';
 import '../../features/shared/auth/presentation/manager/VerifyCodeCubit/verifycode_cubit.dart';
 import '../../features/shared/auth/data/repos/auth_repo_implement.dart';
 import '../../features/shared/auth/domain/usecases/forgetPass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/login_usecase.dart';
 import '../../features/shared/auth/domain/usecases/register_usecase.dart';
-import '../../features/shared/auth/domain/usecases/verify_usecase.dart';
+import '../../features/shared/auth/domain/usecases/verify_email_usecase.dart';
 import '../../features/shared/auth/presentation/manager/ForgetpassCubit/forgetPass_cubit.dart';
 import '../../features/shared/auth/presentation/manager/LoginCubit/login_cubit.dart';
 import '../../features/shared/auth/presentation/manager/RegisterCubit/register_cubit.dart';
+import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
 import 'api_service.dart';
 
 final getIt = GetIt.instance;
@@ -33,10 +35,15 @@ void setUp() {
   getIt.registerFactory<ForgetPassCubit>(
       () => ForgetPassCubit(getIt.get<ForgetPassUseCase>()));
 
-  getIt.registerSingleton<VerifyUseCase>(
-      VerifyUseCase(authRepo: getIt.get<AuthRepoImplement>()));
+  getIt.registerSingleton<VerifyEmailUseCase>(
+      VerifyEmailUseCase(authRepo: getIt.get<AuthRepoImplement>()));
+  getIt.registerFactory<VerifyEmailCubit>(
+      () => VerifyEmailCubit(getIt.get<VerifyEmailUseCase>()));
+
+  getIt.registerSingleton<VerifyCodeUseCase>(
+      VerifyCodeUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<VerifycodeCubit>(
-      () => VerifycodeCubit(getIt.get<VerifyUseCase>()));
+      () => VerifycodeCubit(getIt.get<VerifyCodeUseCase>()));
 
   // getIt.registerSingleton<UpdatepassUsecase>(
   //     UpdatepassUsecase(authRepo: getIt.get<AuthRepoImplement>()));

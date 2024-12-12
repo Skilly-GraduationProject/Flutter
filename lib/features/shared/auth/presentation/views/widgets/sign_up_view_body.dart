@@ -9,14 +9,15 @@ import 'divider.dart';
 import 'google_sign.dart';
 
 class SignUpViewBody extends StatelessWidget {
-   SignUpViewBody({super.key});
-  String? email;
+  SignUpViewBody({super.key});
+  String? email, phone;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
       if (state is RegisterSuccess) {
-        GoRouter.of(context).push('/verify', extra: email ?? '');
+        GoRouter.of(context).push('/verifyEmail',
+            extra: {'email': email ?? '', 'phone': phone ?? ''});
       } else if (state is RegisterFailure) {
         print(state.error);
       }
@@ -48,9 +49,14 @@ class SignUpViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                 SignUpForm(emailSaved: (val) {
+                SignUpForm(
+                  emailSaved: (val) {
                     email = val;
-                  },),
+                  },
+                  phoneSaved: (val) {
+                    phone = val;
+                  },
+                ),
                 const SizedBox(
                   height: 10,
                 ),

@@ -5,5 +5,6 @@ abstract class AuthRepo {
   Future<void> register({required String firstName,required String secondName,required String email,required String password, required String phone,required int userType,});
   Future<void> forgetPass({required String email});
   Future<void> resetPass({required String pass,required String confirmPass,required String email});
-Future<void> verify({required String code,required String email});
+Future<void> verifyEmail({required String code,required String email});
+Future<void> verifyCode({required String code,required String email});
 }

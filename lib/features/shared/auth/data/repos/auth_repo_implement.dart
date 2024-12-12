@@ -57,7 +57,7 @@ class AuthRepoImplement implements AuthRepo {
     final response = await apiService.post(
       '$baseUrl/Auth/reset-password',
       {
-        'Email': email,
+        'email': email,
       },
     );
     print('response:${response.data}');
@@ -65,8 +65,17 @@ class AuthRepoImplement implements AuthRepo {
   }
 
   @override
-  Future<void> verify({required String code, required String email}) async {
+  Future<void> verifyEmail({required String code, required String email}) async {
     final response = await apiService.post('$baseUrl/Auth/verify-email', {
+      'email': email,
+      'code': code,
+    });
+    print('response ${response.data}');
+    return response.data;
+  }
+  @override
+  Future<void> verifyCode({required String code, required String email}) async {
+    final response = await apiService.post('$baseUrl/Auth/verify-code', {
       'email': email,
       'code': code,
     });
@@ -80,10 +89,11 @@ class AuthRepoImplement implements AuthRepo {
       required String confirmPass,
       required String email}) async {
     final response = await apiService.post('$baseUrl/Auth/update-password', {
-      'NewPassword': pass,
-      'ConfirmPassword': confirmPass,
-      'Email': email,
+      'newPassword': pass,
+      'confirmPassword': confirmPass,
+      'email': email,
     });
+    print('response ${response.data}');
     return response.data;
   }
 }

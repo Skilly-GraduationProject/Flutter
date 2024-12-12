@@ -5,8 +5,10 @@ import 'custom_button.dart';
 import 'custom_text_field.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key, required this.emailSaved});
+  const SignUpForm(
+      {super.key, required this.emailSaved, required this.phoneSaved});
   final Function(String) emailSaved;
+  final Function(String) phoneSaved;
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -78,6 +80,7 @@ class _SignUpFormState extends State<SignUpForm> {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
                 widget.emailSaved(email!);
+                widget.phoneSaved(phone!);
                 BlocProvider.of<RegisterCubit>(context).register(
                     firstName!, secondName!, email!, password!, phone!, 0);
               }
