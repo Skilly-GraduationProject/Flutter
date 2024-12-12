@@ -5,15 +5,16 @@ import 'custom_button.dart';
 import 'custom_text_field.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+  const SignUpForm({super.key, required this.emailSaved});
+  final Function(String) emailSaved;
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
- final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? firstName, secondName, email, password,phone;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? firstName, secondName, email, password, phone;
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +31,24 @@ class _SignUpFormState extends State<SignUpForm> {
                   secondName = val;
                 },
               )),
-           const   SizedBox(
+              const SizedBox(
                 width: 20,
               ),
-              Expanded(child:
-               CustomTextField(
+              Expanded(
+                  child: CustomTextField(
                 title: 'الاسم الاول',
                 onSaved: (val) {
                   firstName = val;
-                },)),
+                },
+              )),
             ],
           ),
-         CustomTextField(
-          title: 'البريد الالكتروني',
-          onSaved: (val) {
-                  email = val;
-                },),
+          CustomTextField(
+            title: 'البريد الالكتروني',
+            onSaved: (val) {
+              email = val;
+            },
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -53,8 +56,8 @@ class _SignUpFormState extends State<SignUpForm> {
             title: 'رقم الهاتف',
             icon: Image.asset('assets/images/EG.png'),
             onSaved: (val) {
-                  phone = val;
-                },
+              phone = val;
+            },
           ),
           const SizedBox(
             height: 10,
@@ -63,8 +66,8 @@ class _SignUpFormState extends State<SignUpForm> {
             title: 'الرقم السري',
             icon: Image.asset('assets/images/Hide.png'),
             onSaved: (val) {
-                  password = val;
-                },
+              password = val;
+            },
           ),
           const SizedBox(
             height: 15,
@@ -74,9 +77,9 @@ class _SignUpFormState extends State<SignUpForm> {
             onTap: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                widget.emailSaved(email!);
                 BlocProvider.of<RegisterCubit>(context).register(
-                    firstName!, secondName!, email!, password!, phone!,0);
-   
+                    firstName!, secondName!, email!, password!, phone!, 0);
               }
             },
           ),

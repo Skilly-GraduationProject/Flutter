@@ -67,8 +67,9 @@ class AuthRepoImplement implements AuthRepo {
   @override
   Future<void> verify({required String code, required String email}) async {
     final response = await apiService.post('$baseUrl/Auth/verify-code', {
+     'email': email,
       'code': code,
-      'email': email,
+      
     });
     return response.data;
   }
