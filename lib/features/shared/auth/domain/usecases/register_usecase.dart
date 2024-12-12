@@ -10,7 +10,7 @@ class RegisterUseCase {
     required String secondName,
     required String email,
     required String password,
-    required int phone,
+    required String phone,
     required int userType,
   }) async {
     return await authRepo.register(

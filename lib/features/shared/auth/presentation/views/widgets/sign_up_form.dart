@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../manager/RegisterCubit/register_cubit.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+  const SignUpForm({super.key, required this.emailSaved});
+  final Function(String) emailSaved;
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -15,8 +14,8 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? firstName, secondName, email, password;
-  int? phone;
+  String? firstName, secondName, email, password, phone;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -44,9 +43,6 @@ class _SignUpFormState extends State<SignUpForm> {
               )),
             ],
           ),
-          const SizedBox(
-            height: 15,
-          ),
           CustomTextField(
             title: 'البريد الالكتروني',
             onSaved: (val) {
@@ -54,17 +50,17 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
           CustomTextField(
             title: 'رقم الهاتف',
             icon: Image.asset('assets/images/EG.png'),
             onSaved: (val) {
-              phone = int.tryParse(val!) ?? 0;
+              phone = val;
             },
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
           CustomTextField(
             title: 'الرقم السري',
@@ -74,16 +70,16 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(
-            height: 30,
+            height: 15,
           ),
           CustomButton(
             text: 'انشاء حساب',
             onTap: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                widget.emailSaved(email!);
                 BlocProvider.of<RegisterCubit>(context).register(
                     firstName!, secondName!, email!, password!, phone!, 0);
-                GoRouter.of(context).push('/verify');
               }
             },
           ),

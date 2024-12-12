@@ -11,7 +11,7 @@ class AuthRepoImplement implements AuthRepo {
 
   @override
   Future<AuthResponse> login(
-      {required int phone,
+      {required String phone,
       required String password,
       required bool remember}) async {
     final response = await apiService.post(
@@ -34,7 +34,7 @@ class AuthRepoImplement implements AuthRepo {
     required String secondName,
     required String email,
     required String password,
-    required int phone,
+    required String phone,
     required int userType,
   }) async {
     final response = await apiService.post(
@@ -48,7 +48,7 @@ class AuthRepoImplement implements AuthRepo {
         "userType": 0
       },
     );
-    print('${response.data}');
+    print('response ${response.data}');
     return response.data;
   }
 
@@ -66,10 +66,11 @@ class AuthRepoImplement implements AuthRepo {
 
   @override
   Future<void> verify({required String code, required String email}) async {
-    final response = await apiService.post('$baseUrl/Auth/verify-code', {
-      'code': code,
+    final response = await apiService.post('$baseUrl/Auth/verify-email', {
       'email': email,
+      'code': code,
     });
+    print('response ${response.data}');
     return response.data;
   }
 

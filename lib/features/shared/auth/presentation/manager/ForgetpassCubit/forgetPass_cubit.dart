@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import '../../../../../auth/domain/usecases/forgetpass_usecase.dart';
+
+import '../../../domain/usecases/forgetPass_usecase.dart';
 part 'forgetPass_states.dart';
 
 class ForgetPassCubit extends Cubit<ForgetPassState> {

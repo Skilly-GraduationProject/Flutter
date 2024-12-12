@@ -15,8 +15,7 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? password;
-  int? phone;
+  String? password, phone;
   bool? remember;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class _SignInFormState extends State<SignInForm> {
               'assets/images/EG.png',
             ),
             onSaved: (val) {
-              phone = int.tryParse(val!) ?? 0;
+              phone = val;
             },
           ),
           const SizedBox(
@@ -92,10 +91,9 @@ class _SignInFormState extends State<SignInForm> {
             text: 'تسجيل الدخول',
             onTap: () {
               if (formKey.currentState!.validate()) {
-                // formKey.currentState!.save();
-                // BlocProvider.of<LoginCubit>(context)
-                //     .login(phone!, password!, remember!);
-                GoRouter.of(context).push('/home');
+                formKey.currentState!.save();
+                BlocProvider.of<LoginCubit>(context)
+                    .login(phone!, password!, true);
               }
             },
           )

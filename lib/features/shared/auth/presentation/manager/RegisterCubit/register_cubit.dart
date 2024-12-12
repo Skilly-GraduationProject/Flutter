@@ -7,7 +7,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   final RegisterUseCase registerUseCase;
 
   Future<void> register(String firstName, String secondName, String email,
-      String password, int phone, int userType) async {
+      String password, String phone, int userType) async {
     emit(RegisterInitial());
 
     try {
@@ -22,7 +22,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       print('register cubit success');
       emit(RegisterSuccess());
     } catch (error) {
-      print('register cubit fails');
+      print('register cubit fails $error');
       emit(RegisterFailure(error.toString()));
     }
   }

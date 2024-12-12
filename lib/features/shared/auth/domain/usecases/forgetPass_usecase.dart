@@ -1,5 +1,5 @@
-import 'package:grad_project/features/shared/auth/domain/repos/auth_repo.dart';
 
+import '../repos/auth_repo.dart';
 
 class ForgetPassUseCase {
   final AuthRepo authRepo;

@@ -8,7 +8,7 @@ class LoginUseCase {
   LoginUseCase({required this.authRepo});
 
   Future<AuthResponse> call(
-      {required int phone,
+      {required String phone,
       required String password,
       required bool remember
       }) 
