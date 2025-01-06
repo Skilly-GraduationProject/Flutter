@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad_project/features/shared/auth/presentation/views/widgets/verify_option.dart';
+import '../../manager/ForgetpassCubit/forgetPass_cubit.dart';
+import 'custom_button.dart';
 import 'custom_text_field.dart';
 
 class SelectOption extends StatefulWidget {
-  const SelectOption({super.key, required this.first, required this.second});
+  const SelectOption(
+      {super.key,
+      required this.first,
+      required this.second,
+      required this.onSaved});
   final String first, second;
+  final Function(String selectedOption, String input) onSaved;
 
   @override
   State<SelectOption> createState() => _SelectOptionState();
 }
 
 class _SelectOptionState extends State<SelectOption> {
-  String selectedOption = 'phone';
-  String? email;
-  int? phoneNumber;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String selectedOption = 'email';
+  String? input;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,21 +56,37 @@ class _SelectOptionState extends State<SelectOption> {
         const SizedBox(
           height: 15,
         ),
-        if (selectedOption == 'email')
-          CustomTextField(
-            title: 'البريد الالكتروني',
-            onSaved: (val) {
-              email = val;
-            },
+        Form(
+          key: formKey,
+          child: Column(
+            children: [
+              if (selectedOption == 'email')
+                CustomTextField(
+                  title: 'البريد الالكتروني',
+                  onSaved: (val) => input = val,
+                ),
+              if (selectedOption == 'phone')
+                CustomTextField(
+                  title: 'رقم الهاتف',
+                  icon: Image.asset('assets/images/EG.png'),
+                  onSaved: (val) => input = val,
+                ),
+              const SizedBox(
+                height: 40,
+              ),
+              CustomButton(
+                text: 'التالي',
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    widget.onSaved(selectedOption, input!);
+                   
+                  }
+                },
+              ),
+            ],
           ),
-        if (selectedOption == 'phone')
-          CustomTextField(
-            title: 'رقم الهاتف',
-            icon: Image.asset('assets/images/EG.png'),
-            onSaved: (val) {
-              phoneNumber = int.tryParse(val!)??0;
-            },
-          ),
+        )
       ],
     );
   }

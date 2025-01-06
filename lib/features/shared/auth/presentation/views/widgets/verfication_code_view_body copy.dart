@@ -24,11 +24,16 @@ class _VerficationCodeViewBodyState extends State<VerficationCodeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    final extra = GoRouterState.of(context).extra as Map<String, dynamic>;
-    final email = extra['email'] ?? '';
-    final phone = extra['phone'] ?? '';
-    print(email);
-    print(phone);
+    final extra = GoRouterState.of(context).extra;
+    String? email = '';
+    String? phone = '';
+    if (extra != null && extra is Map<String, dynamic>) {
+      email = extra['email'];
+      phone = extra['phone'];
+    }
+    print('email $email');
+    print('phone $phone');
+
     return BlocConsumer<VerifycodeCubit, VerifyCodeState>(
         listener: (context, state) {
       if (state is VerifyCodeSuccess) {
@@ -75,7 +80,7 @@ class _VerficationCodeViewBodyState extends State<VerficationCodeViewBody> {
                 height: 5,
               ),
               Text(
-                '$phone',
+                '$email',
                 style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
@@ -98,9 +103,10 @@ class _VerficationCodeViewBodyState extends State<VerficationCodeViewBody> {
                       controller2.text +
                       controller3.text +
                       controller4.text;
-
-                  BlocProvider.of<VerifycodeCubit>(context)
-                      .verifyCode(code: code, email: email!);
+                  print('code $code');
+                  BlocProvider.of<VerifycodeCubit>(context).verifyCode(
+                      code: code, email: email!);
+                  print('email $email');
                 },
               )
             ]),

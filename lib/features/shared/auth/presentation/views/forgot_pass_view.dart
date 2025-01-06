@@ -8,7 +8,7 @@ class ForgotPassView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: const ForgotPassViewBody(),
+      body: ForgotPassViewBody(),
     );
   }
 }
