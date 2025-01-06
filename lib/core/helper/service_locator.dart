@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import '../../features/shared/auth/domain/usecases/updatePass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/verify_code_usecase.dart';
+import '../../features/shared/auth/presentation/manager/ResetPassCubit/updatePass_cubit.dart';
 import '../../features/shared/auth/presentation/manager/VerifyCodeCubit/verifycode_cubit.dart';
 import '../../features/shared/auth/data/repos/auth_repo_implement.dart';
 import '../../features/shared/auth/domain/usecases/forgetPass_usecase.dart';
@@ -45,8 +47,8 @@ void setUp() {
   getIt.registerFactory<VerifycodeCubit>(
       () => VerifycodeCubit(getIt.get<VerifyCodeUseCase>()));
 
-  // getIt.registerSingleton<UpdatepassUsecase>(
-  //     UpdatepassUsecase(authRepo: getIt.get<AuthRepoImplement>()));
-  // getIt.registerFactory<UpdatepassCubit>(
-  //     () => UpdatepassCubit(getIt.get<UpdatepassUsecase>()));
+  getIt.registerSingleton<UpdatePassUseCase>(
+      UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>()));
+  getIt.registerFactory<UpdatePassCubit>(
+      () => UpdatePassCubit(getIt.get<UpdatePassUseCase>()));
 }

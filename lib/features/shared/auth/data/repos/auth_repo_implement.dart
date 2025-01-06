@@ -84,7 +84,7 @@ class AuthRepoImplement implements AuthRepo {
   }
 
   @override
-  Future<void> resetPass(
+  Future<void> updatePass(
       {required String pass,
       required String confirmPass,
       required String email}) async {

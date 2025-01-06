@@ -37,7 +37,7 @@ class _VerficationCodeViewBodyState extends State<VerficationCodeViewBody> {
     return BlocConsumer<VerifycodeCubit, VerifyCodeState>(
         listener: (context, state) {
       if (state is VerifyCodeSuccess) {
-        GoRouter.of(context).push('/reset');
+        GoRouter.of(context).push('/reset', extra: {'email': email ?? ''});
       } else if (state is VerifyCodeFailure) {
         print(state.error);
       }
@@ -104,8 +104,8 @@ class _VerficationCodeViewBodyState extends State<VerficationCodeViewBody> {
                       controller3.text +
                       controller4.text;
                   print('code $code');
-                  BlocProvider.of<VerifycodeCubit>(context).verifyCode(
-                      code: code, email: email!);
+                  BlocProvider.of<VerifycodeCubit>(context)
+                      .verifyCode(code: code, email: email!);
                   print('email $email');
                 },
               )

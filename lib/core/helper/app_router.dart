@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
 import '../../features/shared/auth/presentation/views/provider_data_view.dart';
-import '../../features/shared/auth/presentation/views/reset_pass_view.dart';
+import '../../features/shared/auth/presentation/views/update_pass_view.dart';
 import '../../features/shared/auth/presentation/views/sign_in_view.dart';
 import '../../features/shared/auth/presentation/views/sign_up_view.dart';
 import '../../features/shared/auth/presentation/views/user_data_view.dart';
