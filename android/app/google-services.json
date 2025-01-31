@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418727768222",
+    "project_id": "skilly-58194",
+    "storage_bucket": "skilly-58194.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418727768222:android:aa611a0a4df1531cdf0b8f",
+        "android_client_info": {
+          "package_name": "com.example.grad_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcswNsD9nY85Cm76Fl7i7i9OQFwwa2a6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
