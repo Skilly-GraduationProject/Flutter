@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grad_project/core/navigation/router_path.dart';
 import '../../../../../../constants.dart';
 import '../../manager/LoginCubit/login_cubit.dart';
 import 'custom_button.dart';
@@ -90,11 +91,13 @@ class _SignInFormState extends State<SignInForm> {
           CustomButton(
             text: 'تسجيل الدخول',
             onTap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                BlocProvider.of<LoginCubit>(context)
-                    .login(phone!, password!, true);
-              }
+              GoRouter.of(context).push(RouterPath.userHome);
+
+              // if (formKey.currentState!.validate()) {
+              //   formKey.currentState!.save();
+              //   BlocProvider.of<LoginCubit>(context)
+              //       .login(phone!, password!, true);
+              // }
             },
           )
         ],

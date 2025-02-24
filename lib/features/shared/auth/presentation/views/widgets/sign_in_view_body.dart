@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grad_project/core/navigation/router_path.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../core/helper/loading_indicator.dart';
 import '../../manager/LoginCubit/login_cubit.dart';
@@ -15,7 +16,7 @@ class SignInViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
       if (state is LoginSuccess) {
-        GoRouter.of(context).push('/user');
+        GoRouter.of(context).push(RouterPath.userHome);
       } else if (state is LoginFailure) {
         print(state.error);
       }
