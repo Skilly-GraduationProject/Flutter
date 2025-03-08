@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import '../../../../../../constants.dart';
-import '../../manager/LoginCubit/login_cubit.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 

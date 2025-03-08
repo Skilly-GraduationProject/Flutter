@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grad_project/core/helper/bloc_providers.dart';
 import 'package:grad_project/core/helper/service_locator.dart';
-import 'package:grad_project/core/notifications.dart';
+//import 'package:grad_project/core/notifications.dart';
 import 'package:grad_project/firebase_options.dart';
 import 'core/helper/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'generated/l10n.dart';
+//import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

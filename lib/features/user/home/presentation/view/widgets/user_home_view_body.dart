@@ -1,13 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
-import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/categories_list_view.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/offered_service_card.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/user_home_app_bar.dart';
@@ -31,7 +27,9 @@ class UserHomeViewbody extends StatelessWidget {
         SliverToBoxAdapter(
           child: PrimaryButton(
             text: "طلب خدمه",
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push('/requestService');
+            },
           ),
         ),
         const SliverGap(20),
@@ -63,9 +61,3 @@ class UserHomeViewbody extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
-import 'package:grad_project/core/managers/text_style_manager.dart';
 class HomeBanners extends StatefulWidget {
   const HomeBanners({
     super.key,

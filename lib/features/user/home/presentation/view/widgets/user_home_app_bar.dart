@@ -1,13 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
-import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
-import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
+
 class UserHomeAppBar extends StatelessWidget {
   const UserHomeAppBar({
     super.key,
@@ -28,7 +24,7 @@ class UserHomeAppBar extends StatelessWidget {
             const Gap(10),
             Text(
               "اسم المستخدم",
-              style: TextStyleManager.style20BoldSec,
+              style: TextStyleManager.style18BoldSec,
             ),
             const Gap(10),
             Image.asset(

@@ -7,4 +7,7 @@ abstract class AuthRepo {
   Future<void> updatePass({required String pass,required String confirmPass,required String email});
 Future<void> verifyEmail({required String code,required String email});
 Future<void> verifyCode({required String code,required String email});
+Future<void> addUserData(
+  {required String govern,required String city,required String streetName,required int gender,required String image,});
+Future<void> addProviderData({required String govern,required String city,required String streetName,required String age,required String yearsOfExp,required int gender,required String image,required String briefSummary,required String profession,});
 }
