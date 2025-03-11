@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
@@ -72,42 +73,47 @@ class CategoriesListView extends StatelessWidget {
         itemCount: 10,
         separatorBuilder: (context, index) => const Gap(10),
         itemBuilder: (context, index) {
-          return Container(
-            constraints: BoxConstraints(
-              minWidth: context
-                  .responsiveWidth(90), // Minimum width to show text properly
-              maxWidth: context
-                  .responsiveWidth(120), // Maximum width to prevent overflow
-            ),
-            padding: const EdgeInsets.all(7),
-            decoration: BoxDecoration(
-              color: ColorManager.whiteShade,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize
-                  .min, // Ensures the row only takes necessary space
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    fit: BoxFit.fill,
-                    ImageManager.avatar,
-                    width: context.responsiveWidth(50),
-                    height: context.responsiveWidth(50),
+          return GestureDetector(
+            onTap: () {
+              GoRouter.of(context).push('/category');
+            },
+            child: Container(
+              constraints: BoxConstraints(
+                minWidth: context
+                    .responsiveWidth(90), // Minimum width to show text properly
+                maxWidth: context
+                    .responsiveWidth(120), // Maximum width to prevent overflow
+              ),
+              padding: const EdgeInsets.all(7),
+              decoration: BoxDecoration(
+                color: ColorManager.whiteShade,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize
+                    .min, // Ensures the row only takes necessary space
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      fit: BoxFit.fill,
+                      ImageManager.avatar,
+                      width: context.responsiveWidth(50),
+                      height: context.responsiveWidth(50),
+                    ),
                   ),
-                ),
-                const Gap(8),
-                Flexible(
-                  // Allows text to take up remaining space but never wrap
-                  child: Text(
-                    "البرمجه",
-                    style: TextStyleManager.style12BoldSec,
-                    overflow: TextOverflow.ellipsis, // Trims text if too long
-                    maxLines: 1, // Ensures text does not wrap
+                  const Gap(8),
+                  Flexible(
+                    // Allows text to take up remaining space but never wrap
+                    child: Text(
+                      "البرمجه",
+                      style: TextStyleManager.style12BoldSec,
+                      overflow: TextOverflow.ellipsis, // Trims text if too long
+                      maxLines: 1, // Ensures text does not wrap
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

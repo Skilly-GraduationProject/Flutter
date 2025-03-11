@@ -12,6 +12,7 @@ import '../../features/shared/auth/presentation/views/user_type_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_code_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_email_view.dart';
 import '../../features/shared/splash/presentation/views/splash_view.dart';
+import '../../features/user/home/presentation/view/category_view.dart';
 import '../../features/user/home/presentation/view/request_service_view.dart';
 
 abstract class AppRouter {
@@ -38,6 +39,9 @@ abstract class AppRouter {
     GoRoute(
         path: '/requestService',
         builder: (context, state) => const RequestServiceView()),
+     GoRoute(
+        path: '/category',
+        builder: (context, state) => const CategoryView()),
     GoRoute(
         path: RouterPath.userHome,
         builder: (context, state) => const UserHomeView()),
