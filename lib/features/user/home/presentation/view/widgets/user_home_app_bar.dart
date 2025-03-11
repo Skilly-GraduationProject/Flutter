@@ -21,15 +21,19 @@ class UserHomeAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(200),
               child: Image.asset(ImageManager.avatar),
             ),
-            const Gap(10),
-            Text(
-              "اسم المستخدم",
-              style: TextStyleManager.style18BoldSec,
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 10),
+              child: Text(
+                "اسم المستخدم",
+                style: TextStyleManager.style18BoldSec,
+              ),
             ),
-            const Gap(10),
-            Image.asset(
-              ImageManager.verifyIcon,
-              height: context.responsiveHeight(24),
+            Padding(
+              padding: const EdgeInsets.only(top: 15, right: 5),
+              child: Image.asset(
+                ImageManager.verifyIcon,
+                height: context.responsiveHeight(24),
+              ),
             ),
           ],
         ),

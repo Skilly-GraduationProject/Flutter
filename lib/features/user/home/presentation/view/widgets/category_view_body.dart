@@ -5,6 +5,7 @@ import 'package:grad_project/features/user/home/presentation/view/widgets/offere
 import 'package:grad_project/features/user/home/presentation/view/widgets/offered_services_list_view.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/providers_list_view.dart';
 import '../../../../../../core/managers/image_manager.dart';
+import 'category_select_option.dart';
 import 'custom_app_bar.dart';
 
 class CategoryViewBody extends StatelessWidget {
@@ -18,15 +19,12 @@ class CategoryViewBody extends StatelessWidget {
           const CustomAppBar(title: 'البرمجة'),
           const SizedBox(height: 16),
           Expanded(
-            child: SelectOption(options: const [
-              'موفري الخدمة',
-              'الخدمات المعروضة'
-            ], optionWidgets: {
-              'موفري الخدمة': Expanded(
-                child: ProvidersListView(),
-              ),
-              'الخدمات المعروضة': Expanded(child: OfferedServicesListView())
-            }, onSaved: (selectedOption, input) {}),
+            child: CategorySelectOption(
+              firstTitle: 'موفري الخدمة',
+              secondTitle: 'الخدمات المعروضة',
+              firstWidget: Expanded(child: ProvidersListView()),
+              secondWidget: Expanded(child: OfferedServicesListView()),
+            ),
           )
         ]));
   }
