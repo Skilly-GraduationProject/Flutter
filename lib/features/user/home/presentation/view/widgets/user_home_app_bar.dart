@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
@@ -17,9 +17,14 @@ class UserHomeAppBar extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(200),
-              child: Image.asset(ImageManager.avatar),
+            GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push('/userProfile');
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(200),
+                child: Image.asset(ImageManager.avatar),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, right: 10),
