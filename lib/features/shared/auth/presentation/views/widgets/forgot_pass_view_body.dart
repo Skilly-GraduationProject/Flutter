@@ -1,19 +1,14 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/features/shared/auth/presentation/manager/ForgetpassCubit/forgetPass_cubit.dart';
 import '../../../../../../core/helper/loading_indicator.dart';
-import 'custom_text_field.dart';
 import 'select_option.dart';
 
-class ForgotPassViewBody extends StatefulWidget {
+class ForgotPassViewBody extends StatelessWidget {
   ForgotPassViewBody({super.key});
-
-  @override
-  State<ForgotPassViewBody> createState() => _ForgotPassViewBodyState();
-}
-
-class _ForgotPassViewBodyState extends State<ForgotPassViewBody> {
   String? enteredInput;
 
   @override
@@ -67,52 +62,16 @@ class _ForgotPassViewBodyState extends State<ForgotPassViewBody> {
               const SizedBox(
                 height: 20,
               ),
-              // SelectOption(
-              //     first: 'البريد الالكتروني',
-              //     second: 'رقم الهاتف',
-              //     onSaved: (selectedOption, input) {
-              // enteredInput = input;
-              // if (selectedOption == 'email') {
-              //   BlocProvider.of<ForgetPassCubit>(context)
-              //       .forgetPass(email: input);
-              //       }
-              //     }),
               SelectOption(
-                  options: const [
-                    'البريد الالكتروني',
-                    'رقم الهاتف'
-                  ],
-                  optionWidgets: {
-                    'البريد الالكتروني': CustomTextField(
-                      title: 'البريد الالكتروني',
-                      onSaved: (val) {
-                        setState(() {
-                           enteredInput = val;
-                        print(enteredInput);                        
-                                                });
-                       
-                      },
-                    ),
-                    'رقم الهاتف': CustomTextField(
-                      title: 'رقم الهاتف',
-                      icon: Image.asset('assets/images/EG.png'),
-                      onSaved: (val) {
-                        enteredInput = val;
-                      },
-                    ),
-                  },
+                  first: 'رقم الهاتف',
+                  second: 'البريد الالكتروني',
                   onSaved: (selectedOption, input) {
-                    setState(() {
-                      enteredInput = input;
-                    });
-
-                    print(enteredInput);
-                    print(input);
-                    if (selectedOption == 'البريد الالكتروني') {
+                    enteredInput = input;
+                    if (selectedOption == 'email') {
                       BlocProvider.of<ForgetPassCubit>(context)
-                          .forgetPass(email: enteredInput!);
+                          .forgetPass(email: input);
                     }
-                  })
+                  }),
             ]),
       );
     });
