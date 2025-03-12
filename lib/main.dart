@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               fontFamily: '29LTBukra',
+              scaffoldBackgroundColor: Colors.white,
             )),
       ),
     );

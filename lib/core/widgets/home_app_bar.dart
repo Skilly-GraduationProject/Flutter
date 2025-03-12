@@ -8,8 +8,9 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
-class UserHomeAppBar extends StatelessWidget {
-  const UserHomeAppBar({
+
+class HomeAppBar extends StatelessWidget {
+  const HomeAppBar({
     super.key,
   });
 
@@ -37,7 +38,7 @@ class UserHomeAppBar extends StatelessWidget {
             ),
           ],
         ),
-        Image.asset(ImageManager.notificationIcon),
+        Text("نجار", style: TextStyleManager.style16RegSec,)
       ],
     );
   }

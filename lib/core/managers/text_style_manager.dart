@@ -23,29 +23,59 @@ class TextStyleManager {
     fontSize: adaptiveFontSize(16),
     fontWeight: FontWeight.w700,
   );
+  static TextStyle style12RegSec = TextStyle(
+    color: ColorManager.secondary,
+    fontSize: adaptiveFontSize(12),
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle style12BoldSec = TextStyle(
     color: ColorManager.secondary,
     fontSize: adaptiveFontSize(12),
     fontWeight: FontWeight.w700,
   );
   static TextStyle style14BoldSec = TextStyle(
+    color: ColorManager.secondary,
+    fontSize: adaptiveFontSize(14),
+    fontWeight: FontWeight.w700,
+  );
+  static TextStyle style14BoldPrimary = TextStyle(
     color: ColorManager.primary,
     fontSize: adaptiveFontSize(14),
     fontWeight: FontWeight.w700,
   );
-    static TextStyle style12BoldBlue = TextStyle(
+  static TextStyle style14BoldWhite = TextStyle(
+    color: Colors.white,
+    fontSize: adaptiveFontSize(14),
+    fontWeight: FontWeight.w700,
+  );
+  static TextStyle style12BoldBlue = TextStyle(
     color: ColorManager.blue,
     fontSize: adaptiveFontSize(12),
     fontWeight: FontWeight.w700,
   );
-    static TextStyle style12BoldPrimary = TextStyle(
+  static TextStyle style12BoldPrimary = TextStyle(
     color: ColorManager.primary,
     fontSize: adaptiveFontSize(12),
     fontWeight: FontWeight.w700,
   );
-    static TextStyle style12BoldWhite = TextStyle(
+  static TextStyle style12BoldWhite = TextStyle(
     color: Colors.white,
     fontSize: adaptiveFontSize(12),
+    fontWeight: FontWeight.w700,
+  );
+  static TextStyle style14RegSec = TextStyle(
+    color: ColorManager.secondary,
+    fontSize: adaptiveFontSize(14),
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle style16RegSec = TextStyle(
+    color: ColorManager.secondary,
+    fontSize: adaptiveFontSize(16),
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle style16BoldSec = TextStyle(
+    color: ColorManager.secondary,
+    fontSize: adaptiveFontSize(16),
     fontWeight: FontWeight.w700,
   );
 }

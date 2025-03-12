@@ -11,19 +11,22 @@ class PrimaryButton extends StatelessWidget {
     required this.text,
     this.onTap,
   });
+
   final String text;
   final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Expanded(
+      child: SizedBox(
+        width: context.width,
         child: Container(
-          width: context.width,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: ColorManager.primary),
+            borderRadius: BorderRadius.circular(12),
+            color: ColorManager.primary,
+          ),
           child: Center(
             child: Text(
               text,

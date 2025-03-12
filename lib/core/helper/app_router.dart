@@ -1,5 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
+import 'package:grad_project/features/provider/add_service/presentation/add_service_view.dart';
+import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
+import 'package:grad_project/features/provider/notifications/presentation/view/notification_view.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/my_reviews_view.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/my_work_view.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/service_provider_profile.dart';
 import 'package:grad_project/features/user/home/presentation/view/user_home_view.dart';
 
 import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
@@ -37,5 +44,26 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.userHome,
         builder: (context, state) => const UserHomeView()),
+    GoRoute(
+        path: RouterPath.providerHome,
+        builder: (context, state) => const ServiceProviderHomeView()),
+    GoRoute(
+        path: RouterPath.providerProfile,
+        builder: (context, state) => const ServiceProviderProfile()),
+    GoRoute(
+        path: RouterPath.myReviewsView,
+        builder: (context, state) => const MyReviewsView()),
+    GoRoute(
+        path: RouterPath.myServicesView,
+        builder: (context, state) => const MyServicesView()),
+    GoRoute(
+        path: RouterPath.myWorkView,
+        builder: (context, state) => const MyWorkView()),
+    GoRoute(
+        path: RouterPath.addServiceView,
+        builder: (context, state) => const AddServiceView()),
+    GoRoute(
+        path: RouterPath.notificationView,
+        builder: (context, state) => const NotificationView()),
   ]);
 }

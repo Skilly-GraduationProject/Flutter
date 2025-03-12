@@ -10,7 +10,7 @@ import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/categories_list_view.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/offered_service_card.dart';
-import 'package:grad_project/features/user/home/presentation/view/widgets/user_home_app_bar.dart';
+import 'package:grad_project/core/widgets/home_app_bar.dart';
 
 class UserHomeViewbody extends StatelessWidget {
   const UserHomeViewbody({super.key});
@@ -19,9 +19,18 @@ class UserHomeViewbody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
+        SliverAppBar(
+          pinned: true,
+          primary: true,
+          foregroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          leading: Image.asset(ImageManager.notificationIcon),
+        ),
         const SliverGap(20),
         const SliverToBoxAdapter(
-          child: UserHomeAppBar(),
+          child: HomeAppBar(),
         ),
         const SliverGap(20),
         const SliverToBoxAdapter(
@@ -63,9 +72,3 @@ class UserHomeViewbody extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
