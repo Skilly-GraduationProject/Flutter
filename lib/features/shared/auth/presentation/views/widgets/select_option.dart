@@ -1,7 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad_project/features/shared/auth/presentation/views/widgets/verify_option.dart';
-import '../../manager/ForgetpassCubit/forgetPass_cubit.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -31,10 +30,10 @@ class _SelectOptionState extends State<SelectOption> {
             Expanded(
               child: VerifyOption(
                   title: widget.second,
-                  selected: selectedOption == 'phone',
+                  selected: selectedOption == 'email',
                   onTap: () {
                     setState(() {
-                      selectedOption = 'phone';
+                      selectedOption = 'email';
                     });
                   }),
             ),
@@ -44,10 +43,10 @@ class _SelectOptionState extends State<SelectOption> {
             Expanded(
               child: VerifyOption(
                   title: widget.first,
-                  selected: selectedOption == 'email',
+                  selected: selectedOption == 'phone',
                   onTap: () {
                     setState(() {
-                      selectedOption = 'email';
+                      selectedOption = 'phone';
                     });
                   }),
             ),
@@ -80,7 +79,6 @@ class _SelectOptionState extends State<SelectOption> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     widget.onSaved(selectedOption, input!);
-                   
                   }
                 },
               ),

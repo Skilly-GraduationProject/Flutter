@@ -7,9 +7,9 @@ class UserDataView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
-      body: const UserDataViewBody(),
+      body: UserDataViewBody(),
     );
   }
 }

@@ -1,13 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
-import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
-import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
+
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
@@ -22,19 +18,28 @@ class HomeAppBar extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(200),
-              child: Image.asset(ImageManager.avatar),
+            GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push('/userProfile');
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(200),
+                child: Image.asset(ImageManager.avatar),
+              ),
             ),
-            const Gap(10),
-            Text(
-              "اسم المستخدم",
-              style: TextStyleManager.style20BoldSec,
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 10),
+              child: Text(
+                "اسم المستخدم",
+                style: TextStyleManager.style18BoldSec,
+              ),
             ),
-            const Gap(10),
-            Image.asset(
-              ImageManager.verifyIcon,
-              height: context.responsiveHeight(24),
+            Padding(
+              padding: const EdgeInsets.only(top: 15, right: 5),
+              child: Image.asset(
+                ImageManager.verifyIcon,
+                height: context.responsiveHeight(24),
+              ),
             ),
           ],
         ),

@@ -96,10 +96,53 @@ class AuthRepoImplement implements AuthRepo {
     print('response ${response.data}');
     return response.data;
   }
-}
+  
+  @override
+  Future<void> addProviderData(
+    {required String govern, required String city, required String streetName, required String age, required String yearsOfExp, required int gender, required String image, required String briefSummary, required String profession})async {
+  
+    final response = await apiService.post(
+      '$baseUrl/Provider/addServiceProvider',
+      {
+   'Governorate':govern,
+  'City':city, 
+  'StreetName':streetName,
+  'Gender':gender,
+  'Img':image,
+  'NationalNumberPDF':'',
+  'profession':profession,
+  'Age':age,
+  'categoryId':0,
+  'BriefSummary':briefSummary,
+  'NumberOfYearExperience':yearsOfExp,
+      },
+    );
+    print(response);
+    
+  }
+   @override
+  Future<void> addUserData(
+    {required String govern, required String city, required String streetName, required int gender, required String image})async {
+     final response = await apiService.post(
+      '$baseUrl/UserProfile/userProfile/addUserProfile',
+      {
+      'Governorate':govern,
+  'City':city, 
+  'StreetName':streetName,
+  'Gender':gender,
+  'Img':image,
+      },
+    );
+    print(response);
+    
+  }
+ 
 
 Future<void> storeToken(String token) async {
   SharedPreferences prefrence = await SharedPreferences.getInstance();
   await prefrence.setString('token', token);
   await prefrence.setBool('loggedIn', true);
+}
+
+ 
 }

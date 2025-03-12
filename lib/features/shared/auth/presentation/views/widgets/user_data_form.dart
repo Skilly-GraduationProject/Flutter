@@ -15,13 +15,15 @@ class UserDataForm extends StatefulWidget {
 }
 
 class _UserDataFormState extends State<UserDataForm> {
-  final Map<String, List<String>> cities = {
+  final Map<String, List<String>> cities =
+  {
     'القاهرة': ['مدينة نصر', 'المعادي', 'حلوان', 'شبرا'],
     'الإسكندرية': ['سموحة', 'العصافرة', 'محرم بك', 'المنتزه'],
     'الجيزة': ['الهرم', 'الدقي', 'الشيخ زايد', '6 أكتوبر'],
     'أسوان': ['أسوان الجديدة', 'كوم أمبو', 'دراو', 'إدفو'],
     'الأقصر': ['الكرنك', 'الأقصر الجديدة', 'إسنا', 'أرمنت'],
     'بورسعيد': ['الزهور', 'بورفؤاد', 'العرب', 'المناخ'],
+    'دمياط': ['الزرقا', 'كفر سعد', 'فارسكور'],
   };
   List<String> governs = [
     'القاهرة',
@@ -30,9 +32,10 @@ class _UserDataFormState extends State<UserDataForm> {
     'أسوان',
     'الأقصر',
     'بورسعيد',
+    'دمياط'
   ];
   String selectedGender = 'ذكر';
-  String? selectedCity, selectedGovern, age, streetName;
+  String? selectedCity, selectedGovern, age, streetName, firstName, secondName;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,28 @@ class _UserDataFormState extends State<UserDataForm> {
         key: formKey,
         child: Column(
           children: [
+            Row(
+              children: [
+                Expanded(
+                    child: CustomTextField(
+                  title: 'الاسم الاخير',
+                  onSaved: (val) {
+                    secondName = val;
+                  },
+                )),
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                    child: CustomTextField(
+                  title: 'الاسم الاول',
+                  onSaved: (val) {
+                    firstName = val;
+                  },
+                )),
+              ],
+            ),
+            const SizedBox(height: 20),
             CustomDropDown(
               selectedValue: selectedGovern,
               hint: 'المحافظة',
@@ -70,13 +95,6 @@ class _UserDataFormState extends State<UserDataForm> {
               title: 'اسم الشارع',
               onSaved: (val) {
                 streetName = val;
-              },
-            ),
-            const SizedBox(height: 10),
-            CustomTextField(
-              title: 'السن',
-              onSaved: (val) {
-                age = val;
               },
             ),
             const SizedBox(height: 20),

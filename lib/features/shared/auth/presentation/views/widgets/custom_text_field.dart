@@ -29,6 +29,7 @@ class CustomTextField extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         maxLines: maxLines?? 1,
         onSaved: onSaved,
+        onChanged: onChanged,
         validator: (val) {
           if (val?.isEmpty ?? true) {
             return "This Field is required";

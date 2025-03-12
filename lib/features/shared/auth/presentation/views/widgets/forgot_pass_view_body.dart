@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -49,7 +51,7 @@ class ForgotPassViewBody extends StatelessWidget {
                 height: 20,
               ),
               const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     ': ارسال الي',
@@ -61,8 +63,8 @@ class ForgotPassViewBody extends StatelessWidget {
                 height: 20,
               ),
               SelectOption(
-                  first: 'البريد الالكتروني',
-                  second: 'رقم الهاتف',
+                  first: 'رقم الهاتف',
+                  second: 'البريد الالكتروني',
                   onSaved: (selectedOption, input) {
                     enteredInput = input;
                     if (selectedOption == 'email') {
