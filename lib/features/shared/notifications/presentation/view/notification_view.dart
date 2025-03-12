@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
-import 'package:grad_project/features/provider/notifications/presentation/view/widgets/notifications_view_body.dart';
+import 'package:grad_project/features/shared/notifications/presentation/view/widgets/notifications_view_body.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 
 class NotificationView extends StatelessWidget {

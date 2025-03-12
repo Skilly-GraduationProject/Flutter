@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/features/provider/add_service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
-import 'package:grad_project/features/provider/notifications/presentation/view/notification_view.dart';
+import 'package:grad_project/features/shared/notifications/presentation/view/notification_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_reviews_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_work_view.dart';

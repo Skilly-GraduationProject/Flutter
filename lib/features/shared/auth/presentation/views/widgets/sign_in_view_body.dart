@@ -67,12 +67,17 @@ class SignInViewBody extends StatelessWidget {
                             color: kPrimaryColor),
                       ),
                     ),
-                    const Text(
-                      ' ليس لديك حساب؟',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Colors.grey),
+                    GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).push(RouterPath.userHome);
+                      },
+                      child: const Text(
+                        ' ليس لديك حساب؟',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: Colors.grey),
+                      ),
                     ),
                   ],
                 ),
