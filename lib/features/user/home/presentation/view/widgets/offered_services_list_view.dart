@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/image_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
-import '../../../../../../core/widgets/buttons/primary_button.dart';
 import '../../../../../../core/widgets/buttons/small_primary_button.dart';
 
 class OfferedServicesListView extends StatelessWidget {
