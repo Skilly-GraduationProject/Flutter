@@ -22,6 +22,7 @@ import '../../features/shared/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/presentation/view/category_view.dart';
 import '../../features/user/home/presentation/view/request_service_view.dart';
 import '../../features/user/home/presentation/view/user_profile_view.dart';
+import '../../features/user/home/presentation/view/view_service_view.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(routes: [
@@ -47,9 +48,11 @@ abstract class AppRouter {
     GoRoute(
         path: '/requestService',
         builder: (context, state) => const RequestServiceView()),
-     GoRoute(
-        path: '/category',
-        builder: (context, state) => const CategoryView()),
+    GoRoute(
+        path: '/viewService',
+        builder: (context, state) => const ViewServiceView()),
+    GoRoute(
+        path: '/category', builder: (context, state) => const CategoryView()),
     GoRoute(
         path: '/userProfile',
         builder: (context, state) => const UserProfileView()),
