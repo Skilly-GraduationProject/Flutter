@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 
@@ -79,19 +78,16 @@ class CategoriesListView extends StatelessWidget {
             },
             child: Container(
               constraints: BoxConstraints(
-                minWidth: context
-                    .responsiveWidth(90), // Minimum width to show text properly
-                maxWidth: context
-                    .responsiveWidth(120), // Maximum width to prevent overflow
+                minWidth: context.responsiveWidth(90),
+                maxWidth: context.responsiveWidth(120),
               ),
               padding: const EdgeInsets.all(7),
               decoration: BoxDecoration(
-                color: ColorManager.whiteShade,
+                color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Row(
-                mainAxisSize: MainAxisSize
-                    .min, // Ensures the row only takes necessary space
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
@@ -104,12 +100,11 @@ class CategoriesListView extends StatelessWidget {
                   ),
                   const Gap(8),
                   Flexible(
-                    // Allows text to take up remaining space but never wrap
                     child: Text(
                       "البرمجه",
                       style: TextStyleManager.style12BoldSec,
-                      overflow: TextOverflow.ellipsis, // Trims text if too long
-                      maxLines: 1, // Ensures text does not wrap
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                   ),
                 ],

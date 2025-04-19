@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grad_project/core/extensions/context_extension.dart';
-
 import '../../../../../../core/managers/image_manager.dart';
 import 'rate_widget.dart';
 import 'verified_name.dart';

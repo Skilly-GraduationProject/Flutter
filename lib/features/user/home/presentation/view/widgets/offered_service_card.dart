@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
@@ -15,8 +15,7 @@ class OfferedServiceCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: ColorManager.whiteShade,
-          borderRadius: BorderRadius.circular(12)),
+          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,37 +29,33 @@ class OfferedServiceCard extends StatelessWidget {
                     child: Image.asset(ImageManager.avatar),
                   ),
                   const Gap(10),
-                  // user name
                   Text(
                     "محمد خالد",
                     style: TextStyleManager.style14BoldSec,
                   ),
                 ],
               ),
-              //post date
               const Text("13/10/2024")
             ],
           ),
           const Gap(10),
-          //post title
           Text(
             "عمل غرفه نوم",
             style: TextStyleManager.style12BoldBlue,
           ),
           const Gap(10),
-          //post description
           const Text(
               "مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب......"),
           const Gap(10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // show details button
               SmallPrimaryButton(
                 text: "عرض التفاصيل",
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push('/viewService');
+                },
               ),
-              //offer price
               Text(
                 "500 ج.م",
                 style: TextStyleManager.style12BoldPrimary,
