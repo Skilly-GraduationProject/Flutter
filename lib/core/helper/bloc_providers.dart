@@ -12,6 +12,9 @@ import '../../features/shared/auth/presentation/manager/RegisterCubit/register_c
 import '../../features/shared/auth/presentation/manager/ResetPassCubit/updatePass_cubit.dart';
 import '../../features/shared/auth/presentation/manager/VerifyCodeCubit/verifycode_cubit.dart';
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
+import '../../features/user/home/data/repos/user_repo_implement.dart';
+import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
+import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import 'service_locator.dart';
 
 final blocProviders = <BlocProvider>[
@@ -27,7 +30,7 @@ final blocProviders = <BlocProvider>[
     create: (context) => VerifycodeCubit(
         VerifyCodeUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),
-   BlocProvider<VerifyEmailCubit>(
+  BlocProvider<VerifyEmailCubit>(
     create: (context) => VerifyEmailCubit(
         VerifyEmailUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),
@@ -35,8 +38,12 @@ final blocProviders = <BlocProvider>[
     create: (context) => ForgetPassCubit(
         ForgetPassUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),
-    BlocProvider<UpdatePassCubit>(
+  BlocProvider<UpdatePassCubit>(
     create: (context) => UpdatePassCubit(
         UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>())),
+  ),
+  BlocProvider<GetAllCategoriesCubit>(
+    create: (context) => GetAllCategoriesCubit(
+        GetAllCategoriesUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

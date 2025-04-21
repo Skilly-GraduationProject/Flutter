@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad_project/features/user/home/presentation/view/widgets/view_service_view_body.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/view_service_view_body.dart';
 
 class ViewServiceView extends StatelessWidget {
   const ViewServiceView({super.key});

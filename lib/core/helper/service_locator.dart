@@ -15,6 +15,9 @@ import '../../features/shared/auth/presentation/manager/ForgetpassCubit/forgetPa
 import '../../features/shared/auth/presentation/manager/LoginCubit/login_cubit.dart';
 import '../../features/shared/auth/presentation/manager/RegisterCubit/register_cubit.dart';
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
+import '../../features/user/home/data/repos/user_repo_implement.dart';
+import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
+import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import 'api_service.dart';
 
 final getIt = GetIt.instance;
@@ -24,9 +27,14 @@ void setUp() {
   getIt.registerLazySingleton<FlutterSecureStorage>(
       () => const FlutterSecureStorage());
   getIt.registerLazySingleton<SecureStorageHelper>(
-      () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));  getIt.registerSingleton<ApiService>(ApiService(Dio(BaseOptions())));
+      () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
+  getIt.registerSingleton<ApiService>(ApiService(Dio(BaseOptions())));
+
   getIt.registerSingleton<AuthRepoImplement>(
       AuthRepoImplement(apiService: getIt.get<ApiService>()));
+
+  getIt.registerSingleton<UserRepoImplement>(
+      UserRepoImplement(apiService: getIt.get<ApiService>()));
 
   getIt.registerSingleton<LoginUseCase>(
       LoginUseCase(authRepo: getIt.get<AuthRepoImplement>()));
@@ -57,4 +65,9 @@ void setUp() {
       UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<UpdatePassCubit>(
       () => UpdatePassCubit(getIt.get<UpdatePassUseCase>()));
+
+  getIt.registerSingleton<GetAllCategoriesUseCase>(
+      GetAllCategoriesUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<GetAllCategoriesCubit>(
+      () => GetAllCategoriesCubit(getIt.get<GetAllCategoriesUseCase>()));
 }

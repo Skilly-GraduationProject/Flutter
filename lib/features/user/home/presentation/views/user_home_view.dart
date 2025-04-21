@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad_project/features/user/home/presentation/view/widgets/user_home_view_body.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/user_home_view_body.dart';
 
 class UserHomeView extends StatelessWidget {
   const UserHomeView({super.key});

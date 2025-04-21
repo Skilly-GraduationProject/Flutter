@@ -9,7 +9,7 @@ import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
-import 'package:grad_project/features/user/home/presentation/view/widgets/offered_service_card.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
 import 'package:grad_project/core/widgets/home_app_bar.dart';
 
 class RequestedServiceCard extends StatelessWidget {

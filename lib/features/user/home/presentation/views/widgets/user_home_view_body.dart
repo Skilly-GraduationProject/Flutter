@@ -5,8 +5,8 @@ import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
-import 'package:grad_project/features/user/home/presentation/view/widgets/categories_list_view.dart';
-import 'package:grad_project/features/user/home/presentation/view/widgets/offered_service_card.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/categories_list_view.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
 import 'package:grad_project/core/widgets/home_app_bar.dart';
 
 class UserHomeViewbody extends StatelessWidget {

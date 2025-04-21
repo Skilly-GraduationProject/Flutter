@@ -7,7 +7,7 @@ import 'package:grad_project/features/provider/profile/presentation/view/my_revi
 import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_work_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/service_provider_profile.dart';
-import 'package:grad_project/features/user/home/presentation/view/user_home_view.dart';
+import 'package:grad_project/features/user/home/presentation/views/user_home_view.dart';
 
 import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
 import '../../features/shared/auth/presentation/views/provider_data_view.dart';
@@ -19,10 +19,10 @@ import '../../features/shared/auth/presentation/views/user_type_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_code_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_email_view.dart';
 import '../../features/shared/splash/presentation/views/splash_view.dart';
-import '../../features/user/home/presentation/view/category_view.dart';
-import '../../features/user/home/presentation/view/request_service_view.dart';
-import '../../features/user/home/presentation/view/user_profile_view.dart';
-import '../../features/user/home/presentation/view/view_service_view.dart';
+import '../../features/user/home/presentation/views/category_view.dart';
+import '../../features/user/home/presentation/views/request_service_view.dart';
+import '../../features/user/home/presentation/views/user_profile_view.dart';
+import '../../features/user/home/presentation/views/view_service_view.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(routes: [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad_project/features/user/home/presentation/view/widgets/info_box.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/info_box.dart';
 
 import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
