@@ -10,10 +10,8 @@ class CategoryContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        minWidth: context.responsiveWidth(90),
-        maxWidth: context.responsiveWidth(120),
-      ),
+
+      width: MediaQuery.of(context).size.width / 3.2,
       padding: const EdgeInsets.all(7),
       decoration: BoxDecoration(
         color: Colors.grey.shade100,
@@ -24,12 +22,10 @@ class CategoryContainer extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child:
-
-                Image.network('$imgBaseUrl$image',
-                    width: context.responsiveWidth(50),
-                    height: context.responsiveWidth(50),
-                    fit: BoxFit.fill),
+            child: Image.network('$imgBaseUrl$image',
+                width: context.responsiveWidth(50),
+                height: context.responsiveWidth(50),
+                fit: BoxFit.cover),
           ),
           const Gap(8),
           Flexible(

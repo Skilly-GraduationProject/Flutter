@@ -17,11 +17,12 @@ class CategoriesListView extends StatefulWidget {
 }
 
 class _CategoriesListViewState extends State<CategoriesListView> {
-   @override
+  @override
   void initState() {
     super.initState();
     BlocProvider.of<GetAllCategoriesCubit>(context).getAllCategories();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllCategoriesCubit, GetAllCategoriesStates>(
@@ -29,15 +30,16 @@ class _CategoriesListViewState extends State<CategoriesListView> {
       if (state is GetAllCategoriesLoading) {
         return const CustomLoadingIndicator();
       } else if (state is GetAllCategoriesSuccess) {
-        final categories = state.category;
+        final categories = state.category.categories;
         return SizedBox(
           height: context.responsiveHeight(80),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
             itemCount: 10,
             separatorBuilder: (context, index) => const Gap(10),
             itemBuilder: (context, index) {
-              final CategoryItemEntity category = categories.categories[index];
+              final CategoryItemEntity category = categories[index];
               print(category);
               return GestureDetector(
                 onTap: () {
@@ -54,7 +56,6 @@ class _CategoriesListViewState extends State<CategoriesListView> {
       } else if (state is GetAllCategoriesFailure) {
         return Text(state.error);
       } else {
-      
         return const Text('unknown');
       }
     });
