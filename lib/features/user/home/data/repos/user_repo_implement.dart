@@ -1,13 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-
 import '../../../../../constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/api_service.dart';
 import '../../domain/entities/category_entitiy.dart';
 import '../../domain/entities/category_item_entity.dart';
+import '../../domain/entities/service_providers_entity.dart';
 import '../../domain/repos/user_repo.dart';
 import '../models/category_item_model.dart';
+import '../models/service_providers_model.dart';
 
 class UserRepoImplement implements UserRepo {
   final ApiService apiService;
@@ -26,7 +27,7 @@ class UserRepoImplement implements UserRepo {
         List<CategoryItemEntity> categories = items.map((item) {
           return CategoryItemModel.fromJson(item as Map<String, dynamic>);
         }).toList();
-        print('Category $categories');
+        
         final CategoryEntity category = CategoryEntity(
           categories: categories,
         );
@@ -40,6 +41,29 @@ class UserRepoImplement implements UserRepo {
       }
       return left(ServerFailure(e.toString()));
     }
+  }
+  
+  @override
+  Future<Either<Failure, List<ServiceProvidersEntity>>> getCategoryServiceProviders({required String categoryId})async {
+     try {
+      final response = await apiService.get('$baseUrl/Provider/GetAllServiceProvidersBy/$categoryId');
+        final Map<String, dynamic> data = response.data;
+        print('data $data');
+      final providers = data['provider'] as List;
+       final provider =providers.map((json) => ServiceProvidersModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(provider);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  
+  }
+  
+  @override
+  Future<Either<Failure, CategoryEntity>> getCategoryServices({required String categoryId}) {
+    // TODO: implement getCategoryServices
+    throw UnimplementedError();
   }
   
  

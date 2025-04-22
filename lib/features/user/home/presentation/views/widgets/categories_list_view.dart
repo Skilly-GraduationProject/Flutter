@@ -40,10 +40,14 @@ class _CategoriesListViewState extends State<CategoriesListView> {
             separatorBuilder: (context, index) => const Gap(10),
             itemBuilder: (context, index) {
               final CategoryItemEntity category = categories[index];
-              print(category);
+             
               return GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push('/category');
+                  GoRouter.of(context).push('/category', 
+                  extra: {
+      'id': category.id,
+      'name': category.name,
+    },);
                 },
                 child: CategoryContainer(
                   name: category.name,

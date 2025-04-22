@@ -17,7 +17,9 @@ import '../../features/shared/auth/presentation/manager/RegisterCubit/register_c
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
 import '../../features/user/home/data/repos/user_repo_implement.dart';
 import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
+import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
+import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import 'api_service.dart';
 
 final getIt = GetIt.instance;
@@ -70,4 +72,9 @@ void setUp() {
       GetAllCategoriesUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetAllCategoriesCubit>(
       () => GetAllCategoriesCubit(getIt.get<GetAllCategoriesUseCase>()));
+
+  getIt.registerSingleton<GetCategoryServiceProvidersUseCase>(
+      GetCategoryServiceProvidersUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<GetCategoryServiceProvidersCubit>(
+      () => GetCategoryServiceProvidersCubit(getIt.get<GetCategoryServiceProvidersUseCase>()));
 }

@@ -4,15 +4,17 @@ import 'package:grad_project/core/extensions/context_extension.dart';
 import '../../../../../../core/managers/image_manager.dart';
 
 class VerifiedName extends StatelessWidget {
-  const VerifiedName({super.key});
+  const VerifiedName({super.key, required this.name});
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
     return  Row(
                   children: [
-                    const Text(
-                      "احمد خالد",
-                      style: TextStyle(
+                    Text(
+                     name,
+                      style:const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),

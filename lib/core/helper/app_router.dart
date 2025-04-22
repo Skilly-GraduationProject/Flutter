@@ -52,7 +52,7 @@ abstract class AppRouter {
         path: '/viewService',
         builder: (context, state) => const ViewServiceView()),
     GoRoute(
-        path: '/category', builder: (context, state) => const CategoryView()),
+        path: '/category', builder: (context, state) =>const CategoryView(categoryId: '',categoryName:'',)),
     GoRoute(
         path: '/userProfile',
         builder: (context, state) => const UserProfileView()),
