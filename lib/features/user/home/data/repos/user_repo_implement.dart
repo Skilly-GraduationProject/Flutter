@@ -5,9 +5,11 @@ import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/api_service.dart';
 import '../../domain/entities/category_entitiy.dart';
 import '../../domain/entities/category_item_entity.dart';
+import '../../domain/entities/offered_services_entity.dart';
 import '../../domain/entities/service_providers_entity.dart';
 import '../../domain/repos/user_repo.dart';
 import '../models/category_item_model.dart';
+import '../models/offered_services_model.dart';
 import '../models/service_providers_model.dart';
 
 class UserRepoImplement implements UserRepo {
@@ -61,9 +63,19 @@ class UserRepoImplement implements UserRepo {
   }
   
   @override
-  Future<Either<Failure, CategoryEntity>> getCategoryServices({required String categoryId}) {
-    // TODO: implement getCategoryServices
-    throw UnimplementedError();
+  Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices({required String categoryId}) async{
+     try {
+      final response = await apiService.get('$baseUrl/Provider/ProviderServices/GetAllServicesBy/$categoryId');
+        final Map<String, dynamic> data = response.data;
+        print('data $data');
+      final services = data['service'] as List;
+       final service =services.map((json) => OfferedServicesModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(service);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
   
  

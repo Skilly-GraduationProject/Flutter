@@ -12,7 +12,6 @@ class GetCategoryServiceProvidersCubit extends Cubit<GetCategoryServiceProviders
     emit(GetCategoryServiceProvidersLoading());
     var result = await getCategoryServiceProvidersUseCase.call(categoryId);
     result.fold((failure) {
-      print('cubit fail ${failure.errMessage}');
       emit(GetCategoryServiceProvidersFailure(failure.errMessage));
     }, (providers) {
         emit(GetCategoryServiceProvidersSuccess(providers));

@@ -23,7 +23,9 @@ class CategoryViewBody extends StatelessWidget {
                   child: ProvidersListView(
                 categoryId:'40f5f9df-a11b-4a90-b89c-2bd01b33c420',
               )),
-              secondWidget: Expanded(child: OfferedServicesListView()),
+              secondWidget: Expanded(child: OfferedServicesListView(
+                categoryId: '40f5f9df-a11b-4a90-b89c-2bd01b33c420',
+              )),
             ),
           )
         ]));
