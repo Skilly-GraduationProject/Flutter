@@ -10,10 +10,10 @@ class VerifycodeCubit extends Cubit<VerifyCodeState> {
     emit(VerifyCodeLoading());
     try {
       await verifyCodeUseCase.call(code: code, email: email);
-       print('verify code cubit success');
+      print('verify code cubit success');
       emit(VerifyCodeSuccess());
     } catch (e) {
-       print('verify code cubit fails $e');
+      print('verify code cubit fails $e');
       emit(VerifyCodeFailure('Failed to Verify Code:${e.toString()}'));
     }
   }

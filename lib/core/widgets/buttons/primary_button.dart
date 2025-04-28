@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
@@ -16,19 +17,16 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
-        width: context.width,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: ColorManager.primary,
-          ),
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyleManager.style16BoldWhite,
-            ),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: ColorManager.primary,
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyleManager.style16BoldWhite,
           ),
         ),
       ),

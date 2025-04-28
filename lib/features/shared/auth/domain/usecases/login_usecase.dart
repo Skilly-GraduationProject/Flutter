@@ -1,4 +1,3 @@
-
 import '../../data/models/auth_response.dart';
 import '../repos/auth_repo.dart';
 
@@ -10,10 +9,8 @@ class LoginUseCase {
   Future<AuthResponse> call(
       {required String phone,
       required String password,
-      required bool remember
-      }) 
-     async {
+      required bool remember}) async {
     return await authRepo.login(
-        phone: phone, password: password,remember:remember );
+        phone: phone, password: password, remember: remember);
   }
 }

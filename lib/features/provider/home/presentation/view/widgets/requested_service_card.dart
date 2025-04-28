@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/shadow_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
+import 'package:grad_project/core/widgets/custom_network_image.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
+import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/offered_service_card.dart';
 import 'package:grad_project/core/widgets/home_app_bar.dart';
@@ -15,8 +19,9 @@ import 'package:grad_project/core/widgets/home_app_bar.dart';
 class RequestedServiceCard extends StatelessWidget {
   const RequestedServiceCard({
     super.key,
+    this.service,
   });
-
+  final Service? service;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,36 +45,32 @@ class RequestedServiceCard extends StatelessWidget {
                   const Gap(10),
                   // user name
                   Text(
-                    "محمد خالد",
+                    service?.userName ?? "",
                     style: TextStyleManager.style14BoldSec,
                   ),
                 ],
               ),
               //post date
-              const Text("13/10/2024")
+              Text(service?.serviceRequestTime ?? "")
             ],
           ),
           const Gap(10),
           //post image
           ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              ImageManager.banner,
-              width: context.width,
-              fit: BoxFit.fill,
-            ),
-          ),
+              borderRadius: BorderRadius.circular(12),
+              child: CustomNetworkImage(width: context.width, image: "")),
           const Gap(10),
           //post title
           Text(
-            "عمل غرفه نوم",
+            service?.name ?? "",
             style: TextStyleManager.style12BoldBlue,
           ),
 
           const Gap(10),
           //post description
-          const Text(
-              "مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب......"),
+          Text(
+            service?.notes ?? "",
+          ),
           const Gap(10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +86,7 @@ class RequestedServiceCard extends StatelessWidget {
                   decoration: const BoxDecoration(
                       color: ColorManager.secondary, shape: BoxShape.circle),
                   child: Text(
-                    "5",
+                    service?.offerSalaries?.length.toString() ?? "0",
                     style: TextStyleManager.style12BoldWhite,
                   ),
                 )
@@ -95,12 +96,14 @@ class RequestedServiceCard extends StatelessWidget {
                   // show details button
                   SmallPrimaryButton(
                     text: "عرض التفاصيل",
-                    onTap: () {},
+                    onTap: () {
+                      GoRouter.of(context).push(RouterPath.getServiceView);
+                    },
                   ),
                   Gap(context.responsiveWidth(10)),
                   // requested price
                   Text(
-                    "500 ج.م",
+                    "${service?.price ?? 0} EGP",
                     style: TextStyleManager.style12BoldPrimary,
                   ),
                 ],

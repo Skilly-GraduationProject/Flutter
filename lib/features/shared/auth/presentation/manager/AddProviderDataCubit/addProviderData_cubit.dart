@@ -4,7 +4,8 @@ import '../../../domain/usecases/addProviderData_usecase.dart';
 import 'addProviderData_states.dart';
 
 class AddProviderDataCubit extends Cubit<AddProviderDataState> {
-  AddProviderDataCubit(this.addProviderDataUseCase) : super(AddProviderDataInitial());
+  AddProviderDataCubit(this.addProviderDataUseCase)
+      : super(AddProviderDataInitial());
   final AddProviderDataUseCase addProviderDataUseCase;
 
   Future<void> addProviderData() async {

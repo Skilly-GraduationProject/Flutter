@@ -8,21 +8,21 @@ class VerifiedName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
-                  children: [
-                    const Text(
-                      "احمد خالد",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(width: 5),
-                    Image.asset(
-                      ImageManager.verifyIcon,
-                      height: context.responsiveHeight(24),
-                    ),
-                  ],
-                );
+    return Row(
+      children: [
+        const Text(
+          "احمد خالد",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(width: 5),
+        Image.asset(
+          ImageManager.verifyIcon,
+          height: context.responsiveHeight(24),
+        ),
+      ],
+    );
   }
 }

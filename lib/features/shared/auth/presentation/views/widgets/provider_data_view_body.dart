@@ -47,7 +47,7 @@ class ProviderDataViewBody extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 40),
-      const   ProviderDataForm(),
+          const ProviderDataForm(),
         ],
       ),
     );

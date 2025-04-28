@@ -93,9 +93,7 @@ class OfferedServicesListView extends StatelessWidget {
                             color: ColorManager.secondary,
                             onTap: () {},
                           ),
-                          
                           const SizedBox(width: 5),
-                         
                           SmallPrimaryButton(
                             text: 'عرض سعر',
                             onTap: () {},

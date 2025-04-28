@@ -22,8 +22,7 @@ class NotificationView extends StatelessWidget {
         centerTitle: true,
         leading: const BackIcon(),
       ),
-      body: const SafeArea(
-          child: NotificationsViewBody()),
+      body: const SafeArea(child: NotificationsViewBody()),
     );
   }
 }

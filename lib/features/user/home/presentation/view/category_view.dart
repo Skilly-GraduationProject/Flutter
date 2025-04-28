@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grad_project/features/user/home/presentation/view/widgets/category_view_body.dart';
 
-class  CategoryView extends StatelessWidget {
+class CategoryView extends StatelessWidget {
   const CategoryView({super.key});
 
   @override

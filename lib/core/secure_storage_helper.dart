@@ -12,6 +12,7 @@ class SecureStorageHelper {
   Future<String?> get({required String key}) async {
     return await secureStorage.read(key: key);
   }
+
   void delete({required String key}) async {
     return await secureStorage.delete(key: key);
   }

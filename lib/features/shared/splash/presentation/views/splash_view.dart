@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
-  
+
   @override
   State<SplashView> createState() => _SplashViewState();
 }
@@ -31,7 +31,6 @@ class _SplashViewState extends State<SplashView> {
           seconds: 2,
         ), () {
       GoRouter.of(context).push('/userType');
-     
     });
   }
 }

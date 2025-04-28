@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
-import 'package:grad_project/features/provider/add_service/presentation/add_service_view.dart';
+import 'package:grad_project/features/provider/service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
+import 'package:grad_project/features/provider/service/presentation/get_service_view.dart';
+import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
 import 'package:grad_project/features/shared/notifications/presentation/view/notification_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_reviews_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
@@ -80,5 +82,11 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.notificationView,
         builder: (context, state) => const NotificationView()),
+    GoRoute(
+        path: RouterPath.getServiceView,
+        builder: (context, state) => const GetServiceView()),
+    GoRoute(
+        path: RouterPath.chatView,
+        builder: (context, state) => const ChatView()),
   ]);
 }

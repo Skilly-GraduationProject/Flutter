@@ -13,34 +13,34 @@ class MyReviewsView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: CustomScrollView(
-            slivers: [
-              SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          sliver: SliverAppBar(
-                  pinned: true,
-                  primary: true,
-                  foregroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  surfaceTintColor: Colors.transparent,
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  leading: const BackIcon(),
-                  title: Text(
-                    "التقييمات",
-                    style: TextStyleManager.style20BoldSec,
-                  ),
-                  centerTitle: true,
-                ),
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            sliver: SliverAppBar(
+              pinned: true,
+              primary: true,
+              foregroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              leading: const BackIcon(),
+              title: Text(
+                "التقييمات",
+                style: TextStyleManager.style20BoldSec,
               ),
-              const SliverGap(20),
-              SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          sliver: SliverList.separated(
-                    itemCount: 20,
-                    itemBuilder: (context, index) => const ReviewCard(),
-                    separatorBuilder: (context, index) => const Gap(10)),
-              ),
-            ],
-          )),
+              centerTitle: true,
+            ),
+          ),
+          const SliverGap(20),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            sliver: SliverList.separated(
+                itemCount: 20,
+                itemBuilder: (context, index) => const ReviewCard(),
+                separatorBuilder: (context, index) => const Gap(10)),
+          ),
+        ],
+      )),
     );
   }
 }

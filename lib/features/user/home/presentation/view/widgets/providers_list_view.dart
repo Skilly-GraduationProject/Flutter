@@ -34,10 +34,10 @@ class ProvidersListView extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-          const  Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               VerifiedName(),
+                VerifiedName(),
                 RateWidget(),
               ],
             ),

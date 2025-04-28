@@ -266,11 +266,13 @@ class BackIcon extends StatelessWidget {
       onTap: () {
         context.pop();
       },
-      child: Icon(
-        Icons.arrow_circle_right_outlined,
-        size: context.responsiveHeight(30),
-        color: ColorManager.secondary,
-      ),
+      child: GoRouter.of(context).canPop()
+          ? Icon(
+              Icons.arrow_circle_right_outlined,
+              size: context.responsiveHeight(30),
+              color: ColorManager.secondary,
+            )
+          : SizedBox.shrink(),
     );
   }
 }

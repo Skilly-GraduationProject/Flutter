@@ -27,7 +27,7 @@ final blocProviders = <BlocProvider>[
     create: (context) => VerifycodeCubit(
         VerifyCodeUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),
-   BlocProvider<VerifyEmailCubit>(
+  BlocProvider<VerifyEmailCubit>(
     create: (context) => VerifyEmailCubit(
         VerifyEmailUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),
@@ -35,7 +35,7 @@ final blocProviders = <BlocProvider>[
     create: (context) => ForgetPassCubit(
         ForgetPassUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),
-    BlocProvider<UpdatePassCubit>(
+  BlocProvider<UpdatePassCubit>(
     create: (context) => UpdatePassCubit(
         UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),

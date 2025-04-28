@@ -65,7 +65,8 @@ class AuthRepoImplement implements AuthRepo {
   }
 
   @override
-  Future<void> verifyEmail({required String code, required String email}) async {
+  Future<void> verifyEmail(
+      {required String code, required String email}) async {
     final response = await apiService.post('$baseUrl/Auth/verify-email', {
       'email': email,
       'code': code,
@@ -73,6 +74,7 @@ class AuthRepoImplement implements AuthRepo {
     print('response ${response.data}');
     return response.data;
   }
+
   @override
   Future<void> verifyCode({required String code, required String email}) async {
     final response = await apiService.post('$baseUrl/Auth/verify-code', {
@@ -96,53 +98,60 @@ class AuthRepoImplement implements AuthRepo {
     print('response ${response.data}');
     return response.data;
   }
-  
+
   @override
   Future<void> addProviderData(
-    {required String govern, required String city, required String streetName, required String age, required String yearsOfExp, required int gender, required String image, required String briefSummary, required String profession})async {
-  
+      {required String govern,
+      required String city,
+      required String streetName,
+      required String age,
+      required String yearsOfExp,
+      required int gender,
+      required String image,
+      required String briefSummary,
+      required String profession}) async {
     final response = await apiService.post(
       '$baseUrl/Provider/addServiceProvider',
       {
-   'Governorate':govern,
-  'City':city, 
-  'StreetName':streetName,
-  'Gender':gender,
-  'Img':image,
-  'NationalNumberPDF':'',
-  'profession':profession,
-  'Age':age,
-  'categoryId':0,
-  'BriefSummary':briefSummary,
-  'NumberOfYearExperience':yearsOfExp,
+        'Governorate': govern,
+        'City': city,
+        'StreetName': streetName,
+        'Gender': gender,
+        'Img': image,
+        'NationalNumberPDF': '',
+        'profession': profession,
+        'Age': age,
+        'categoryId': 0,
+        'BriefSummary': briefSummary,
+        'NumberOfYearExperience': yearsOfExp,
       },
     );
     print(response);
-    
   }
-   @override
+
+  @override
   Future<void> addUserData(
-    {required String govern, required String city, required String streetName, required int gender, required String image})async {
-     final response = await apiService.post(
+      {required String govern,
+      required String city,
+      required String streetName,
+      required int gender,
+      required String image}) async {
+    final response = await apiService.post(
       '$baseUrl/UserProfile/userProfile/addUserProfile',
       {
-      'Governorate':govern,
-  'City':city, 
-  'StreetName':streetName,
-  'Gender':gender,
-  'Img':image,
+        'Governorate': govern,
+        'City': city,
+        'StreetName': streetName,
+        'Gender': gender,
+        'Img': image,
       },
     );
     print(response);
-    
   }
- 
 
-Future<void> storeToken(String token) async {
-  SharedPreferences prefrence = await SharedPreferences.getInstance();
-  await prefrence.setString('token', token);
-  await prefrence.setBool('loggedIn', true);
-}
-
- 
+  Future<void> storeToken(String token) async {
+    SharedPreferences prefrence = await SharedPreferences.getInstance();
+    await prefrence.setString('token', token);
+    await prefrence.setBool('loggedIn', true);
+  }
 }

@@ -13,37 +13,37 @@ class MyWorkView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: CustomScrollView(
-            slivers: [
-              SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          sliver:SliverAppBar(
-                  pinned: true,
-                  primary: true,
-                  foregroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  surfaceTintColor: Colors.transparent,
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  leading: const BackIcon(),
-                  title: Text(
-                    "اخر الاعمال",
-                    style: TextStyleManager.style20BoldSec,
-                  ),
-                  centerTitle: true,
-                ),
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            sliver: SliverAppBar(
+              pinned: true,
+              primary: true,
+              foregroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              surfaceTintColor: Colors.transparent,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              leading: const BackIcon(),
+              title: Text(
+                "اخر الاعمال",
+                style: TextStyleManager.style20BoldSec,
               ),
-              const SliverGap(20),
-              SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          sliver:SliverList.separated(
-                  itemCount: 10,
-                  separatorBuilder: (context, index) => const Gap(10),
-                  itemBuilder: (context, index) {
-                    return const MyWorkCard();
-                  },
-                ),
-              ),
-            ],
-          )),
+              centerTitle: true,
+            ),
+          ),
+          const SliverGap(20),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            sliver: SliverList.separated(
+              itemCount: 10,
+              separatorBuilder: (context, index) => const Gap(10),
+              itemBuilder: (context, index) {
+                return const MyWorkCard();
+              },
+            ),
+          ),
+        ],
+      )),
     );
   }
 }
