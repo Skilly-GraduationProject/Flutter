@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import '../../../../../../constants.dart';
+
 import 'rate_widget.dart';
 import 'verified_name.dart';
 
@@ -15,7 +15,7 @@ class ProviderContainer extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(200),
           child: Image.network(
-            '$imgBaseUrl$img',
+            img,
             width: 50,
             height: 50,
           ),

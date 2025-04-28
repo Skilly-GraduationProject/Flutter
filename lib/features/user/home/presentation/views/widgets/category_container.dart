@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import '../../../../../../constants.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
 
 class CategoryContainer extends StatelessWidget {
@@ -22,7 +21,7 @@ class CategoryContainer extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image.network('$imgBaseUrl$image',
+            child: Image.network(image,
                 width: context.responsiveWidth(50),
                 height: context.responsiveWidth(50),
                 fit: BoxFit.cover),

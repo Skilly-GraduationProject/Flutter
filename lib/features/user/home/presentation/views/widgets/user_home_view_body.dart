@@ -62,6 +62,7 @@ class UserHomeViewbody extends StatelessWidget {
         ),
         const SliverGap(10),
         SliverList.separated(
+          itemCount: 10,
           itemBuilder: (context, index) => const OfferedServiceCard(),
           separatorBuilder: (context, index) {
             return const Gap(15);
