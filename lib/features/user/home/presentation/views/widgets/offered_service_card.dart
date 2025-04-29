@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 
 class OfferedServiceCard extends StatelessWidget {
   const OfferedServiceCard({
     super.key,
+    required this.providerName,
+    required this.providerImg,
+    required this.time,
+    required this.img,
+    required this.name,
+    required this.desc,
+    required this.price,
   });
-
+  final String providerName, time, img, name, desc, providerImg;
+  final double price;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,26 +34,38 @@ class OfferedServiceCard extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(200),
-                    child: Image.asset(ImageManager.avatar),
+                    child: Image.network(providerImg,
+                        width: context.responsiveWidth(50),
+                        height: context.responsiveWidth(50),
+                        fit: BoxFit.cover),
                   ),
                   const Gap(10),
                   Text(
-                    "محمد خالد",
+                    providerName,
                     style: TextStyleManager.style14BoldSec,
                   ),
                 ],
               ),
-              const Text("13/10/2024")
+              Text(time)
             ],
           ),
           const Gap(10),
+          Row(children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(img,
+                  width: context.responsiveWidth(350),
+                  height: context.responsiveWidth(150),
+                  fit: BoxFit.cover),
+            ),
+          ]),
+          const Gap(10),
           Text(
-            "عمل غرفه نوم",
+            name,
             style: TextStyleManager.style12BoldBlue,
           ),
           const Gap(10),
-          const Text(
-              "مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب......"),
+          Text(desc),
           const Gap(10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,7 +77,7 @@ class OfferedServiceCard extends StatelessWidget {
                 },
               ),
               Text(
-                "500 ج.م",
+                "$price ج.م",
                 style: TextStyleManager.style12BoldPrimary,
               ),
             ],

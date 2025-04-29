@@ -36,7 +36,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            itemCount: 10,
+            itemCount: categories.length,
             separatorBuilder: (context, index) => const Gap(10),
             itemBuilder: (context, index) {
               final CategoryItemEntity category = categories[index];

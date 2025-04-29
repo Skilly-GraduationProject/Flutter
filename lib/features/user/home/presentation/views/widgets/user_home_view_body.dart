@@ -6,7 +6,7 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/categories_list_view.dart';
-import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/home_services_listview.dart';
 import 'package:grad_project/core/widgets/home_app_bar.dart';
 
 class UserHomeViewbody extends StatelessWidget {
@@ -61,13 +61,11 @@ class UserHomeViewbody extends StatelessWidget {
           ),
         ),
         const SliverGap(10),
-        SliverList.separated(
-          itemCount: 10,
-          itemBuilder: (context, index) => const OfferedServiceCard(),
-          separatorBuilder: (context, index) {
-            return const Gap(15);
-          },
-        )
+       const  SliverToBoxAdapter(
+        child: SizedBox(
+          height: 600,
+        child: HomeServicesListView()),)
+
       ],
     );
   }

@@ -14,9 +14,11 @@ import '../../features/shared/auth/presentation/manager/VerifyCodeCubit/verifyco
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
 import '../../features/user/home/data/repos/user_repo_implement.dart';
 import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
+import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
+import '../../features/user/home/presentation/manager/GetAllServices/get_all_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
 import 'service_locator.dart';
@@ -57,5 +59,9 @@ final blocProviders = <BlocProvider>[
   BlocProvider<GetCategoryServicesCubit>(
     create: (context) => GetCategoryServicesCubit(
        GetCategoryServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
+  ),
+  BlocProvider<GetAllServicesCubit>(
+    create: (context) => GetAllServicesCubit(
+       GetAllServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

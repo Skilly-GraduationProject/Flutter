@@ -80,6 +80,7 @@ class RequestedServiceCard extends StatelessWidget {
                   style: TextStyleManager.style12BoldSec,
                 ),
                 Gap(context.responsiveWidth(10)),
+                
                 Container(
                   padding: const EdgeInsets.all(7),
                   decoration: const BoxDecoration(
