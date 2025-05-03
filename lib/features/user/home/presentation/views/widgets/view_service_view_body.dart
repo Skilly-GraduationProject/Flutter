@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/info_box.dart';
@@ -23,7 +22,9 @@ class ViewServiceViewBody extends StatelessWidget {
           children: [
             const CustomAppBar(title: 'الخدمة'),
             const SizedBox(height: 16),
-            ImagesBanner(images: service.images,),
+            ImagesBanner(
+              images: service.images,
+            ),
             const SizedBox(height: 10),
             Text(
               service.name,
@@ -64,7 +65,8 @@ class ViewServiceViewBody extends StatelessWidget {
                 children: [
                   const Text('مدة التسليم',
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  //   Text(service.deliveryTime, style:const TextStyle(color: ColorManager.blue)),
+                  Text(service.deliveryTime,
+                      style: const TextStyle(color: ColorManager.blue)),
                 ],
               ),
             ),
@@ -80,11 +82,19 @@ class ViewServiceViewBody extends StatelessWidget {
               ),
             ),
             const TitleWidget(title: 'فيديو'),
-            const InfoBox(
-              child: Center(
-                child:
-                    Icon(Icons.video_camera_back, size: 50, color: Colors.grey),
-              ),
+            InfoBox(
+              child: Builder(builder: (context) {
+                // final videoUrl = service.video;
+                // if (videoUrl != null && videoUrl.isNotEmpty) {
+                //   return VideoPlayerWidget(url: videoUrl);
+                // } else {
+                return const Center(
+                  child: Icon(Icons.video_camera_back,
+                      size: 50, color: Colors.grey),
+                );
+              }
+                  // },
+                  ),
             ),
             const SizedBox(height: 30),
             Row(
@@ -120,4 +130,3 @@ class ViewServiceViewBody extends StatelessWidget {
     );
   }
 }
-

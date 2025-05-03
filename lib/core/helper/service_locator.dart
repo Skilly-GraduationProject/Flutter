@@ -20,10 +20,12 @@ import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart
 import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
+import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllServices/get_all_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
+import '../../features/user/home/presentation/manager/GetUserProfileData/get_user_profile_data_cubit.dart';
 import 'api_service.dart';
 
 final getIt = GetIt.instance;
@@ -78,9 +80,11 @@ void setUp() {
       () => GetAllCategoriesCubit(getIt.get<GetAllCategoriesUseCase>()));
 
   getIt.registerSingleton<GetCategoryServiceProvidersUseCase>(
-      GetCategoryServiceProvidersUseCase(userRepo: getIt.get<UserRepoImplement>()));
-  getIt.registerFactory<GetCategoryServiceProvidersCubit>(
-      () => GetCategoryServiceProvidersCubit(getIt.get<GetCategoryServiceProvidersUseCase>()));
+      GetCategoryServiceProvidersUseCase(
+          userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<GetCategoryServiceProvidersCubit>(() =>
+      GetCategoryServiceProvidersCubit(
+          getIt.get<GetCategoryServiceProvidersUseCase>()));
 
   getIt.registerSingleton<GetCategoryServicesUseCase>(
       GetCategoryServicesUseCase(userRepo: getIt.get<UserRepoImplement>()));
@@ -91,4 +95,9 @@ void setUp() {
       GetAllServicesUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetAllServicesCubit>(
       () => GetAllServicesCubit(getIt.get<GetAllServicesUseCase>()));
+
+  getIt.registerSingleton<GetUserProfileDataUseCase>(
+      GetUserProfileDataUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<GetUserProfileDataCubit>(
+      () => GetUserProfileDataCubit(getIt.get<GetUserProfileDataUseCase>()));
 }

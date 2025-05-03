@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:grad_project/features/user/home/domain/entities/all_services_entity.dart';
+import 'package:grad_project/features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/api_service.dart';
@@ -13,6 +14,7 @@ import '../models/all_services_model.dart';
 import '../models/category_item_model.dart';
 import '../models/offered_services_model.dart';
 import '../models/service_providers_model.dart';
+import '../models/user_profile_data_model.dart';
 
 class UserRepoImplement implements UserRepo {
   final ApiService apiService;
@@ -91,6 +93,20 @@ class UserRepoImplement implements UserRepo {
           .toList();
 
       return Right(service);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserProfileDataEntity>> getUserProfileData({required String token})async {
+   try {
+      final response = await apiService.get('$baseUrl/UserProfile/userProfile/GetUserProfileByuserId');
+        final Map<String, dynamic> data = response.data;
+        print('data $data');
+      final userData = UserProfileDataModel.fromJson(data['user']).toEntity();
+   
+      return Right(userData);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

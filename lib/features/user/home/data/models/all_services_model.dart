@@ -1,37 +1,50 @@
 import '../../domain/entities/all_services_entity.dart';
 
 class AllServicesModel {
-  final String name, desc, img, time, providerName, providerImg;
-  final String? notes;
+  final String name, desc, img, time, providerName, providerImg,deliveryTime;
+  final String? notes,video;
   final List<String> images;
   final double price;
 
-  AllServicesModel(
-      {required this.name,
-      required this.desc,
-      required this.price,
-      required this.img,
-      required this.providerName,
-      required this.time,
-      required this.notes,
-      required this.images,
-      // required this.deliveryTime,
-      required this.providerImg});
+  AllServicesModel({
+    required this.name,
+    required this.desc,
+    required this.price,
+    required this.img,
+    required this.providerName,
+    required this.time,
+    required this.notes,
+    required this.images,
+    required this.providerImg,
+    required this.deliveryTime,
+    required this.video,
+  });
+
   factory AllServicesModel.fromJson(Map<String, dynamic> json) {
-    final List<String>images =  (json['images'] as List<dynamic>).map((e) => e.toString()).toList();
+    final List<String>images = (json['images'] as List<dynamic>).map((e) => e.toString()).toList();
+
+    String? videoUrl;
+    if (images.isNotEmpty && images.last.toLowerCase().endsWith('.mp4')) {
+      videoUrl = images.last;
+      images.removeLast(); 
+    }
+
     final time = json['serviceRequestTime'];
     final date = time.split('T').first;
+
     return AllServicesModel(
-        name: json['name'],
-        desc: json['description'],
-        price: json['price'],
-        img: images.first,
-        providerName: json['serviceProviderName'],
-        providerImg: json['providerImg'],
-        notes: json['notes'],
-        images: images,
-        // deliveryTime: json['deliveryTime'],
-        time: date);
+      name: json['name'],
+      desc: json['description'],
+      price: json['price'],
+      img: images.isNotEmpty ? images.first : '',
+      providerName: json['serviceProviderName'],
+      providerImg: json['providerImg'],
+      notes: json['notes'],
+      deliveryTime: json['deliverytime'],
+      images: images,
+      time: date,
+      video: videoUrl,
+    );
   }
 
   AllServicesEntity toEntity() {
@@ -43,9 +56,10 @@ class AllServicesModel {
       providerName: providerName,
       providerImg: providerImg,
       time: time,
-      // deliveryTime: deliveryTime,
       notes: notes,
-      images: images
+      images: images,
+      deliveryTime: deliveryTime,
+      video: video,
     );
   }
 }

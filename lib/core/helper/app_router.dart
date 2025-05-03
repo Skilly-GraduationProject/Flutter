@@ -21,6 +21,7 @@ import '../../features/shared/auth/presentation/views/verfication_code_view.dart
 import '../../features/shared/auth/presentation/views/verfication_email_view.dart';
 import '../../features/shared/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/domain/entities/all_services_entity.dart';
+import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
 import '../../features/user/home/presentation/views/user_profile_view.dart';
@@ -69,7 +70,16 @@ abstract class AppRouter {
             )),
     GoRoute(
         path: '/userProfile',
-        builder: (context, state) => const UserProfileView()),
+        builder: (context, state) {
+          final data = state.extra as UserProfileDataEntity?;
+          if (data == null) {
+            return const Scaffold(
+              body: Center(child: Text("Data not found")),
+            );
+          }
+          return UserProfileView(data: data);
+        },
+    ),      
     GoRoute(
         path: RouterPath.userHome,
         builder: (context, state) => const UserHomeView()),

@@ -4,8 +4,8 @@ import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 
-class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({
+class HomeProviderAppBar extends StatelessWidget {
+  const HomeProviderAppBar({
     super.key,
   });
 
@@ -19,7 +19,7 @@ class HomeAppBar extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                GoRouter.of(context).push('/userProfile');
+                GoRouter.of(context).push('/serviceProviderProfile');
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(200),
@@ -41,10 +41,6 @@ class HomeAppBar extends StatelessWidget {
               ),
             ),
           ],
-        ),
-        Text(
-          "نجار",
-          style: TextStyleManager.style16RegSec,
         ),
         Image.asset(
           ImageManager.notificationIcon,

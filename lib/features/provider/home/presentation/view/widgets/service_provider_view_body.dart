@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
-import 'package:grad_project/core/widgets/buttons/notification_button.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
-import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
-import 'package:grad_project/core/widgets/home_app_bar.dart';
+import 'package:grad_project/core/widgets/home_provider_app_bar.dart';
 
 class ServiceProviderViewBody extends StatelessWidget {
   const ServiceProviderViewBody({super.key});
@@ -30,7 +24,7 @@ class ServiceProviderViewBody extends StatelessWidget {
                 onTap: () {
                   GoRouter.of(context).push(RouterPath.providerProfile);
                 },
-                child: const HomeAppBar()),
+                child: const HomeProviderAppBar(),)
           ),
         ),
         const SliverGap(20),

@@ -6,7 +6,8 @@ import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/categories_list_view.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/home_services_listview.dart';
-import 'package:grad_project/core/widgets/home_app_bar.dart';
+
+import 'home_user_app_bar.dart';
 
 class UserHomeViewbody extends StatelessWidget {
   const UserHomeViewbody({super.key});
@@ -24,7 +25,7 @@ class UserHomeViewbody extends StatelessWidget {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         const SliverToBoxAdapter(
-          child: HomeAppBar(),
+          child: HomeUserAppBar(),
         ),
         const SliverGap(20),
         const SliverToBoxAdapter(
