@@ -2,45 +2,47 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
-class HomeBanners extends StatefulWidget {
-  const HomeBanners({
-    super.key,
-  });
+import '../managers/color_manager.dart';
+
+class ImagesBanner extends StatefulWidget {
+  final List<String> images;
+  const ImagesBanner({super.key, required this.images});
 
   @override
-  State<HomeBanners> createState() => _HomeBannersState();
+  State<ImagesBanner> createState() => _ImagesBannerState();
 }
 
-class _HomeBannersState extends State<HomeBanners> {
+class _ImagesBannerState extends State<ImagesBanner> {
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    if (widget.images.isEmpty) {
+      return const SizedBox();
+    }
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.responsiveWidth(0)),
       child: Column(
         children: [
           CarouselSlider(
-            items: [ImageManager.banner, ImageManager.banner].map((b) {
+            items: widget.images.map((url) {
               return ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: SizedBox(
-                  width: context.width,
-                  child: Image.asset(
-                    b,
-                    fit: BoxFit.fill,
-                  ),
+                child: Image.network(
+                  url,
+                  fit: BoxFit.fill,
+                  width: double.infinity,
                 ),
               );
             }).toList(),
             options: CarouselOptions(
               autoPlay: true,
               enlargeFactor: 0.9,
-              autoPlayAnimationDuration: const Duration(seconds: 1),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
               enlargeCenterPage: true,
               viewportFraction: 1,
-              height: context.responsiveHeight(127),
+              height: 200,
               onPageChanged: (index, reason) {
                 setState(() {
                   currentIndex = index;
@@ -52,10 +54,11 @@ class _HomeBannersState extends State<HomeBanners> {
           SizedBox(
             height: 8,
             child: ListView.builder(
-              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
+              itemCount: widget.images.length,
+              shrinkWrap: true,
               itemBuilder: (context, index) => AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 300),
                 width: 8,
                 height: 8,
                 margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -66,9 +69,8 @@ class _HomeBannersState extends State<HomeBanners> {
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
-              itemCount: 3,
             ),
-          )
+          ),
         ],
       ),
     );

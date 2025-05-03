@@ -4,7 +4,6 @@ import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 
-
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
     super.key,
@@ -43,7 +42,15 @@ class HomeAppBar extends StatelessWidget {
             ),
           ],
         ),
-        Text("نجار", style: TextStyleManager.style16RegSec,)
+        Text(
+          "نجار",
+          style: TextStyleManager.style16RegSec,
+        ),
+        Image.asset(
+          ImageManager.notificationIcon,
+          width: 30,
+          height: 30,
+        )
       ],
     );
   }

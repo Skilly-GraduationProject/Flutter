@@ -37,7 +37,7 @@ class ServiceProviderViewBody extends StatelessWidget {
         const SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           sliver: SliverToBoxAdapter(
-            child: HomeBanners(),
+            child: ImagesBanner(images: [],),
           ),
         ),
         const SliverGap(20),

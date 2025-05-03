@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
@@ -23,15 +22,15 @@ class UserHomeViewbody extends StatelessWidget {
           shadowColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          leading: Image.asset(ImageManager.notificationIcon),
         ),
-        const SliverGap(20),
         const SliverToBoxAdapter(
           child: HomeAppBar(),
         ),
         const SliverGap(20),
         const SliverToBoxAdapter(
-          child: HomeBanners(),
+          child: ImagesBanner(
+            images: [],
+          ),
         ),
         const SliverGap(20),
         SliverToBoxAdapter(
@@ -61,11 +60,9 @@ class UserHomeViewbody extends StatelessWidget {
           ),
         ),
         const SliverGap(10),
-       const  SliverToBoxAdapter(
-        child: SizedBox(
-          height: 600,
-        child: HomeServicesListView()),)
-
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 600, child: HomeServicesListView()),
+        )
       ],
     );
   }

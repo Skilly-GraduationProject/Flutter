@@ -1,14 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:grad_project/features/user/home/presentation/views/widgets/info_box.dart';
 
+import 'package:flutter/material.dart';
+import 'package:grad_project/core/widgets/home_banners.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/info_box.dart';
 import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
-import '../../../../../../core/widgets/home_banners.dart';
+import '../../../domain/entities/all_services_entity.dart';
 import '../request_service_view.dart';
 import 'custom_app_bar.dart';
 
 class ViewServiceViewBody extends StatelessWidget {
-  const ViewServiceViewBody({super.key});
+  const ViewServiceViewBody({super.key, required this.service});
+
+  final AllServicesEntity service;
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +23,16 @@ class ViewServiceViewBody extends StatelessWidget {
           children: [
             const CustomAppBar(title: 'الخدمة'),
             const SizedBox(height: 16),
-            const HomeBanners(),
+            ImagesBanner(images: service.images,),
             const SizedBox(height: 10),
             Text(
-              'عنوان الخدمه',
+              service.name,
               style: TextStyleManager.style18BoldSec,
             ),
             const SizedBox(height: 5),
-            const Text(
-              ' وصف للخدمة تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل تفاصيل.',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+            Text(
+              service.desc,
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 10),
             Row(
@@ -44,35 +47,35 @@ class ViewServiceViewBody extends StatelessWidget {
                 ),
               ],
             ),
-       
-            const InfoBox(
+            InfoBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('سعر الخدمة',
+                  const Text('سعر الخدمة',
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('1000 ج م', style: TextStyle(color: ColorManager.blue)),
+                  Text('${service.price} ج م',
+                      style: const TextStyle(color: ColorManager.blue)),
                 ],
               ),
             ),
-            const InfoBox(
+            InfoBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('مدة التسليم',
+                  const Text('مدة التسليم',
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('5 أيام', style: TextStyle(color: ColorManager.blue)),
+                  //   Text(service.deliveryTime, style:const TextStyle(color: ColorManager.blue)),
                 ],
               ),
             ),
-            const InfoBox(
+            InfoBox(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('ملاحظات',
+                  const Text('ملاحظات',
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  SizedBox(height: 5),
-                  Text('- ملاحظة 1\n- ملاحظة 2\n- ملاحظة 3'),
+                  const SizedBox(height: 5),
+                  Text(service.notes ?? ''),
                 ],
               ),
             ),
@@ -117,3 +120,4 @@ class ViewServiceViewBody extends StatelessWidget {
     );
   }
 }
+

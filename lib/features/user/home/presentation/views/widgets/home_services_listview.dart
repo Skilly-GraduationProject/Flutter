@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
 import '../../../../../../core/helper/loading_indicator.dart';
-import '../../../domain/entities/all_services_entity.dart';
 import '../../manager/GetAllServices/get_all_services_cubit.dart';
 import '../../manager/GetAllServices/get_all_services_states.dart';
 
@@ -34,15 +33,15 @@ class _HomeServicesListViewState extends State<HomeServicesListView> {
             shrinkWrap: true,
             separatorBuilder: (context, index) => const SizedBox(height: 15),
             itemBuilder: (context, index) {
-              final AllServicesEntity service = services[index];
               return OfferedServiceCard(
-                name: service.name,
-                desc: service.desc,
-                price: service.price,
-                img: service.img,
-                providerImg: service.providerImg,
-                providerName: service.providerName,
-                time: service.time,
+                service: services[index],
+                // name: service.name,
+                // desc: service.desc,
+                // price: service.price,
+                // img: service.img,
+                // providerImg: service.providerImg,
+                // providerName: service.providerName,
+                // time: service.time,
               );
             });
       } else if (state is GetAllServicesFailure) {

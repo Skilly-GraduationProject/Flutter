@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/features/provider/add_service/presentation/add_service_view.dart';
@@ -19,6 +20,7 @@ import '../../features/shared/auth/presentation/views/user_type_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_code_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_email_view.dart';
 import '../../features/shared/splash/presentation/views/splash_view.dart';
+import '../../features/user/home/domain/entities/all_services_entity.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
 import '../../features/user/home/presentation/views/user_profile_view.dart';
@@ -50,9 +52,21 @@ abstract class AppRouter {
         builder: (context, state) => const RequestServiceView()),
     GoRoute(
         path: '/viewService',
-        builder: (context, state) => const ViewServiceView()),
+        builder: (context, state) {
+          final service = state.extra as AllServicesEntity?;
+          if (service == null) {
+            return const Scaffold(
+              body: Center(child: Text("Service not found")),
+            );
+          }
+          return ViewServiceView(service: service);
+        }),
     GoRoute(
-        path: '/category', builder: (context, state) =>const CategoryView(categoryId: '',categoryName:'',)),
+        path: '/category',
+        builder: (context, state) => const CategoryView(
+              categoryId: '',
+              categoryName: '',
+            )),
     GoRoute(
         path: '/userProfile',
         builder: (context, state) => const UserProfileView()),
