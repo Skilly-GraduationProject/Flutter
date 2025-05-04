@@ -20,11 +20,13 @@ import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart
 import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
+import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllServices/get_all_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
+import '../../features/user/home/presentation/manager/GetUserOrders/get_user_orders_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserProfileData/get_user_profile_data_cubit.dart';
 import 'api_service.dart';
 
@@ -100,4 +102,9 @@ void setUp() {
       GetUserProfileDataUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetUserProfileDataCubit>(
       () => GetUserProfileDataCubit(getIt.get<GetUserProfileDataUseCase>()));
+
+  getIt.registerSingleton<GetUserOrdersUseCase>(
+      GetUserOrdersUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<GetUserOrdersCubit>(
+      () => GetUserOrdersCubit(getIt.get<GetUserOrdersUseCase>()));
 }

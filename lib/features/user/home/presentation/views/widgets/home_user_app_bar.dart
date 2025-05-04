@@ -41,22 +41,26 @@ class _HomeUserAppBarState extends State<HomeUserAppBar> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).push('/userProfile',extra: data);
+                    GoRouter.of(context).push('/userProfile', extra: data);
                   },
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(200),
-                    child: Image.network(data.img),
+                    child: Image.network(
+                      data.img,
+                      width: context.responsiveWidth(100),
+                      height: context.responsiveWidth(100),
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, right: 10),
+                  padding: const EdgeInsets.only(top: 30, right: 10),
                   child: Text(
                     data.name,
                     style: TextStyleManager.style18BoldSec,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, right: 5),
+                  padding: const EdgeInsets.only(top: 40, right: 5),
                   child: Image.asset(
                     ImageManager.verifyIcon,
                     height: context.responsiveHeight(24),

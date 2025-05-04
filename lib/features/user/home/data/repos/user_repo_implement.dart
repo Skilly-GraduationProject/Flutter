@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:grad_project/features/user/home/domain/entities/all_services_entity.dart';
+import 'package:grad_project/features/user/home/domain/entities/user_orders_entity.dart';
 import 'package:grad_project/features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/errors/failure.dart';
@@ -14,6 +15,7 @@ import '../models/all_services_model.dart';
 import '../models/category_item_model.dart';
 import '../models/offered_services_model.dart';
 import '../models/service_providers_model.dart';
+import '../models/user_orders_model.dart';
 import '../models/user_profile_data_model.dart';
 
 class UserRepoImplement implements UserRepo {
@@ -101,12 +103,28 @@ class UserRepoImplement implements UserRepo {
   @override
   Future<Either<Failure, UserProfileDataEntity>> getUserProfileData({required String token})async {
    try {
-      final response = await apiService.get('$baseUrl/UserProfile/userProfile/GetUserProfileByuserId');
+      final response = await apiService.get('$baseUrl/UserProfile/userProfile/GetUserProfileByuserId',token: token);
         final Map<String, dynamic> data = response.data;
         print('data $data');
       final userData = UserProfileDataModel.fromJson(data['user']).toEntity();
    
       return Right(userData);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<UserOrdersEntity>>> getUserOrders({required String token}) async{
+     try {
+      final response = await apiService.get('$baseUrl/UserProfile/requestServices/GetAllRequestsByuserId',token: token);
+        final Map<String, dynamic> data = response.data;
+        print('data $data');
+      final services = data['services'] as List;
+       final orders =services.map((json) => UserOrdersModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(orders);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

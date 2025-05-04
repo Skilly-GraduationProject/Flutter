@@ -38,6 +38,11 @@ class TextStyleManager {
     fontSize: adaptiveFontSize(14),
     fontWeight: FontWeight.w700,
   );
+   static TextStyle style14BoldBlack = TextStyle(
+    color: ColorManager.black,
+    fontSize: adaptiveFontSize(14),
+    fontWeight: FontWeight.w700,
+  );
   static TextStyle style14BoldPrimary = TextStyle(
     color: ColorManager.primary,
     fontSize: adaptiveFontSize(14),

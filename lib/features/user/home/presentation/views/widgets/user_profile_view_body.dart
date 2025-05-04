@@ -9,15 +9,15 @@ import 'rate_widget.dart';
 import 'verified_name.dart';
 
 class UserProfileViewBody extends StatefulWidget {
-  const UserProfileViewBody({super.key,required this.data});
-  
+  const UserProfileViewBody({super.key, required this.data});
+
   final UserProfileDataEntity data;
   @override
   State<UserProfileViewBody> createState() => _UserProfileViewBodyState();
 }
 
 class _UserProfileViewBodyState extends State<UserProfileViewBody> {
-  bool showPersonalInfo = true;
+  bool showPersonalInfo = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
             backgroundImage: NetworkImage(widget.data.img),
           ),
           const SizedBox(height: 10),
-         Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               VerifiedName(
@@ -86,10 +86,10 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
               ? SizedBox(
                   width: double.infinity,
                   child: MyPersonalDataWidget(
-                  email: widget.data.email,
-                  phone: widget.data.phone,
-                  city: widget.data.city,
-                  streetName: widget.data.streetName,
+                    email: widget.data.email,
+                    phone: widget.data.phone,
+                    city: widget.data.city,
+                    streetName: widget.data.streetName,
                   ),
                 )
               : const SizedBox(height: 10),

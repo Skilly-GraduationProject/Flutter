@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
@@ -18,8 +19,9 @@ class PrimaryButton extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         width: context.width,
+        height: context.responsiveHeight(70),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: ColorManager.primary,

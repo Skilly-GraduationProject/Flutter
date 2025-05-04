@@ -1,59 +1,87 @@
 import 'package:flutter/material.dart';
-
+import 'package:gap/gap.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
 import '../../../../../../core/managers/color_manager.dart';
-import '../../../../../../core/managers/image_manager.dart';
+import '../../../../../../core/managers/text_style_manager.dart';
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({super.key});
+  const OrderCard(
+      {super.key,
+      required this.name,
+      required this.desc,
+      required this.price,
+      required this.img});
+
+  final String name, desc, img;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Image.network(img,
+                width: context.responsiveWidth(200),
+                height: context.responsiveWidth(200),
+                fit: BoxFit.cover),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: TextStyleManager.style14BoldBlack,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                const Gap(10),
+                Text(
+                  desc,
+                  style: const TextStyle(fontSize: 12, color: Colors.black38),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(child: Image.asset(ImageManager.banner)),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'عنوان الخدمة',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'تفاصيل قصيرة عن الخدمة تفاصيل قصيرة عن الخدمة',
-                            style:
-                                TextStyle(fontSize: 12, color: Colors.black54),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Text('العروض'),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                '5',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: ColorManager.blue),
-                              ),
-                            ],
-                          )
-                        ],
+                    const Text('العروض'),
+                    SizedBox(
+                      width: context.responsiveWidth(5),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(32),
+                          color: ColorManager.secondary),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 3),
+                        child: Text(
+                          '5',
+                          style: TextStyleManager.style12BoldWhite,
+                        ),
                       ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '$price ج.م',
+                      style: TextStyleManager.style14RegSec,
                     )
                   ],
                 ),
-              );
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
