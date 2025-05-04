@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import '../managers/color_manager.dart';
+import '../../../../../../core/managers/color_manager.dart';
 
 class ImagesBanner extends StatefulWidget {
   final List<String> images;
@@ -13,15 +13,17 @@ class ImagesBanner extends StatefulWidget {
 }
 
 class _ImagesBannerState extends State<ImagesBanner> {
-  int currentIndex = 0;
 
+
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     if (widget.images.isEmpty) {
       return const SizedBox();
     }
 
-    return Padding(
+        return
+    Padding(
       padding: EdgeInsets.symmetric(horizontal: context.responsiveWidth(0)),
       child: Column(
         children: [
@@ -30,7 +32,8 @@ class _ImagesBannerState extends State<ImagesBanner> {
               return ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  url,
+                  url
+                 ,
                   fit: BoxFit.fill,
                   width: double.infinity,
                 ),
@@ -58,7 +61,7 @@ class _ImagesBannerState extends State<ImagesBanner> {
               itemCount: widget.images.length,
               shrinkWrap: true,
               itemBuilder: (context, index) => AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 200),
                 width: 8,
                 height: 8,
                 margin: const EdgeInsets.symmetric(horizontal: 4),

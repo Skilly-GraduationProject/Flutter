@@ -1,6 +1,7 @@
 import '../../../../../core/errors/failure.dart';
 import '../entities/all_services_entity.dart';
 import '../entities/category_entitiy.dart';
+import '../entities/get_banners_entitiy.dart';
 import '../entities/offered_services_entity.dart';
 import '../entities/service_providers_entity.dart';
 import 'package:dartz/dartz.dart';
@@ -15,4 +16,5 @@ abstract class UserRepo {
    Future<Either<Failure, List<AllServicesEntity>>> getAllServices();
    Future<Either<Failure, UserProfileDataEntity>> getUserProfileData({required String token});
    Future<Either<Failure, List<UserOrdersEntity>>> getUserOrders({required String token});
+   Future<Either<Failure, List<GetBannersEntity>>> getBanners();
 }

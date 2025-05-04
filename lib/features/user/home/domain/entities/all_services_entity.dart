@@ -1,7 +1,7 @@
 class AllServicesEntity {
   final String name, desc, img, providerName, time, providerImg,deliveryTime;
   final String? notes;
-  final double price;
+  final double price ;
   final List<String> images;
   final String? video;
 

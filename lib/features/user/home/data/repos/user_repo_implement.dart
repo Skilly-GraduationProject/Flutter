@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:grad_project/features/user/home/domain/entities/all_services_entity.dart';
+import 'package:grad_project/features/user/home/domain/entities/get_banners_entitiy.dart';
 import 'package:grad_project/features/user/home/domain/entities/user_orders_entity.dart';
 import 'package:grad_project/features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../../../../constants.dart';
@@ -13,6 +14,7 @@ import '../../domain/entities/service_providers_entity.dart';
 import '../../domain/repos/user_repo.dart';
 import '../models/all_services_model.dart';
 import '../models/category_item_model.dart';
+import '../models/get_banners_model.dart';
 import '../models/offered_services_model.dart';
 import '../models/service_providers_model.dart';
 import '../models/user_orders_model.dart';
@@ -125,6 +127,22 @@ class UserRepoImplement implements UserRepo {
           .toList();
 
       return Right(orders);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GetBannersEntity>>> getBanners()async{
+    try {
+      final response = await apiService.get('$baseUrl/Banner/GetAllBanners',);
+        final Map<String, dynamic> data = response.data;
+        print('data $data');
+      final banners = data['banners'] as List;
+       final banner =banners.map((json) => GetBannersModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(banner);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

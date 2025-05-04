@@ -15,12 +15,14 @@ import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifye
 import '../../features/user/home/data/repos/user_repo_implement.dart';
 import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
 import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
+import '../../features/user/home/domain/usecases/get_banners_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
 import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllServices/get_all_services_cubit.dart';
+import '../../features/user/home/presentation/manager/GetBanners/get_banners_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserOrders/get_user_orders_cubit.dart';
@@ -75,5 +77,9 @@ final blocProviders = <BlocProvider>[
   BlocProvider<GetUserOrdersCubit>(
     create: (context) => GetUserOrdersCubit(
        GetUserOrdersUseCase(userRepo: getIt.get<UserRepoImplement>())),
+  ),
+  BlocProvider<GetBannersCubit>(
+    create: (context) => GetBannersCubit(
+       GetBannersUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

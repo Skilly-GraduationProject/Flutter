@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/image_banners.dart';
 import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
 import 'package:grad_project/core/widgets/home_provider_app_bar.dart';
 

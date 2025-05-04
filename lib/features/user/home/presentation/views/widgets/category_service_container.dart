@@ -5,8 +5,8 @@ import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../../../../core/widgets/buttons/small_primary_button.dart';
 
 class CategoryServiceContainer extends StatelessWidget {
-  const CategoryServiceContainer({super.key, required this.name, required this.desc, required this.price});
-  final String name, desc, price;
+  const CategoryServiceContainer({super.key, required this.name, required this.desc, required this.price, required this.providerImg, required this.providerName, required this.date, required this.img});
+  final String name, desc, price,providerImg,providerName,date,img;
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +60,8 @@ class CategoryServiceContainer extends StatelessWidget {
           const SizedBox(height: 10),
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              ImageManager.banner,
+            child: Image.network(
+             img,
               fit: BoxFit.cover,
               width: double.infinity,
               height: 120,

@@ -63,11 +63,16 @@ abstract class AppRouter {
           return ViewServiceView(service: service);
         }),
     GoRoute(
-        path: '/category',
-        builder: (context, state) => const CategoryView(
-              categoryId: '',
-              categoryName: '',
-            )),
+  path: '/category',
+  builder: (context, state) {
+    final data = state.extra as Map<String, dynamic>;
+    return CategoryView(
+      categoryId: data['id'],
+      categoryName: data['name'],
+    );
+  },
+),
+
     GoRoute(
         path: '/userProfile',
         builder: (context, state) {

@@ -3,10 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/categories_list_view.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/home_services_listview.dart';
 
+import 'clickable_banners.dart';
 import 'home_user_app_bar.dart';
 
 class UserHomeViewbody extends StatelessWidget {
@@ -29,9 +29,7 @@ class UserHomeViewbody extends StatelessWidget {
         ),
         const SliverGap(20),
         const SliverToBoxAdapter(
-          child: ImagesBanner(
-            images: [],
-          ),
+          child: ClickableBanners(),
         ),
         const SliverGap(20),
         SliverToBoxAdapter(

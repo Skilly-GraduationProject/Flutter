@@ -13,7 +13,7 @@ class CategoryViewBody extends StatelessWidget {
     return Padding(
         padding:const EdgeInsets.all(16.0),
         child: Column(children: [
-          CustomAppBar(title: 'البرمجة'),
+          CustomAppBar(title:categoryName),
          const SizedBox(height: 16),
           Expanded(
             child: CategorySelectOption(
@@ -21,10 +21,10 @@ class CategoryViewBody extends StatelessWidget {
               secondTitle: 'الخدمات المعروضة',
               firstWidget: Expanded(
                   child: ProvidersListView(
-                categoryId:'40f5f9df-a11b-4a90-b89c-2bd01b33c420',
+                 categoryId:categoryId,
               )),
               secondWidget: Expanded(child: OfferedServicesListView(
-                categoryId: '40f5f9df-a11b-4a90-b89c-2bd01b33c420',
+                  categoryId:categoryId,
               )),
             ),
           )

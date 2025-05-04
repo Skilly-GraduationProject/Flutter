@@ -39,6 +39,11 @@ class _OfferedServicesListViewState extends State<OfferedServicesListView> {
               name: service.name,
               desc: service.desc,
               price: '${service.price}',
+              date: service.date,
+              img: service.img,
+              providerImg: service.providerImg,
+              providerName: service.providerName,
+            
              );
             });
       } else if (state is GetCategoryServicesFailure) {
