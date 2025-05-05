@@ -20,7 +20,5 @@ Map<String, dynamic> toJson() => {
        
         'categories':categories?.map((e) => e.toJson()).toList(),
       };
-  // CategoryEntity toEntity() {
-  //   return CategoryEntity(id: id, name: name, img: img);
-  // }
+
 }

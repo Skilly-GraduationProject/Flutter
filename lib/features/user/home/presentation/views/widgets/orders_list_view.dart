@@ -43,7 +43,7 @@ class _OrdersListViewState extends State<OrdersListView> {
                 final UserOrdersEntity order = orders[index];
                 return OrderCard(
                   desc: order.desc,
-                  img: order.images.first,
+                  img: order.images.first??'',
                   name: order.name,
                   price: order.price,
                 );

@@ -1,10 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-
 import '../../../../../shared/auth/presentation/views/widgets/custom_button.dart';
-import '../../../../../shared/auth/presentation/views/widgets/custom_drop_down.dart';
 import '../../../../../shared/auth/presentation/views/widgets/custom_text_field.dart';
 import '../request_service_view.dart';
+import 'calender.dart';
 import 'custom_app_bar.dart';
+import 'drop_down_list.dart';
 
 class RequestServiceViewBody extends StatefulWidget {
   const RequestServiceViewBody({super.key});
@@ -14,9 +15,11 @@ class RequestServiceViewBody extends StatefulWidget {
 }
 
 class _RequestServiceViewBodyState extends State<RequestServiceViewBody> {
-  final List<String> departments = ['البرمجة', 'النجارة', 'الديكور'];
-  final List<String> h = ['1/1', '2/2', '3/3'];
-  String? selectedDepartment, selectedH, serviceName, price, duration, notes;
+  String? name, price, duration, notes;
+
+  File? selectedImage;
+  File? selectedVideo;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,12 +27,12 @@ class _RequestServiceViewBodyState extends State<RequestServiceViewBody> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const CustomAppBar(title: "طلب خدمة"),
           const TitleWidget(
-            title: "عنوان الخدمة",
+            title: 'عنوان الخدمة',
           ),
           CustomTextField(
             title: '',
             onSaved: (val) {
-              serviceName = val;
+              name = val;
             },
           ),
           const SizedBox(height: 10),
@@ -50,7 +53,7 @@ class _RequestServiceViewBodyState extends State<RequestServiceViewBody> {
             children: [
               Expanded(
                   child: CustomTextField(
-                title: '1000',
+                title: '',
                 onSaved: (val) {
                   price = val;
                 },
@@ -60,7 +63,7 @@ class _RequestServiceViewBodyState extends State<RequestServiceViewBody> {
               ),
               Expanded(
                   child: CustomTextField(
-                title: 'ايام',
+                title: '',
                 onSaved: (val) {
                   duration = val;
                 },
@@ -71,30 +74,12 @@ class _RequestServiceViewBodyState extends State<RequestServiceViewBody> {
           const TitleWidget(
             title: 'تاريخ البدء',
           ),
-          CustomDropDown(
-            selectedValue: selectedH,
-            hint: 'اختر تاريخ البدء',
-            items: h,
-            onChanged: (value) {
-              setState(() {
-                selectedH = value;
-              });
-            },
-          ),
+          const Calender(),
           const SizedBox(height: 10),
           const TitleWidget(
             title: 'القسم',
           ),
-          CustomDropDown(
-            selectedValue: selectedDepartment,
-            hint: 'القسم',
-            items: departments,
-            onChanged: (value) {
-              setState(() {
-                selectedDepartment = value;
-              });
-            },
-          ),
+          const DropDownList(),
           const SizedBox(height: 10),
           const TitleWidget(
             title: "ملاحظات",

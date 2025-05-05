@@ -148,5 +148,54 @@ class UserRepoImplement implements UserRepo {
     }
   }
   
+  @override
+  Future<Either<Failure, void>> requestService(
+    {required String name,
+    required String deliveryTime,
+    required String notes,
+    required String video,
+    required double price,
+    required String category,
+    required String startDate}
+  )async {
+    final response = await apiService.post(
+      '$baseUrl/UserProfile/requestServices/AddrequestService',
+      {
+     "name": name,
+    "price": price,
+    "deliverytime": deliveryTime,
+    "startDate": startDate,
+    "categoryId": "40f5f9df-a11b-4a90-b89c-2bd01b33c420",
+    "notes": notes,
+    "images": []
+      },
+    );
+    print('response ${response.data}');
+    return response.data;
+  }
+  
+   Future<void> register({
+    required String firstName,
+    required String secondName,
+    required String email,
+    required String password,
+    required String phone,
+    required int userType,
+  }) async {
+    final response = await apiService.post(
+      '$baseUrl/Auth/Register',
+      {
+        "firstName": firstName,
+        "lastName": secondName,
+        "phoneNumber": phone,
+        "email": email,
+        "password": password,
+        "userType": 0
+      },
+    );
+    print('response ${response.data}');
+    return response.data;
+  }
+
  
 }
