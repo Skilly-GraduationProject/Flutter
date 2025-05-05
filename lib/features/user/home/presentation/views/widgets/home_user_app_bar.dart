@@ -33,47 +33,50 @@ class _HomeUserAppBarState extends State<HomeUserAppBar> {
       } else if (state is GetUserProfileDataSuccess) {
         final data = state.data;
 
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push('/userProfile', extra: data);
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(200),
-                    child: Image.network(
-                      data.img,
-                      width: context.responsiveWidth(100),
-                      height: context.responsiveWidth(100),
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push('/userProfile', extra: data);
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(200),
+                      child: Image.network(
+                        data.img,
+                        width: context.responsiveWidth(100),
+                        height: context.responsiveWidth(100),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30, right: 10),
-                  child: Text(
-                    data.name,
-                    style: TextStyleManager.style18BoldSec,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, right: 10),
+                    child: Text(
+                      data.name,
+                      style: TextStyleManager.style18BoldSec,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40, right: 5),
-                  child: Image.asset(
-                    ImageManager.verifyIcon,
-                    height: context.responsiveHeight(24),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40, right: 5),
+                    child: Image.asset(
+                      ImageManager.verifyIcon,
+                      height: context.responsiveHeight(24),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Image.asset(
-              ImageManager.notificationIcon,
-              width: 30,
-              height: 30,
-            )
-          ],
+                ],
+              ),
+              Image.asset(
+                ImageManager.notificationIcon,
+                width: 30,
+                height: 30,
+              )
+            ],
+          ),
         );
       } else if (state is GetUserProfileDataFailure) {
         return Text(state.error);

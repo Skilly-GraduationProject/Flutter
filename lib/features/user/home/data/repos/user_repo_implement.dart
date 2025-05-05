@@ -37,7 +37,7 @@ class UserRepoImplement implements UserRepo {
         List<CategoryItemEntity> categories = items.map((item) {
           return CategoryItemModel.fromJson(item as Map<String, dynamic>);
         }).toList();
-        
+
         final CategoryEntity category = CategoryEntity(
           categories: categories,
         );
@@ -52,48 +52,37 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<ServiceProvidersEntity>>> getCategoryServiceProviders({required String categoryId})async {
-     try {
-      final response = await apiService.get('$baseUrl/Provider/GetAllServiceProvidersBy/$categoryId');
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
+  Future<Either<Failure, List<ServiceProvidersEntity>>>
+      getCategoryServiceProviders({required String categoryId}) async {
+    try {
+      final response = await apiService
+          .get('$baseUrl/Provider/GetAllServiceProvidersBy/$categoryId');
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
       final providers = data['provider'] as List;
-       final provider =providers.map((json) => ServiceProvidersModel.fromJson(json).toEntity())
+      final provider = providers
+          .map((json) => ServiceProvidersModel.fromJson(json).toEntity())
           .toList();
 
       return Right(provider);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
-  
   }
-  
-  @override
-  Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices({required String categoryId}) async{
-     try {
-      final response = await apiService.get('$baseUrl/Provider/ProviderServices/GetAllServicesBy/$categoryId');
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
-      final services = data['service'] as List;
-       final service =services.map((json) => OfferedServicesModel.fromJson(json).toEntity())
-          .toList();
 
-      return Right(service);
-    } catch (e) {
-      return Left(ServerFailure(e.toString()));
-    }
-  }
-  
   @override
-  Future<Either<Failure, List<AllServicesEntity>>> getAllServices()async {
+  Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices(
+      {required String categoryId}) async {
     try {
-      final response = await apiService.get('$baseUrl/Provider/ProviderServices/getAllServices');
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
-      final services = data['services'] as List;
-       final service =services.map((json) => AllServicesModel.fromJson(json).toEntity())
+      final response = await apiService.get(
+          '$baseUrl/Provider/ProviderServices/GetAllServicesBy/$categoryId');
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
+      final services = data['service'] as List;
+      final service = services
+          .map((json) => OfferedServicesModel.fromJson(json).toEntity())
           .toList();
 
       return Right(service);
@@ -103,13 +92,34 @@ class UserRepoImplement implements UserRepo {
   }
 
   @override
-  Future<Either<Failure, UserProfileDataEntity>> getUserProfileData({required String token})async {
-   try {
-      final response = await apiService.get('$baseUrl/UserProfile/userProfile/GetUserProfileByuserId',token: token);
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
+  Future<Either<Failure, List<AllServicesEntity>>> getAllServices() async {
+    try {
+      final response = await apiService
+          .get('$baseUrl/Provider/ProviderServices/getAllServices');
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
+      final services = data['services'] as List;
+      final service = services
+          .map((json) => AllServicesModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(service);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserProfileDataEntity>> getUserProfileData(
+      {required String token}) async {
+    try {
+      final response = await apiService.get(
+          '$baseUrl/UserProfile/userProfile/GetUserProfileByuserId',
+          token: token);
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
       final userData = UserProfileDataModel.fromJson(data['user']).toEntity();
-   
+
       return Right(userData);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
@@ -117,13 +127,17 @@ class UserRepoImplement implements UserRepo {
   }
 
   @override
-  Future<Either<Failure, List<UserOrdersEntity>>> getUserOrders({required String token}) async{
-     try {
-      final response = await apiService.get('$baseUrl/UserProfile/requestServices/GetAllRequestsByuserId',token: token);
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
+  Future<Either<Failure, List<UserOrdersEntity>>> getUserOrders(
+      {required String token}) async {
+    try {
+      final response = await apiService.get(
+          '$baseUrl/UserProfile/requestServices/GetAllRequestsByuserId',
+          token: token);
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
       final services = data['services'] as List;
-       final orders =services.map((json) => UserOrdersModel.fromJson(json).toEntity())
+      final orders = services
+          .map((json) => UserOrdersModel.fromJson(json).toEntity())
           .toList();
 
       return Right(orders);
@@ -133,13 +147,16 @@ class UserRepoImplement implements UserRepo {
   }
 
   @override
-  Future<Either<Failure, List<GetBannersEntity>>> getBanners()async{
+  Future<Either<Failure, List<GetBannersEntity>>> getBanners() async {
     try {
-      final response = await apiService.get('$baseUrl/Banner/GetAllBanners',);
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
+      final response = await apiService.get(
+        '$baseUrl/Banner/GetAllBanners',
+      );
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
       final banners = data['banners'] as List;
-       final banner =banners.map((json) => GetBannersModel.fromJson(json).toEntity())
+      final banner = banners
+          .map((json) => GetBannersModel.fromJson(json).toEntity())
           .toList();
 
       return Right(banner);
@@ -147,55 +164,48 @@ class UserRepoImplement implements UserRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, void>> requestService(
-    {required String name,
-    required String deliveryTime,
-    required String notes,
-    required String video,
-    required double price,
-    required String category,
-    required String startDate}
-  )async {
+      {required String name,
+      required String deliveryTime,
+      required String notes,
+      required String video,
+      required double price,
+      required String category,
+      required String startDate}) async {
     final response = await apiService.post(
       '$baseUrl/UserProfile/requestServices/AddrequestService',
       {
-     "name": name,
-    "price": price,
-    "deliverytime": deliveryTime,
-    "startDate": startDate,
-    "categoryId": "40f5f9df-a11b-4a90-b89c-2bd01b33c420",
-    "notes": notes,
-    "images": []
-      },
-    );
-    print('response ${response.data}');
-    return response.data;
-  }
-  
-   Future<void> register({
-    required String firstName,
-    required String secondName,
-    required String email,
-    required String password,
-    required String phone,
-    required int userType,
-  }) async {
-    final response = await apiService.post(
-      '$baseUrl/Auth/Register',
-      {
-        "firstName": firstName,
-        "lastName": secondName,
-        "phoneNumber": phone,
-        "email": email,
-        "password": password,
-        "userType": 0
+        "name": name,
+        "price": price,
+        "deliverytime": deliveryTime,
+        "startDate": startDate,
+        "categoryId": "40f5f9df-a11b-4a90-b89c-2bd01b33c420",
+        "notes": notes,
+        "images": []
       },
     );
     print('response ${response.data}');
     return response.data;
   }
 
- 
+  @override
+  Future<Either<Failure, void>> addOffer(
+      {required String serviceId,
+      required double price,
+      required String duration,
+      required String notes}) async {
+    final response = await apiService.post(
+      '$baseUrl/OfferSalary/AddOffer',
+      {
+        "salary": price,
+        "deliverytime": duration,
+        "notes": notes,
+        "serviceId": serviceId
+      },
+    );
+    print('add offer response ${response.data}');
+    return response.data;
+  }
 }

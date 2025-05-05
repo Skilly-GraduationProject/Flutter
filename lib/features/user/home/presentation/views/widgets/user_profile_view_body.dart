@@ -5,7 +5,6 @@ import '../../../domain/entities/user_profile_data_entity.dart';
 import 'custom_app_bar.dart';
 import 'orders_list_view.dart';
 import 'personal_data_widget.dart';
-import 'rate_widget.dart';
 import 'verified_name.dart';
 
 class UserProfileViewBody extends StatefulWidget {
@@ -40,16 +39,7 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RateWidget(),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 20),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: ColorManager.primary,

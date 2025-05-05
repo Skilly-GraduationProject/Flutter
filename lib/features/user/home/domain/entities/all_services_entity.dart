@@ -1,5 +1,5 @@
 class AllServicesEntity {
-  final String name, desc, img, providerName, time, providerImg,deliveryTime;
+  final String name,id, desc, img, providerName, time, providerImg,deliveryTime;
   final String? notes;
   final double price ;
   final List<String> images;
@@ -9,6 +9,7 @@ class AllServicesEntity {
     required this.name,
     required this.desc,
     required this.price,
+    required this.id,
     required this.img,
     required this.providerName,
     required this.time,

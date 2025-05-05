@@ -24,14 +24,15 @@ class OrderCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
             child: Image.network(img,
                 width: context.responsiveWidth(200),
-                height: context.responsiveWidth(200),
-                fit: BoxFit.cover),
+                height: context.responsiveWidth(100),
+                fit: BoxFit.fill),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -39,14 +40,14 @@ class OrderCard extends StatelessWidget {
                   name,
                   style: TextStyleManager.style14BoldBlack,
                 ),
-                const Gap(10),
+                const Gap(5),
                 Text(
                   desc,
                   style: const TextStyle(fontSize: 12, color: Colors.black38),
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const Gap(10),
+                const Gap(5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

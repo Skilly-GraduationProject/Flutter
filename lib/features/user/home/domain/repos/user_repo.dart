@@ -21,11 +21,18 @@ abstract class UserRepo {
   Future<Either<Failure, List<UserOrdersEntity>>> getUserOrders(
       {required String token});
   Future<Either<Failure, List<GetBannersEntity>>> getBanners();
-  Future<Either<Failure, void>> requestService( {required String name,
+  Future<Either<Failure, void>> requestService( {
+    required String name,
     required String deliveryTime,
     required String notes,
     required String video,
     required double price,
     required String category,
     required String startDate});
+    Future<Either<Failure, void>> addOffer( {
+    required String serviceId,
+    required double price,
+    required String duration,
+    required String notes,
+});
 }

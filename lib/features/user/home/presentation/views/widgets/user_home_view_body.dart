@@ -16,14 +16,7 @@ class UserHomeViewbody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          pinned: true,
-          primary: true,
-          foregroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          surfaceTintColor: Colors.transparent,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        ),
+
         const SliverToBoxAdapter(
           child: HomeUserAppBar(),
         ),

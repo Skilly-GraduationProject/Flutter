@@ -13,6 +13,7 @@ import '../../features/shared/auth/presentation/manager/ResetPassCubit/updatePas
 import '../../features/shared/auth/presentation/manager/VerifyCodeCubit/verifycode_cubit.dart';
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
 import '../../features/user/home/data/repos/user_repo_implement.dart';
+import '../../features/user/home/domain/usecases/add_offer_usecase.dart';
 import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
 import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_banners_usecase.dart';
@@ -20,6 +21,8 @@ import '../../features/user/home/domain/usecases/get_category_service_providers_
 import '../../features/user/home/domain/usecases/get_category_services.dart';
 import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
+import '../../features/user/home/domain/usecases/request_service_usecase.dart';
+import '../../features/user/home/presentation/manager/AddOffer/add_offer_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllServices/get_all_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetBanners/get_banners_cubit.dart';
@@ -27,6 +30,7 @@ import '../../features/user/home/presentation/manager/GetCategoryServiceProvider
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserOrders/get_user_orders_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserProfileData/get_user_profile_data_cubit.dart';
+import '../../features/user/home/presentation/manager/RequestService/request_service_cubit.dart';
 import 'service_locator.dart';
 
 final blocProviders = <BlocProvider>[
@@ -81,5 +85,13 @@ final blocProviders = <BlocProvider>[
   BlocProvider<GetBannersCubit>(
     create: (context) => GetBannersCubit(
        GetBannersUseCase(userRepo: getIt.get<UserRepoImplement>())),
+  ),
+   BlocProvider<AddOfferCubit>(
+    create: (context) => AddOfferCubit(
+       AddOfferUseCase(userRepo: getIt.get<UserRepoImplement>())),
+  ),
+   BlocProvider<RequestServiceCubit>(
+    create: (context) => RequestServiceCubit(
+       RequestServiceUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

@@ -1,7 +1,7 @@
 import '../../domain/entities/all_services_entity.dart';
 
 class AllServicesModel {
-  final String name, desc, img, time, providerName, providerImg,deliveryTime;
+  final String name, desc,id, img, time, providerName, providerImg,deliveryTime;
   final String? notes,video;
   final List<String> images;
   final double price;
@@ -9,6 +9,7 @@ class AllServicesModel {
   AllServicesModel({
     required this.name,
     required this.desc,
+    required this.id,
     required this.price,
     required this.img,
     required this.providerName,
@@ -33,6 +34,7 @@ class AllServicesModel {
     final date = time.split('T').first;
 
     return AllServicesModel(
+      id: json['id'],
       name: json['name'],
       desc: json['description'],
       price: json['price'],
@@ -49,6 +51,7 @@ class AllServicesModel {
 
   AllServicesEntity toEntity() {
     return AllServicesEntity(
+      id: id,
       name: name,
       desc: desc,
       price: price,
