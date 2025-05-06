@@ -5,5 +5,4 @@ class DateFormatter {
     DateTime dateTime = DateTime.parse(date);
     return DateFormat('dd/MM/yyyy').format(dateTime);
   }
-
 }

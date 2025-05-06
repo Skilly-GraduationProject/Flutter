@@ -26,8 +26,8 @@ class CustomNetworkImage extends StatelessWidget {
         height: height,
         width: width,
         imageUrl: image,
-        errorWidget: (context, url, error) => Image.asset(ImageManager.banner),
-        placeholder: (context, url) => Image.asset(ImageManager.banner),
+        errorWidget: (context, url, error) => Image.asset(ImageManager.avatar),
+        placeholder: (context, url) => Image.asset(ImageManager.avatar),
         fit: fit ?? BoxFit.cover,
       ),
     );

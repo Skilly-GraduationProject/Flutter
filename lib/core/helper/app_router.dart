@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
+import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
 import 'package:grad_project/features/provider/service/presentation/get_service_view.dart';
@@ -66,13 +68,15 @@ abstract class AppRouter {
         builder: (context, state) => const ServiceProviderHomeView()),
     GoRoute(
         path: RouterPath.providerProfile,
-        builder: (context, state) => const ServiceProviderProfile()),
+        builder: (context, state) => ServiceProviderProfile(
+              providerProfileModel: state.extra as ProviderProfileModel,
+            )),
     GoRoute(
         path: RouterPath.myReviewsView,
         builder: (context, state) => const MyReviewsView()),
     GoRoute(
         path: RouterPath.myServicesView,
-        builder: (context, state) => const MyServicesView()),
+        builder: (context, state) =>  MyServicesView(services: state.extra as List<ProviderService>,)),
     GoRoute(
         path: RouterPath.myWorkView,
         builder: (context, state) => const MyWorkView()),

@@ -69,7 +69,7 @@ class SignInViewBody extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // GoRouter.of(context).push(RouterPath.userHome);
+                        GoRouter.of(context).push(RouterPath.providerHome);
                       },
                       child: const Text(
                         ' ليس لديك حساب؟',

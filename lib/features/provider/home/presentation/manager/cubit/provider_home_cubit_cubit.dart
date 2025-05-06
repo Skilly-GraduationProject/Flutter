@@ -11,6 +11,17 @@ class ProviderHomeCubit extends Cubit<ProviderHomeCubitState> {
   }) : super(ProviderHomeCubitState());
   final ProviderHomeRepo homeRepo;
 
+  Future<void> getProviderProfile() async {
+    emit(state.editState(getProviderProfileState: CubitState.loading));
+    var result = await homeRepo.getProviderProfile();
+    result.fold(
+        (failure) =>
+            emit(state.editState(getProviderProfileState: CubitState.failure)),
+        (model) => emit(state.editState(
+            getProviderProfileState: CubitState.success,
+            providerProfile: model)));
+  }
+
   Future<void> getRequestedServices() async {
     emit(state.editState(getRequestedServicesState: CubitState.loading));
     var result = await homeRepo.getRequestedServices();

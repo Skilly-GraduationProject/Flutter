@@ -36,12 +36,13 @@ class Service {
         price: json['price'] as double?,
         deliverytime: json['deliverytime'] as String?,
         startDate: json['startDate'] as String?,
-        serviceRequestTime: DateFormatter.formatDate(json['serviceRequestTime']) as String?,
+        serviceRequestTime:
+            DateFormatter.formatDate(json['serviceRequestTime']) as String?,
         categoryId: json['categoryId'] as String?,
         notes: json['notes'] as String?,
         userId: json['userId'] as String?,
         userName: json['userName'] as String?,
-        requestServiceImages: json['requestServiceImages'] ,
+        requestServiceImages: json['requestServiceImages'],
         offerSalaries: json['offerSalaries'] as List<dynamic>?,
       );
 

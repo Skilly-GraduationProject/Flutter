@@ -11,6 +11,7 @@ import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/delete_account_button.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/logout_button.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/more_button.dart';
+import 'package:grad_project/features/shared/more/presentation/view/widgets/more_provider_data.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/more_user_data.dart';
 
 class MoreViewBody extends StatelessWidget {
@@ -18,39 +19,40 @@ class MoreViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Gap gap = const Gap(15);
     return ListView(
       children: [
-        const Gap(40),
-        const MoreUserData(),
+        gap,
+        const MoreProviderData(),
         const Gap(20),
         MoreButton(
           title: 'سياسه الخصوصيه',
           icon: IconManager.privacyPolicy,
           onTap: () {},
         ),
-        const Gap(20),
+        gap,
         MoreButton(
           title: 'الشروط و الاحكام',
           icon: IconManager.termsAndConditions,
           onTap: () {},
         ),
-        const Gap(20),
+        gap,
         MoreButton(
           title: 'تواصل معنا',
           icon: IconManager.contactUs,
           onTap: () {},
         ),
-        const Gap(20),
+        gap,
         MoreButton(
           title: 'نبذه عن التطبيق',
           icon: IconManager.info,
           onTap: () {},
         ),
-        const Gap(20),
+        gap,
         LogoutButton(
           onTap: () {},
         ),
-        const Gap(40),
+        gap,
         DeleteAccountButton(
           onTap: () {},
         )

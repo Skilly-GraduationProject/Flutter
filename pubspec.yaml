@@ -52,6 +52,7 @@ dependencies:
   intl: 0.19.0
   shared_preferences: ^2.3.3
   skeletonizer: ^1.4.3
+  sliver_tools: ^0.2.12
 
 dev_dependencies:
   flutter_lints: ^3.0.0

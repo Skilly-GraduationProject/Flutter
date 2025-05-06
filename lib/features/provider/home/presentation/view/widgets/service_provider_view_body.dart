@@ -13,6 +13,7 @@ import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/buttons/notification_button.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
+import 'package:grad_project/core/widgets/custom_error_widget.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/home/data/repo/home_repo.dart';
@@ -29,9 +30,7 @@ class ServiceProviderViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          ProviderHomeCubit(homeRepo: getIt<ProviderHomeRepo>()),
+    return SafeArea(
       child: Builder(builder: (context) {
         return CustomScrollView(
           slivers: [
@@ -40,11 +39,7 @@ class ServiceProviderViewBody extends StatelessWidget {
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               sliver: SliverToBoxAdapter(
-                child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(RouterPath.providerProfile);
-                    },
-                    child: const ProviderHomeData()),
+                child: const ProviderHomeData(),
               ),
             ),
             const SliverGap(20),
@@ -113,18 +108,21 @@ class ServiceProviderViewBody extends StatelessWidget {
                       child: CustomErrorWidget(),
                     );
                   } else {
-                    bool isLoading = state.getRequestedServicesState == CubitState.loading;
+                    bool isLoading =
+                        state.getRequestedServicesState == CubitState.loading;
                     return SliverList.separated(
                       itemCount:
-                          isLoading
-                              ? 10
-                              : state.requestedServices.length,
+                          isLoading ? 10 : state.requestedServices.length,
                       itemBuilder: (context, index) => Skeletonizer(
                         enabled: isLoading,
                         child: RequestedServiceCard(
-                          service: isLoading ? Service() : state.requestedServices[index]
-                        ).animate().scaleXY(
-                            delay: Duration(milliseconds: (index * 50) + 200)),
+                                service: isLoading
+                                    ? Service()
+                                    : state.requestedServices[index])
+                            .animate()
+                            .scaleXY(
+                                delay:
+                                    Duration(milliseconds: (index * 50) + 200)),
                       ),
                       separatorBuilder: (context, index) => const Gap(15),
                     );
@@ -139,15 +137,4 @@ class ServiceProviderViewBody extends StatelessWidget {
   }
 }
 
-class CustomErrorWidget extends StatelessWidget {
-  const CustomErrorWidget({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("حدث خطأ"),
-    );
-  }
-}

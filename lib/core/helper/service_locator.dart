@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:grad_project/core/secure_storage_helper.dart';
 import 'package:grad_project/features/provider/home/data/repo/home_repo.dart';
+import 'package:grad_project/features/provider/profile/data/repos/provider_data_repo.dart';
 import '../../features/shared/auth/domain/usecases/updatePass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/verify_code_usecase.dart';
 import '../../features/shared/auth/presentation/manager/ResetPassCubit/updatePass_cubit.dart';
@@ -26,7 +27,7 @@ void setUp() {
       () => const FlutterSecureStorage());
   getIt.registerLazySingleton<SecureStorageHelper>(
       () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
-  getIt.registerSingleton<ApiService>(ApiService(Dio(BaseOptions())));
+  getIt.registerSingleton<ApiService>(ApiService());
   getIt.registerSingleton<AuthRepoImplement>(
       AuthRepoImplement(apiService: getIt.get<ApiService>()));
 
@@ -61,4 +62,6 @@ void setUp() {
       () => UpdatePassCubit(getIt.get<UpdatePassUseCase>()));
   getIt.registerSingleton<ProviderHomeRepo>(
       ProviderHomeRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<ProviderDataRepo>(
+      ProviderDataRepo(apiService: getIt.get<ApiService>()));
 }

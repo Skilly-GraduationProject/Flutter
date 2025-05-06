@@ -11,6 +11,7 @@ import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/delete_account_button.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/logout_button.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/more_button.dart';
+
 class MoreUserData extends StatelessWidget {
   const MoreUserData({
     super.key,
@@ -19,8 +20,10 @@ class MoreUserData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        GoRouter.of(context).push(RouterPath.providerProfile,);
+      onTap: () {
+        GoRouter.of(context).push(
+          RouterPath.providerProfile,
+        );
       },
       child: Container(
         padding: const EdgeInsets.all(28),

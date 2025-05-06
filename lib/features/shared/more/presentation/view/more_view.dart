@@ -8,6 +8,7 @@ class MoreView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
+        top: false,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: MoreViewBody(),
