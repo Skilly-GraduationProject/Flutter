@@ -30,6 +30,7 @@ abstract class UserRepo {
     required String category,
     required String startDate});
     Future<Either<Failure, void>> addOffer( {
+    required String token,
     required String serviceId,
     required double price,
     required String duration,

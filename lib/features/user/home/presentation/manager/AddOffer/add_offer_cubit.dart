@@ -7,14 +7,18 @@ class AddOfferCubit extends Cubit<AddOfferStates> {
   final AddOfferUseCase addOfferUseCase;
 
   Future<void> addOffer(
-    String notes,
-    double price,
+        String serviceId,
+    String token,
+        double price,
+
     String duration,
-    String serviceId,
+        String notes,
+
   ) async {
     emit(AddOfferInitial());
     try {
       var result = await addOfferUseCase.call(
+        token:token ,
           duration: duration, serviceId: serviceId, notes: notes, price: price,);
       print('AddOffer cubit success $result');
       emit(AddOfferSuccess());

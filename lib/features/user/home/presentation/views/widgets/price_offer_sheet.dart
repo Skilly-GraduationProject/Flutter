@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +19,7 @@ class PriceOfferSheet extends StatefulWidget {
 }
 
 class _PriceOfferSheetState extends State<PriceOfferSheet> {
-  String? duration, notes;
+  String? duration, notes, token;
   double? price;
   final key = GlobalKey<FormState>();
 
@@ -73,7 +72,8 @@ class _PriceOfferSheetState extends State<PriceOfferSheet> {
                         Expanded(
                           child: CustomTextField(
                             title: '',
-                            onSaved: (val) => price = double.tryParse(val ?? ''),
+                            onSaved: (val) =>
+                                price = double.tryParse(val ?? ''),
                             suffix: const Text("ج.م",
                                 style: TextStyle(color: Colors.blue)),
                           ),
@@ -98,25 +98,26 @@ class _PriceOfferSheetState extends State<PriceOfferSheet> {
                     ),
                     const SizedBox(height: 12),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
-                            child: SmallPrimaryButton(
-                          text: 'ارسال',
-                          onTap: () {
-                            if (key.currentState!.validate()) {
-                              key.currentState!.save();
-                              BlocProvider.of<AddOfferCubit>(context).addOffer(
-                                  notes!, price!, duration!,widget.service.id);
-                            }
-                          },
-                        )),
-                        const SizedBox(width: 10),
-                        Expanded(
                           child: SmallPrimaryButton(
-                            text: 'شات',
-                            color: ColorManager.secondary,
+                            text: 'ارسال',
                             onTap: () {
-                              GoRouter.of(context).push('/chat');
+                              if (key.currentState!.validate()) {
+                                key.currentState!.save();
+                                token =
+                                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFiOTVlZDI2LTAzODAtNGMzMC05Y2M4LTU0MjRlN2U3YmY5NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDEyMjE2NDMxOTUiLCJqdGkiOiI3M2IzMDk0YS0xZDQyLTQwZmEtYThmNC1mMGQ2MGE4NGU4NTciLCJleHAiOjE3NDg1MzExOTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTI3MSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCJ9.HFe0kcwr0MUpBNBjWWRC2U3I-7E5Iob5z_dvrcGgTGg';
+                                BlocProvider.of<AddOfferCubit>(context)
+                                    .addOffer(
+                                  widget.service.id,
+                                  token!,
+                                  price!,
+                                  duration!,
+                                  notes!,
+                                );
+                                GoRouter.of(context).pop();
+                              }
                             },
                           ),
                         ),

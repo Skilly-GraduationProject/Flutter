@@ -190,22 +190,48 @@ class UserRepoImplement implements UserRepo {
     return response.data;
   }
 
+
+//       {required String serviceId,
+//       required double price,
+//       required String duration,
+//       required String notes}) async {
+//     final response = await apiService.post(
+//       '$baseUrl/OfferSalary/AddOffer',
+//       {
+//         "salary": price,
+//         "deliverytime": duration,
+//         "notes": notes,
+//         "serviceId": serviceId
+//       },
+//     );
+//     print('add offer response ${response.data}');
+//     return response.data;
+//   }
   @override
-  Future<Either<Failure, void>> addOffer(
-      {required String serviceId,
-      required double price,
-      required String duration,
-      required String notes}) async {
-    final response = await apiService.post(
-      '$baseUrl/OfferSalary/AddOffer',
-      {
-        "salary": price,
-        "deliverytime": duration,
-        "notes": notes,
-        "serviceId": serviceId
-      },
-    );
-    print('add offer response ${response.data}');
-    return response.data;
+  Future<Either<Failure, void>> addOffer({
+    required String serviceId,
+    required double price,
+    required String duration,
+    required String notes,
+    required String token,
+  }) async {
+    try {
+      final response = await apiService.post(
+        '$baseUrl/OfferSalary/AddOffer',
+        token:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFiOTVlZDI2LTAzODAtNGMzMC05Y2M4LTU0MjRlN2U3YmY5NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDEyMjE2NDMxOTUiLCJqdGkiOiI3M2IzMDk0YS0xZDQyLTQwZmEtYThmNC1mMGQ2MGE4NGU4NTciLCJleHAiOjE3NDg1MzExOTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTI3MSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCJ9.HFe0kcwr0MUpBNBjWWRC2U3I-7E5Iob5z_dvrcGgTGg',
+        {
+          "salary": price,
+          "deliverytime": duration,
+          "notes": notes,
+          "serviceId": serviceId,
+        },
+      );
+      print('add offer response ${response.data}');
+      return right(null); 
+    } catch (e) {
+      print('add offer error: $e');
+      return left(ServerFailure(e.toString()));
+    }
   }
 }

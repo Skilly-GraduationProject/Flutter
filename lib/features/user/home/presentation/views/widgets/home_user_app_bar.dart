@@ -34,7 +34,7 @@ class _HomeUserAppBarState extends State<HomeUserAppBar> {
         final data = state.data;
 
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -46,23 +46,24 @@ class _HomeUserAppBarState extends State<HomeUserAppBar> {
                       GoRouter.of(context).push('/userProfile', extra: data);
                     },
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(200),
+                      borderRadius: BorderRadius.circular(100),
                       child: Image.network(
                         data.img,
-                        width: context.responsiveWidth(100),
-                        height: context.responsiveWidth(100),
+                        width: context.responsiveWidth(80),
+                        height: context.responsiveWidth(80),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, right: 10),
+                    padding: const EdgeInsets.only(top: 20, right: 10),
                     child: Text(
                       data.name,
                       style: TextStyleManager.style18BoldSec,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 40, right: 5),
+                    padding: const EdgeInsets.only(top: 30, right: 5),
                     child: Image.asset(
                       ImageManager.verifyIcon,
                       height: context.responsiveHeight(24),

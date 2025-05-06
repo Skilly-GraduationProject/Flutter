@@ -9,11 +9,15 @@ class AddOfferUseCase {
   AddOfferUseCase({required this.userRepo});
 
   Future<Either<Failure, void>> call(
-      {required String duration,
-      required String serviceId,
+      {
+        required String token,
+            required String serviceId,
+             required double price,
+        required String duration,
       required String notes,
-      required double price}) async {
+     }) async {
     return await userRepo.addOffer(
+      token: token,
         serviceId: serviceId, price: price, duration: duration, notes: notes);
   }
 }
