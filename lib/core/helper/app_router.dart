@@ -63,28 +63,27 @@ abstract class AppRouter {
           return ViewServiceView(service: service);
         }),
     GoRoute(
-  path: '/category',
-  builder: (context, state) {
-    final data = state.extra as Map<String, dynamic>;
-    return CategoryView(
-      categoryId: data['id'],
-      categoryName: data['name'],
-    );
-  },
-),
-
+      path: '/category',
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+        return CategoryView(
+          categoryId: data['id'],
+          categoryName: data['name'],
+        );
+      },
+    ),
     GoRoute(
-        path: '/userProfile',
-        builder: (context, state) {
-          final data = state.extra as UserProfileDataEntity?;
-          if (data == null) {
-            return const Scaffold(
-              body: Center(child: Text("Data not found")),
-            );
-          }
-          return UserProfileView(data: data);
-        },
-    ),      
+      path: '/userProfile',
+      builder: (context, state) {
+        final data = state.extra as UserProfileDataEntity?;
+        if (data == null) {
+          return const Scaffold(
+            body: Center(child: Text("Data not found")),
+          );
+        }
+        return UserProfileView(data: data);
+      },
+    ),
     GoRoute(
         path: RouterPath.userHome,
         builder: (context, state) => const UserHomeView()),

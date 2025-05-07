@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/navigation/router_path.dart';
 import 'rate_widget.dart';
 import 'verified_name.dart';
 
@@ -10,25 +12,32 @@ class ProviderContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(200),
-          child: Image.network(
-            img,
-            width: 50,
-            height: 50,
+    return GestureDetector(
+      onTap: () {
+        //  GoRouter.of(context).push(RouterPath.providerProfile);
+      },
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(200),
+            child: Image.network(
+              img,
+              width: 50,
+              height: 50,
+            ),
           ),
-        ),
-        const SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            VerifiedName(name: name,),
-          const  RateWidget(),
-          ],
-        ),
-      ],
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              VerifiedName(
+                name: name,
+              ),
+              const RateWidget(),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
