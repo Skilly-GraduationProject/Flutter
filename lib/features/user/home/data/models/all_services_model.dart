@@ -1,8 +1,15 @@
 import '../../domain/entities/all_services_entity.dart';
 
 class AllServicesModel {
-  final String name, desc,id, img, time, providerName, providerImg,deliveryTime;
-  final String? notes,video;
+  final String name,
+      desc,
+      id,
+      img,
+      time,
+      providerName,
+      providerImg,
+      deliveryTime;
+  final String? notes, video;
   final List<String> images;
   final double price;
 
@@ -22,12 +29,13 @@ class AllServicesModel {
   });
 
   factory AllServicesModel.fromJson(Map<String, dynamic> json) {
-    final List<String>images = (json['images'] as List<dynamic>).map((e) => e.toString()).toList();
+    final List<String> images =
+        (json['images'] as List<dynamic>).map((e) => e.toString()).toList();
 
     String? videoUrl;
     if (images.isNotEmpty && images.last.toLowerCase().endsWith('.mp4')) {
       videoUrl = images.last;
-      images.removeLast(); 
+      images.removeLast();
     }
 
     final time = json['serviceRequestTime'];

@@ -10,7 +10,7 @@ class GetAllServicesUseCase extends UseCase<List<AllServicesEntity>, String> {
 
   @override
   Future<Either<Failure, List<AllServicesEntity>>> call() {
-    return userRepo.getAllServices();
+    return userRepo.getAllServices(latitude: 0,longitude: 0);
   }
 }
 

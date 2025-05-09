@@ -15,7 +15,9 @@ abstract class UserRepo {
       getCategoryServiceProviders({required String categoryId});
   Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices(
       {required String categoryId});
-  Future<Either<Failure, List<AllServicesEntity>>> getAllServices();
+  Future<Either<Failure, List<AllServicesEntity>>> getAllServices({
+    required double latitude,required double longitude
+  });
   Future<Either<Failure, UserProfileDataEntity>> getUserProfileData(
       {required String token});
   Future<Either<Failure, List<UserOrdersEntity>>> getUserOrders(
@@ -35,5 +37,10 @@ abstract class UserRepo {
     required double price,
     required String duration,
     required String notes,
+});
+Future<Either<Failure, void>> buyService( {
+    required String token,
+    required String serviceId,
+    required String startDate,
 });
 }

@@ -14,6 +14,7 @@ import '../../features/shared/auth/presentation/manager/VerifyCodeCubit/verifyco
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
 import '../../features/user/home/data/repos/user_repo_implement.dart';
 import '../../features/user/home/domain/usecases/add_offer_usecase.dart';
+import '../../features/user/home/domain/usecases/buy_service_usecase.dart';
 import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
 import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_banners_usecase.dart';
@@ -23,6 +24,7 @@ import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
 import '../../features/user/home/domain/usecases/request_service_usecase.dart';
 import '../../features/user/home/presentation/manager/AddOffer/add_offer_cubit.dart';
+import '../../features/user/home/presentation/manager/BuyService/buy_service_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllServices/get_all_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetBanners/get_banners_cubit.dart';
@@ -94,4 +96,9 @@ final blocProviders = <BlocProvider>[
     create: (context) => RequestServiceCubit(
        RequestServiceUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
+     BlocProvider<BuyServiceCubit>(
+    create: (context) => BuyServiceCubit(
+       BuyServiceUseCase(userRepo: getIt.get<UserRepoImplement>())),
+  ),
+
 ];
