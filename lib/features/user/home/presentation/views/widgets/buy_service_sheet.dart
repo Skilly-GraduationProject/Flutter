@@ -66,18 +66,33 @@ class _BuyServiceSheetState extends State<BuyServiceSheet> {
                         child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('السعر'),
-                        Text('$widget.service.price')
+                        Text(
+                          'السعر',
+                          style: TextStyleManager.style14BoldBlack,
+                        ),
+                        Text(
+                          '${widget.service.price} ج.م',
+                          style: TextStyleManager.style12BoldPrimary,
+                        )
                       ],
                     )),
                     InfoBox(
                         child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text('مدة التسليم'),
-                        Text(widget.service.deliveryTime)
+                        Text(
+                          'مدة التسليم',
+                          style: TextStyleManager.style14BoldBlack,
+                        ),
+                        Text(
+                          widget.service.deliveryTime,
+                          style: TextStyleManager.style12BoldPrimary,
+                        )
                       ],
                     )),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

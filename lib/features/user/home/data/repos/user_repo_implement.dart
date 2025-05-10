@@ -93,11 +93,11 @@ class UserRepoImplement implements UserRepo {
 
   @override
   Future<Either<Failure, List<AllServicesEntity>>> getAllServices(
-    {required double latitude,required double longitude,}
+    {required String token,}
   ) async {
     try {
       final response = await apiService
-          .get('$baseUrl/Provider/ProviderServices/getAllServices');
+          .get('$baseUrl/Provider/ProviderServices/getAllServices',token: token);
       final Map<String, dynamic> data = response.data;
       print('data $data');
       final services = data['services'] as List;

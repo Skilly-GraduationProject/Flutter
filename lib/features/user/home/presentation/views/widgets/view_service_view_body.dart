@@ -5,6 +5,7 @@ import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../domain/entities/all_services_entity.dart';
 import '../request_service_view.dart';
+import 'buy_service_sheet.dart';
 import 'custom_app_bar.dart';
 import 'price_offer_sheet.dart';
 
@@ -110,7 +111,20 @@ class ViewServiceViewBody extends StatelessWidget {
                       backgroundColor: ColorManager.secondary,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(32),
+                          ),
+                        ),
+                        isScrollControlled: true,
+                        builder: (_) => BuyServiceSheet(
+                          service: service,
+                        ),
+                      );
+                    },
                     child: const Text('شراء',
                         style: TextStyle(color: Colors.white)),
                   ),
@@ -128,7 +142,7 @@ class ViewServiceViewBody extends StatelessWidget {
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(
                             top: Radius.circular(32),
-                            ),
+                          ),
                         ),
                         isScrollControlled: true,
                         builder: (_) => PriceOfferSheet(service: service),
