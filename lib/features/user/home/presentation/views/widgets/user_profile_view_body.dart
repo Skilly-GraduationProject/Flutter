@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
+import '../../../../../../core/navigation/router_path.dart';
 import '../../../domain/entities/user_profile_data_entity.dart';
 import 'custom_app_bar.dart';
 import 'orders_list_view.dart';
@@ -83,27 +85,32 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
                   ),
                 )
               : const SizedBox(height: 10),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'طلباتي',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Row(
-                children: [
-                  Text('عرض الكل'),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.arrow_forward,
-                    size: 16,
-                  ),
-                ],
+              GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).push(RouterPath.ordersView);
+                },
+                child: const Row(
+                  children: [
+                    Text('عرض الكل'),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                      size: 16,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

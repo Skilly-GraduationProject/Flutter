@@ -35,13 +35,7 @@ class _HomeServicesListViewState extends State<HomeServicesListView> {
             itemBuilder: (context, index) {
               return OfferedServiceCard(
                 service: services[index],
-                // name: service.name,
-                // desc: service.desc,
-                // price: service.price,
-                // img: service.img,
-                // providerImg: service.providerImg,
-                // providerName: service.providerName,
-                // time: service.time,
+
               );
             });
       } else if (state is GetAllServicesFailure) {

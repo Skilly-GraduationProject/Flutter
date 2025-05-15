@@ -24,6 +24,7 @@ import '../../features/user/home/domain/entities/all_services_entity.dart';
 import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
+import '../../features/user/home/presentation/views/user_orders_view.dart';
 import '../../features/user/home/presentation/views/user_profile_view.dart';
 import '../../features/user/home/presentation/views/view_service_view.dart';
 
@@ -87,6 +88,9 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.userHome,
         builder: (context, state) => const UserHomeView()),
+    GoRoute(
+        path: RouterPath.ordersView,
+        builder: (context, state) => const UserOrdersView()),
     GoRoute(
         path: RouterPath.providerHome,
         builder: (context, state) => const ServiceProviderHomeView()),
