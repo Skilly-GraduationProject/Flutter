@@ -9,8 +9,7 @@ class UserOrdersViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const 
-    CustomScrollView(slivers: [
+    return const CustomScrollView(slivers: [
       SliverToBoxAdapter(
         child: CustomAppBar(
           title: 'الطلبات',

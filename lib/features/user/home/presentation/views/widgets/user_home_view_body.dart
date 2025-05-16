@@ -6,6 +6,7 @@ import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/categories_list_view.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/home_services_listview.dart';
 
+import '../../../../../../core/navigation/router_path.dart';
 import 'clickable_banners.dart';
 import 'home_user_app_bar.dart';
 
@@ -16,7 +17,6 @@ class UserHomeViewbody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-
         const SliverToBoxAdapter(
           child: HomeUserAppBar(),
         ),
@@ -35,9 +35,12 @@ class UserHomeViewbody extends StatelessWidget {
         ),
         const SliverGap(20),
         SliverToBoxAdapter(
-          child: Text(
-            "الاقسام",
-            style: TextStyleManager.style18BoldSec,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "الاقسام",
+              style: TextStyleManager.style18BoldSec,
+            ),
           ),
         ),
         const SliverGap(10),
@@ -46,9 +49,34 @@ class UserHomeViewbody extends StatelessWidget {
         ),
         const SliverGap(20),
         SliverToBoxAdapter(
-          child: Text(
-            "الخدمات المعروضه",
-            style: TextStyleManager.style18BoldSec,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "الخدمات المعروضه",
+                  style: TextStyleManager.style18BoldSec,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(RouterPath.offeredServicesView);
+                  },
+                  child: const Row(
+                    children: [
+                      Text('عرض الكل'),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        size: 16,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         const SliverGap(10),

@@ -9,4 +9,5 @@ class RouterPath {
   static const String notificationView = '/notificationView';
   static const String ordersView = '/ordersView';
   static const String offersView = '/offersView';
+  static const String offeredServicesView = '/offeredServicesView';
 }

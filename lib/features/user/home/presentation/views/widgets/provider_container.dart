@@ -1,7 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../../../core/navigation/router_path.dart';
 import 'rate_widget.dart';
 import 'verified_name.dart';
 
