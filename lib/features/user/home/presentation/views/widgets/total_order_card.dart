@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import '../../../../../../core/managers/color_manager.dart';
+import '../../../../../../core/navigation/router_path.dart';
 import '../../../domain/entities/user_orders_entity.dart';
 
 class TotalOrderCard extends StatelessWidget {
@@ -44,7 +46,11 @@ class TotalOrderCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('العروض'),
+                    GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(RouterPath.offersView);
+                        },
+                        child: const Text('العروض')),
                     SizedBox(
                       width: context.responsiveWidth(5),
                     ),
@@ -56,7 +62,7 @@ class TotalOrderCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 3),
                         child: Text(
-                          '5',
+                          '${order.offersCount}',
                           style: TextStyleManager.style12BoldWhite,
                         ),
                       ),

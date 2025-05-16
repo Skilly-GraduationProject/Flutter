@@ -8,4 +8,5 @@ class RouterPath {
   static const String addServiceView = '/addServiceView';
   static const String notificationView = '/notificationView';
   static const String ordersView = '/ordersView';
+  static const String offersView = '/offersView';
 }

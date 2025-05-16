@@ -23,6 +23,7 @@ import '../../features/shared/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/domain/entities/all_services_entity.dart';
 import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
+import '../../features/user/home/presentation/views/offers_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
 import '../../features/user/home/presentation/views/user_orders_view.dart';
 import '../../features/user/home/presentation/views/user_profile_view.dart';
@@ -112,5 +113,16 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.notificationView,
         builder: (context, state) => const NotificationView()),
+    GoRoute(
+  path: RouterPath.offersView,
+  builder: (context, state) {
+    final orderId = state.extra as String?;
+    if (orderId == null) {
+      return const Text('Missing order ID');
+    }
+    return OffersView(orderId: orderId);
+  },
+),
+
   ]);
 }

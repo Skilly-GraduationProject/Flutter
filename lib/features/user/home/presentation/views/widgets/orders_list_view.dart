@@ -42,9 +42,10 @@ class _OrdersListViewState extends State<OrdersListView> {
                   (context, index) {
                 final UserOrdersEntity order = orders[index];
                 return OrderCard(
+                  id: order.id,
+                  offersCount: order.offersCount,
                   desc: order.desc,
                  img: order.images.isNotEmpty ? order.images.first : '',
-
                   name: order.name,
                   price: order.price,
                 );

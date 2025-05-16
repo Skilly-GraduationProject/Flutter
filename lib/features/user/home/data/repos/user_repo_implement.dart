@@ -7,6 +7,7 @@ import 'package:grad_project/features/user/home/domain/entities/user_profile_dat
 import '../../../../../constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/api_service.dart';
+import '../../domain/entities/all_service_offers.dart';
 import '../../domain/entities/category_entitiy.dart';
 import '../../domain/entities/category_item_entity.dart';
 import '../../domain/entities/offered_services_entity.dart';
@@ -16,6 +17,7 @@ import '../models/all_services_model.dart';
 import '../models/category_item_model.dart';
 import '../models/get_banners_model.dart';
 import '../models/offered_services_model.dart';
+import '../models/service_offers_model.dart';
 import '../models/service_providers_model.dart';
 import '../models/user_orders_model.dart';
 import '../models/user_profile_data_model.dart';
@@ -240,4 +242,22 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, List<AllServiceOffersEntity>>> getServiceOffers({required String token,required String serviceId}) async{
+   try {
+      final response = await apiService.get(
+          '$baseUrl/OfferSalary/getAllOffersBy/$serviceId',
+          token: token);
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
+      final services = data['offers'] as List;
+      final offers = services
+          .map((json) => ServiceOffersModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(offers);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }}
 }

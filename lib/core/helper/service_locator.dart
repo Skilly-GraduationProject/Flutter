@@ -23,6 +23,7 @@ import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_banners_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
+import '../../features/user/home/domain/usecases/get_service_offers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
 import '../../features/user/home/domain/usecases/request_service_usecase.dart';
@@ -33,6 +34,7 @@ import '../../features/user/home/presentation/manager/GetAllServices/get_all_ser
 import '../../features/user/home/presentation/manager/GetBanners/get_banners_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
+import '../../features/user/home/presentation/manager/GetOffers/get_offers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserOrders/get_user_orders_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserProfileData/get_user_profile_data_cubit.dart';
 import '../../features/user/home/presentation/manager/RequestService/request_service_cubit.dart';
@@ -135,4 +137,9 @@ void setUp() {
       BuyServiceUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<BuyServiceCubit>(
       () => BuyServiceCubit(getIt.get<BuyServiceUseCase>()));  
+  
+  getIt.registerSingleton<GetServiceOffersUseCase>(
+      GetServiceOffersUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<GetServiceOffersCubit>(
+      () => GetServiceOffersCubit(getIt.get<GetServiceOffersUseCase>()));  
 }

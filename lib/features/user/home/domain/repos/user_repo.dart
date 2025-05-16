@@ -1,4 +1,5 @@
 import '../../../../../core/errors/failure.dart';
+import '../entities/all_service_offers.dart';
 import '../entities/all_services_entity.dart';
 import '../entities/category_entitiy.dart';
 import '../entities/get_banners_entitiy.dart';
@@ -43,4 +44,7 @@ Future<Either<Failure, void>> buyService( {
     required String serviceId,
     required String startDate,
 });
+Future<Either<Failure, List<AllServiceOffersEntity>>> getServiceOffers({
+    required String token,required String serviceId
+  });
 }
