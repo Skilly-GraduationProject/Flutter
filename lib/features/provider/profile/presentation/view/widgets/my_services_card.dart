@@ -15,7 +15,7 @@ import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_info_widget.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/provvider_personal_data.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_personal_data.dart';
 
 class MyServicesCard extends StatelessWidget {
   const MyServicesCard({
@@ -25,6 +25,11 @@ class MyServicesCard extends StatelessWidget {
   final ProviderService service;
   @override
   Widget build(BuildContext context) {
+    String firstImage = (service.images != null &&
+            service.images!.isNotEmpty &&
+            service.images!.first.isNotEmpty)
+        ? service.images!.first
+        : ImageManager.banner;
     return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -38,7 +43,7 @@ class MyServicesCard extends StatelessWidget {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: CustomImage(
-                    image: service.images?[0] ?? ImageManager.banner,
+                    image: firstImage,
                     width: context.width,
                     fit: BoxFit.cover,
                   )),

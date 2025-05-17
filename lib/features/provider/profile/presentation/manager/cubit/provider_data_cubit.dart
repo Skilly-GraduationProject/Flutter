@@ -15,4 +15,22 @@ class ProviderDataCubit extends Cubit<ProviderDataState> {
         (r) => emit(state.editState(
             getMyServicesState: CubitState.success, getMyServicesModel: r)));
   }
+
+  Future<void> getGallery() async {
+    emit(state.editState(getMyGalleryState: CubitState.loading));
+    final result = await repo.getGallery();
+    result.fold(
+        (l) => emit(state.editState(getMyGalleryState: CubitState.failure)),
+        (r) => emit(state.editState(
+            getMyGalleryState: CubitState.success, getMyGalleryModel: r)));
+  }
+
+  Future<void> getReviews() async {
+    emit(state.editState(getMyReviewsState: CubitState.loading));
+    final result = await repo.getMyReviews();
+    result.fold(
+        (l) => emit(state.editState(getMyReviewsState: CubitState.failure)),
+        (r) => emit(state.editState(
+            getMyReviewsState: CubitState.success, getMyReviewsModel: r)));
+  }
 }

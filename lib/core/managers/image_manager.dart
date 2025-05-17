@@ -4,4 +4,5 @@ class ImageManager {
       'assets/images/notification-circle.png';
   static const String verifyIcon = 'assets/images/verify.png';
   static const String banner = 'assets/images/banner.png';
+  static const String emptyNotification = 'assets/images/no_notifications.png';
 }

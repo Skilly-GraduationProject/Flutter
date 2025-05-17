@@ -3,12 +3,13 @@ import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/review_card.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 
 class MyReviewsView extends StatelessWidget {
-  const MyReviewsView({super.key});
-
+  const MyReviewsView({super.key, required this.reviews});
+  final List<Review> reviews;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +37,10 @@ class MyReviewsView extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             sliver: SliverList.separated(
-                itemCount: 20,
-                itemBuilder: (context, index) => const ReviewCard(),
+                itemCount: reviews.length,
+                itemBuilder: (context, index) => ReviewCard(
+                      review: reviews[index],
+                    ),
                 separatorBuilder: (context, index) => const Gap(10)),
           ),
         ],

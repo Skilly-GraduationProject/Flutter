@@ -92,7 +92,9 @@ class MoreProviderData extends StatelessWidget {
                             SvgPicture.asset(IconManager.rate),
                             const Gap(5),
                             Text(
-                              "",
+                              state.providerProfile?.provider?.review
+                                      .toString() ??
+                                  "5.0",
                               style: TextStyleManager.style14RegSec,
                             ),
                           ],

@@ -16,6 +16,7 @@ class Provider {
   String? nationalNumberPdf;
   String? userId;
   String? categoryId;
+  double? review;
 
   Provider({
     this.id,
@@ -35,6 +36,7 @@ class Provider {
     this.nationalNumberPdf,
     this.userId,
     this.categoryId,
+    this.review,
   });
 
   factory Provider.fromJson(Map<String, dynamic> json) => Provider(
@@ -55,6 +57,7 @@ class Provider {
         nationalNumberPdf: json['nationalNumberPDF'] as String?,
         userId: json['userId'] as String?,
         categoryId: json['categoryId'] as String?,
+        review: json['review'] as double?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -75,5 +78,6 @@ class Provider {
         'nationalNumberPDF': nationalNumberPdf,
         'userId': userId,
         'categoryId': categoryId,
+        'review': review,
       };
 }

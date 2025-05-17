@@ -3,11 +3,13 @@ import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_work_card.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 
 class MyWorkView extends StatelessWidget {
-  const MyWorkView({super.key});
+  const MyWorkView({super.key, required this.servicesgallery});
+  final List<Servicesgallery>? servicesgallery;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +38,12 @@ class MyWorkView extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             sliver: SliverList.separated(
-              itemCount: 10,
+              itemCount: servicesgallery!.length,
               separatorBuilder: (context, index) => const Gap(10),
               itemBuilder: (context, index) {
-                return const MyWorkCard();
+                return MyWorkCard(
+                  servicesgallery: servicesgallery![index],
+                );
               },
             ),
           ),

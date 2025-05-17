@@ -42,7 +42,7 @@ class ServerFailure extends Failure {
         statusCode == 401 ||
         statusCode == 403 ||
         statusCode == 422) {
-      return ServerFailure(errMessage: response["message"]);
+      return ServerFailure(errMessage: response["message"] ?? 'حدث خطأ');
     } else {
       return ServerFailure(
           errMessage: 'عذرًا، حدث خطأ ما. يرجى المحاولة لاحقًا');

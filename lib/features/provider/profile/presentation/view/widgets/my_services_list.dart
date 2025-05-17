@@ -23,7 +23,7 @@ import 'package:grad_project/features/provider/profile/presentation/view/widgets
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_services_card.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_work_card.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_info_widget.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/provvider_personal_data.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_personal_data.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/review_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -41,75 +41,75 @@ class MyServicesSection extends StatelessWidget {
         List<ProviderService>? myServices =
             state.getMyServicesModel?.service ?? [];
         if (state.getMyServicesState == CubitState.failure) {
-          return SliverToBoxAdapter(
-            child: const CustomErrorWidget(),
+          return const SliverToBoxAdapter(
+            child: CustomErrorWidget(),
           );
-        }else{
+        } else {
           return SliverSkeletonizer(
-          enabled: state.getMyServicesState == CubitState.loading,
-          child: MultiSliver(
-            children: [
-              const SliverGap(20),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                sliver: SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "خدماتي",
-                            style: TextStyleManager.style16BoldSec,
-                          ),
-                          const Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context).push(
-                                  RouterPath.myServicesView,
-                                  extra: myServices);
-                            },
-                            child: Row(
-                              children: [
-                                Text(
-                                  "عرض الكل",
-                                  style: TextStyleManager.style14RegSec,
-                                ),
-                                const Gap(3),
-                                const Icon(
-                                  Icons.arrow_forward_outlined,
-                                  color: ColorManager.secondary,
-                                )
-                              ],
+            enabled: state.getMyServicesState == CubitState.loading,
+            child: MultiSliver(
+              children: [
+                const SliverGap(20),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  sliver: SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "خدماتي",
+                              style: TextStyleManager.style16BoldSec,
                             ),
-                          )
-                        ],
-                      ),
-                    ],
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                GoRouter.of(context).push(
+                                    RouterPath.myServicesView,
+                                    extra: myServices);
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "عرض الكل",
+                                    style: TextStyleManager.style14RegSec,
+                                  ),
+                                  const Gap(3),
+                                  const Icon(
+                                    Icons.arrow_forward_outlined,
+                                    color: ColorManager.secondary,
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SliverGap(20),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                sliver: SliverGrid.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: context.responsiveWidth(200) /
-                        context.responsiveHeight(250),
+                const SliverGap(20),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  sliver: SliverGrid.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: context.responsiveWidth(200) /
+                          context.responsiveHeight(250),
+                    ),
+                    itemCount: myServices.length >= 2 ? 2 : myServices.length,
+                    itemBuilder: (context, index) {
+                      return MyServicesCard(
+                        service: myServices[index],
+                      );
+                    },
                   ),
-                  itemCount: myServices.length >= 2 ? 2 : myServices.length,
-                  itemBuilder: (context, index) {
-                    return MyServicesCard(
-                      service: myServices[index],
-                    );
-                  },
                 ),
-              ),
-            ],
-          ),
-        );
+              ],
+            ),
+          );
         }
       },
     );

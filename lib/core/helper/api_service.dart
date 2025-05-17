@@ -12,8 +12,7 @@ class ApiService {
     }),
   );
 
-  Future<Response> post(String endPoint, Map<String, dynamic> data,
-      {String? token}) async {
+  Future<Response> post(String endPoint, dynamic data, {String? token}) async {
     var response = await dio.post(
       endPoint,
       data: data,
@@ -22,21 +21,19 @@ class ApiService {
   }
 
   Future<Response> get(String endPoint, {String? token}) async {
-    try {
-      var response = await dio.get(
-        endPoint,
-      );
-      return response;
-    } catch (e) {
-      throw Exception(e);
-    }
+    var response = await dio.get(
+      endPoint,
+    );
+    return response;
   }
 
-  Future<Response> delete(String endPoint, Map<String, dynamic> data,
-      {String? token}) async {
+  Future<Response> delete(String endPoint, Map<String, dynamic>? data,
+      {String? token,Map<String, dynamic>? params}) async {
     var response = await dio.delete(
       endPoint,
       data: data,
+      queryParameters: params
+      
     );
     return response;
   }

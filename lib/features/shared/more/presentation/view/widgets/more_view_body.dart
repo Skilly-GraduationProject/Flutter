@@ -28,13 +28,17 @@ class MoreViewBody extends StatelessWidget {
         MoreButton(
           title: 'سياسه الخصوصيه',
           icon: IconManager.privacyPolicy,
-          onTap: () {},
+          onTap: () {
+            context.push(RouterPath.privacyPolicyView);
+          },
         ),
         gap,
         MoreButton(
           title: 'الشروط و الاحكام',
           icon: IconManager.termsAndConditions,
-          onTap: () {},
+          onTap: () {
+            context.push(RouterPath.termsView);
+          },
         ),
         gap,
         MoreButton(

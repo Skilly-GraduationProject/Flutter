@@ -13,7 +13,7 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_info_widget.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/provvider_personal_data.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_personal_data.dart';
 
 class InhertedProviderProfile extends InheritedWidget {
   const InhertedProviderProfile({

@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad_project/features/provider/service/data/repo/service_repo.dart';
+import 'package:grad_project/features/provider/service/presentation/manager/cubit/service_cubit.dart';
 import '../../features/shared/auth/data/repos/auth_repo_implement.dart';
 import '../../features/shared/auth/domain/usecases/forgetPass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/login_usecase.dart';
@@ -38,5 +42,8 @@ final blocProviders = <BlocProvider>[
   BlocProvider<UpdatePassCubit>(
     create: (context) => UpdatePassCubit(
         UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>())),
+  ),
+  BlocProvider<ServiceCubit>(
+    create: (context) => ServiceCubit(serviceRepo: getIt<ServiceRepo>()),
   ),
 ];

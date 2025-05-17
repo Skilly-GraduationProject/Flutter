@@ -30,27 +30,23 @@ class ProviderHomeData extends StatelessWidget {
           return Skeletonizer(
             enabled: state.getProviderProfileState == CubitState.loading,
             child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(RouterPath.providerProfile, extra: state.providerProfile);
-                    },
+              onTap: () {
+                GoRouter.of(context).push(RouterPath.providerProfile,
+                    extra: state.providerProfile);
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).push(RouterPath.providerProfile);
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: CustomImage(
-                            image: state.providerProfile?.provider?.img ??
-                                ImageManager.avatar,
-                            width: context.responsiveWidth(50),
-                            height: context.responsiveWidth(50),
-                          ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(200),
+                        child: CustomImage(
+                          image: state.providerProfile?.provider?.img ??
+                              ImageManager.avatar,
+                          width: context.responsiveWidth(50),
+                          height: context.responsiveWidth(50),
                         ),
                       ),
                       Padding(

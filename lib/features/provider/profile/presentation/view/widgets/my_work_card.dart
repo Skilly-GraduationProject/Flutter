@@ -11,15 +11,18 @@ import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/shadow_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
+import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_info_widget.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/provvider_personal_data.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_personal_data.dart';
 
 class MyWorkCard extends StatelessWidget {
   const MyWorkCard({
     super.key,
+    required this.servicesgallery,
   });
-
+  final Servicesgallery? servicesgallery;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,18 +36,21 @@ class MyWorkCard extends StatelessWidget {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(ImageManager.banner,
-                    width: context.width, fit: BoxFit.cover)),
+                child: CustomImage(
+                    image: servicesgallery!.img!,
+                    width: context.width,
+                    height: context.responsiveHeight(100),
+                    fit: BoxFit.cover)),
             const Gap(15),
             Text(
-              "عمل غرفة معيشه",
+              servicesgallery!.galleryName!,
               style: TextStyleManager.style14BoldSec,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             const Gap(8),
             Text(
-              "تحتوي الغرفة على أريكة فاخرة بتنجيد مميز، طاولة قهوة خشبية بتفاصيل دقيقة، ووحدة تلفزيون أنيقة تناسب جميع المساحات",
+              servicesgallery!.description!,
               style: TextStyleManager.style14RegSec,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,

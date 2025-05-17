@@ -36,10 +36,10 @@ class ServiceProviderViewBody extends StatelessWidget {
           slivers: [
             const SliverGap(20),
             // Provider date in home
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
               sliver: SliverToBoxAdapter(
-                child: const ProviderHomeData(),
+                child: ProviderHomeData(),
               ),
             ),
             const SliverGap(20),
@@ -136,5 +136,3 @@ class ServiceProviderViewBody extends StatelessWidget {
     );
   }
 }
-
-
