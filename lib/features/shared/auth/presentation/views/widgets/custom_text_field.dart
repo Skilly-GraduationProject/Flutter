@@ -9,7 +9,8 @@ class CustomTextField extends StatelessWidget {
       this.icon,
       this.controller,
       this.obsecure,
-      this.onChanged,this.maxLines});
+      this.onChanged,
+      this.maxLines});
 
   final String title;
   final void Function(String?)? onSaved;
@@ -27,7 +28,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         textDirection: TextDirection.rtl,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        maxLines: maxLines?? 1,
+        maxLines: maxLines ?? 1,
         onSaved: onSaved,
         onChanged: onChanged,
         validator: (val) {
@@ -38,7 +39,6 @@ class CustomTextField extends StatelessWidget {
           }
         },
         decoration: InputDecoration(
-          
           prefixIcon: icon,
           hintTextDirection: TextDirection.rtl,
           hintText: title,

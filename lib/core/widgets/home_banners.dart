@@ -4,11 +4,15 @@ import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
+import 'package:grad_project/core/widgets/custom_network_image.dart';
+import 'package:grad_project/features/provider/home/data/models/home_banners/banner.dart';
+
 class HomeBanners extends StatefulWidget {
   const HomeBanners({
     super.key,
+    this.banners = const [],
   });
-
+  final List<HomeBanner> banners;
   @override
   State<HomeBanners> createState() => _HomeBannersState();
 }
@@ -22,14 +26,15 @@ class _HomeBannersState extends State<HomeBanners> {
       child: Column(
         children: [
           CarouselSlider(
-            items: [ImageManager.banner, ImageManager.banner].map((b) {
+            items: widget.banners.map((b) {
               return ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: SizedBox(
                   width: context.width,
-                  child: Image.asset(
-                    b,
-                    fit: BoxFit.fill,
+                  child: CustomNetworkImage(
+                    image: b.imagePath!,
+                    fit: BoxFit.cover,
+                    width: context.width,
                   ),
                 ),
               );
@@ -66,7 +71,7 @@ class _HomeBannersState extends State<HomeBanners> {
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
-              itemCount: 3,
+              itemCount: widget.banners.length,
             ),
           )
         ],

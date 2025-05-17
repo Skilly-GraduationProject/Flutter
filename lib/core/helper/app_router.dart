@@ -1,7 +1,15 @@
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
-import 'package:grad_project/features/provider/add_service/presentation/add_service_view.dart';
+import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
+import 'package:grad_project/features/provider/service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
+import 'package:grad_project/features/provider/service/presentation/get_service_view.dart';
+import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
+import 'package:grad_project/features/shared/more/presentation/view/widgets/privacy.dart';
+import 'package:grad_project/features/shared/more/presentation/view/widgets/terms.dart';
 import 'package:grad_project/features/shared/notifications/presentation/view/notification_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_reviews_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
@@ -64,21 +72,41 @@ abstract class AppRouter {
         builder: (context, state) => const ServiceProviderHomeView()),
     GoRoute(
         path: RouterPath.providerProfile,
-        builder: (context, state) => const ServiceProviderProfile()),
+        builder: (context, state) => ServiceProviderProfile(
+              providerProfileModel: state.extra as ProviderProfileModel,
+            )),
     GoRoute(
         path: RouterPath.myReviewsView,
-        builder: (context, state) => const MyReviewsView()),
+        builder: (context, state) => MyReviewsView(
+              reviews: state.extra as List<Review>,
+            )),
     GoRoute(
         path: RouterPath.myServicesView,
-        builder: (context, state) => const MyServicesView()),
+        builder: (context, state) => MyServicesView(
+              services: state.extra as List<ProviderService>,
+            )),
     GoRoute(
         path: RouterPath.myWorkView,
-        builder: (context, state) => const MyWorkView()),
+        builder: (context, state) => MyWorkView(
+              servicesgallery: state.extra as List<Servicesgallery>,
+            )),
     GoRoute(
         path: RouterPath.addServiceView,
         builder: (context, state) => const AddServiceView()),
     GoRoute(
         path: RouterPath.notificationView,
         builder: (context, state) => const NotificationView()),
+    GoRoute(
+        path: RouterPath.getServiceView,
+        builder: (context, state) => const GetServiceView()),
+    GoRoute(
+        path: RouterPath.chatView,
+        builder: (context, state) => const ChatView()),
+    GoRoute(
+        path: RouterPath.privacyPolicyView,
+        builder: (context, state) => const PrivacyPolicyView()),
+    GoRoute(
+        path: RouterPath.termsView,
+        builder: (context, state) => const TermsView()),
   ]);
 }

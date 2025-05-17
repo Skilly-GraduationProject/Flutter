@@ -89,7 +89,7 @@ class _SignInFormState extends State<SignInForm> {
           CustomButton(
             text: 'تسجيل الدخول',
             onTap: () {
-              GoRouter.of(context).push(RouterPath.userHome);
+              GoRouter.of(context).push(RouterPath.providerHome);
               // if (formKey.currentState!.validate()) {
               //   formKey.currentState!.save();
               //   BlocProvider.of<LoginCubit>(context)

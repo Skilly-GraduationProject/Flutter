@@ -15,8 +15,7 @@ class UserDataForm extends StatefulWidget {
 }
 
 class _UserDataFormState extends State<UserDataForm> {
-  final Map<String, List<String>> cities =
-  {
+  final Map<String, List<String>> cities = {
     'القاهرة': ['مدينة نصر', 'المعادي', 'حلوان', 'شبرا'],
     'الإسكندرية': ['سموحة', 'العصافرة', 'محرم بك', 'المنتزه'],
     'الجيزة': ['الهرم', 'الدقي', 'الشيخ زايد', '6 أكتوبر'],

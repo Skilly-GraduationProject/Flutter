@@ -30,7 +30,7 @@ class LocalNotification {
       requestAlertPermission: true,
       requestCriticalPermission: true,
       requestProvisionalPermission: true,
-      
+
       // onDidReceiveLocalNotification:
       //     (int id, String? title, String? body, String? payload) async {
       //   // Handle iOS notification in foreground
@@ -59,7 +59,6 @@ class LocalNotification {
         flutterLocalNotificationsPlugin,
         message.notification?.title ?? 'Notification',
         message.notification?.body ?? 'Body',
-
       );
     });
   }
@@ -86,7 +85,6 @@ class LocalNotification {
       announcement: true,
       badge: true,
       sound: true,
-
     );
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
@@ -108,7 +106,6 @@ class LocalNotification {
       alert: true,
       badge: true,
       sound: true,
-
     );
   }
 

@@ -8,8 +8,7 @@ class UserProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-     
-      body:UserProfileViewBody() ,
+      body: UserProfileViewBody(),
     );
   }
 }

@@ -44,7 +44,6 @@ class ViewServiceViewBody extends StatelessWidget {
                 ),
               ],
             ),
-       
             const InfoBox(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -47,7 +47,7 @@ class UserDataViewBody extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 40),
-       const  UserDataForm(),
+          const UserDataForm(),
         ],
       ),
     );

@@ -14,12 +14,12 @@ class RegisterUseCase {
     required int userType,
   }) async {
     return await authRepo.register(
-        firstName: firstName, 
-        secondName:secondName,
-        phone: phone,
-        email: email, 
-        password: password,
-        userType: userType,
-         );
+      firstName: firstName,
+      secondName: secondName,
+      phone: phone,
+      email: email,
+      password: password,
+      userType: userType,
+    );
   }
 }

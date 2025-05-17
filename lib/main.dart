@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grad_project/core/helper/bloc_providers.dart';
 import 'package:grad_project/core/helper/service_locator.dart';
-//import 'package:grad_project/core/notifications.dart';
+import 'package:grad_project/core/notifications.dart';
 import 'package:grad_project/firebase_options.dart';
 import 'core/helper/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,8 +16,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setUp();
-  // LocalNotification localNotification = LocalNotification();
-  // await localNotification.initialize();
+  LocalNotification localNotification = LocalNotification();
+  await localNotification.initialize();
   runApp(const MyApp());
 }
 
