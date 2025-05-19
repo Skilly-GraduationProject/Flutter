@@ -17,7 +17,7 @@ abstract class UserRepo {
   Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices(
       {required String categoryId});
   Future<Either<Failure, List<AllServicesEntity>>> getAllServices({
-    required String token
+    required String token,String?sort
   });
   Future<Either<Failure, UserProfileDataEntity>> getUserProfileData(
       {required String token});

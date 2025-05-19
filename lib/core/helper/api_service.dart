@@ -15,10 +15,14 @@ class ApiService {
     return response;
   }
 
-  Future<Response> get(String endPoint, {String? token}) async {
+ Future<Response> get(
+  String endPoint, 
+  {String? token,
+  Map<String, dynamic>? queryParameters}) async {
     try {
       var response = await dio.get(
         endPoint,
+        queryParameters: queryParameters,
         options: Options(
           headers: {
             'Content-Type': 'application/json',

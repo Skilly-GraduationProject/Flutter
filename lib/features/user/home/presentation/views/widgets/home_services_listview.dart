@@ -5,22 +5,12 @@ import '../../../../../../core/helper/loading_indicator.dart';
 import '../../manager/GetAllServices/get_all_services_cubit.dart';
 import '../../manager/GetAllServices/get_all_services_states.dart';
 
-class HomeServicesListView extends StatefulWidget {
+class HomeServicesListView extends StatelessWidget {
   const HomeServicesListView({super.key});
 
   @override
-  State<HomeServicesListView> createState() => _HomeServicesListViewState();
-}
-
-class _HomeServicesListViewState extends State<HomeServicesListView> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<GetAllServicesCubit>(context).getAllServices();
-  }
-
-  @override
   Widget build(BuildContext context) {
+  
     return BlocBuilder<GetAllServicesCubit, GetAllServicesStates>(
         builder: (context, state) {
       if (state is GetAllServicesLoading) {
@@ -28,16 +18,16 @@ class _HomeServicesListViewState extends State<HomeServicesListView> {
       } else if (state is GetAllServicesSuccess) {
         final services = state.services;
         return ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemCount: services.length,
-            shrinkWrap: true,
-            separatorBuilder: (context, index) => const SizedBox(height: 15),
-            itemBuilder: (context, index) {
-              return OfferedServiceCard(
-                service: services[index],
-
-              );
-            });
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(), 
+          itemCount: services.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 15),
+          itemBuilder: (context, index) {
+            return OfferedServiceCard(
+  
+              service: services[index]);
+          },
+        );
       } else if (state is GetAllServicesFailure) {
         return Text(state.error);
       } else {

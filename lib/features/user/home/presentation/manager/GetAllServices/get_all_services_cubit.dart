@@ -8,9 +8,9 @@ class GetAllServicesCubit extends Cubit<GetAllServicesStates> {
       : super(GetAllServicesInitial());
   final GetAllServicesUseCase getAllServicesUseCase;
 
-   Future<void> getAllServices() async {
+   Future<void> getAllServices(String?sort) async {
     emit(GetAllServicesLoading());
-    var result = await getAllServicesUseCase.call();
+    var result = await getAllServicesUseCase.call(sort);
     result.fold((failure) {
       emit(GetAllServicesFailure(failure.errMessage));
     }, (providers) {

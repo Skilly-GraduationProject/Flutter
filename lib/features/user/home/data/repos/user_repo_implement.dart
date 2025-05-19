@@ -95,11 +95,15 @@ class UserRepoImplement implements UserRepo {
 
   @override
   Future<Either<Failure, List<AllServicesEntity>>> getAllServices(
-    {required String token,}
-  ) async {
+      {required String token, String? sort}) async {
     try {
-      final response = await apiService
-          .get('$baseUrl/Provider/ProviderServices/getAllServices',token: token);
+      final response = await apiService.get(
+        '$baseUrl/Provider/ProviderServices/getAllServices',
+        token: token,
+        queryParameters: sort != null ? {'sort': sort} : null,
+      );
+      print('Requesting with sort = $sort');
+      print('Full URI: ${response.requestOptions.uri}');
       final Map<String, dynamic> data = response.data;
       print('data $data');
       final services = data['services'] as List;
@@ -118,8 +122,10 @@ class UserRepoImplement implements UserRepo {
       {required String token}) async {
     try {
       final response = await apiService.get(
-          '$baseUrl/UserProfile/userProfile/GetUserProfileByuserId',
-          token: token);
+        '$baseUrl/UserProfile/userProfile/GetUserProfileByuserId',
+        token: token,
+      );
+
       final Map<String, dynamic> data = response.data;
       print('data $data');
       final userData = UserProfileDataModel.fromJson(data['user']).toEntity();
@@ -215,40 +221,42 @@ class UserRepoImplement implements UserRepo {
         },
       );
       print('add offer response ${response.data}');
-      return right(null); 
+      return right(null);
     } catch (e) {
       print('add offer error: $e');
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> buyService({required String token, required String serviceId, required String startDate}) async{
-   try {
+  Future<Either<Failure, void>> buyService(
+      {required String token,
+      required String serviceId,
+      required String startDate}) async {
+    try {
       final response = await apiService.post(
         '$baseUrl/OfferSalary/AddOffer',
         token:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFiOTVlZDI2LTAzODAtNGMzMC05Y2M4LTU0MjRlN2U3YmY5NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDEyMjE2NDMxOTUiLCJqdGkiOiI3M2IzMDk0YS0xZDQyLTQwZmEtYThmNC1mMGQ2MGE4NGU4NTciLCJleHAiOjE3NDg1MzExOTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTI3MSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCJ9.HFe0kcwr0MUpBNBjWWRC2U3I-7E5Iob5z_dvrcGgTGg',
         {
-         
           "startDate": startDate,
           "serviceId": serviceId,
         },
       );
       print('buy service response ${response.data}');
-      return right(null); 
+      return right(null);
     } catch (e) {
       print('buy service error: $e');
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<AllServiceOffersEntity>>> getServiceOffers({required String token,required String serviceId}) async{
-   try {
-      final response = await apiService.get(
-          '$baseUrl/OfferSalary/getAllOffersBy/$serviceId',
-          token: token);
+  Future<Either<Failure, List<AllServiceOffersEntity>>> getServiceOffers(
+      {required String token, required String serviceId}) async {
+    try {
+      final response = await apiService
+          .get('$baseUrl/OfferSalary/getAllOffersBy/$serviceId', token: token);
       final Map<String, dynamic> data = response.data;
       print('data $data');
       final services = data['offers'] as List;
@@ -259,5 +267,6 @@ class UserRepoImplement implements UserRepo {
       return Right(offers);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
-    }}
+    }
+  }
 }

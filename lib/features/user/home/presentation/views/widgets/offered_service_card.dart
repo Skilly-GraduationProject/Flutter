@@ -13,10 +13,12 @@ class OfferedServiceCard extends StatelessWidget {
   final AllServicesEntity service;
   @override
   Widget build(BuildContext context) {
+    print('🎯 Rendering: ${service.name}, price: ${service.price}');
+
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(12)),
+          color: Colors.grey.shade100, borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
