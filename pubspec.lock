@@ -259,6 +259,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.22"
+<<<<<<< HEAD
   flutter_rating_bar:
     dependency: "direct main"
     description:
@@ -267,6 +268,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.1"
+=======
+>>>>>>> ccf576a11d3be5fc09907778e37fbc798702a4bf
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -550,7 +553,11 @@ packages:
     source: hosted
     version: "1.12.0"
   mime:
+<<<<<<< HEAD
     dependency: "direct main"
+=======
+    dependency: transitive
+>>>>>>> ccf576a11d3be5fc09907778e37fbc798702a4bf
     description:
       name: mime
       sha256: "41a20518f0cb1256669420fdba0cd90d21561e560ac240f26ef8322e45bb7ed6"

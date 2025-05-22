@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+<<<<<<< HEAD
+=======
+import 'package:grad_project/core/extensions/context_extension.dart';
+import 'package:grad_project/core/managers/color_manager.dart';
+>>>>>>> ccf576a11d3be5fc09907778e37fbc798702a4bf
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 
