@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
+import 'package:grad_project/core/managers/color_manager.dart';
+import 'package:grad_project/core/managers/text_style_manager.dart';
+
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
+    super.key,
+    required this.text,
+    this.onTap,
+  });
+
+  final String text;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        width: context.width,
+        height: context.responsiveHeight(70),
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: ColorManager.primary,
+          ),
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyleManager.style16BoldWhite,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
