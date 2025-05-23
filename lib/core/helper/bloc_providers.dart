@@ -20,6 +20,7 @@ import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_banners_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
+import '../../features/user/home/domain/usecases/get_discount_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_service_offers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_service_reviews_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
@@ -32,6 +33,7 @@ import '../../features/user/home/presentation/manager/GetAllServices/get_all_ser
 import '../../features/user/home/presentation/manager/GetBanners/get_banners_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
+import '../../features/user/home/presentation/manager/GetDiscountServices/get_discount_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetOffers/get_offers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetReviews/get_service_reviews_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserOrders/get_user_orders_cubit.dart';
@@ -111,5 +113,9 @@ final blocProviders = <BlocProvider>[
  BlocProvider<GetServiceReviewsCubit>(
     create: (context) => GetServiceReviewsCubit(
        GetServiceReviewsUseCase(userRepo: getIt.get<UserRepoImplement>())),
+  ),
+  BlocProvider<GetDiscountServicesCubit>(
+    create: (context) => GetDiscountServicesCubit(
+       GetDiscountServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

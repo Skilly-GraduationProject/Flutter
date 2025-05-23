@@ -1,4 +1,4 @@
-import '../../../domain/entities/all_service_offers.dart';
+import '../../../domain/entities/all_service_offers._entity.dart';
 
 
 sealed class GetServiceOffersStates {}

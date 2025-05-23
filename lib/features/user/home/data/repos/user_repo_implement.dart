@@ -11,15 +11,17 @@ import 'package:mime/mime.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/api_service.dart';
-import '../../domain/entities/all_service_offers.dart';
+import '../../domain/entities/all_service_offers._entity.dart';
 import '../../domain/entities/category_entitiy.dart';
 import '../../domain/entities/category_item_entity.dart';
+import '../../domain/entities/discount_services_entity.dart';
 import '../../domain/entities/offered_services_entity.dart';
 import '../../domain/entities/service_reviews_entity.dart';
 import '../../domain/entities/service_providers_entity.dart';
 import '../../domain/repos/user_repo.dart';
 import '../models/all_services_model.dart';
 import '../models/category_item_model.dart';
+import '../models/discount_services_model.dart';
 import '../models/get_banners_model.dart';
 import '../models/offered_services_model.dart';
 import '../models/service_offers_model.dart';
@@ -327,6 +329,27 @@ class UserRepoImplement implements UserRepo {
           .toList();
 
       return Right(reviews);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices({required String token, String? sort})async {
+    try {
+      final response = await apiService.get(
+        '$baseUrl/Provider/ProviderServices/get-all-DiscountServices',
+        token: token,
+        queryParameters: sort != null ? {'sort': sort} : null,
+      );
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
+      final services = data['services'] as List;
+      final service = services
+          .map((json) => DiscountServicesModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(service);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

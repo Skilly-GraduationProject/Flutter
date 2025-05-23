@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grad_project/features/user/home/domain/entities/service_reviews_entity.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/image_banners.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/info_box.dart';
 import '../../../../../../core/managers/color_manager.dart';

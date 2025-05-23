@@ -8,4 +8,5 @@ class ColorManager {
   static const Color blue = Color(0xff4285F4);
   static const Color black = Colors.black;
   static const Color grey = Colors.grey;
+
 }

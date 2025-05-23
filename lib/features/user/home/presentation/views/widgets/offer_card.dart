@@ -5,7 +5,7 @@ import 'package:grad_project/core/extensions/context_extension.dart';
 import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../../../../core/widgets/buttons/small_primary_button.dart';
-import '../../../domain/entities/all_service_offers.dart';
+import '../../../domain/entities/all_service_offers._entity.dart';
 
 class OfferCard extends StatelessWidget {
   const OfferCard({super.key, required this.offer});

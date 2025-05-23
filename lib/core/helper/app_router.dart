@@ -23,9 +23,11 @@ import '../../features/shared/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/domain/entities/all_services_entity.dart';
 import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
+import '../../features/user/home/presentation/views/discounts_view.dart';
 import '../../features/user/home/presentation/views/emergency_view.dart';
 import '../../features/user/home/presentation/views/offered_services_view.dart';
 import '../../features/user/home/presentation/views/offers_view.dart';
+import '../../features/user/home/presentation/views/points_entry_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
 import '../../features/user/home/presentation/views/reviews_view.dart';
 import '../../features/user/home/presentation/views/user_orders_view.dart';
@@ -95,17 +97,15 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.ordersView,
         builder: (context, state) => const UserOrdersView()),
-
     GoRoute(
         path: RouterPath.reviewsView,
         builder: (context, state) {
- final serviceId = state.extra as String?;
-    if (serviceId == null) {
-      return const Text('Missing service ID');
-    }
-    return ReviewsView(serviceId: serviceId);
-        })
-       ,
+          final serviceId = state.extra as String?;
+          if (serviceId == null) {
+            return const Text('Missing service ID');
+          }
+          return ReviewsView(serviceId: serviceId);
+        }),
     GoRoute(
         path: RouterPath.providerHome,
         builder: (context, state) => const ServiceProviderHomeView()),
@@ -127,22 +127,27 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.notificationView,
         builder: (context, state) => const NotificationView()),
-        GoRoute(
+    GoRoute(
         path: RouterPath.emergencyView,
         builder: (context, state) => const EmergencyView()),
-         GoRoute(
+    GoRoute(
+        path: RouterPath.pointsView,
+        builder: (context, state) => const PointsEntryView()),
+    GoRoute(
+        path: RouterPath.discountsView,
+        builder: (context, state) => const DiscountsView()),
+    GoRoute(
         path: RouterPath.offeredServicesView,
         builder: (context, state) => const OfferedServicesView()),
     GoRoute(
-  path: RouterPath.offersView,
-  builder: (context, state) {
-    final orderId = state.extra as String?;
-    if (orderId == null) {
-      return const Text('Missing order ID');
-    }
-    return OffersView(orderId: orderId);
-  },
-),
-
+      path: RouterPath.offersView,
+      builder: (context, state) {
+        final orderId = state.extra as String?;
+        if (orderId == null) {
+          return const Text('Missing order ID');
+        }
+        return OffersView(orderId: orderId);
+      },
+    ),
   ]);
 }

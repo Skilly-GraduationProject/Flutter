@@ -18,9 +18,19 @@ class TextStyleManager {
     fontSize: adaptiveFontSize(18),
     fontWeight: FontWeight.w700,
   );
+  static TextStyle style18BoldPrimary = TextStyle(
+    color: ColorManager.primary,
+    fontSize: adaptiveFontSize(18),
+    fontWeight: FontWeight.w700,
+  );
   static TextStyle style16BoldWhite = TextStyle(
     color: Colors.white,
     fontSize: adaptiveFontSize(16),
+    fontWeight: FontWeight.w700,
+  );
+  static TextStyle style28BoldAmber = TextStyle(
+    color: Colors.amber,
+    fontSize: adaptiveFontSize(24),
     fontWeight: FontWeight.w700,
   );
   static TextStyle style12RegSec = TextStyle(
@@ -93,7 +103,7 @@ class TextStyleManager {
     fontSize: adaptiveFontSize(16),
     fontWeight: FontWeight.w700,
   );
-   static TextStyle style20BoldBlack = TextStyle(
+  static TextStyle style20BoldBlack = TextStyle(
     color: ColorManager.black,
     fontSize: adaptiveFontSize(20),
     fontWeight: FontWeight.w700,

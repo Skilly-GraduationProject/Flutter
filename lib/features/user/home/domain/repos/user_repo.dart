@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import '../../../../../core/errors/failure.dart';
-import '../entities/all_service_offers.dart';
+import '../entities/all_service_offers._entity.dart';
 import '../entities/all_services_entity.dart';
 import '../entities/category_entitiy.dart';
+import '../entities/discount_services_entity.dart';
 import '../entities/get_banners_entitiy.dart';
 import '../entities/offered_services_entity.dart';
 import '../entities/service_providers_entity.dart';
@@ -55,5 +56,8 @@ Future<Either<Failure, List<AllServiceOffersEntity>>> getServiceOffers({
   });
 Future<Either<Failure, List<ServiceReviewsEntity>>> getServiceReviews({
     required String token,required String serviceId
+  });
+  Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices({
+    required String token,String?sort
   });
 }

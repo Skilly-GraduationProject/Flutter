@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/errors/failure.dart';
-import '../entities/all_service_offers.dart';
+import '../entities/all_service_offers._entity.dart';
 import '../repos/user_repo.dart';
 
 class GetServiceOffersUseCase extends UseCase<List<AllServiceOffersEntity>, String> {

@@ -21,7 +21,7 @@ class ApiService {
     return response;
   } on DioException catch (e) {
     print('🔴 Dio Error: ${e.response?.data}');
-    throw e;
+    rethrow;
   }
 
   }
