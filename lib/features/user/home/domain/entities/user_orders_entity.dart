@@ -2,7 +2,8 @@ class UserOrdersEntity {
   final String name, desc,id;
   final double price;
   final int offersCount;
-  final List<String> images;
+  final List<String>? images;
+  final String? video;
 
   UserOrdersEntity({
     required this.id,
@@ -10,7 +11,8 @@ class UserOrdersEntity {
     required this.name,
     required this.desc,
     required this.price,
-    required this.images,
+    this.images,
+    this.video,
 
   });
 }

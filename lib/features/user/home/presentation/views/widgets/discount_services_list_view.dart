@@ -43,10 +43,7 @@ class _DiscountServicesListViewState extends State<DiscountServicesListView> {
                 return SizedBox(
                   width: (MediaQuery.of(context).size.width) / 2.3,
                   child: DiscountServiceCard(
-                    discountPrice: service.discountPrice,
-                    img: service.images.isNotEmpty ? service.images.first : '',
-                    name: service.name,
-                    price: service.price,
+                    service: service,
                   ),
                 );
               }).toList(),

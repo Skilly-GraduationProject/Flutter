@@ -16,12 +16,14 @@ class OrderCard extends StatelessWidget {
       required this.offersCount,
       required this.img});
 
-  final String name, id, desc, img;
+  final String name, id, desc;
+  final String?img;
   final int offersCount;
   final double price;
 
   @override
   Widget build(BuildContext context) {
+    
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -30,13 +32,15 @@ class OrderCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
+         img != null && img!.trim().isNotEmpty
+    ?
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.network(img,
+            child: Image.network(img!,
                 width: context.responsiveWidth(200),
                 height: context.responsiveWidth(100),
                 fit: BoxFit.fill),
-          ),
+          ):const SizedBox(),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Column(

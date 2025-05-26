@@ -23,6 +23,7 @@ import '../../features/shared/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/domain/entities/all_services_entity.dart';
 import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
+import '../../features/user/home/presentation/views/discount_services_view.dart';
 import '../../features/user/home/presentation/views/discounts_view.dart';
 import '../../features/user/home/presentation/views/emergency_view.dart';
 import '../../features/user/home/presentation/views/offered_services_view.dart';
@@ -136,6 +137,9 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.discountsView,
         builder: (context, state) => const DiscountsView()),
+    GoRoute(
+        path: RouterPath.discountServicesView,
+        builder: (context, state) => const DiscountServicesView()),
     GoRoute(
         path: RouterPath.offeredServicesView,
         builder: (context, state) => const OfferedServicesView()),

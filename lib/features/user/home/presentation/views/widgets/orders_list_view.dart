@@ -41,7 +41,10 @@ class _OrdersListViewState extends State<OrdersListView> {
                     id: order.id,
                     offersCount: order.offersCount,
                     desc: order.desc,
-                    img: order.images.isNotEmpty ? order.images.first : '',
+                   img: (order.images != null && order.images!.any((e) => e.trim().isNotEmpty))
+    ? order.images!.firstWhere((e) => e.trim().isNotEmpty, orElse: () => '')
+    : null,
+
                     name: order.name,
                     price: order.price,
                   ),

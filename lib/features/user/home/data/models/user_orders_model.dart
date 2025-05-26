@@ -2,12 +2,14 @@ import '../../domain/entities/user_orders_entity.dart';
 
 class UserOrdersModel {
   final String name, desc, id;
-  final List<String> images;
+  final List<String>? images;
+  final String? video;
   final int offersCount;
   final double price;
 
   UserOrdersModel(
       {required this.name,
+      this.video,
       required this.desc,
       required this.images,
       required this.price,
@@ -15,27 +17,33 @@ class UserOrdersModel {
       required this.id});
 
   factory UserOrdersModel.fromJson(Map<String, dynamic> json) {
-    final List<String> images =
-        (json['images'] as List<dynamic>).map((e) => e.toString()).toList();
+    final imagesJson = json['images'];
+    final List<String>? images = (imagesJson != null && imagesJson is List)
+      ? imagesJson
+          .map((e) => e.toString().trim())
+          .where((img) => img.isNotEmpty) 
+          .toList()
+      : null;
+
 
     return UserOrdersModel(
-      id: json['id'],
-      offersCount: json['offersCount'],
-      name: json['name'],
-      desc: json['notes'],
-      price: json['price'],
-      images: images,
-    );
+        id: json['id'],
+        offersCount: json['offersCount'],
+        name: json['name'],
+        desc: json['notes'],
+        price: json['price'],
+        images: images,
+        video: json['video'].toString());
   }
 
   UserOrdersEntity toEntity() {
     return UserOrdersEntity(
-      id: id,
-      offersCount: offersCount,
-      name: name,
-      desc: desc,
-      price: price,
-      images: images,
-    );
+        id: id,
+        offersCount: offersCount,
+        name: name,
+        desc: desc,
+        price: price,
+        images: images,
+        video: video);
   }
 }

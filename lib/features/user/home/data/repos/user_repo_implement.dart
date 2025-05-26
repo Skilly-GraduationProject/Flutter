@@ -192,49 +192,50 @@ class UserRepoImplement implements UserRepo {
     required String category,
     required File? video,
     required String startDate,
-    required List<File> images,
+    required List<File>? images,
     required double price,
   }) async {
-    //  List<MultipartFile> imageFiles = [];
-    // for (File image in images) {
-    //   imageFiles.add(await MultipartFile.fromFile(
-    //     image.path,
-    //     filename: image.path.split('/').last,
-    //   ));
-    // }
-
-    // MultipartFile? videoFile;
-    // if (video != null) {
-    //   videoFile = await MultipartFile.fromFile(
-    //     video.path,
-    //     filename: video.path.split('/').last,
-    //   );
-    // }
     final formData = FormData.fromMap({
-        'Name': name,
-        'Price': price.toInt(),
-        'Deliverytime': deliveryTime,
-        'startDate': startDate,
-        'categoryId': category,
-       'Notes': notes,
-        'Images':
-            images
-                .map(
-                  (image) => MultipartFile.fromFileSync(
-                    image.path,
-                    filename: image.path.split('/').last,
-                    contentType: MediaType(
-                      'image',
-                      lookupMimeType(image.path)?.split('/')[1] ?? 'png',
-                    ),
-                  ),
-                )
-                .toList(),
-      });
+      'Name': name,
+      'Price': price.toInt(),
+      'Deliverytime': deliveryTime,
+      'startDate': startDate,
+      'categoryId': category,
+      'Notes': notes,
+    });
+    if (images != null && images.isNotEmpty) {
+      for (var image in images) {
+        final mimeType =
+            lookupMimeType(image.path)?.split('/') ?? ['image', 'png'];
+        formData.files.add(
+          MapEntry(
+            'Images',
+            await MultipartFile.fromFile(
+              image.path,
+              filename: image.path.split('/').last,
+              contentType: MediaType(mimeType[0], mimeType[1]),
+            ),
+          ),
+        );
+      }
+    }
+    if (video != null) {
+      final mimeType =
+          lookupMimeType(video.path)?.split('/') ?? ['video', 'mp4'];
+      formData.files.add(
+        MapEntry(
+          'Video',
+          await MultipartFile.fromFile(
+            video.path,
+            filename: video.path.split('/').last,
+            contentType: MediaType(mimeType[0], mimeType[1]),
+          ),
+        ),
+      );
+    }
 
-
-    print("fields: ${formData.fields}");
-    print("files: ${formData.files}");
+    // print("fields: ${formData.fields}");
+    // print("files: ${formData.files}");
     final response = await apiService.post(
       '$baseUrl/UserProfile/requestServices/AddrequestService',
       formData,
@@ -333,9 +334,10 @@ class UserRepoImplement implements UserRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices({required String token, String? sort})async {
+  Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices(
+      {required String token, String? sort}) async {
     try {
       final response = await apiService.get(
         '$baseUrl/Provider/ProviderServices/get-all-DiscountServices',

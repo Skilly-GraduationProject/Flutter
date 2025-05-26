@@ -42,7 +42,7 @@ class DiscountsViewBody extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   GoRouter.of(context).push(
-                    RouterPath.ordersView,
+                    RouterPath.discountServicesView,
                   );
                 },
                 child: const Row(
