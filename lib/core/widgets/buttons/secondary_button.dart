@@ -8,20 +8,22 @@ class SecondaryButton extends StatelessWidget {
     super.key,
     required this.text,
     this.onTap,
+    this.color,
   });
 
   final String text;
   final void Function()? onTap;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: ColorManager.secondary,
+          color: color ?? ColorManager.secondary,
         ),
         child: Center(
           child: Text(

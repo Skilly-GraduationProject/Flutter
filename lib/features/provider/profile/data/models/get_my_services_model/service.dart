@@ -1,3 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
+
 class ProviderService {
   String? id;
   String? serviceRequestTime;
@@ -9,8 +12,10 @@ class ProviderService {
   String? serviceProviderId;
   String? serviceProviderName;
   String? providerImg;
-  List<dynamic>? images;
+  List<ImageModel>? images;
   String? categoryId;
+  List<String>? deletedImages;
+  List<Review>? reviews;
 
   ProviderService({
     this.id,
@@ -25,6 +30,8 @@ class ProviderService {
     this.providerImg,
     this.images,
     this.categoryId,
+    this.deletedImages,
+    this.reviews,
   });
 
   factory ProviderService.fromJson(Map<String, dynamic> json) =>
@@ -39,22 +46,66 @@ class ProviderService {
         serviceProviderId: json['serviceProviderId'] as String?,
         serviceProviderName: json['serviceProviderName'] as String?,
         providerImg: json['providerImg'] as String?,
-        images: json['images'] as List<dynamic>?,
+        images: json['images'] != null
+            ? (json['images'] as List)
+                .map((image) =>
+                    ImageModel.fromJson(image as Map<String, dynamic>))
+                .toList()
+            : null,
         categoryId: json['categoryId'] as String?,
+        reviews: json['reviews'] != null
+            ? (json['reviews'] as List)
+                .map(
+                    (review) => Review.fromJson(review as Map<String, dynamic>))
+                .toList()
+            : null,
       );
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'serviceRequestTime': serviceRequestTime,
-        'name': name,
-        'description': description,
-        'price': price,
-        'deliverytime': deliverytime,
-        'notes': notes,
-        'serviceProviderId': serviceProviderId,
+  Future<Map<String, dynamic>> toJson() async {
+    return {
+      if (id != null) 'id': id,
+      if (serviceRequestTime != null) 'serviceRequestTime': serviceRequestTime,
+      if (name != null) 'name': name,
+      if (description != null) 'description': description,
+      if (price != null) 'price': price!.toInt(),
+      if (deliverytime != null) 'deliverytime': deliverytime,
+      if (notes != null) 'notes': notes,
+      if (serviceProviderId != null) 'serviceProviderId': serviceProviderId,
+      if (serviceProviderName != null)
         'serviceProviderName': serviceProviderName,
-        'providerImg': providerImg,
-        'images': images,
-        'categoryId': categoryId,
+      if (providerImg != null) 'providerImg': providerImg,
+      if (images != null && images!.isNotEmpty)
+        'images': await Future.wait(
+          images!.map((image) async {
+            try {
+              MultipartFile file = await MultipartFile.fromFile(
+                image.image!,
+              );
+              return file;
+            } catch (e) {
+              // Handle the error, e.g., log it or return a default value
+              print('Error processing image: $e');
+            }
+          }),
+        ),
+      if (deletedImages != null) 'ImagesToDeleteIds': deletedImages ?? [],
+    };
+  }
+}
+
+class ImageModel {
+  final String? image;
+  final String? id;
+  ImageModel({
+    this.image,
+    this.id,
+  });
+  factory ImageModel.fromJson(Map<String, dynamic> json) => ImageModel(
+        image: json['img'] as String?,
+        id: json['id'] as String?,
+      );
+  Map<String, dynamic> toJson() => {
+        'image': image,
+        'id': id,
       };
 }

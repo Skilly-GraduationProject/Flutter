@@ -117,7 +117,7 @@ class ServiceProviderViewBody extends StatelessWidget {
                         enabled: isLoading,
                         child: RequestedServiceCard(
                                 service: isLoading
-                                    ? Service()
+                                    ? RequestedService()
                                     : state.requestedServices[index])
                             .animate()
                             .scaleXY(

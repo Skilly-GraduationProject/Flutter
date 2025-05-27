@@ -6,12 +6,13 @@ import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/features/shared/auth/presentation/views/widgets/custom_text_field.dart';
+import 'package:grad_project/features/shared/chat/data/models/get_chats_model/chat_info_model.dart';
 
 class UserChatCard extends StatelessWidget {
   const UserChatCard({
-    super.key,
+    super.key, this.chat,
   });
-
+  final ChatInfoModel? chat;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -25,11 +26,11 @@ class UserChatCard extends StatelessWidget {
         ),
         child: ListTile(
           title: Text(
-            "احمد ايمن",
+            chat?.secondUserName ?? "",
             style: TextStyleManager.style12BoldSec,
           ),
           subtitle: Text(
-            "الرساله الرساله الرساله الرساله",
+            chat?.id ?? "",
             style: TextStyleManager.style12RegSec,
           ),
           leading: const CircleAvatar(

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
-import 'package:grad_project/features/provider/service/presentation/widgets/add_service_view_body.dart';
-import 'package:grad_project/features/provider/service/presentation/widgets/get_service_view_body.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/widgets/add_service_view_body.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/widgets/get_service_view_body.dart';
 
 class GetServiceView extends StatelessWidget {
-  const GetServiceView({super.key});
-
+  const GetServiceView({super.key, required this.service});
+  final RequestedService service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +24,10 @@ class GetServiceView extends StatelessWidget {
         centerTitle: true,
         leading: const BackIcon(),
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(20),
         child: SafeArea(
-          child: GetServiceViewBody(),
+          child: GetServiceViewBody(service: service),
         ),
       ),
     );

@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  awesome_snackbar_content: ^0.1.6
   bloc: ^8.1.4
   cached_network_image: ^3.4.1
   carousel_slider: ^5.0.0
@@ -52,6 +53,7 @@ dependencies:
   go_router: ^14.6.1
   image_picker: ^1.1.2
   intl: 0.19.0
+  photo_view: ^0.15.0
   shared_preferences: ^2.3.3
   skeletonizer: ^1.4.3
   sliver_tools: ^0.2.12

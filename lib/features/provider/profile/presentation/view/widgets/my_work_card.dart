@@ -34,13 +34,15 @@ class MyWorkCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: CustomImage(
-                    image: servicesgallery!.img!,
-                    width: context.width,
-                    height: context.responsiveHeight(100),
-                    fit: BoxFit.cover)),
+            servicesgallery!.images!.isEmpty
+                ? Container()
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: CustomImage(
+                        image: servicesgallery!.images!.first!,
+                        width: context.width,
+                        height: context.responsiveHeight(100),
+                        fit: BoxFit.cover)),
             const Gap(15),
             Text(
               servicesgallery!.galleryName!,

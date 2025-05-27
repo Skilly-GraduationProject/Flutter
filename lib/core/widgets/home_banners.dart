@@ -5,6 +5,7 @@ import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/widgets/custom_network_image.dart';
+import 'package:grad_project/core/widgets/show_image.dart';
 import 'package:grad_project/features/provider/home/data/models/home_banners/banner.dart';
 
 class HomeBanners extends StatefulWidget {
@@ -31,10 +32,18 @@ class _HomeBannersState extends State<HomeBanners> {
                 borderRadius: BorderRadius.circular(15),
                 child: SizedBox(
                   width: context.width,
-                  child: CustomNetworkImage(
-                    image: b.imagePath!,
-                    fit: BoxFit.cover,
-                    width: context.width,
+                  child: GestureDetector(
+                    onTap: () {
+                      showMultiImages(
+                          context: context,
+                          images:
+                              widget.banners.map((e) => e.imagePath!).toList());
+                    },
+                    child: CustomNetworkImage(
+                      image: b.imagePath!,
+                      fit: BoxFit.cover,
+                      width: context.width,
+                    ),
                   ),
                 ),
               );

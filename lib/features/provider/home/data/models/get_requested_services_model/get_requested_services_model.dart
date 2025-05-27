@@ -1,14 +1,14 @@
 import 'service.dart';
 
 class GetRequestedServicesModel {
-  List<Service>? services;
+  List<RequestedService>? services;
 
   GetRequestedServicesModel({this.services});
 
   factory GetRequestedServicesModel.fromJson(Map<String, dynamic> json) {
     return GetRequestedServicesModel(
       services: (json['services'] as List<dynamic>?)
-          ?.map((e) => Service.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => RequestedService.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }

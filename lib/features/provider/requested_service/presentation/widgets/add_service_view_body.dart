@@ -15,9 +15,9 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
-import 'package:grad_project/features/provider/service/data/models/add_service_model/data.dart';
-import 'package:grad_project/features/provider/service/presentation/manager/cubit/service_cubit.dart';
-import 'package:grad_project/features/provider/service/presentation/manager/cubit/service_state.dart';
+import 'package:grad_project/features/provider/requested_service/data/models/add_service_model/data.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_cubit.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_state.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddServiceViewBody extends StatelessWidget {

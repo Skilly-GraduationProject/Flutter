@@ -19,7 +19,8 @@ class NotificationsCubit extends Cubit<NotificationsCubitStates> {
   }
 
   Future<void> deleteNotification({required String notificationId}) async {
-    var response = await notificationsRepo.deleteNotification(notificationId: notificationId);
+    var response = await notificationsRepo.deleteNotification(
+        notificationId: notificationId);
     response.fold((l) {}, (r) {});
   }
 }

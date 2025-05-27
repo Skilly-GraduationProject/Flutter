@@ -1,6 +1,7 @@
 import 'package:grad_project/core/helper/date_formatter.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 
-class Service {
+class RequestedService {
   String? id;
   String? name;
   String? user;
@@ -12,10 +13,11 @@ class Service {
   String? notes;
   String? userId;
   String? userName;
-  List<dynamic>? requestServiceImages;
+  String? userImg;
+  List<ImageModel>? images;
   List<dynamic>? offerSalaries;
 
-  Service({
+  RequestedService({
     this.id,
     this.name,
     this.price,
@@ -26,11 +28,13 @@ class Service {
     this.notes,
     this.userId,
     this.userName,
-    this.requestServiceImages,
+    this.userImg,
+    this.images = const [],
     this.offerSalaries,
   });
 
-  factory Service.fromJson(Map<String, dynamic> json) => Service(
+  factory RequestedService.fromJson(Map<String, dynamic> json) =>
+      RequestedService(
         id: json['id'] as String?,
         name: json['name'] as String?,
         price: json['price'] as double?,
@@ -42,7 +46,13 @@ class Service {
         notes: json['notes'] as String?,
         userId: json['userId'] as String?,
         userName: json['userName'] as String?,
-        requestServiceImages: json['requestServiceImages'],
+        userImg: json['userImg'] as String?,
+        images: json['images'] != null
+            ? (json['images'] as List)
+                .map((image) =>
+                    ImageModel.fromJson(image as Map<String, dynamic>))
+                .toList()
+            : [],
         offerSalaries: json['offerSalaries'] as List<dynamic>?,
       );
 
@@ -55,7 +65,8 @@ class Service {
         'categoryId': categoryId,
         'notes': notes,
         'userId': userId,
-        'requestServiceImages': requestServiceImages,
+        'userImg': userImg,
+        'images': images,
         'offerSalaries': offerSalaries,
       };
 }

@@ -48,16 +48,17 @@ class Provider {
         governorate: json['governorate'] as String?,
         city: json['city'] as String?,
         streetName: json['streetName'] as String?,
-        age: json['age'] as String?,
+        age: json['age'].toString() as String?,
         gender: json['gender'] as int?,
         img: json['img'] as String?,
         profession: json['profession'] as String?,
-        numberOfYearExperience: json['numberOfYearExperience'] as String?,
+        numberOfYearExperience:
+            json['numberOfYearExperience'].toString() as String?,
         briefSummary: json['briefSummary'] as String?,
         nationalNumberPdf: json['nationalNumberPDF'] as String?,
         userId: json['userId'] as String?,
         categoryId: json['categoryId'] as String?,
-        review: json['review'] as double?,
+        review: json['review'].toDouble(),
       );
 
   Map<String, dynamic> toJson() => {

@@ -3,7 +3,7 @@ class Servicesgallery {
   String? galleryName;
   String? description;
   String? deliverytime;
-  String? img;
+  String? video;
   String? serviceProviderId;
   List<dynamic>? images;
 
@@ -12,7 +12,7 @@ class Servicesgallery {
     this.galleryName,
     this.description,
     this.deliverytime,
-    this.img,
+    this.video,
     this.serviceProviderId,
     this.images,
   });
@@ -23,7 +23,7 @@ class Servicesgallery {
       galleryName: json['galleryName'] as String?,
       description: json['description'] as String?,
       deliverytime: json['deliverytime'] as String?,
-      img: json['img'] as String?,
+      video: json['video'] as String?,
       serviceProviderId: json['serviceProviderId'] as String?,
       images: json['images'] as List<dynamic>?,
     );
@@ -34,7 +34,7 @@ class Servicesgallery {
         'galleryName': galleryName,
         'description': description,
         'deliverytime': deliverytime,
-        'img': img,
+        'video': video,
         'serviceProviderId': serviceProviderId,
         'images': images,
       };

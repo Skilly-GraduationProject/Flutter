@@ -10,7 +10,7 @@ class ProviderHomeCubitState {
   ProviderProfileModel? providerProfile;
   // users requested services state & data
   CubitState? getRequestedServicesState;
-  List<Service> requestedServices;
+  List<RequestedService> requestedServices;
   // home banners state & data
   CubitState? getHomeBannersState;
   List<HomeBanner> homeBanners;
@@ -33,7 +33,7 @@ class ProviderHomeCubitState {
     ProviderProfileModel? providerProfile,
     // users requested services state & data
     CubitState? getRequestedServicesState,
-    List<Service>? requestedServices,
+    List<RequestedService>? requestedServices,
     // home banners state & data
     CubitState? getHomeBannersState,
     List<HomeBanner>? homeBanners,

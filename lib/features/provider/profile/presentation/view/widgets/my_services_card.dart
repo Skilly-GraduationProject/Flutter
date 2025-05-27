@@ -27,50 +27,55 @@ class MyServicesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     String firstImage = (service.images != null &&
             service.images!.isNotEmpty &&
-            service.images!.first.isNotEmpty)
-        ? service.images!.first
+            service.images!.first.image!.isNotEmpty)
+        ? service.images!.first.image!
         : ImageManager.banner;
-    return Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
-            boxShadow: [ShadowManager.cardShadow]),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: CustomImage(
-                    image: firstImage,
-                    width: context.width,
-                    fit: BoxFit.cover,
-                  )),
-            ),
-            const Gap(15),
-            Text(
-              service.name ?? "",
-              style: TextStyleManager.style14BoldSec,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const Gap(8),
-            Text(
-              service.description ?? "",
-              style: TextStyleManager.style14RegSec,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const Gap(8),
-            Align(
-              alignment: AlignmentDirectional.bottomEnd,
-              child: Text(
-                "${service.price} ج.م",
-                style: TextStyleManager.style12BoldPrimary,
+    return GestureDetector(
+      onTap: () {
+        context.push(RouterPath.providerServiceView, extra: service.id);
+      },
+      child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.white,
+              boxShadow: [ShadowManager.cardShadow]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: CustomImage(
+                      image: firstImage,
+                      width: context.width,
+                      fit: BoxFit.cover,
+                    )),
               ),
-            ),
-          ],
-        ));
+              const Gap(15),
+              Text(
+                service.name ?? "",
+                style: TextStyleManager.style14BoldSec,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const Gap(8),
+              Text(
+                service.description ?? "",
+                style: TextStyleManager.style14RegSec,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const Gap(8),
+              Align(
+                alignment: AlignmentDirectional.bottomEnd,
+                child: Text(
+                  "${service.price} ج.م",
+                  style: TextStyleManager.style12BoldPrimary,
+                ),
+              ),
+            ],
+          )),
+    );
   }
 }

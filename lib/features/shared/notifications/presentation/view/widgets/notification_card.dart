@@ -58,6 +58,7 @@ class NotificationCard extends StatelessWidget {
                         const Gap(12),
                       ],
                     ),
+              const Gap(10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
