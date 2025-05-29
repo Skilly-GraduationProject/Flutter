@@ -1,29 +1,41 @@
+import 'dart:io';
+
+import 'package:dartz/dartz.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/helper/save_token.dart';
 import '../repos/auth_repo.dart';
 
 class AddProviderDataUseCase {
   final AuthRepo authRepo;
   AddProviderDataUseCase({required this.authRepo});
 
-  Future<void> call({
+  Future<Either<Failure, void>> call({
     required String govern,
     required String city,
     required String streetName,
-    required String age,
-    required String yearsOfExp,
+    required int age,
+    required int yearsOfExp,
     required int gender,
-    required String image,
+    required File image,
+    required File pdf,
+    required String categoryId,
     required String briefSummary,
-    required String profession,
+    required String token,
   }) async {
+    final token = await loadToken();
+
     return await authRepo.addProviderData(
-        govern: govern,
-        city: city,
-        streetName: streetName,
-        age: age,
-        yearsOfExp: yearsOfExp,
-        gender: gender,
-        image: image,
-        briefSummary: briefSummary,
-        profession: profession);
+      token: token!,
+      categoryId: categoryId,
+      govern: govern,
+      city: city,
+      streetName: streetName,
+      age: age,
+      yearsOfExp: yearsOfExp,
+      gender: gender,
+      image: image,
+      pdf: pdf,
+      briefSummary: briefSummary,
+    );
   }
 }

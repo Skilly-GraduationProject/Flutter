@@ -1,3 +1,5 @@
+
+import '../../../../../core/helper/save_token.dart';
 import '../repos/auth_repo.dart';
 
 class AddUserDataUseCase {
@@ -10,8 +12,12 @@ class AddUserDataUseCase {
     required String streetName,
     required int gender,
     required String image,
+    required String token,
   }) async {
+    final token = await loadToken();
+     
     return await authRepo.addUserData(
+      token: token!,
         govern: govern,
         city: city,
         streetName: streetName,

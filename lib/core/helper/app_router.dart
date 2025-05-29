@@ -39,7 +39,10 @@ abstract class AppRouter {
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const SplashView()),
     GoRoute(path: '/signIn', builder: (context, state) => const SignInView()),
-    GoRoute(path: '/signUp', builder: (context, state) => const SignUpView()),
+    GoRoute(path: '/signUp', builder: (context, state){ 
+      final userType = state.extra as int;
+      return SignUpView(userType: userType,);}
+    ),
     GoRoute(
         path: '/forgotPass',
         builder: (context, state) => const ForgotPassView()),

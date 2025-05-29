@@ -1,11 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/shared/auth/data/repos/auth_repo_implement.dart';
+import '../../features/shared/auth/domain/usecases/addProviderData_usecase.dart';
+import '../../features/shared/auth/domain/usecases/addUserData_usecase.dart';
 import '../../features/shared/auth/domain/usecases/forgetPass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/login_usecase.dart';
 import '../../features/shared/auth/domain/usecases/register_usecase.dart';
 import '../../features/shared/auth/domain/usecases/updatePass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/verify_code_usecase.dart';
 import '../../features/shared/auth/domain/usecases/verify_email_usecase.dart';
+import '../../features/shared/auth/presentation/manager/AddProviderDataCubit/addProviderData_cubit.dart';
+import '../../features/shared/auth/presentation/manager/AddUserDataCubit/addUserData_cubit.dart';
 import '../../features/shared/auth/presentation/manager/ForgetpassCubit/forgetPass_cubit.dart';
 import '../../features/shared/auth/presentation/manager/LoginCubit/login_cubit.dart';
 import '../../features/shared/auth/presentation/manager/RegisterCubit/register_cubit.dart';
@@ -58,6 +62,14 @@ final blocProviders = <BlocProvider>[
     create: (context) => VerifyEmailCubit(
         VerifyEmailUseCase(authRepo: getIt.get<AuthRepoImplement>())),
   ),
+  BlocProvider<AddUserDataCubit>(
+    create: (context) => AddUserDataCubit(
+        AddUserDataUseCase(authRepo: getIt.get<AuthRepoImplement>())),
+  ),
+  BlocProvider<AddProviderDataCubit>(
+    create: (context) => AddProviderDataCubit(
+        AddProviderDataUseCase(authRepo: getIt.get<AuthRepoImplement>())),
+  ),
   BlocProvider<ForgetPassCubit>(
     create: (context) => ForgetPassCubit(
         ForgetPassUseCase(authRepo: getIt.get<AuthRepoImplement>())),
@@ -72,50 +84,51 @@ final blocProviders = <BlocProvider>[
   ),
   BlocProvider<GetCategoryServiceProvidersCubit>(
     create: (context) => GetCategoryServiceProvidersCubit(
-       GetCategoryServiceProvidersUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetCategoryServiceProvidersUseCase(
+            userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<GetCategoryServicesCubit>(
     create: (context) => GetCategoryServicesCubit(
-       GetCategoryServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetCategoryServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<GetAllServicesCubit>(
     create: (context) => GetAllServicesCubit(
-       GetAllServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetAllServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<GetUserProfileDataCubit>(
     create: (context) => GetUserProfileDataCubit(
-       GetUserProfileDataUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetUserProfileDataUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<GetUserOrdersCubit>(
     create: (context) => GetUserOrdersCubit(
-       GetUserOrdersUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetUserOrdersUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<GetBannersCubit>(
     create: (context) => GetBannersCubit(
-       GetBannersUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetBannersUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
-   BlocProvider<AddOfferCubit>(
+  BlocProvider<AddOfferCubit>(
     create: (context) => AddOfferCubit(
-       AddOfferUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        AddOfferUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
-   BlocProvider<RequestServiceCubit>(
+  BlocProvider<RequestServiceCubit>(
     create: (context) => RequestServiceCubit(
-       RequestServiceUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        RequestServiceUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
-     BlocProvider<BuyServiceCubit>(
+  BlocProvider<BuyServiceCubit>(
     create: (context) => BuyServiceCubit(
-       BuyServiceUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        BuyServiceUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
- BlocProvider<GetServiceOffersCubit>(
+  BlocProvider<GetServiceOffersCubit>(
     create: (context) => GetServiceOffersCubit(
-       GetServiceOffersUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetServiceOffersUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
- BlocProvider<GetServiceReviewsCubit>(
+  BlocProvider<GetServiceReviewsCubit>(
     create: (context) => GetServiceReviewsCubit(
-       GetServiceReviewsUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetServiceReviewsUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<GetDiscountServicesCubit>(
     create: (context) => GetDiscountServicesCubit(
-       GetDiscountServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetDiscountServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.maxLines,
     this.suffix,
+    this.initialValue,
   });
 
   final String title;
@@ -23,6 +24,7 @@ class CustomTextField extends StatelessWidget {
   final bool? obsecure;
   final int? maxLines;
   final Widget? suffix;
+  final String? initialValue; 
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: obsecure ?? false,
+        initialValue: controller == null ? initialValue : null,
         textDirection: TextDirection.rtl,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         maxLines: maxLines ?? 1,
@@ -44,23 +47,7 @@ class CustomTextField extends StatelessWidget {
                 return null;
               }
             },
-        // decoration: InputDecoration(
-        //   prefixIcon: icon,
-        //   suffix: suffix,
-        //   hintTextDirection: TextDirection.rtl,
-        //   hintText: title,
-        //   hintStyle: const TextStyle(
-        //     color: Colors.grey,
-        //     fontSize: 14,
-        //     fontWeight: FontWeight.w400,
-        //   ),
-        //   filled: true,
-        //   fillColor: const Color(0xffF6F7F9),
-        //   border: OutlineInputBorder(
-        //     borderRadius: BorderRadius.circular(10),
-        //     borderSide: BorderSide.none,
-        //   ),
-        // ),
+       
         decoration: InputDecoration(
           prefixIcon: icon,
           suffixIcon: suffix != null

@@ -9,7 +9,8 @@ import 'divider.dart';
 import 'google_sign.dart';
 
 class SignUpViewBody extends StatelessWidget {
-  SignUpViewBody({super.key});
+  SignUpViewBody({super.key, required this.userType});
+  final int userType;
   String? email, phone;
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,9 @@ class SignUpViewBody extends StatelessWidget {
         listener: (context, state) {
       if (state is RegisterSuccess) {
         GoRouter.of(context).push('/verifyEmail',
-            extra: {'email': email ?? '', 'phone': phone ?? ''});
+            extra: {'email': email ?? '',
+             'phone': phone ?? '',
+             'userType':userType,});
       } else if (state is RegisterFailure) {
         print(state.error);
       }
@@ -50,6 +53,7 @@ class SignUpViewBody extends StatelessWidget {
                   height: 20,
                 ),
                 SignUpForm(
+                  userType: userType,
                   emailSaved: (val) {
                     email = val;
                   },

@@ -28,12 +28,19 @@ class _VerficationEmailViewBodyState extends State<VerficationEmailViewBody> {
     final extra = GoRouterState.of(context).extra as Map<String, dynamic>;
     final email = extra['email'] ?? '';
     final phone = extra['phone'] ?? '';
+    final userType = extra['userType'] ?? 0;
     print(email);
     print(phone);
+    print(userType);
     return BlocConsumer<VerifyEmailCubit, VerifyEmailState>(
         listener: (context, state) {
       if (state is VerifyEmailSuccess) {
-        GoRouter.of(context).push('/signIn');
+        if (userType == 0) {
+          GoRouter.of(context).push('/user');
+        } else {
+          GoRouter.of(context).push('/provider');
+        }
+        // GoRouter.of(context).push('/signIn');
       } else if (state is VerifyEmailFailure) {
         print(state.error);
       }
@@ -76,7 +83,7 @@ class _VerficationEmailViewBodyState extends State<VerficationEmailViewBody> {
                 height: 5,
               ),
               Text(
-                '$phone',
+                '$email',
                 style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
@@ -95,11 +102,12 @@ class _VerficationEmailViewBodyState extends State<VerficationEmailViewBody> {
               CustomButton(
                 text: 'التالي',
                 onTap: () {
-                  final code = controller1.text +
-                      controller2.text +
+                  final code = controller4.text +
                       controller3.text +
-                      controller4.text;
+                      controller2.text +
+                      controller1.text;
 
+                  print(code);
                   BlocProvider.of<VerifyEmailCubit>(context)
                       .verifyEmail(code: code, email: email!);
                 },

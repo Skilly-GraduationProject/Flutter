@@ -8,7 +8,7 @@ class AddUserDataCubit extends Cubit<AddUserDataState> {
   final AddUserDataUseCase addUserDataUseCase;
 
   Future<void> addUserData(String govern, String city, String streetName,
-      String image, int gender) async {
+      String image, int gender,String token) async {
     emit(AddUserDataInitial());
 
     try {
