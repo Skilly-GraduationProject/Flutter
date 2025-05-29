@@ -41,7 +41,7 @@ class AddProviderDataCubit extends Cubit<AddProviderDataState> {
  
       emit(AddProviderDataSuccess());
     } catch (error) {
-      print('add provider data cubit fails');
+      print('add provider data cubit fails $error');
       emit(AddProviderDataFailure(error.toString()));
     }
   }

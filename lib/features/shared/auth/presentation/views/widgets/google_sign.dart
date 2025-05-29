@@ -20,19 +20,6 @@ class GoogleSign extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 30),
-        GestureDetector(
-          onTap: () {},
-          child: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.grey[200],
-            child: Image.asset(
-              'assets/images/apple.png',
-              height: 30,
-              width: 30,
-            ),
-          ),
-        ),
       ],
     );
   }

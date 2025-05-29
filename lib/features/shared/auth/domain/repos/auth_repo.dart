@@ -25,13 +25,13 @@ abstract class AuthRepo {
       required String email});
   Future<void> verifyEmail({required String code, required String email});
   Future<void> verifyCode({required String code, required String email});
-  Future<void> addUserData({
+  Future<Either<Failure, void>> addUserData({
     required String token,
     required String govern,
     required String city,
     required String streetName,
     required int gender,
-    required String image,
+    required File image,
   });
   Future<Either<Failure, void>> addProviderData({
     required String token,

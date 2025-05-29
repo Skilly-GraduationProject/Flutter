@@ -7,20 +7,20 @@ class ProviderDataViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+      padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'بيانات موفر الخدمه',
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
           ),
-          const Text(
+           Text(
             'برجاء ادخال بياناتك بعنايه',
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
           ),
-          const SizedBox(height: 20),
-          const ProviderDataForm(),
+           SizedBox(height: 20),
+         ProviderDataForm(),
         ],
       ),
     );

@@ -163,25 +163,37 @@ class AuthRepoImplement implements AuthRepo {
   }
 
   @override
-  Future<void> addUserData(
+  Future<Either<Failure, void>>addUserData(
       {required String govern,
       required String token,
       required String city,
       required String streetName,
       required int gender,
-      required String image}) async {
+      required File image}) async {
+        final formData = FormData.fromMap({
+      'Governorate': govern,
+      'City': city,
+      'StreetName': streetName,
+      'Gender': gender,
+    });
+        final mimeType = lookupMimeType(image.path)?.split('/') ?? ['image', 'png'];
+    formData.files.add(
+      MapEntry(
+        'Img',
+        await MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+          contentType: MediaType(mimeType[0], mimeType[1]),
+        ),
+      ),
+    );
     final response = await apiService.post(
       '$baseUrl/UserProfile/userProfile/addUserProfile',
       token: token,
-      {
-        'Governorate': govern,
-        'City': city,
-        'StreetName': streetName,
-        'Gender': gender,
-        'Img': image,
-      },
+      formData,
     );
-    print(response);
+     print('add rpovider response ${response.data}');
+    return response.data;
   }
 
   Future<void> storeToken(String token) async {

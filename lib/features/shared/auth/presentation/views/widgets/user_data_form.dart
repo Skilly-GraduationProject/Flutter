@@ -1,10 +1,14 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../../core/helper/save_token.dart';
+import '../../../../../../core/helper/shared_prefrences.dart';
 import '../../manager/AddUserDataCubit/addUserData_cubit.dart';
 import 'custom_drop_down.dart';
 import 'custom_button.dart';
@@ -252,14 +256,39 @@ class _UserDataFormState extends State<UserDataForm> {
   };
   List<String> get governs => cities.keys.toList();
 
+  File? profileImage;
+
+  @override
+  void initState() {
+    super.initState();
+    loadImage();
+  }
+
+  Future<void> loadImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final imagePath = prefs.getString('profile_image');
+    if (imagePath != null && File(imagePath).existsSync()) {
+      setState(() {
+        profileImage = File(imagePath);
+      });
+    }
+  }
+
+  Future<void> pickImage() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+    if (result != null && result.files.single.path != null) {
+      final pickedFile = File(result.files.single.path!);
+      setState(() {
+        profileImage = pickedFile;
+      });
+    }
+  }
+
   int selectedGender = 0;
-  String? selectedCity,
-      selectedGovern,
-      age,
-      streetName,
-      firstName,
-      secondName,
-      img;
+  String? selectedCity, selectedGovern, age, streetName, firstName, secondName;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -267,28 +296,39 @@ class _UserDataFormState extends State<UserDataForm> {
         key: formKey,
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                    child: CustomTextField(
-                  title: 'الاسم الاخير',
-                  onSaved: (val) {
-                    secondName = val;
-                  },
-                )),
-                const SizedBox(
-                  width: 20,
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color(0xff1C274C),
+                  width: 1,
                 ),
-                Expanded(
-                    child: CustomTextField(
-                  title: 'الاسم الاول',
-                  onSaved: (val) {
-                    firstName = val;
-                  },
-                )),
-              ],
+              ),
+              child: GestureDetector(
+                onTap: pickImage,
+                child: CircleAvatar(
+                  radius: 35,
+                  backgroundColor: Colors.transparent,
+                  backgroundImage:
+                      profileImage != null ? FileImage(profileImage!) : null,
+                  child: profileImage == null
+                      ? const Icon(
+                          Icons.upload_outlined,
+                          size: 40,
+                          color: Color(0xff1C274C),
+                        )
+                      : null,
+                ),
+              ),
             ),
             const SizedBox(height: 20),
+            const Text(
+              'يرجى اختيار صورة شخصية واضحة و مناسبة',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+            ),
+            const Gap(20),
             CustomDropDown(
               selectedValue: selectedGovern,
               hint: 'المحافظة',
@@ -349,7 +389,7 @@ class _UserDataFormState extends State<UserDataForm> {
                 )),
               ],
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 100),
             CustomButton(
               text: 'حفظ',
               onTap: () async {
@@ -361,7 +401,7 @@ class _UserDataFormState extends State<UserDataForm> {
                     selectedGovern!,
                     selectedCity!,
                     streetName!,
-                    img!,
+                    profileImage!,
                     selectedGender,
                     token!,
                   );

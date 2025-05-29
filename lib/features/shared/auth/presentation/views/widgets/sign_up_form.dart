@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../../../core/helper/loading_indicator.dart';
+import 'package:gap/gap.dart';
 import '../../manager/RegisterCubit/register_cubit.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -26,43 +25,27 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-  //  return BlocConsumer<RegisterCubit, RegisterState>(
-  //       listener: (context, state) {
-  //     if (state is RegisterSuccess) {
-        
-  //     GoRouter.of(context).push('/verifyEmail',extra: );
-      
-  //     } else if (state is RegisterFailure) {
-  //         ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(content: Text(state.error)),
-  //     );
-  //     }
-  //   }, builder: (context, state) {
-  //     if (state is RegisterLoading) {
-  //       return const CustomLoadingIndicator();
-  //     }
 
       return Form(
         key: formKey,
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                    child: CustomTextField(
-                  title: 'الاسم الاخير',
-                  onSaved: (val) {
-                    secondName = val;
-                  },
-                )),
-                const SizedBox(
-                  width: 20,
-                ),
                 Expanded(
                     child: CustomTextField(
                   title: 'الاسم الاول',
                   onSaved: (val) {
                     firstName = val;
+                  },
+                )),
+                const Gap(10),
+                Expanded(
+                    child: CustomTextField(
+                  title: 'الاسم الاخير',
+                  onSaved: (val) {
+                    secondName = val;
                   },
                 )),
               ],

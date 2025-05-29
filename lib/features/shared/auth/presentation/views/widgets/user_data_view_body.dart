@@ -6,48 +6,21 @@ class UserDataViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+    return const SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 90),
-          const Text(
+          Text(
             'بيانات المستخدم',
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
           ),
-          const Text(
+          Text(
             'برجاء ادخال بياناتك بعنايه',
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
           ),
-          const SizedBox(height: 20),
-          Column(
-            children: [
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: const Color(0xff1C274C),
-                    width: 1.5,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.upload_outlined,
-                  size: 40,
-                  color: Color(0xff1C274C),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'يرجى اختيار صورة شخصية واضحة و مناسبة',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-          const SizedBox(height: 40),
-       const  UserDataForm(),
+          SizedBox(height: 20),
+          UserDataForm(),
         ],
       ),
     );
