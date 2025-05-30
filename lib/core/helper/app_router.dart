@@ -10,6 +10,7 @@ import 'package:grad_project/features/provider/provider_service.dart/presentatio
 import 'package:grad_project/features/provider/requested_service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/get_service_view.dart';
+import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
 import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/privacy.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/terms.dart';
@@ -105,7 +106,7 @@ abstract class AppRouter {
             GetServiceView(service: state.extra as RequestedService)),
     GoRoute(
         path: RouterPath.chatView,
-        builder: (context, state) => const ChatView()),
+        builder: (context, state) =>  ChatView(chat: state.extra as ChatInfoModel,)),
     GoRoute(
         path: RouterPath.privacyPolicyView,
         builder: (context, state) => const PrivacyPolicyView()),

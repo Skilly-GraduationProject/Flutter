@@ -17,4 +17,6 @@ class ApiConstants {
       'Notification/Delete-Notification-By';
   static const String sendOffer = 'OfferSalary/AddOffer';
   static const String getChats = 'Chat/GetChatsForUser';
+  static const String getChat = 'Chat/GetMessagesForChatOfUser';
+  static const String sendMessage = 'Chat/SendMessage';
 }

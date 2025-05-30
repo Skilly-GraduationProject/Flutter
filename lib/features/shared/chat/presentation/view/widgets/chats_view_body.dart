@@ -8,7 +8,7 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/custom_error_widget.dart';
 import 'package:grad_project/features/shared/auth/presentation/views/widgets/custom_text_field.dart';
-import 'package:grad_project/features/shared/chat/data/models/get_chats_model/chat_info_model.dart';
+import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
 import 'package:grad_project/features/shared/chat/presentation/manager/cubit/chats_cubit.dart';
 import 'package:grad_project/features/shared/chat/presentation/manager/cubit/chats_state.dart';
 import 'package:grad_project/features/shared/chat/presentation/view/widgets/user_chat_card.dart';
@@ -53,7 +53,6 @@ class _ChatsViewBodyState extends State<ChatsViewBody> {
                     validate: false,
                     onChanged: (value) {
                       print(value);
-
                       setState(() {
                         if (value.isEmpty) {
                           searchChats.clear();

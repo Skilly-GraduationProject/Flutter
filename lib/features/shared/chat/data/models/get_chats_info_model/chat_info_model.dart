@@ -6,6 +6,8 @@ class ChatInfoModel {
   String? secondUserName;
   DateTime? createdAt;
   DateTime? lastUpdatedAt;
+  String? secondUserImg;
+  String? lastMessage;
 
   ChatInfoModel({
     this.id,
@@ -15,6 +17,8 @@ class ChatInfoModel {
     this.secondUserName,
     this.createdAt,
     this.lastUpdatedAt,
+    this.secondUserImg,
+    this.lastMessage,
   });
 
   factory ChatInfoModel.fromJson(Map<String, dynamic> json) => ChatInfoModel(
@@ -29,6 +33,8 @@ class ChatInfoModel {
         lastUpdatedAt: json['lastUpdatedAt'] == null
             ? null
             : DateTime.parse(json['lastUpdatedAt'] as String),
+        secondUserImg: json['secondUserImg'] as String?,
+        lastMessage: json['lastMessage'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,5 +45,7 @@ class ChatInfoModel {
         'secondUserName': secondUserName,
         'createdAt': createdAt?.toIso8601String(),
         'lastUpdatedAt': lastUpdatedAt?.toIso8601String(),
+        'secondUserImg': secondUserImg,
+        'lastMessage': lastMessage,
       };
 }

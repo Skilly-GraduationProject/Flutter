@@ -13,7 +13,8 @@ class ChatsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChatsCubit(chatsRepo: getIt<ChatsRepo>())..getChats(),
+      create: (context) =>
+          ChatsCubit(chatsRepo: getIt<ChatsRepo>())..getChats(),
       child: Scaffold(
         appBar: AppBar(
           primary: true,
