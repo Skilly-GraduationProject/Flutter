@@ -32,22 +32,24 @@ class _CategoriesListViewState extends State<CategoriesListView> {
       } else if (state is GetAllCategoriesSuccess) {
         final categories = state.category.categories;
         return SizedBox(
-          height: context.responsiveHeight(80),
+          height: context.responsiveHeight(120),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             itemCount: categories.length,
-            separatorBuilder: (context, index) => const Gap(10),
+            separatorBuilder: (context, index) => const Gap(15),
             itemBuilder: (context, index) {
               final CategoryItemEntity category = categories[index];
-             
+
               return GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push('/category', 
-                  extra: {
-      'id': category.id,
-      'name': category.name,
-    },);
+                  GoRouter.of(context).push(
+                    '/category',
+                    extra: {
+                      'id': category.id,
+                      'name': category.name,
+                    },
+                  );
                 },
                 child: CategoryContainer(
                   name: category.name,

@@ -3,7 +3,6 @@ import 'package:grad_project/features/user/home/presentation/views/widgets/user_
 
 import 'emergency_view.dart';
 import 'points_entry_view.dart';
-import 'user_profile_view.dart';
 import 'widgets/user_bottom_navigation_bar.dart';
 
 class UserHomeView extends StatefulWidget {

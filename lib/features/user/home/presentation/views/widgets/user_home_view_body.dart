@@ -7,6 +7,7 @@ import 'package:grad_project/features/user/home/presentation/views/widgets/categ
 import 'package:grad_project/features/user/home/presentation/views/widgets/home_services_listview.dart';
 
 import '../../../../../../core/navigation/router_path.dart';
+import '../../../../../../core/widgets/buttons/small_primary_button.dart';
 import 'clickable_banners.dart';
 import 'home_user_app_bar.dart';
 
@@ -46,6 +47,15 @@ class UserHomeViewBody extends StatelessWidget {
         const SliverGap(10),
         const SliverToBoxAdapter(
           child: CategoriesListView(),
+        ),
+        const SliverGap(20),
+        SliverToBoxAdapter(
+          child: SmallPrimaryButton(
+            text: 'استعراض جميع الخدمات',
+            onTap: () {
+              GoRouter.of(context).push(RouterPath.allCategoriesView);
+            },
+          ),
         ),
         const SliverGap(20),
         SliverToBoxAdapter(

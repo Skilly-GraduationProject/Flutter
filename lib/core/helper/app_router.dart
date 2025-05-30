@@ -22,6 +22,7 @@ import '../../features/shared/auth/presentation/views/verfication_email_view.dar
 import '../../features/shared/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/domain/entities/all_services_entity.dart';
 import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
+import '../../features/user/home/presentation/views/all_categories_view.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
 import '../../features/user/home/presentation/views/discount_services_view.dart';
 import '../../features/user/home/presentation/views/discounts_view.dart';
@@ -39,10 +40,14 @@ abstract class AppRouter {
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const SplashView()),
     GoRoute(path: '/signIn', builder: (context, state) => const SignInView()),
-    GoRoute(path: '/signUp', builder: (context, state){ 
-      final userType = state.extra as int;
-      return SignUpView(userType: userType,);}
-    ),
+    GoRoute(
+        path: '/signUp',
+        builder: (context, state) {
+          final userType = state.extra as int;
+          return SignUpView(
+            userType: userType,
+          );
+        }),
     GoRoute(
         path: '/forgotPass',
         builder: (context, state) => const ForgotPassView()),
@@ -101,6 +106,9 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.ordersView,
         builder: (context, state) => const UserOrdersView()),
+    GoRoute(
+        path: RouterPath.allCategoriesView,
+        builder: (context, state) => const AllCategoriesView()),
     GoRoute(
         path: RouterPath.reviewsView,
         builder: (context, state) {

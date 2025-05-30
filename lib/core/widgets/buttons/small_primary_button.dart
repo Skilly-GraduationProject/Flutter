@@ -16,18 +16,16 @@ class SmallPrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: IntrinsicWidth(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: color ?? ColorManager.primary),
-          child: Center(
-            child: Text(
-              textAlign: TextAlign.center,
-              text,
-              style: TextStyleManager.style12BoldWhite,
-            ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: color ?? ColorManager.primary),
+        child: Center(
+          child: Text(
+            textAlign: TextAlign.center,
+            text,
+            style: TextStyleManager.style12BoldWhite,
           ),
         ),
       ),
