@@ -81,15 +81,7 @@ class _HomeUserAppBarState extends State<HomeUserAppBar> {
                     width: context.responsiveWidth(80),
                     height: context.responsiveWidth(80),
                   )),
-              GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push(RouterPath.pointsView);
-                  },
-                  child: Image.asset(
-                    ImageManager.points,
-                    width: context.responsiveWidth(80),
-                    height: context.responsiveWidth(80),
-                  )),
+
             ],
           ),
         );

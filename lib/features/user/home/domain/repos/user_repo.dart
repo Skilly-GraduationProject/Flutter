@@ -5,6 +5,7 @@ import '../entities/all_service_offers._entity.dart';
 import '../entities/all_services_entity.dart';
 import '../entities/category_entitiy.dart';
 import '../entities/discount_services_entity.dart';
+import '../entities/emergency_providers_entity.dart';
 import '../entities/get_banners_entitiy.dart';
 import '../entities/offered_services_entity.dart';
 import '../entities/service_providers_entity.dart';
@@ -59,5 +60,13 @@ Future<Either<Failure, List<ServiceReviewsEntity>>> getServiceReviews({
   });
   Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices({
     required String token,String?sort
+  });
+  Future<Either<Failure,String>> requestEmergency( {
+    required String token,
+    required String categoryId,
+    required String desc,
+});
+Future<Either<Failure, List<EmergencyProvidersEntity>>> getEmergencyProviders({
+    required String token,required String requestId
   });
 }

@@ -10,8 +10,8 @@ import '../../../../../../core/navigation/router_path.dart';
 import 'clickable_banners.dart';
 import 'home_user_app_bar.dart';
 
-class UserHomeViewbody extends StatelessWidget {
-  const UserHomeViewbody({super.key});
+class UserHomeViewBody extends StatelessWidget {
+  const UserHomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

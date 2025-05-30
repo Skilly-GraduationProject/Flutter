@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
             color: Colors.black,
           ),
           SizedBox(
-            width: context.responsiveWidth(120),
+            width: context.responsiveWidth(100),
           ),
           Text(
             title,

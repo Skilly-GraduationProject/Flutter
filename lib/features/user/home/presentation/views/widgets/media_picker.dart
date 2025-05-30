@@ -199,48 +199,15 @@ import '../request_service_view.dart';
 
 import 'dart:io';
 
-
-// MediaType Enum
-enum MediaType { image, video }
-
-// Dialog for choosing media type
-class MediaTypeDialog extends StatelessWidget {
-  const MediaTypeDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('اختر نوع الملف'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min, // هذا مهم علشان الـ Column ما ياخذ مساحة غير ضرورية
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          GestureDetector(
-            child: const Text('صورة'),
-            onTap: () => Navigator.pop(context, MediaType.image),
-          ),
-          const SizedBox(height: 8),
-          GestureDetector(
-            child: const Text('فيديو'),
-            onTap: () => Navigator.pop(context, MediaType.video),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-// Reusable widget to preview image or video
 class MediaFilePreview extends StatelessWidget {
   final File file;
-  final bool isVideo;
+  final IconData icon;
   final VoidCallback onRemove;
 
   const MediaFilePreview({
     super.key,
     required this.file,
-    required this.isVideo,
+    required this.icon,
     required this.onRemove,
   });
 
@@ -250,14 +217,12 @@ class MediaFilePreview extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: Stack(
         children: [
-          isVideo
-              ? Container(
-                  width: 80,
-                  height: 80,
-                  color: Colors.grey[300],
-                  child: const Center(child: Icon(Icons.videocam, size: 40)),
-                )
-              : Image.file(file, width: 80, height: 80, fit: BoxFit.cover),
+          Container(
+            width: 80,
+            height: 80,
+            color: Colors.grey[300],
+            child: Center(child: Icon(icon, size: 40)),
+          ),
           Positioned(
             top: 0,
             right: 0,
@@ -276,9 +241,8 @@ class MediaFilePreview extends StatelessWidget {
   }
 }
 
-// Main MediaPickerWidget
 class MediaPickerWidget extends StatefulWidget {
-  final Function(List<File> images, File? video) onMediaChanged;
+  final Function(List<File> images, File? video, List<File> pdfs) onMediaChanged;
 
   const MediaPickerWidget({super.key, required this.onMediaChanged});
 
@@ -289,34 +253,50 @@ class MediaPickerWidget extends StatefulWidget {
 class _MediaPickerWidgetState extends State<MediaPickerWidget> {
   List<File> images = [];
   File? video;
+  List<File> pdfs = [];
 
-  Future<void> _pickMedia() async {
-    final selectedType = await showDialog<MediaType>(
-      context: context,
-      builder: (context) => const MediaTypeDialog(),
+  void _notifyParent() {
+    widget.onMediaChanged(images, video, pdfs);
+  }
+
+  Future<void> _pickImages() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: true,
     );
+    if (result != null) {
+      final pickedFiles = result.paths.whereType<String>().map((e) => File(e)).toList();
+      setState(() {
+        images.addAll(pickedFiles);
+      });
+      _notifyParent();
+    }
+  }
 
-    if (selectedType == MediaType.image) {
-      final result = await FilePicker.platform.pickFiles(
-        type: FileType.image,
-        allowMultiple: true,
-      );
-      if (result != null) {
-        final pickedFiles =
-            result.paths.whereType<String>().map((e) => File(e)).toList();
-        setState(() {
-          images.addAll(pickedFiles);
-          widget.onMediaChanged(images, video);
-        });
-      }
-    } else if (selectedType == MediaType.video) {
-      final result = await FilePicker.platform.pickFiles(type: FileType.video);
-      if (result != null && result.files.single.path != null) {
-        setState(() {
-          video = File(result.files.single.path!);
-          widget.onMediaChanged(images, video);
-        });
-      }
+  Future<void> _pickVideo() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.video,
+    );
+    if (result != null && result.files.single.path != null) {
+      setState(() {
+        video = File(result.files.single.path!);
+      });
+      _notifyParent();
+    }
+  }
+
+  Future<void> _pickPDFs() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+      allowMultiple: true,
+    );
+    if (result != null) {
+      final pickedFiles = result.paths.whereType<String>().map((e) => File(e)).toList();
+      setState(() {
+        pdfs.addAll(pickedFiles);
+      });
+      _notifyParent();
     }
   }
 
@@ -326,39 +306,58 @@ class _MediaPickerWidgetState extends State<MediaPickerWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const TitleWidget(title: 'الصور المرفقة:'),
- Wrap(
-                children: [
-                  ...images.map(
-                    (file) => MediaFilePreview(
-                      file: file,
-                      isVideo: false,
-                      onRemove: () {
-                        setState(() {
-                          images.remove(file);
-                          widget.onMediaChanged(images, video);
-                        });
-                      },
-                    ),
-                  ),
-                  IconButton(icon: const Icon(Icons.add), onPressed: _pickMedia),
-                ],
+        Wrap(
+          children: [
+            ...images.map(
+              (file) => MediaFilePreview(
+                file: file,
+                icon: Icons.image,
+                onRemove: () {
+                  setState(() {
+                    images.remove(file);
+                  });
+                  _notifyParent();
+                },
               ),
+            ),
+            IconButton(icon: const Icon(Icons.add_photo_alternate), onPressed: _pickImages),
+          ],
+        ),
 
         const SizedBox(height: 20),
         const TitleWidget(title: 'الفيديو المرفق:'),
-
         video != null
             ? MediaFilePreview(
                 file: video!,
-                isVideo: true,
+                icon: Icons.videocam,
                 onRemove: () {
                   setState(() {
                     video = null;
-                    widget.onMediaChanged(images, video);
                   });
+                  _notifyParent();
                 },
               )
-            : IconButton(icon: const Icon(Icons.add), onPressed: _pickMedia),
+            : IconButton(icon: const Icon(Icons.videocam), onPressed: _pickVideo),
+
+        const SizedBox(height: 20),
+        const TitleWidget(title: 'الملفات المرفقة (PDF):'),
+        Wrap(
+          children: [
+            ...pdfs.map(
+              (file) => MediaFilePreview(
+                file: file,
+                icon: Icons.picture_as_pdf,
+                onRemove: () {
+                  setState(() {
+                    pdfs.remove(file);
+                  });
+                  _notifyParent();
+                },
+              ),
+            ),
+            IconButton(icon: const Icon(Icons.picture_as_pdf), onPressed: _pickPDFs),
+          ],
+        ),
       ],
     );
   }

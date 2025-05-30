@@ -99,6 +99,7 @@ class _RequestServiceViewBodyState extends State<RequestServiceViewBody> {
             const SizedBox(height: 10),
             const TitleWidget(title: 'القسم'),
             DropDownList(
+                hint:'اختر القسم',
               onCategorySelected: (id) {
                 setState(() {
                   categoryId = id;
@@ -114,7 +115,7 @@ class _RequestServiceViewBodyState extends State<RequestServiceViewBody> {
             ),
             const SizedBox(height: 6),
             MediaPickerWidget(
-              onMediaChanged: (pickedImages, pickedVideo) {
+              onMediaChanged: (pickedImages, pickedVideo,pickedPdf) {
                 setState(() {
                   images = pickedImages;
                   video = pickedVideo;

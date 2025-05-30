@@ -30,7 +30,7 @@ class _SplashViewState extends State<SplashView> {
         const Duration(
           seconds: 2,
         ), () {
-      GoRouter.of(context).push('/userType');
+      GoRouter.of(context).push('/signIn');
      
     });
   }

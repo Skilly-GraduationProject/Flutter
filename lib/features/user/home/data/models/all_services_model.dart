@@ -29,14 +29,11 @@ class AllServicesModel {
   });
 
   factory AllServicesModel.fromJson(Map<String, dynamic> json) {
-    final List<String> images =
-        (json['images'] as List<dynamic>).map((e) => e.toString()).toList();
+    final List<String> images = (json['images'] as List<dynamic>)
+        .map((e) => e['img'].toString())
+        .toList();
 
-    String? videoUrl;
-    if (images.isNotEmpty && images.last.toLowerCase().endsWith('.mp4')) {
-      videoUrl = images.last;
-      images.removeLast();
-    }
+    final String? videoUrl = json['video'];
 
     final time = json['serviceRequestTime'];
     final date = time.split('T').first;
@@ -45,7 +42,7 @@ class AllServicesModel {
       id: json['id'],
       name: json['name'],
       desc: json['description'],
-      price: json['price'],
+      price: (json['price'] as num).toDouble(),
       img: images.isNotEmpty ? images.first : '',
       providerName: json['serviceProviderName'],
       providerImg: json['providerImg'],

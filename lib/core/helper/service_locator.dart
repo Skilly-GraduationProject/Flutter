@@ -24,10 +24,12 @@ import '../../features/user/home/domain/usecases/get_banners_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
 import '../../features/user/home/domain/usecases/get_discount_services_usecase.dart';
+import '../../features/user/home/domain/usecases/get_emergency_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_service_offers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_service_reviews_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
+import '../../features/user/home/domain/usecases/request_emergency_usecase.dart';
 import '../../features/user/home/domain/usecases/request_service_usecase.dart';
 import '../../features/user/home/presentation/manager/AddOffer/add_offer_cubit.dart';
 import '../../features/user/home/presentation/manager/BuyService/buy_service_cubit.dart';
@@ -37,10 +39,12 @@ import '../../features/user/home/presentation/manager/GetBanners/get_banners_cub
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetDiscountServices/get_discount_services_cubit.dart';
+import '../../features/user/home/presentation/manager/GetEmergencyProviders/get_emergency_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetOffers/get_offers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetReviews/get_service_reviews_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserOrders/get_user_orders_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserProfileData/get_user_profile_data_cubit.dart';
+import '../../features/user/home/presentation/manager/RequestEmergency/request_emergency_cubit.dart';
 import '../../features/user/home/presentation/manager/RequestService/request_service_cubit.dart';
 import 'api_service.dart';
 
@@ -156,4 +160,14 @@ void setUp() {
       GetDiscountServicesUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetDiscountServicesCubit>(
       () => GetDiscountServicesCubit(getIt.get<GetDiscountServicesUseCase>()));  
+
+  getIt.registerSingleton<GetEmergencyProvidersUseCase>(
+      GetEmergencyProvidersUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<GetEmergencyProvidersCubit>(
+      () => GetEmergencyProvidersCubit(getIt.get<GetEmergencyProvidersUseCase>()));  
+
+  getIt.registerSingleton<RequestEmergencyUseCase>(
+      RequestEmergencyUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<RequestEmergencyCubit>(
+      () => RequestEmergencyCubit(getIt.get<RequestEmergencyUseCase>()));  
 }

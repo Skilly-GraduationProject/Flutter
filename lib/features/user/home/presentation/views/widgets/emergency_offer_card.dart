@@ -3,24 +3,25 @@ import 'package:gap/gap.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/rate_widget.dart';
 import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
+import '../../../domain/entities/emergency_providers_entity.dart';
 import 'info_box.dart';
 
 class EmergencyOfferCard extends StatelessWidget {
-  final Map<String, dynamic> offer;
+  final EmergencyProvidersEntity offer;
   final VoidCallback onReject;
   final VoidCallback onAccept;
 
   const EmergencyOfferCard({
     super.key,
-    required this.offer,
     required this.onReject,
     required this.onAccept,
+    required this.offer,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(
@@ -38,24 +39,26 @@ class EmergencyOfferCard extends StatelessWidget {
                       ClipRRect(
                           borderRadius: BorderRadius.circular(200),
                           child: CircleAvatar(
-                            backgroundImage: NetworkImage(offer['image']),
+                            backgroundImage: NetworkImage(offer.img),
                           )),
                       const Gap(10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            offer['name'],
+                            offer.name,
                             style: TextStyleManager.style14BoldBlack,
                           ),
-                          const Text(
-                            'كهربائي',
+                          Text(
+                            offer.profession,
                           ),
                         ],
                       ),
                     ],
                   ),
-                  const RateWidget(),
+                  RateWidget(
+                    rate: offer.rate,
+                  ),
                 ],
               ),
               const Gap(20),
@@ -67,16 +70,17 @@ class EmergencyOfferCard extends StatelessWidget {
                   Text('السعر', style: TextStyleManager.style14BoldBlack),
                 ],
               ),
-              const Row(
+              const Gap(5),
+              Row(
                 children: [
                   Expanded(
                       child: InfoBox(
-                    child: Text('خلال 20 دقيقه'),
+                    child: Text(formatDeliveryTime(offer.deliveryTime)),
                   )),
-                  Gap(20),
+                  const Gap(20),
                   Expanded(
                       child: InfoBox(
-                    child: Text('300 ج.م'),
+                    child: Text('${offer.price} ج.م'),
                   )),
                 ],
               ),
@@ -116,4 +120,14 @@ class EmergencyOfferCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String formatDeliveryTime(String input) {
+  final hourMatch = RegExp(r'(\d+)\s*ساعة').firstMatch(input);
+  final minuteMatch = RegExp(r'(\d+)\s*دقيقة').firstMatch(input);
+
+  final hours = hourMatch != null ? '${hourMatch.group(1)} ساعة' : '';
+  final minutes = minuteMatch != null ? '${minuteMatch.group(1)} دقيقة' : '';
+
+  return '$hours $minutes'.trim();
 }
