@@ -46,6 +46,12 @@ class _UserBottomNavigationBarState extends State<UserBottomNavigationBar> {
       ),
       label: 'المزيد',
     ),
+    const BottomNavigationBarItem(
+      icon: Icon(
+        Icons.payment_outlined,
+      ),
+      label:'الدفع',
+    ),
   ];
   int _selectedIndex = 0;
 

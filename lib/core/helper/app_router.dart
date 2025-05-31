@@ -29,6 +29,7 @@ import '../../features/user/home/presentation/views/discounts_view.dart';
 import '../../features/user/home/presentation/views/emergency_view.dart';
 import '../../features/user/home/presentation/views/offered_services_view.dart';
 import '../../features/user/home/presentation/views/offers_view.dart';
+import '../../features/user/home/presentation/views/payment_success_view.dart';
 import '../../features/user/home/presentation/views/payment_view.dart';
 import '../../features/user/home/presentation/views/points_entry_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
@@ -110,6 +111,9 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.allCategoriesView,
         builder: (context, state) => const AllCategoriesView()),
+         GoRoute(
+        path: RouterPath.paymentSuccessView,
+        builder: (context, state) => const PaymentSuccessView()),
     GoRoute(
         path: RouterPath.reviewsView,
         builder: (context, state) {

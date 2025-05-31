@@ -28,7 +28,7 @@ class _PaymentViewBodyState extends State<PaymentViewBody> {
     webviewController.url.listen((url) {
       print('URL changed: $url');
       if (url.contains('success=true')) {
-        GoRouter.of(context).go(RouterPath.userHome);
+        GoRouter.of(context).go(RouterPath.paymentSuccessView);
       }
     });
 

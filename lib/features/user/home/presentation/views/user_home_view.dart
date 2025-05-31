@@ -16,7 +16,7 @@ class _UserHomeViewState extends State<UserHomeView> {
   List<Widget> homeWidgets = <Widget>[
     const UserHomeViewBody(),
     const PointsEntryView(),
-   const EmergencyView(),
+    const EmergencyView(),
     // const MoreView()
   ];
 
