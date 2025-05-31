@@ -29,6 +29,7 @@ import '../../features/user/home/presentation/views/discounts_view.dart';
 import '../../features/user/home/presentation/views/emergency_view.dart';
 import '../../features/user/home/presentation/views/offered_services_view.dart';
 import '../../features/user/home/presentation/views/offers_view.dart';
+import '../../features/user/home/presentation/views/payment_view.dart';
 import '../../features/user/home/presentation/views/points_entry_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
 import '../../features/user/home/presentation/views/reviews_view.dart';
@@ -118,6 +119,14 @@ abstract class AppRouter {
           }
           return ReviewsView(serviceId: serviceId);
         }),
+         GoRoute(
+        path: RouterPath.paymentView,
+        builder: (context, state) {
+         final paymentUrl = state.extra as String?;
+          if (paymentUrl == null) {
+            return const Text('Missing paymentUrl');
+          }
+          return PaymentView(paymentUrl: paymentUrl,);},),
     GoRoute(
         path: RouterPath.providerHome,
         builder: (context, state) => const ServiceProviderHomeView()),

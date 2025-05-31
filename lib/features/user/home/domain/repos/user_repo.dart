@@ -69,4 +69,10 @@ Future<Either<Failure, List<ServiceReviewsEntity>>> getServiceReviews({
 Future<Either<Failure, List<EmergencyProvidersEntity>>> getEmergencyProviders({
     required String token,required String requestId
   });
+  Future<Either<Failure,String>> startPayment( {
+    required String token,
+    required String serviceId,
+
+});
 }
+

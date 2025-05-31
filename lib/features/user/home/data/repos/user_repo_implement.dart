@@ -11,6 +11,7 @@ import 'package:mime/mime.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/helper/api_service.dart';
+import '../../../../../core/helper/shared_prefrences.dart';
 import '../../domain/entities/all_service_offers._entity.dart';
 import '../../domain/entities/category_entitiy.dart';
 import '../../domain/entities/category_item_entity.dart';
@@ -358,7 +359,7 @@ class UserRepoImplement implements UserRepo {
   }
 
   @override
-  Future<Either<Failure,String>> requestEmergency(
+  Future<Either<Failure, String>> requestEmergency(
       {required String token,
       required String categoryId,
       required String desc}) async {
@@ -366,7 +367,6 @@ class UserRepoImplement implements UserRepo {
       final response = await apiService.post(
         '$baseUrl/Emergency/create-emergency-request',
         token: token,
-        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFiOTVlZDI2LTAzODAtNGMzMC05Y2M4LTU0MjRlN2U3YmY5NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDEyMjE2NDMxOTUiLCJqdGkiOiI3M2IzMDk0YS0xZDQyLTQwZmEtYThmNC1mMGQ2MGE4NGU4NTciLCJleHAiOjE3NDg1MzExOTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTI3MSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCJ9.HFe0kcwr0MUpBNBjWWRC2U3I-7E5Iob5z_dvrcGgTGg',
         {
           "categoryId": categoryId,
           "problemDescription": desc,
@@ -374,7 +374,7 @@ class UserRepoImplement implements UserRepo {
       );
       final Map<String, dynamic> data = response.data;
       final requestId = data['requestId'];
-      print('request emergency response ${data}');
+      print('request emergency response $data');
       return right(requestId);
     } catch (e) {
       print('request emergency error: $e');
@@ -400,6 +400,32 @@ class UserRepoImplement implements UserRepo {
       return Right(offers);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> startPayment(
+      {required String token, required String serviceId}) async {
+    try {
+      final response = await apiService.post(
+        '$baseUrl/Payment/start-payment',
+        token: token,
+        {
+          "serviceId": serviceId,
+        },
+      );
+      final data = response.data;
+      print('start payment response ${response.data}');
+
+      if (data['result'] != null && data['result']['iframeUrl'] != null) {
+        final String paymentUrl = data['result']['iframeUrl'];
+        return right(paymentUrl);
+      } else {
+        return left(ServerFailure('لم يتم العثور على رابط الدفع في الاستجابة'));
+      }
+    } catch (e) {
+      print('start payment error: $e');
+      return left(ServerFailure(e.toString()));
     }
   }
 }

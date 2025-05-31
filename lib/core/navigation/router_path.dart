@@ -13,7 +13,8 @@ class RouterPath {
   static const String emergencyView = '/emergencyView';
   static const String discountsView = '/discountsView';
   static const String pointsView = '/pointsEntryView';
-    static const String allCategoriesView = '/allCategoriesView';
+  static const String paymentView = '/paymentView';
+  static const String allCategoriesView = '/allCategoriesView';
   static const String discountServicesView = '/discountServicesView';
   static const String offeredServicesView = '/offeredServicesView';
 }

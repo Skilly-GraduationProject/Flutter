@@ -48,14 +48,13 @@ class _ClickableBannersState extends State<ClickableBanners> {
                     banner.img,
                     fit: BoxFit.cover,
                     width: double.infinity,
-                   
                   ),
                 ),
               );
             }).toList(),
             options: CarouselOptions(
               autoPlay: true,
-              height: 200,
+              height: 150,
               enlargeCenterPage: true,
               viewportFraction: 1,
             ),

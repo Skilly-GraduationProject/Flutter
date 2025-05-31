@@ -30,9 +30,9 @@ class _UserBottomNavigationBarState extends State<UserBottomNavigationBar> {
     //   ),
     //   label: 'notification',
     // ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon:
-         const  Icon(Icons.wallet_giftcard),
+         Icon(Icons.wallet_giftcard),
       //     Image.asset(
       //   'assets/images/points_icon.png',
       //   width: 40,

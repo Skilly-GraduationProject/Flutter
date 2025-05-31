@@ -64,7 +64,7 @@ class _HomeUserAppBarState extends State<HomeUserAppBar> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, right: 5),
+                    padding: const EdgeInsets.only(top: 25, right: 5),
                     child: Image.asset(
                       ImageManager.verifyIcon,
                       height: context.responsiveHeight(24),
@@ -81,7 +81,6 @@ class _HomeUserAppBarState extends State<HomeUserAppBar> {
                     width: context.responsiveWidth(80),
                     height: context.responsiveWidth(80),
                   )),
-
             ],
           ),
         );

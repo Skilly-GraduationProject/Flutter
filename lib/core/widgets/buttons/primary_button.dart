@@ -19,7 +19,7 @@ class PrimaryButton extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         width: context.width,
-        height: context.responsiveHeight(70),
+        height: context.responsiveHeight(60),
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(

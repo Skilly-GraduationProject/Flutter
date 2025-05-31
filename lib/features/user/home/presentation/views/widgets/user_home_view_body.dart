@@ -21,11 +21,11 @@ class UserHomeViewBody extends StatelessWidget {
         const SliverToBoxAdapter(
           child: HomeUserAppBar(),
         ),
-        const SliverGap(20),
+        const SliverGap(10),
         const SliverToBoxAdapter(
           child: ClickableBanners(),
         ),
-        const SliverGap(20),
+        const SliverGap(15),
         SliverToBoxAdapter(
           child: PrimaryButton(
             text: "طلب خدمه",
@@ -34,7 +34,7 @@ class UserHomeViewBody extends StatelessWidget {
             },
           ),
         ),
-        const SliverGap(20),
+        const SliverGap(15),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -48,16 +48,21 @@ class UserHomeViewBody extends StatelessWidget {
         const SliverToBoxAdapter(
           child: CategoriesListView(),
         ),
-        const SliverGap(20),
+        const SliverGap(10),
         SliverToBoxAdapter(
-          child: SmallPrimaryButton(
-            text: 'استعراض جميع الخدمات',
-            onTap: () {
-              GoRouter.of(context).push(RouterPath.allCategoriesView);
-            },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SmallPrimaryButton(
+                text: 'استعراض جميع الخدمات',
+                onTap: () {
+                  GoRouter.of(context).push(RouterPath.allCategoriesView);
+                },
+              ),
+            ],
           ),
         ),
-        const SliverGap(20),
+        const SliverGap(15),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

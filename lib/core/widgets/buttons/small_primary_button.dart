@@ -17,7 +17,7 @@ class SmallPrimaryButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: color ?? ColorManager.primary),

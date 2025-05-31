@@ -31,6 +31,7 @@ import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
 import '../../features/user/home/domain/usecases/request_emergency_usecase.dart';
 import '../../features/user/home/domain/usecases/request_service_usecase.dart';
+import '../../features/user/home/domain/usecases/start_payment_usecase.dart';
 import '../../features/user/home/presentation/manager/AddOffer/add_offer_cubit.dart';
 import '../../features/user/home/presentation/manager/BuyService/buy_service_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
@@ -46,6 +47,7 @@ import '../../features/user/home/presentation/manager/GetUserOrders/get_user_ord
 import '../../features/user/home/presentation/manager/GetUserProfileData/get_user_profile_data_cubit.dart';
 import '../../features/user/home/presentation/manager/RequestEmergency/request_emergency_cubit.dart';
 import '../../features/user/home/presentation/manager/RequestService/request_service_cubit.dart';
+import '../../features/user/home/presentation/manager/StartPayment/start_payment_cubit.dart';
 import 'api_service.dart';
 
 final getIt = GetIt.instance;
@@ -170,4 +172,9 @@ void setUp() {
       RequestEmergencyUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<RequestEmergencyCubit>(
       () => RequestEmergencyCubit(getIt.get<RequestEmergencyUseCase>()));  
+
+ getIt.registerSingleton<StartPaymentUseCase>(
+      StartPaymentUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<StartPaymentCubit>(
+      () => StartPaymentCubit(getIt.get<StartPaymentUseCase>()));  
 }

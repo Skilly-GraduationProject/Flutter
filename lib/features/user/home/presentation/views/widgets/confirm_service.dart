@@ -3,9 +3,16 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import '../../../../../../core/managers/color_manager.dart';
+import '../../../../../../core/managers/text_style_manager.dart';
 
 class ConfirmService extends StatelessWidget {
-  const ConfirmService({super.key, required this.text, required this.option1, required this.option2, this.onTap,});
+  const ConfirmService({
+    super.key,
+    required this.text,
+    required this.option1,
+    required this.option2,
+    this.onTap,
+  });
 
   final String text, option1, option2;
   final void Function()? onTap;
@@ -23,7 +30,7 @@ class ConfirmService extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(50),
-                  child: Image.asset( 'assets/images/logo.png',
+                  child: Image.asset('assets/images/logo.png',
                       width: context.responsiveWidth(150),
                       height: context.responsiveWidth(70),
                       fit: BoxFit.fill),
@@ -34,7 +41,10 @@ class ConfirmService extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(text),
+                    Text(
+                      text,
+                      style: TextStyleManager.style16BoldBlack,
+                    ),
                   ],
                 ),
                 const Gap(20),
@@ -47,7 +57,7 @@ class ConfirmService extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
                         onPressed: onTap,
-                        child:  Text(option1,
+                        child: Text(option1,
                             style: const TextStyle(color: Colors.white)),
                       ),
                     ),
@@ -61,7 +71,7 @@ class ConfirmService extends StatelessWidget {
                         onPressed: () {
                           GoRouter.of(context).pop();
                         },
-                        child:  Text(option2,
+                        child: Text(option2,
                             style: const TextStyle(color: Colors.white)),
                       ),
                     ),
