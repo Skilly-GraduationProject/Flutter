@@ -38,7 +38,7 @@ void setUp() {
       () => const FlutterSecureStorage());
   getIt.registerLazySingleton<SecureStorageHelper>(
       () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
-  getIt.registerSingleton<ApiService>(ApiService(Dio(BaseOptions())));
+  getIt.registerSingleton<ApiService>(ApiService());
 
   getIt.registerSingleton<AuthRepoImplement>(
       AuthRepoImplement(apiService: getIt.get<ApiService>()));

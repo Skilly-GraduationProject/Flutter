@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/rate_widget.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/verified_name.dart';
 import '../../../../../../core/managers/image_manager.dart';
-import 'rate_widget.dart';
-import 'verified_name.dart';
+
 
 class ProvidersListView extends StatelessWidget {
   const ProvidersListView({super.key});
@@ -37,7 +38,7 @@ class ProvidersListView extends StatelessWidget {
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                VerifiedName(),
+                VerifiedName(name: ''),
                 RateWidget(),
               ],
             ),
