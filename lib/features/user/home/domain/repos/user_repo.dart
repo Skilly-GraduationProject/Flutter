@@ -4,7 +4,6 @@ import '../../../../../core/errors/failure.dart';
 import '../entities/all_service_offers._entity.dart';
 import '../entities/all_services_entity.dart';
 import '../entities/category_entitiy.dart';
-import '../entities/discount_services_entity.dart';
 import '../entities/emergency_providers_entity.dart';
 import '../entities/get_banners_entitiy.dart';
 import '../entities/offered_services_entity.dart';
@@ -58,9 +57,9 @@ Future<Either<Failure, List<AllServiceOffersEntity>>> getServiceOffers({
 Future<Either<Failure, List<ServiceReviewsEntity>>> getServiceReviews({
     required String token,required String serviceId
   });
-  Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices({
-    required String token,String?sort
-  });
+  // Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices({
+  //   required String token,String?sort
+  // });
   Future<Either<Failure,String>> requestEmergency( {
     required String token,
     required String categoryId,
@@ -74,5 +73,29 @@ Future<Either<Failure, List<EmergencyProvidersEntity>>> getEmergencyProviders({
     required String serviceId,
 
 });
+Future<Either<Failure, void>> applyDiscount( {
+    required String token,
+    required String serviceId,
+});
+Future<Either<Failure, void>> acceptOffer( {
+    required String token,
+    required String offerId,
+});
+Future<Either<Failure, void>> rejectOffer( {
+    required String token,
+    required String offerId,
+});
+Future<Either<Failure, void>> acceptEOffer( {
+    required String token,
+    required String requestId,
+    required String providerId,
+});
+Future<Either<Failure, void>> rejectEOffer( {
+    required String token,
+    required String requestId,
+    required String providerId,
+});
+
 }
+
 

@@ -18,11 +18,19 @@ class DiscountsViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Column(children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'اهلا اسم المستخدم',
                       style: TextStyleManager.style16BoldBlack,
-                    )
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back),
+                      color: Colors.black,
+                    ),
                   ],
                 ),
                 const Gap(20),

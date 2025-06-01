@@ -16,35 +16,43 @@ import '../../features/shared/auth/presentation/manager/LoginCubit/login_cubit.d
 import '../../features/shared/auth/presentation/manager/RegisterCubit/register_cubit.dart';
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
 import '../../features/user/home/data/repos/user_repo_implement.dart';
+import '../../features/user/home/domain/usecases/accept_e_offer_usecase.dart';
+import '../../features/user/home/domain/usecases/accept_offer_usecase.dart';
 import '../../features/user/home/domain/usecases/add_offer_usecase.dart';
+import '../../features/user/home/domain/usecases/apply_discount_usecase.dart';
 import '../../features/user/home/domain/usecases/buy_service_usecase.dart';
 import '../../features/user/home/domain/usecases/get_all_categories_usecase.dart';
 import '../../features/user/home/domain/usecases/get_all_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_banners_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_service_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_category_services.dart';
-import '../../features/user/home/domain/usecases/get_discount_services_usecase.dart';
 import '../../features/user/home/domain/usecases/get_emergency_providers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_service_offers_usecase.dart';
 import '../../features/user/home/domain/usecases/get_service_reviews_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_orders_usecase.dart';
 import '../../features/user/home/domain/usecases/get_user_profile_data_usecase.dart';
+import '../../features/user/home/domain/usecases/reject_e_offer_usecase.dart';
+import '../../features/user/home/domain/usecases/reject_offer_usecase.dart';
 import '../../features/user/home/domain/usecases/request_emergency_usecase.dart';
 import '../../features/user/home/domain/usecases/request_service_usecase.dart';
 import '../../features/user/home/domain/usecases/start_payment_usecase.dart';
+import '../../features/user/home/presentation/manager/AcceptEOffer/accept_e_offer_cubit.dart';
+import '../../features/user/home/presentation/manager/AcceptOffer/accept_offer_cubit.dart';
 import '../../features/user/home/presentation/manager/AddOffer/add_offer_cubit.dart';
+import '../../features/user/home/presentation/manager/ApplyDiscount/apply_discount_cubit.dart';
 import '../../features/user/home/presentation/manager/BuyService/buy_service_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import '../../features/user/home/presentation/manager/GetAllServices/get_all_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetBanners/get_banners_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServiceProviders/get_category_service_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetCategoryServices/get_category_services_cubit.dart';
-import '../../features/user/home/presentation/manager/GetDiscountServices/get_discount_services_cubit.dart';
 import '../../features/user/home/presentation/manager/GetEmergencyProviders/get_emergency_providers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetOffers/get_offers_cubit.dart';
 import '../../features/user/home/presentation/manager/GetReviews/get_service_reviews_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserOrders/get_user_orders_cubit.dart';
 import '../../features/user/home/presentation/manager/GetUserProfileData/get_user_profile_data_cubit.dart';
+import '../../features/user/home/presentation/manager/RejectEOffer/rejcet_e_offer_cubit.dart';
+import '../../features/user/home/presentation/manager/RejectOffer/reject_offer_cubit.dart';
 import '../../features/user/home/presentation/manager/RequestEmergency/request_emergency_cubit.dart';
 import '../../features/user/home/presentation/manager/RequestService/request_service_cubit.dart';
 import '../../features/user/home/presentation/manager/StartPayment/start_payment_cubit.dart';
@@ -158,11 +166,6 @@ void setUp() {
   getIt.registerFactory<GetServiceReviewsCubit>(
       () => GetServiceReviewsCubit(getIt.get<GetServiceReviewsUseCase>()));  
 
-  getIt.registerSingleton<GetDiscountServicesUseCase>(
-      GetDiscountServicesUseCase(userRepo: getIt.get<UserRepoImplement>()));
-  getIt.registerFactory<GetDiscountServicesCubit>(
-      () => GetDiscountServicesCubit(getIt.get<GetDiscountServicesUseCase>()));  
-
   getIt.registerSingleton<GetEmergencyProvidersUseCase>(
       GetEmergencyProvidersUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetEmergencyProvidersCubit>(
@@ -177,4 +180,29 @@ void setUp() {
       StartPaymentUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<StartPaymentCubit>(
       () => StartPaymentCubit(getIt.get<StartPaymentUseCase>()));  
+
+  getIt.registerSingleton<ApplyDiscountUseCase>(
+      ApplyDiscountUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<ApplyDiscountCubit>(
+      () => ApplyDiscountCubit(getIt.get<ApplyDiscountUseCase>()));  
+
+  getIt.registerSingleton<AcceptOfferUseCase>(
+      AcceptOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<AcceptOfferCubit>(
+      () => AcceptOfferCubit(getIt.get<AcceptOfferUseCase>())); 
+
+  getIt.registerSingleton<RejectOfferUseCase>(
+      RejectOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<RejectOfferCubit>(
+      () => RejectOfferCubit(getIt.get<RejectOfferUseCase>())); 
+
+  getIt.registerSingleton<AcceptEOfferUseCase>(
+      AcceptEOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<AcceptEOfferCubit>(
+      () => AcceptEOfferCubit(getIt.get<AcceptEOfferUseCase>())); 
+
+  getIt.registerSingleton<RejectEOfferUseCase>(
+      RejectEOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
+  getIt.registerFactory<RejectEOfferCubit>(
+      () => RejectEOfferCubit(getIt.get<RejectEOfferUseCase>())); 
 }

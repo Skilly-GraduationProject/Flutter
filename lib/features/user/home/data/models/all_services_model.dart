@@ -11,9 +11,11 @@ class AllServicesModel {
       deliveryTime;
   final String? notes, video;
   final List<String> images;
+  final double? discountPrice;
   final double price;
 
   AllServicesModel({
+    required this.discountPrice, 
     required this.name,
     required this.desc,
     required this.id,
@@ -48,6 +50,7 @@ class AllServicesModel {
       providerImg: json['providerImg'],
       notes: json['notes'],
       deliveryTime: json['deliverytime'],
+      discountPrice: json['priceDiscount'],
       images: images,
       time: date,
       video: videoUrl,
@@ -56,6 +59,7 @@ class AllServicesModel {
 
   AllServicesEntity toEntity() {
     return AllServicesEntity(
+      discountPrice:discountPrice,
       id: id,
       name: name,
       desc: desc,

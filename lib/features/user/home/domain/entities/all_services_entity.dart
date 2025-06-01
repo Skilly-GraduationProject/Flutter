@@ -2,10 +2,12 @@ class AllServicesEntity {
   final String name,id, desc, img, providerName, time, providerImg,deliveryTime;
   final String? notes;
   final double price ;
+  final double? discountPrice;
   final List<String> images;
   final String? video;
 
   AllServicesEntity({
+    required this.discountPrice, 
     required this.name,
     required this.desc,
     required this.price,
