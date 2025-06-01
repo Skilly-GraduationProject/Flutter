@@ -3,7 +3,8 @@ import '../../domain/entities/emergency_providers_entity.dart';
 
 class EmergencyProvidersModel {
   final String 
-      id,
+  requestId,
+      providerId,
       providerName,
       providerImg,
       deliveryTime,
@@ -12,7 +13,8 @@ class EmergencyProvidersModel {
   final double price;
 
   EmergencyProvidersModel({
-    required this.id,
+    required this.requestId,
+    required this.providerId,
     required this.price,
     required this.providerName,
     required this.providerImg,
@@ -25,7 +27,8 @@ class EmergencyProvidersModel {
 
 
     return EmergencyProvidersModel(
-      id: json['id'],
+      requestId: json['requestId'],
+      providerId: json['id'],
       price: json['price'],
       providerName: json['name'],
       providerImg: json['imageUrl'],
@@ -37,7 +40,8 @@ class EmergencyProvidersModel {
 
   EmergencyProvidersEntity toEntity() {
     return EmergencyProvidersEntity(
-      id: id,
+      providerId: providerId,
+      requestId: requestId,
       price: price,
      img: providerImg,
      name: providerName,

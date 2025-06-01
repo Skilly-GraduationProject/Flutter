@@ -14,7 +14,9 @@ class OfferedServicesModel {
     required this.date,
   });
   factory OfferedServicesModel.fromJson(Map<String, dynamic> json) {
-     final List<String>images = (json['images'] as List<dynamic>).map((e) => e.toString()).toList();
+    final List<String> images = (json['images'] as List<dynamic>)
+        .map((e) => e['img'].toString())
+        .toList();
     return OfferedServicesModel(
       name: json['name'],
       desc: json['description'],

@@ -57,9 +57,6 @@ Future<Either<Failure, List<AllServiceOffersEntity>>> getServiceOffers({
 Future<Either<Failure, List<ServiceReviewsEntity>>> getServiceReviews({
     required String token,required String serviceId
   });
-  // Future<Either<Failure, List<DiscountServicesEntity>>> getAllDiscountServices({
-  //   required String token,String?sort
-  // });
   Future<Either<Failure,String>> requestEmergency( {
     required String token,
     required String categoryId,

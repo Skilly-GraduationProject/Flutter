@@ -8,7 +8,7 @@ class InfoBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
@@ -17,4 +17,3 @@ class InfoBox extends StatelessWidget {
         child: child);
   }
 }
-

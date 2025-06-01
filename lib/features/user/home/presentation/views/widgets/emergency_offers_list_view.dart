@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../domain/entities/emergency_providers_entity.dart';
+import '../../manager/RejectEOffer/rejcet_e_offer_cubit.dart';
 import 'emergency_offer_card.dart';
 import '../../manager/GetEmergencyProviders/get_emergency_providers_cubit.dart';
 import '../../manager/GetEmergencyProviders/get_emergency_providers_states.dart';
-import '../../../domain/entities/emergency_providers_entity.dart';
 
-class EmergencyOffersListView extends StatelessWidget {
-  final void Function(int) onReject;
-  final void Function(EmergencyProvidersEntity) onAccept;
+class EmergencyOffersListView extends StatefulWidget {
 
   const EmergencyOffersListView({
     super.key,
-    required this.onReject,
-    required this.onAccept,
   });
 
+  @override
+  State<EmergencyOffersListView> createState() => _EmergencyOffersListViewState();
+}
+
+class _EmergencyOffersListViewState extends State<EmergencyOffersListView> {
+    List<EmergencyProvidersEntity> myOffers = [];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetEmergencyProvidersCubit, GetEmergencyProvidersStates>(
@@ -22,20 +25,29 @@ class EmergencyOffersListView extends StatelessWidget {
         if (state is GetEmergencyProvidersLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is GetEmergencyProvidersSuccess) {
-          final offers = state.offers;
+          if (myOffers.isEmpty) {
+            myOffers = List.from(state.offers); 
+          }
 
           return Padding(
             padding: const EdgeInsets.only(top: 60),
             child: ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: offers.length,
+              itemCount: myOffers.length,
               itemBuilder: (context, index) {
-                final offer = offers[index];
+                final offer = myOffers[index];
                 return EmergencyOfferCard(
                   offer: offer,
-                  onReject: () => onReject(index),
-                  onAccept: () => onAccept(offer),
+                 onReject: () {
+                    BlocProvider.of<RejectEOfferCubit>(context)
+                        .rejectEOffer(offer.requestId,offer.providerId)
+                        .then((_) {
+                      setState(() {
+                        myOffers.removeAt(index);
+                      });
+                    });
+                  },
                 );
               },
             ),

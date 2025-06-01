@@ -34,7 +34,7 @@ class _EmergencyViewBodyState extends State<EmergencyViewBody> {
       final currentOffers =
           List.of((cubit.state as GetEmergencyProvidersSuccess).offers);
       currentOffers.removeAt(index);
-      cubit.emit(GetEmergencyProvidersSuccess(currentOffers));
+   //   cubit.emit(GetEmergencyProvidersSuccess(currentOffers));
     }
   }
 
@@ -144,11 +144,10 @@ class _EmergencyViewBodyState extends State<EmergencyViewBody> {
               ],
             ),
           ),
-          Positioned(
+         const Positioned(
             child: Expanded(
               child: EmergencyOffersListView(
-                onReject: rejectOffer,
-                onAccept: acceptOffer,
+          
               ),
             ),
           )
