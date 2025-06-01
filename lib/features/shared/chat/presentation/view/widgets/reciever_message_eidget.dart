@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+import 'package:grad_project/core/widgets/image/custom_image.dart';
+import 'package:grad_project/features/shared/chat/data/models/get_chat_model/chat_message.dart';
+import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
 
 class RecieverMessageWidget extends StatelessWidget {
   const RecieverMessageWidget({
     super.key,
+    required this.message,
+    required this.chatInfoModel,
   });
-
+  final ChatMessage message;
+  final ChatInfoModel chatInfoModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,10 +29,10 @@ class RecieverMessageWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "احمد ايمن",
+                message.senderName ?? chatInfoModel.secondUserName!,
                 style: TextStyleManager.style12BoldSec,
               ),
-              Container(
+              message.content != null ? Container(
                 constraints:
                     BoxConstraints(maxWidth: context.responsiveWidth(300)),
                 margin: const EdgeInsets.symmetric(vertical: 8),
@@ -40,15 +47,30 @@ class RecieverMessageWidget extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'رساله رساله رساله رساله رساله رساله رساله رساله رساله رساله ',
+                  message.content ?? "",
                   style: TextStyleManager.style12BoldSec,
                 ),
-              ),
+              ) : SizedBox.shrink(),
+              message.img != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(12.r),
+                      child: CustomImage(
+                        image: message.img!,
+                        height: context.responsiveHeight(100),
+                        width: context.responsiveHeight(100),
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : const SizedBox.shrink()
             ],
           ),
           const Gap(10),
-          const CircleAvatar(
-            backgroundImage: AssetImage(ImageManager.avatar),
+          ClipOval(
+            child: CustomImage(
+              image: message.receiverImg ?? chatInfoModel.secondUserImg!,
+              height: context.responsiveHeight(35),
+              width: context.responsiveWidth(35),
+            ),
           ),
         ],
       ),

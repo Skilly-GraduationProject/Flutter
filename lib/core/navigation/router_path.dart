@@ -11,4 +11,6 @@ class RouterPath {
   static const String chatView = '/chatView';
   static const String privacyPolicyView = '/privacyPolicyView';
   static const String termsView = '/termsView';
+  static const String providerServiceView = '/providerServiceView';
+  static const String editServiceView = '/editServiceView';
 }

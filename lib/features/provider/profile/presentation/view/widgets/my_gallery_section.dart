@@ -15,6 +15,7 @@ import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/custom_error_widget.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/presentation/manager/cubit/provider_data_cubit.dart';
 import 'package:grad_project/features/provider/profile/presentation/manager/cubit/provider_data_state.dart';
@@ -43,6 +44,8 @@ class MyGallerySection extends StatelessWidget {
             child: CustomErrorWidget(),
           );
         } else {
+          List<Servicesgallery>? servicesgallery =
+              state.getMyGalleryModel?.servicesgallery ?? [];
           return SliverSkeletonizer(
             enabled: state.getMyGalleryState == CubitState.loading,
             ignorePointers: state.getMyGalleryState == CubitState.loading,
@@ -57,7 +60,7 @@ class MyGallerySection extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "خدماتي",
+                              "اخر الاعمال",
                               style: TextStyleManager.style16BoldSec,
                             ),
                             const Spacer(),
@@ -97,10 +100,10 @@ class MyGallerySection extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                       childAspectRatio: context.responsiveWidth(200) /
-                          context.responsiveHeight(250),
+                          context.responsiveHeight(300),
                     ),
                     itemCount:
-                        state.getMyGalleryModel?.servicesgallery?.length ?? 0,
+                        servicesgallery.length < 2 ? servicesgallery.length : 2,
                     itemBuilder: (context, index) {
                       return MyWorkCard(
                         servicesgallery:

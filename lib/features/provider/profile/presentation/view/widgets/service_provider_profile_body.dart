@@ -69,16 +69,16 @@ class ServiceProviderProfileViewBody extends StatelessWidget {
           const SliverToBoxAdapter(
             child: ProviderInfoWidget(),
           ),
-          const SliverGap(13),
-          SliverToBoxAdapter(
-            child: GestureDetector(
-              onTap: () {},
-              child: SvgPicture.asset(
-                IconManager.chat,
-                height: context.responsiveHeight(30),
-              ),
-            ),
-          ),
+          // const SliverGap(13),
+          // SliverToBoxAdapter(
+          //   child: GestureDetector(
+          //     onTap: () {},
+          //     child: SvgPicture.asset(
+          //       IconManager.chat,
+          //       height: context.responsiveHeight(30),
+          //     ),
+          //   ),
+          // ),
           const SliverGap(20),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20),

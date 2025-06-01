@@ -9,7 +9,7 @@ import 'package:grad_project/features/provider/profile/presentation/view/widgets
 
 class MyReviewsView extends StatelessWidget {
   const MyReviewsView({super.key, required this.reviews});
-  final List<Review> reviews;
+  final List<Review?> reviews;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class MyReviewsView extends StatelessWidget {
             sliver: SliverList.separated(
                 itemCount: reviews.length,
                 itemBuilder: (context, index) => ReviewCard(
-                      review: reviews[index],
+                      review: reviews[index]!,
                     ),
                 separatorBuilder: (context, index) => const Gap(10)),
           ),

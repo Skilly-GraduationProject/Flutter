@@ -10,9 +10,13 @@ class ApiConstants {
   static const String getMyGallery =
       'Provider/Servicegallery/GetAllServicegalleryByproviderId';
   static const String getMyReviews =
-      'Provider/Review/GetAllReviewsByproviderId(Token)';
+      'Provider/Review/GetAllReviewsByproviderId';
   static const String addService = 'Provider/ProviderServices/AddService';
   static const String getNotifications = 'Notification/GetUserNotifications';
   static const String deleteNotification =
       'Notification/Delete-Notification-By';
+  static const String sendOffer = 'OfferSalary/AddOffer';
+  static const String getChats = 'Chat/GetChatsForUser';
+  static const String getChat = 'Chat/GetMessagesForChatOfUser';
+  static const String sendMessage = 'Chat/SendMessage';
 }

@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.12.0"
+  awesome_snackbar_content:
+    dependency: "direct main"
+    description:
+      name: awesome_snackbar_content
+      sha256: "898c3819911276b5d6011be04c1ce840f374271e162c4cf05ec037409af1a6ee"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.6"
   bloc:
     dependency: "direct main"
     description:
@@ -445,6 +453,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_socket:
+    dependency: "direct main"
+    description:
+      name: flutter_web_socket
+      sha256: "17bf6fe6dc6b6ef7540a19f538198a9503edf6287e61455b0884707b2cc14652"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   gap:
     dependency: "direct main"
     description:
@@ -725,6 +741,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
+  photo_view:
+    dependency: "direct main"
+    description:
+      name: photo_view
+      sha256: "1fc3d970a91295fbd1364296575f854c9863f225505c28c46e0a03e48960c75e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.0"
   platform:
     dependency: transitive
     description:
@@ -813,6 +837,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  signalr_netcore:
+    dependency: "direct main"
+    description:
+      name: signalr_netcore
+      sha256: "02d2e399c5a4b5587dfaa0a1da23502f7f438e8b92ac20bc5e652a796600d11a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.7+2-nullsafety.3"
   skeletonizer:
     dependency: "direct main"
     description:
@@ -1010,6 +1042,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  web_socket_channel:
+    dependency: "direct main"
+    description:
+      name: web_socket_channel
+      sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
   win32:
     dependency: transitive
     description:

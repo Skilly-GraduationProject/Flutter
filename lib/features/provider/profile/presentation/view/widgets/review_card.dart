@@ -12,6 +12,7 @@ import 'package:grad_project/core/managers/shadow_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/core/widgets/image/custom_image.dart';
+import 'package:grad_project/core/widgets/read_only_rating.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_info_widget.dart';
@@ -35,21 +36,28 @@ class ReviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ClipOval(
-                child: CustomImage(
-                  image: review.userImage!,
-                  height: context.responsiveHeight(46),
-                  width: context.responsiveHeight(46),
-                  fit: BoxFit.cover,
-                ),
+              Row(
+                children: [
+                  ClipOval(
+                    child: CustomImage(
+                      image: review.userImage!,
+                      height: context.responsiveHeight(46),
+                      width: context.responsiveHeight(46),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const Gap(10),
+                  // user name
+                  Text(
+                    review.userName!,
+                    style: TextStyleManager.style14BoldSec,
+                  ),
+                ],
               ),
-              const Gap(10),
-              // user name
-              Text(
-                review.userName!,
-                style: TextStyleManager.style14BoldSec,
-              ),
+              Text(review.serserviceName ?? "",
+                  style: TextStyleManager.style12BoldSec),
             ],
           ),
           const Gap(18),
@@ -66,29 +74,6 @@ class ReviewCard extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class ReadOnlyRating extends StatelessWidget {
-  final double rating; // مثلاً 3.7
-
-  const ReadOnlyRating({super.key, required this.rating});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        if (index < rating.floor()) {
-          return const Icon(Icons.star_rounded, color: Colors.amberAccent);
-        } else if (index < rating && rating - index < 1) {
-          return const Icon(Icons.star_half_rounded, color: Colors.amberAccent);
-        } else {
-          return const Icon(Icons.star_border_rounded,
-              color: ColorManager.secondary);
-        }
-      }),
     );
   }
 }

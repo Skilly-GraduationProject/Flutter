@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   const CustomTextField(
       {super.key,
       required this.title,
-      required this.onSaved,
+      this.onSaved,
       this.validator,
       this.icon,
       this.controller,
       this.obsecure,
       this.onChanged,
-      this.maxLines});
+      this.maxLines,
+      this.validate});
 
   final String title;
   final void Function(String?)? onSaved;
@@ -20,28 +21,36 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final bool? obsecure;
   final int? maxLines;
+  final bool? validate;
 
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  FocusNode focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextFormField(
+        onTapOutside: (event) => focusNode.unfocus(),
         textDirection: TextDirection.rtl,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        maxLines: maxLines ?? 1,
-        onSaved: onSaved,
-        onChanged: onChanged,
+        maxLines: widget.maxLines ?? 1,
+        onSaved: widget.onSaved,
+        onChanged: widget.onChanged,
         validator: (val) {
-          if (val?.isEmpty ?? true) {
+          if (val!.isEmpty && widget.validate != false) {
             return "This Field is required";
           } else {
             return null;
           }
         },
         decoration: InputDecoration(
-          prefixIcon: icon,
+          prefixIcon: widget.icon,
           hintTextDirection: TextDirection.rtl,
-          hintText: title,
+          hintText: widget.title,
           hintStyle: const TextStyle(
             color: Colors.grey,
             fontSize: 14,

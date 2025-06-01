@@ -6,13 +6,15 @@ class GetReviewsModel {
   GetReviewsModel({this.reviews});
 
   factory GetReviewsModel.fromJson(Map<String, dynamic> json) {
+    final dynamic rawList = json['reviews']?['reviews'];
     return GetReviewsModel(
-      reviews: (json['reviews'] as List<dynamic>?)
-          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      reviews: rawList is List
+          ? rawList
+              .map((e) => Review.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : null,
     );
   }
-
   Map<String, dynamic> toJson() => {
         'reviews': reviews?.map((e) => e.toJson()).toList(),
       };

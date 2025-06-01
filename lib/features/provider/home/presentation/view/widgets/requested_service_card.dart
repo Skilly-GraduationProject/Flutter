@@ -11,17 +11,19 @@ import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 import 'package:grad_project/core/widgets/custom_network_image.dart';
 import 'package:grad_project/core/widgets/home_banners.dart';
+import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
 import 'package:grad_project/core/widgets/home_app_bar.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class RequestedServiceCard extends StatelessWidget {
   const RequestedServiceCard({
     super.key,
     this.service,
   });
-  final Service? service;
+  final RequestedService? service;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,9 +40,12 @@ class RequestedServiceCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(200),
-                    child: Image.asset(ImageManager.avatar),
+                  ClipOval(
+                    child: CustomImage(
+                      image: service?.userImg ?? ImageManager.avatar,
+                      height: context.responsiveHeight(60),
+                      width: context.responsiveHeight(60),
+                    ),
                   ),
                   const Gap(10),
                   // user name
@@ -56,9 +61,14 @@ class RequestedServiceCard extends StatelessWidget {
           ),
           const Gap(10),
           //post image
-          ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: CustomNetworkImage(width: context.width, image: "")),
+          service!.images!.isNotEmpty
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CustomNetworkImage(
+                      width: context.width,
+                      height: context.responsiveHeight(150),
+                      image: service?.images?[0].image ?? ImageManager.avatar))
+              : const SizedBox.shrink(),
           const Gap(10),
           //post title
           Text(
@@ -68,10 +78,17 @@ class RequestedServiceCard extends StatelessWidget {
 
           const Gap(10),
           //post description
-          Text(
-            service?.notes ?? "",
+          Offstage(
+            offstage: service?.notes == null,
+            child: Column(
+              children: [
+                Text(
+                  service?.notes ?? "",
+                ),
+                const Gap(10),
+              ],
+            ),
           ),
-          const Gap(10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -81,24 +98,29 @@ class RequestedServiceCard extends StatelessWidget {
                   style: TextStyleManager.style12BoldSec,
                 ),
                 Gap(context.responsiveWidth(10)),
-                Container(
-                  padding: const EdgeInsets.all(7),
-                  decoration: const BoxDecoration(
-                      color: ColorManager.secondary, shape: BoxShape.circle),
-                  child: Text(
-                    service?.offerSalaries?.length.toString() ?? "0",
-                    style: TextStyleManager.style12BoldWhite,
+                Skeleton.shade(
+                  child: Container(
+                    padding: const EdgeInsets.all(7),
+                    decoration: const BoxDecoration(
+                        color: ColorManager.secondary, shape: BoxShape.circle),
+                    child: Text(
+                      service?.offerSalaries?.length.toString() ?? "0",
+                      style: TextStyleManager.style12BoldWhite,
+                    ),
                   ),
                 )
               ]),
               Row(
                 children: [
                   // show details button
-                  SmallPrimaryButton(
-                    text: "عرض التفاصيل",
-                    onTap: () {
-                      GoRouter.of(context).push(RouterPath.getServiceView);
-                    },
+                  Skeleton.shade(
+                    child: SmallPrimaryButton(
+                      text: "عرض التفاصيل",
+                      onTap: () {
+                        GoRouter.of(context)
+                            .push(RouterPath.getServiceView, extra: service);
+                      },
+                    ),
                   ),
                   Gap(context.responsiveWidth(10)),
                   // requested price

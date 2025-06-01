@@ -1,12 +1,16 @@
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
+import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
-import 'package:grad_project/features/provider/service/presentation/add_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/edit_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/provider_service_view.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
-import 'package:grad_project/features/provider/service/presentation/get_service_view.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/get_service_view.dart';
+import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
 import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/privacy.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/terms.dart';
@@ -78,7 +82,7 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.myReviewsView,
         builder: (context, state) => MyReviewsView(
-              reviews: state.extra as List<Review>,
+              reviews: state.extra as List<Review?>,
             )),
     GoRoute(
         path: RouterPath.myServicesView,
@@ -98,15 +102,26 @@ abstract class AppRouter {
         builder: (context, state) => const NotificationView()),
     GoRoute(
         path: RouterPath.getServiceView,
-        builder: (context, state) => const GetServiceView()),
+        builder: (context, state) =>
+            GetServiceView(service: state.extra as RequestedService)),
     GoRoute(
         path: RouterPath.chatView,
-        builder: (context, state) => const ChatView()),
+        builder: (context, state) =>  ChatView(chat: state.extra as ChatInfoModel,)),
     GoRoute(
         path: RouterPath.privacyPolicyView,
         builder: (context, state) => const PrivacyPolicyView()),
     GoRoute(
         path: RouterPath.termsView,
         builder: (context, state) => const TermsView()),
+    GoRoute(
+        path: RouterPath.providerServiceView,
+        builder: (context, state) => ProviderServiceView(
+              serviceId: state.extra as String,
+            )),
+    GoRoute(
+        path: RouterPath.editServiceView,
+        builder: (context, state) => EditServiceView(
+              service: state.extra as ProviderService,
+            )),
   ]);
 }
