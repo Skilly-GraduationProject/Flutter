@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/category_service_container.dart';
 import '../../../../../../core/helper/loading_indicator.dart';
-import '../../../domain/entities/offered_services_entity.dart';
+import '../../../domain/entities/all_services_entity.dart';
 import '../../manager/GetCategoryServices/get_category_services_cubit.dart';
 import '../../manager/GetCategoryServices/get_category_services_states.dart';
 
@@ -34,13 +34,13 @@ class _OfferedServicesListViewState extends State<OfferedServicesListView> {
             itemCount: services.length,
             separatorBuilder: (context, index) => const SizedBox(height: 15),
             itemBuilder: (context, index) {
-              final OfferedServicesEntity service = services[index];
+              final AllServicesEntity service = services[index];
               return CategoryServiceContainer(
     offeredServicesEntity: service,
                 name: service.name,
                 desc: service.desc,
                 price: '${service.price}',
-                date: service.date,
+                date: service.deliveryTime,
                 img: service.img,
                 providerImg: service.providerImg,
                 providerName: service.providerName,

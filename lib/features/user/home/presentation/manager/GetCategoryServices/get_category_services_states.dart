@@ -1,4 +1,4 @@
-import '../../../domain/entities/offered_services_entity.dart';
+import '../../../domain/entities/all_services_entity.dart';
 
 
 sealed class GetCategoryServicesStates {}
@@ -9,7 +9,7 @@ final class GetCategoryServicesLoading extends GetCategoryServicesStates {}
 
 final class GetCategoryServicesSuccess extends GetCategoryServicesStates {
 
-    final List<OfferedServicesEntity> services;
+    final List<AllServicesEntity> services;
 
   GetCategoryServicesSuccess(this.services);
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/features/user/home/domain/entities/offered_services_entity.dart';
 import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../../../../core/widgets/buttons/small_primary_button.dart';
+import '../../../domain/entities/all_services_entity.dart';
 
 class CategoryServiceContainer extends StatelessWidget {
-  final OfferedServicesEntity offeredServicesEntity;
+  final AllServicesEntity offeredServicesEntity;
   const CategoryServiceContainer(
       {super.key,
       required this.name,

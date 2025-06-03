@@ -14,7 +14,6 @@ import '../../domain/entities/all_service_offers._entity.dart';
 import '../../domain/entities/category_entitiy.dart';
 import '../../domain/entities/category_item_entity.dart';
 import '../../domain/entities/emergency_providers_entity.dart';
-import '../../domain/entities/offered_services_entity.dart';
 import '../../domain/entities/service_reviews_entity.dart';
 import '../../domain/entities/service_providers_entity.dart';
 import '../../domain/repos/user_repo.dart';
@@ -22,7 +21,6 @@ import '../models/all_services_model.dart';
 import '../models/category_item_model.dart';
 import '../models/emergency_providers_model.dart';
 import '../models/get_banners_model.dart';
-import '../models/offered_services_model.dart';
 import '../models/service_offers_model.dart';
 import '../models/service_providers_model.dart';
 import '../models/service_reviews_model.dart';
@@ -82,16 +80,19 @@ class UserRepoImplement implements UserRepo {
   }
 
   @override
-  Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices(
-      {required String categoryId}) async {
+  Future<Either<Failure, List<AllServicesEntity>>> getCategoryServices(
+      {required String categoryId, required String token, String? sort}) async {
     try {
       final response = await apiService.get(
-          '$baseUrl/Provider/ProviderServices/GetAllServicesBy/$categoryId');
+        '$baseUrl/Provider/ProviderServices/GetAllServicesBy/$categoryId',
+        token: token,
+        queryParameters: sort != null ? {'sort': sort} : null,
+      );
       final Map<String, dynamic> data = response.data;
       print('data $data');
       final services = data['service'] as List;
       final service = services
-          .map((json) => OfferedServicesModel.fromJson(json).toEntity())
+          .map((json) => AllServicesModel.fromJson(json).toEntity())
           .toList();
 
       return Right(service);
@@ -321,7 +322,7 @@ class UserRepoImplement implements UserRepo {
           token: token);
       final Map<String, dynamic> data = response.data;
       print('data $data');
-      final services = data['reviews'] as List;
+      final services = data['reviews']['reviews'] as List;
       final reviews = services
           .map((json) => ServiceReviewsModel.fromJson(json).toEntity())
           .toList();
@@ -332,7 +333,6 @@ class UserRepoImplement implements UserRepo {
     }
   }
 
- 
   @override
   Future<Either<Failure, String>> requestEmergency(
       {required String token,
@@ -403,16 +403,15 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> applyDiscount({required String token, required String serviceId})async {
+  Future<Either<Failure, void>> applyDiscount(
+      {required String token, required String serviceId}) async {
     try {
       final response = await apiService.post(
-        '$baseUrl/Provider/ProviderServices/apply-Discount/$serviceId',
-        token:
-          token,
-        {}
-      );
+          '$baseUrl/Provider/ProviderServices/apply-Discount/$serviceId',
+          token: token,
+          {});
       print('apply discount response ${response.data}');
       return right(null);
     } catch (e) {
@@ -420,16 +419,13 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> acceptOffer({required String token, required String offerId})async {
-   try {
-      final response = await apiService.post(
-        '$baseUrl/OfferSalary/AcceptOffer/$offerId',
-        token:
-          token,
-        {}
-      );
+  Future<Either<Failure, void>> acceptOffer(
+      {required String token, required String offerId}) async {
+    try {
+      final response = await apiService
+          .post('$baseUrl/OfferSalary/AcceptOffer/$offerId', token: token, {});
       print('accept offer response ${response.data}');
       return right(null);
     } catch (e) {
@@ -437,16 +433,13 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> rejectOffer({required String token, required String offerId}) async{
+  Future<Either<Failure, void>> rejectOffer(
+      {required String token, required String offerId}) async {
     try {
-      final response = await apiService.post(
-        '$baseUrl/OfferSalary/RejectOffer/$offerId',
-        token:
-          token,
-        {}
-      );
+      final response = await apiService
+          .post('$baseUrl/OfferSalary/RejectOffer/$offerId', token: token, {});
       print('reject offer response ${response.data}');
       return right(null);
     } catch (e) {
@@ -454,19 +447,18 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> acceptEOffer({required String token, required String requestId, required String providerId})async {
-   try {
-      final response = await apiService.post(
-        '$baseUrl/Emergency/accept-offer',
-        token:
-          token,
-        {
-  "requestId": requestId,
-  "providerId": providerId,
-}
-      );
+  Future<Either<Failure, void>> acceptEOffer(
+      {required String token,
+      required String requestId,
+      required String providerId}) async {
+    try {
+      final response = await apiService
+          .post('$baseUrl/Emergency/accept-offer', token: token, {
+        "requestId": requestId,
+        "providerId": providerId,
+      });
       print('accept E offer response ${response.data}');
       return right(null);
     } catch (e) {
@@ -474,19 +466,18 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> rejectEOffer({required String token, required String requestId, required String providerId})async {
+  Future<Either<Failure, void>> rejectEOffer(
+      {required String token,
+      required String requestId,
+      required String providerId}) async {
     try {
-      final response = await apiService.post(
-        '$baseUrl/Emergency/reject-offer',
-        token:
-          token,
-        {
-  "requestId": requestId,
-  "providerId": providerId,
-}
-      );
+      final response = await apiService
+          .post('$baseUrl/Emergency/reject-offer', token: token, {
+        "requestId": requestId,
+        "providerId": providerId,
+      });
       print('reject E offer response ${response.data}');
       return right(null);
     } catch (e) {
