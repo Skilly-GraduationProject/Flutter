@@ -8,6 +8,8 @@ final class GetServiceReviewsInitial extends GetServiceReviewsStates {}
 
 final class GetServiceReviewsLoading extends GetServiceReviewsStates {}
 
+final class GetServiceReviewsEmpty extends GetServiceReviewsStates {}
+
 final class GetServiceReviewsSuccess extends GetServiceReviewsStates {
 
     final List<ServiceReviewsEntity> reviews;

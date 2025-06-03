@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
+import '../../../../../../core/helper/empty_widget.dart';
 import '../../../../../../core/helper/loading_indicator.dart';
 import '../../manager/GetReviews/get_service_reviews_cubit.dart';
 import '../../manager/GetReviews/get_service_reviews_states.dart';
@@ -66,6 +67,8 @@ class _ReviewsListViewState extends State<ReviewsListView> {
           );
         } else if (state is GetServiceReviewsFailure) {
           return SliverToBoxAdapter(child: Text(state.error));
+        } else if (state is GetServiceReviewsEmpty) {
+          return const SliverToBoxAdapter(child: EmptyWidget(text: 'Reviews',));
         } else {
           return const SliverToBoxAdapter(child: Text('unknown'));
         }

@@ -7,6 +7,8 @@ final class GetServiceOffersInitial extends GetServiceOffersStates {}
 
 final class GetServiceOffersLoading extends GetServiceOffersStates {}
 
+final class GetServiceOffersEmpty extends GetServiceOffersStates {}
+
 final class GetServiceOffersSuccess extends GetServiceOffersStates {
 
     final List<AllServiceOffersEntity> offers;

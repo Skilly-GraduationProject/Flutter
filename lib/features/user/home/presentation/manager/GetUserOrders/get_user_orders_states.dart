@@ -7,6 +7,8 @@ final class GetUserOrdersInitial extends GetUserOrdersStates {}
 
 final class GetUserOrdersLoading extends GetUserOrdersStates {}
 
+final class GetUserOrdersEmpty extends GetUserOrdersStates {}
+
 final class GetUserOrdersSuccess extends GetUserOrdersStates {
 
     final List<UserOrdersEntity>orders;

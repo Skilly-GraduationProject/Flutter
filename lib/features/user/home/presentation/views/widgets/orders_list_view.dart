@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad_project/core/helper/empty_widget.dart';
 import '../../../../../../core/helper/loading_indicator.dart';
 import '../../manager/GetUserOrders/get_user_orders_cubit.dart';
 import '../../manager/GetUserOrders/get_user_orders_states.dart';
@@ -41,10 +42,11 @@ class _OrdersListViewState extends State<OrdersListView> {
                     id: order.id,
                     offersCount: order.offersCount,
                     desc: order.desc,
-                   img: (order.images != null && order.images!.any((e) => e.trim().isNotEmpty))
-    ? order.images!.firstWhere((e) => e.trim().isNotEmpty, orElse: () => '')
-    : null,
-
+                    img: (order.images != null &&
+                            order.images!.any((e) => e.trim().isNotEmpty))
+                        ? order.images!.firstWhere((e) => e.trim().isNotEmpty,
+                            orElse: () => '')
+                        : null,
                     name: order.name,
                     price: order.price,
                   ),
@@ -55,6 +57,8 @@ class _OrdersListViewState extends State<OrdersListView> {
         );
       } else if (state is GetUserOrdersFailure) {
         return SliverToBoxAdapter(child: Text(state.error));
+      } else if (state is GetUserOrdersEmpty) {
+        return const SliverToBoxAdapter(child: EmptyWidget(text: 'Orders',));
       } else {
         return const SliverToBoxAdapter(child: Text('unknown'));
       }

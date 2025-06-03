@@ -17,14 +17,9 @@ class UserOrdersModel {
       required this.id});
 
   factory UserOrdersModel.fromJson(Map<String, dynamic> json) {
-    final imagesJson = json['images'];
-    final List<String>? images = (imagesJson != null && imagesJson is List)
-      ? imagesJson
-          .map((e) => e.toString().trim())
-          .where((img) => img.isNotEmpty) 
-          .toList()
-      : null;
-
+    final List<String> images = (json['images'] as List<dynamic>)
+        .map((e) => e['img'].toString())
+        .toList();
 
     return UserOrdersModel(
         id: json['id'],
