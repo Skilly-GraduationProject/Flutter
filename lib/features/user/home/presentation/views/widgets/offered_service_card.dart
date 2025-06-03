@@ -68,7 +68,10 @@ class OfferedServiceCard extends StatelessWidget {
               SmallPrimaryButton(
                 text: "عرض التفاصيل",
                 onTap: () {
-                  GoRouter.of(context).push('/viewService', extra: service);
+                  GoRouter.of(context).push('/viewService', extra: {
+    'service': service,
+    'showBuyOrOffer': true,
+  },);
                 },
               ),
               Text(

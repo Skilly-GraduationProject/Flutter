@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/features/user/home/presentation/manager/ApplyDiscount/apply_discount_cubit.dart';
-import 'package:grad_project/features/user/home/presentation/views/widgets/buy_service_sheet.dart';
-import '../../../../../../core/managers/color_manager.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/use_discount_button.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../domain/entities/all_services_entity.dart';
 
@@ -19,7 +16,11 @@ class DiscountServiceCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).push('/viewService', extra: service);
+            GoRouter.of(context).push('/viewService',
+              extra: {
+    'service': service,
+    'showDiscountButton': true,
+  },);
           },
           child: Card(
             shape: RoundedRectangleBorder(
@@ -75,36 +76,8 @@ class DiscountServiceCard extends StatelessWidget {
             ),
           ),
         ),
-        const Gap(10),
-        OutlinedButton(
-          onPressed: () {
-            BlocProvider.of<ApplyDiscountCubit>(context).applyDiscount(
-              service.id,  
-            );
-            showModalBottomSheet(
-                                  context: context,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(32),
-                                    ),
-                                  ),
-                                  isScrollControlled: true,
-                                  builder: (_) => BuyServiceSheet(
-                                    service: service,
-                                   
-                                  ),
-                                );
-          },
-          style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: ColorManager.primary),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          ),
-          child:
-              Text('استخدم الخصم', style: TextStyleManager.style12BoldPrimary),
-        )
+       const Gap(10),
+       UseDiscountButton(service: service) ,
       ],
     );
   }

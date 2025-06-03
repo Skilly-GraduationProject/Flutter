@@ -72,13 +72,16 @@ abstract class AppRouter {
     GoRoute(
         path: '/viewService',
         builder: (context, state) {
-          final service = state.extra as AllServicesEntity?;
-          if (service == null) {
-            return const Scaffold(
-              body: Center(child: Text("Service not found")),
-            );
-          }
-          return ViewServiceView(service: service);
+             final extra = state.extra as Map<String, dynamic>;
+    final service = extra['service'] as AllServicesEntity;
+    final showBuyOrOffer = extra['showBuyOrOffer'] as bool? ?? false;
+    final showDiscountButton = extra['showDiscountButton'] as bool? ?? false;
+         
+          return ViewServiceView(
+      service: service,
+      showBuyOrOffer: showBuyOrOffer,
+      showDiscountButton: showDiscountButton,
+    );
         }),
     GoRoute(
       path: '/category',
