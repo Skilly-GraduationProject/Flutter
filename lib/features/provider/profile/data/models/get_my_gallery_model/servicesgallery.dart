@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 
-class Servicesgallery {
+class GalleryService {
   String? id;
   String? galleryName;
   String? description;
@@ -11,7 +11,7 @@ class Servicesgallery {
   String? serviceProviderId;
   List<dynamic>? images;
 
-  Servicesgallery({
+  GalleryService({
     this.id,
     this.galleryName,
     this.description,
@@ -21,8 +21,8 @@ class Servicesgallery {
     this.images,
   });
 
-  factory Servicesgallery.fromJson(Map<String, dynamic> json) {
-    return Servicesgallery(
+  factory GalleryService.fromJson(Map<String, dynamic> json) {
+    return GalleryService(
       id: json['id'] as String?,
       galleryName: json['galleryName'] as String?,
       description: json['description'] as String?,
@@ -33,7 +33,7 @@ class Servicesgallery {
     );
   }
 
-  FutureOr<Map<String, dynamic>> toJson() async=> {
+  FutureOr<Map<String, dynamic>> toJson() async => {
         'id': id,
         'galleryName': galleryName,
         'description': description,
@@ -41,18 +41,16 @@ class Servicesgallery {
         'video': video,
         'serviceProviderId': serviceProviderId,
         if (images != null && images!.isNotEmpty)
-        'images': await Future.wait(
-          images!.map((image) async {
-            try {
-              MultipartFile file = await MultipartFile.fromFile(
-                image.path
-              );
-              return file;
-            } catch (e) {
-              // Handle the error, e.g., log it or return a default value
-              print('Error processing image: $e');
-            }
-          }),
-        ),
+          'Images': await Future.wait(
+            images!.map((image) async {
+              try {
+                MultipartFile file = await MultipartFile.fromFile(image);
+                return file;
+              } catch (e) {
+                // Handle the error, e.g., log it or return a default value
+                print('Error processing image: $e');
+              }
+            }),
+          ),
       };
 }

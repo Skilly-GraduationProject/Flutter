@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grad_project/core/navigation/router_path.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -30,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
         const Duration(
           seconds: 2,
         ), () {
-      GoRouter.of(context).push('/userType');
+      GoRouter.of(context).push(RouterPath.providerHome);
     });
   }
 }

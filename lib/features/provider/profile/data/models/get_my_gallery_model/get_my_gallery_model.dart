@@ -1,14 +1,14 @@
 import 'servicesgallery.dart';
 
 class GetMyGalleryModel {
-  List<Servicesgallery>? servicesgallery;
+  List<GalleryService>? servicesgallery;
 
   GetMyGalleryModel({this.servicesgallery});
 
   factory GetMyGalleryModel.fromJson(Map<String, dynamic> json) {
     return GetMyGalleryModel(
       servicesgallery: (json['servicesgallery'] as List<dynamic>?)
-          ?.map((e) => Servicesgallery.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => GalleryService.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }

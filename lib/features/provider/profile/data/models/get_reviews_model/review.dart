@@ -4,8 +4,8 @@ class Review {
   String? userImage;
   String? feedback;
   double? rating;
-  String? serserviceName;
-  String? serserviceId;
+  String? serviceName;
+  String? serviceId;
 
   Review({
     this.providerId,
@@ -13,8 +13,8 @@ class Review {
     this.userImage,
     this.feedback,
     this.rating,
-    this.serserviceName,
-    this.serserviceId,
+    this.serviceName,
+    this.serviceId,
   });
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
@@ -23,8 +23,8 @@ class Review {
         userImage: json['userImage'] as String?,
         feedback: json['feedback'] as String?,
         rating: (json['rating'] as num?)?.toDouble(),
-        serserviceName: json['serserviceName'] as String?,
-        serserviceId: json['serserviceId'] as String?,
+        serviceName: json['serviceName'] as String?,
+        serviceId: json['serviceId'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -33,7 +33,7 @@ class Review {
         'userImage': userImage,
         'feedback': feedback,
         'rating': rating,
-        'serserviceName': serserviceName,
-        'serserviceId': serserviceId,
+        'serserviceName': serviceName,
+        'serserviceId': serviceId,
       };
 }

@@ -17,47 +17,53 @@ import 'package:grad_project/features/provider/profile/data/models/get_my_galler
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_info_widget.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_personal_data.dart';
 
-class MyWorkCard extends StatelessWidget {
-  const MyWorkCard({
+class MyGalleryCard extends StatelessWidget {
+  const MyGalleryCard({
     super.key,
     required this.servicesgallery,
   });
-  final Servicesgallery? servicesgallery;
+  final GalleryService? servicesgallery;
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
-            boxShadow: [ShadowManager.cardShadow]),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            servicesgallery!.images!.isEmpty
-                ? Container()
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: CustomImage(
-                        image: servicesgallery!.images!.first!,
-                        width: context.width,
-                        height: context.responsiveHeight(100),
-                        fit: BoxFit.cover)),
-            const Gap(15),
-            Text(
-              servicesgallery!.galleryName!,
-              style: TextStyleManager.style14BoldSec,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const Gap(8),
-            Text(
-              servicesgallery!.description!,
-              style: TextStyleManager.style14RegSec,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ));
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context).push(RouterPath.providerGalleryServiceView,
+            extra: servicesgallery!.id);
+      },
+      child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.white,
+              boxShadow: [ShadowManager.cardShadow]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              servicesgallery!.images!.isEmpty
+                  ? Container()
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: CustomImage(
+                          image: servicesgallery!.images!.first!,
+                          width: context.width,
+                          height: context.responsiveHeight(100),
+                          fit: BoxFit.cover)),
+              const Gap(15),
+              Text(
+                servicesgallery!.galleryName!,
+                style: TextStyleManager.style14BoldSec,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const Gap(8),
+              Text(
+                servicesgallery!.description!,
+                style: TextStyleManager.style14RegSec,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          )),
+    );
   }
 }

@@ -44,7 +44,7 @@ class MyGallerySection extends StatelessWidget {
             child: CustomErrorWidget(),
           );
         } else {
-          List<Servicesgallery>? servicesgallery =
+          List<GalleryService>? servicesgallery =
               state.getMyGalleryModel?.servicesgallery ?? [];
           return SliverSkeletonizer(
             enabled: state.getMyGalleryState == CubitState.loading,
@@ -105,7 +105,7 @@ class MyGallerySection extends StatelessWidget {
                     itemCount:
                         servicesgallery.length < 2 ? servicesgallery.length : 2,
                     itemBuilder: (context, index) {
-                      return MyWorkCard(
+                      return MyGalleryCard(
                         servicesgallery:
                             state.getMyGalleryModel?.servicesgallery?[index],
                       );

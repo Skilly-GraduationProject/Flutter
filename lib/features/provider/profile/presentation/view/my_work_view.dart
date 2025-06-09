@@ -9,7 +9,7 @@ import 'package:grad_project/features/provider/profile/presentation/view/widgets
 
 class MyWorkView extends StatelessWidget {
   const MyWorkView({super.key, required this.servicesgallery});
-  final List<Servicesgallery>? servicesgallery;
+  final List<GalleryService>? servicesgallery;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class MyWorkView extends StatelessWidget {
               itemCount: servicesgallery!.length,
               separatorBuilder: (context, index) => const Gap(10),
               itemBuilder: (context, index) {
-                return MyWorkCard(
+                return MyGalleryCard(
                   servicesgallery: servicesgallery![index],
                 );
               },

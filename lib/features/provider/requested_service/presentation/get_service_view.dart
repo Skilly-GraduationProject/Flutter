@@ -25,7 +25,7 @@ class GetServiceView extends StatelessWidget {
         leading: const BackIcon(),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: SafeArea(
           child: GetServiceViewBody(service: service),
         ),

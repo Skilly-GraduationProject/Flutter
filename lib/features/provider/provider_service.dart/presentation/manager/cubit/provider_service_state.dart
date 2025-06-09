@@ -7,9 +7,10 @@ class ProviderServiceState {
   final CubitState? getServiceState;
   final ProviderService? service;
   final CubitState? getGalleyServiceState;
-  final Servicesgallery? galleryService;
+  final GalleryService? galleryService;
   final CubitState? deleteServiceState;
   final CubitState? updateServiceState;
+  final CubitState? addGalleryServiceState;
 
   ProviderServiceState({
     this.getServiceState,
@@ -18,24 +19,28 @@ class ProviderServiceState {
     this.galleryService,
     this.deleteServiceState,
     this.updateServiceState,
+    this.addGalleryServiceState,
   });
 
   ProviderServiceState editState({
     CubitState? getServiceState,
     ProviderService? service,
     CubitState? getGalleyServiceState,
-    Servicesgallery? galleryService,
-
+    GalleryService? galleryService,
     CubitState? deleteServiceState,
     CubitState? updateServiceState,
+    CubitState? addGalleryServiceState,
   }) {
     return ProviderServiceState(
       getServiceState: getServiceState ?? this.getServiceState,
       service: service ?? this.service,
-      getGalleyServiceState: getGalleyServiceState ?? this.getGalleyServiceState,
+      getGalleyServiceState:
+          getGalleyServiceState ?? this.getGalleyServiceState,
       galleryService: galleryService ?? this.galleryService,
       deleteServiceState: deleteServiceState ?? this.deleteServiceState,
       updateServiceState: updateServiceState ?? this.updateServiceState,
+      addGalleryServiceState:
+          addGalleryServiceState ?? this.addGalleryServiceState,
     );
   }
 }

@@ -24,8 +24,8 @@ import 'package:grad_project/features/provider/requested_service/presentation/wi
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-class ProviderServiceViewBody extends StatelessWidget {
-  const ProviderServiceViewBody({super.key, required this.serviceId});
+class ProviderGalleryServiceViewBody extends StatelessWidget {
+  const ProviderGalleryServiceViewBody({super.key, required this.serviceId});
   final String serviceId;
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class ProviderServiceViewBody extends StatelessWidget {
           if (state.getGalleyServiceState == CubitState.failure) {
             return const Center(child: CustomErrorWidget());
           } else {
-            Servicesgallery? service = state.galleryService;
+            GalleryService? service = state.galleryService;
             return Skeletonizer(
               enabled: state.getGalleyServiceState == CubitState.loading,
               ignorePointers: state.getGalleyServiceState == CubitState.loading,
@@ -63,11 +63,11 @@ class ProviderServiceViewBody extends StatelessWidget {
                 child: CustomScrollView(slivers: [
                   const SliverGap(20),
                   // service images slider
-                  SliverToBoxAdapter(
-                    child: ImageSlider(
-                      images: service?.images ?? [],
-                    ),
-                  ),
+                  // SliverToBoxAdapter(
+                  //   child: ImageSlider(
+                  //     images: service?.images ?? [],
+                  //   ),
+                  // ),
                   const SliverGap(20),
                   // service data
                   SliverToBoxAdapter(
@@ -139,17 +139,17 @@ class ProviderServiceViewBody extends StatelessWidget {
                                   onTap: () {
                                     context
                                         .read<ProviderServiceCubit>()
-                                        .deleteService(serviceId);
+                                        .deleteGalleryService(serviceId);
                                   })),
-                          const Gap(20),
+                          // const Gap(20),
                           // send offer button
-                          Expanded(
-                              child: PrimaryButton(
-                                  text: "تعديل",
-                                  onTap: () {
-                                    context.push(RouterPath.editServiceView,
-                                        extra: service);
-                                  })),
+                          // Expanded(
+                          //     child: PrimaryButton(
+                          //         text: "تعديل",
+                          //         onTap: () {
+                          //           context.push(RouterPath.editServiceView,
+                          //               extra: service);
+                          //         })),
                         ],
                       ),
                     ),

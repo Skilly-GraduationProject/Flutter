@@ -6,7 +6,9 @@ import 'package:grad_project/features/provider/profile/data/models/get_my_galler
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/edit_profile_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/add_gallery_service_view.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/edit_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/provider_gallery_service_view.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/provider_service_view.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
@@ -97,7 +99,7 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.myWorkView,
         builder: (context, state) => MyWorkView(
-              servicesgallery: state.extra as List<Servicesgallery>,
+              servicesgallery: state.extra as List<GalleryService>,
             )),
     GoRoute(
         path: RouterPath.addServiceView,
@@ -135,5 +137,13 @@ abstract class AppRouter {
         builder: (context, state) => EditProfileView(
               providerProfileModel: state.extra as ProviderProfileModel,
             )),
+    GoRoute(
+        path: RouterPath.providerGalleryServiceView,
+        builder: (context, state) => ProviderGalleryServiceView(
+              serviceId: state.extra as String,
+            )),
+    GoRoute(
+        path: RouterPath.addGalleryServiceView,
+        builder: (context, state) => const AddGalleryServiceView()),
   ]);
 }

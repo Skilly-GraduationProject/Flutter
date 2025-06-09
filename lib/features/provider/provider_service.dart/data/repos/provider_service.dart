@@ -26,15 +26,44 @@ class ProviderServiceRepo {
       return left(serverFailure);
     }
   }
-  Future<Either<Failure, Servicesgallery>> getGalleryService(
+
+  Future<Either<Failure, String>> addGalleryService(
+      GalleryService galleryService) async {
+    try {
+      FormData data = FormData.fromMap(await galleryService.toJson());
+      final response = await apiService.post(
+          "${ApiConstants.baseUrl}Provider/Servicegallery/AddGallery", data);
+      return right("");
+    } on DioException catch (e) {
+      print("errrrrror $e");
+      ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);
+      return left(serverFailure);
+    }
+  }
+
+  Future<Either<Failure, GalleryService>> getGalleryService(
       String serviceId) async {
     try {
       final response = await apiService.get(
-        "${ApiConstants.baseUrl}/Provider/Servicegallery/GetGalleryBy/$serviceId",
+        "${ApiConstants.baseUrl}Provider/Servicegallery/GetGalleryBy/$serviceId",
       );
-      Servicesgallery providerService =
-          Servicesgallery.fromJson(response.data["gallery"]);
+      print(response);
+      GalleryService providerService =
+          GalleryService.fromJson(response.data["gallery"]);
       return right(providerService);
+    } on DioException catch (e) {
+      print("errrrrror $e");
+      ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);
+      return left(serverFailure);
+    }
+  }
+
+  Future<Either<Failure, String>> deleteGalleryService(String serviceId) async {
+    try {
+      final response = await apiService.delete(
+          "${ApiConstants.baseUrl}Provider/Servicegallery/DeleteGalleryBy/$serviceId",
+          {});
+      return right(response.data["message"]);
     } on DioException catch (e) {
       ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);
       return left(serverFailure);

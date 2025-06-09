@@ -36,36 +36,46 @@ class ReviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  ClipOval(
-                    child: CustomImage(
-                      image: review.userImage!,
-                      height: context.responsiveHeight(46),
-                      width: context.responsiveHeight(46),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const Gap(10),
-                  // user name
-                  Text(
-                    review.userName!,
-                    style: TextStyleManager.style14BoldSec,
-                  ),
-                ],
+              ClipOval(
+                child: CustomImage(
+                  image: review.userImage!,
+                  height: context.responsiveHeight(46),
+                  width: context.responsiveHeight(46),
+                  fit: BoxFit.cover,
+                ),
               ),
-              Text(review.serserviceName ?? "",
-                  style: TextStyleManager.style12BoldSec),
+              const Gap(10),
+              // user name
+              Text(
+                review.userName!,
+                style: TextStyleManager.style14BoldSec,
+              ),
             ],
           ),
-          const Gap(18),
+          const Gap(10),
+          GestureDetector(
+            onTap: () {
+              GoRouter.of(context).push(RouterPath.providerServiceView,extra: review.serviceId);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(review.serviceName ?? "",
+                    style: TextStyleManager.style12BoldPrimary),
+                const Icon(
+                  Icons.navigate_next_sharp,
+                  color: ColorManager.primary,
+                )
+              ],
+            ),
+          ),
+          const Gap(10),
           Text(
             review.feedback!,
             style: TextStyleManager.style12RegSec,
           ),
-          const Gap(18),
+          const Gap(10),
           Align(
             alignment: AlignmentDirectional.bottomEnd,
             child: ReadOnlyRating(
