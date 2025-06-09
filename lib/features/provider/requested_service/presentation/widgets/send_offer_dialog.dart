@@ -21,6 +21,9 @@ import 'package:grad_project/features/provider/requested_service/presentation/wi
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/image_slider.dart';
 import 'package:grad_project/generated/l10n.dart';
 
+import '../../../../../core/helper/service_locator.dart';
+import '../../data/repo/service_repo.dart';
+
 class SendOfferDialog extends StatefulWidget {
   const SendOfferDialog({
     super.key,
@@ -38,138 +41,145 @@ class _SendOfferDialogState extends State<SendOfferDialog> {
   final TextEditingController _notesController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ServiceCubit, ServiceCubitState>(
-      listener: (context, state) {
-        if (state.sendOfferState == CubitState.success) {
-          context.pop();
-          context.pop();
-          showToast(
-              context: context,
-              title: "تم الارسال",
-              message: "تم ارسال العرض بنجاح",
-              contentType: ContentType.success);
-        } else if (state.sendOfferState == CubitState.failure) {
-          context.pop();
-          context.pop();
-          showToast(
-              context: context,
-              title: "حدث خطا",
-              message: state.sendOfferError ?? "حدث خطا",
-              contentType: ContentType.failure);
-        } else if (state.sendOfferState == CubitState.loading) {
-          showCustomLoading(context);
-        }
-      },
-      child: Dialog(
-        insetPadding: EdgeInsets.symmetric(
-          horizontal: context.responsiveWidth(20),
-          vertical: context.responsiveHeight(20),
-        ),
-        alignment: Alignment.center,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
-        ),
-        backgroundColor: Colors.transparent,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Container(
-            color: Colors.white,
-            child: Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: context.width,
-                      padding: const EdgeInsets.all(16),
-                      decoration: const BoxDecoration(
-                        color: ColorManager.primary,
-                      ),
-                      child: Center(
-                        child: Text(
-                          "العرض",
-                          style: TextStyleManager.style16BoldWhite,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+    return BlocProvider(
+      create: (BuildContext context) => ServiceCubit(serviceRepo: getIt<ServiceRepo>()),
+      child: Builder(
+        builder: (context) {
+          return BlocListener<ServiceCubit, ServiceCubitState>(
+            listener: (context, state) {
+              if (state.sendOfferState == CubitState.success) {
+                context.pop();
+                context.pop();
+                showToast(
+                    context: context,
+                    title: "تم الارسال",
+                    message: "تم ارسال العرض بنجاح",
+                    contentType: ContentType.success);
+              } else if (state.sendOfferState == CubitState.failure) {
+                context.pop();
+                context.pop();
+                showToast(
+                    context: context,
+                    title: "حدث خطا",
+                    message: state.sendOfferError ?? "حدث خطا",
+                    contentType: ContentType.failure);
+              } else if (state.sendOfferState == CubitState.loading) {
+                showCustomLoading(context);
+              }
+            },
+            child: Dialog(
+              insetPadding: EdgeInsets.symmetric(
+                horizontal: context.responsiveWidth(20),
+                vertical: context.responsiveHeight(20),
+              ),
+              alignment: Alignment.center,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(0),
+              ),
+              backgroundColor: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  color: Colors.white,
+                  child: Form(
+                    key: _formKey,
+                    child: SingleChildScrollView(
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Gap(20),
-                          Row(
-                            children: [
-                              Flexible(
-                                child: FieldWithTitle(
-                                  title: "السعر",
-                                  maxLines: 1,
-                                  controller: _priceController,
-                                  keyboardType: TextInputType.number,
-                                  suffix: const Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Text(
-                                      "ج.م",
-                                      style: TextStyle(
-                                          color: ColorManager.primary,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                ),
+                          Container(
+                            width: context.width,
+                            padding: const EdgeInsets.all(16),
+                            decoration: const BoxDecoration(
+                              color: ColorManager.primary,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "العرض",
+                                style: TextStyleManager.style16BoldWhite,
                               ),
-                              const Gap(20),
-                              Flexible(
-                                child: FieldWithTitle(
-                                  title: "مده التسليم",
-                                  maxLines: 1,
-                                  controller: _deliveryTimeController,
-                                  keyboardType: TextInputType.number,
-                                  suffix: const Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Text(
-                                      "يوم",
-                                      style: TextStyle(
-                                          color: ColorManager.primary,
-                                          fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              children: [
+                                const Gap(20),
+                                Row(
+                                  children: [
+                                    Flexible(
+                                      child: FieldWithTitle(
+                                        title: "السعر",
+                                        maxLines: 1,
+                                        controller: _priceController,
+                                        keyboardType: TextInputType.number,
+                                        suffix: const Padding(
+                                          padding: EdgeInsets.all(10.0),
+                                          child: Text(
+                                            "ج.م",
+                                            style: TextStyle(
+                                                color: ColorManager.primary,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    const Gap(20),
+                                    Flexible(
+                                      child: FieldWithTitle(
+                                        title: "مده التسليم",
+                                        maxLines: 1,
+                                        controller: _deliveryTimeController,
+                                        keyboardType: TextInputType.number,
+                                        suffix: const Padding(
+                                          padding: EdgeInsets.all(10.0),
+                                          child: Text(
+                                            "يوم",
+                                            style: TextStyle(
+                                                color: ColorManager.primary,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                                const Gap(20),
+                                FieldWithTitle(
+                                  title: 'ملاحظات',
+                                  maxLines: 3,
+                                  controller: _notesController,
+                                ),
+                                const Gap(20),
+                                PrimaryButton(
+                                  text: "ارسال",
+                                  onTap: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      SendOfferModel offerModel = SendOfferModel(
+                                        salary: double.parse(_priceController.text),
+                                        deliveryTime: _deliveryTimeController.text,
+                                        notes: _notesController.text,
+                                        serviceId: widget.serviceId,
+                                      );
+                                      context
+                                          .read<ServiceCubit>()
+                                          .sendOffer(offerModel: offerModel);
+                                    }
+                                  },
+                                ),
+                                const Gap(20),
+                              ],
+                            ),
                           ),
-                          const Gap(20),
-                          FieldWithTitle(
-                            title: 'ملاحظات',
-                            maxLines: 3,
-                            controller: _notesController,
-                          ),
-                          const Gap(20),
-                          PrimaryButton(
-                            text: "ارسال",
-                            onTap: () {
-                              if (_formKey.currentState!.validate()) {
-                                SendOfferModel offerModel = SendOfferModel(
-                                  salary: double.parse(_priceController.text),
-                                  deliveryTime: _deliveryTimeController.text,
-                                  notes: _notesController.text,
-                                  serviceId: widget.serviceId,
-                                );
-                                context
-                                    .read<ServiceCubit>()
-                                    .sendOffer(offerModel: offerModel);
-                              }
-                            },
-                          ),
-                          const Gap(20),
                         ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
+          );
+        }
       ),
     );
   }
