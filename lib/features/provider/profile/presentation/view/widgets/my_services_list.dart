@@ -21,7 +21,7 @@ import 'package:grad_project/features/provider/profile/presentation/manager/cubi
 import 'package:grad_project/features/provider/profile/presentation/manager/cubit/provider_data_state.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/inherted_profile_widget.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_services_card.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_work_card.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_gallery_card.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_info_widget.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/provider_personal_data.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/review_card.dart';

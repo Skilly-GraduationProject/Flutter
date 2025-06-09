@@ -7,7 +7,7 @@ class GetAllCategoriesCubit extends Cubit<GetAllCategoriesStates> {
       : super(GetAllCategoriesInitial());
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
 
-   Future<void> getAllCategories() async {
+  Future<void> getAllCategories() async {
     emit(GetAllCategoriesLoading());
     var result = await getAllCategoriesUseCase.call();
     result.fold((failure) {
@@ -15,7 +15,7 @@ class GetAllCategoriesCubit extends Cubit<GetAllCategoriesStates> {
       emit(GetAllCategoriesFailure(failure.errMessage));
     }, (categories) {
       print('category $categories');
-        emit(GetAllCategoriesSuccess(categories));
+      emit(GetAllCategoriesSuccess(categories));
     });
   }
 }

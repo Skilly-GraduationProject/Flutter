@@ -5,7 +5,8 @@ import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../../../../core/widgets/buttons/small_primary_button.dart';
 
 class CategoryServiceContainer extends StatelessWidget {
-  const CategoryServiceContainer({super.key, required this.name, required this.desc, required this.price});
+  const CategoryServiceContainer(
+      {super.key, required this.name, required this.desc, required this.price});
   final String name, desc, price;
 
   @override
@@ -39,9 +40,9 @@ class CategoryServiceContainer extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-               const   Text(
+                  const Text(
                     'اسم المستخدم',
-                    style:TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),

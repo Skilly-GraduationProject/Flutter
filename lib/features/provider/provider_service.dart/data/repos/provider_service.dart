@@ -5,6 +5,7 @@ import 'package:grad_project/core/utils/networking/api_constatnts.dart';
 import 'package:grad_project/core/utils/networking/errors/failure.dart';
 import 'package:grad_project/core/utils/networking/errors/server_failure.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 
 class ProviderServiceRepo {
@@ -19,6 +20,20 @@ class ProviderServiceRepo {
       );
       ProviderService providerService =
           ProviderService.fromJson(response.data["service"]);
+      return right(providerService);
+    } on DioException catch (e) {
+      ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);
+      return left(serverFailure);
+    }
+  }
+  Future<Either<Failure, Servicesgallery>> getGalleryService(
+      String serviceId) async {
+    try {
+      final response = await apiService.get(
+        "${ApiConstants.baseUrl}/Provider/Servicegallery/GetGalleryBy/$serviceId",
+      );
+      Servicesgallery providerService =
+          Servicesgallery.fromJson(response.data["gallery"]);
       return right(providerService);
     } on DioException catch (e) {
       ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);

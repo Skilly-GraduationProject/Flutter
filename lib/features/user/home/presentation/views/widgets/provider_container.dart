@@ -24,8 +24,10 @@ class ProviderContainer extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            VerifiedName(name: name,),
-          const  RateWidget(),
+            VerifiedName(
+              name: name,
+            ),
+            const RateWidget(),
           ],
         ),
       ],

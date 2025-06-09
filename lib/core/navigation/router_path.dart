@@ -13,4 +13,5 @@ class RouterPath {
   static const String termsView = '/termsView';
   static const String providerServiceView = '/providerServiceView';
   static const String editServiceView = '/editServiceView';
+  static const String editProviderProfile = '/editProviderProfile';
 }

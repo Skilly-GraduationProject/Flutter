@@ -27,7 +27,7 @@ class SenderMessageWidget extends StatelessWidget {
         children: [
           ClipOval(
             child: CustomImage(
-              image: message.senderImg ?? ImageManager.avatar,
+              image: message.senderImg ?? chatInfoModel.firstUserImg!,
               height: context.responsiveHeight(35),
               width: context.responsiveWidth(35),
             ),
@@ -64,13 +64,16 @@ class SenderMessageWidget extends StatelessWidget {
                     )
                   : const SizedBox.shrink(),
               message.img != null
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(12.r),
-                      child: CustomImage(
-                        image: message.img!,
-                        height: context.responsiveHeight(100),
-                        width: context.responsiveHeight(100),
-                        fit: BoxFit.cover,
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.r),
+                        child: CustomImage(
+                          image: message.img!,
+                          height: context.responsiveHeight(100),
+                          width: context.responsiveHeight(100),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     )
                   : const SizedBox.shrink()

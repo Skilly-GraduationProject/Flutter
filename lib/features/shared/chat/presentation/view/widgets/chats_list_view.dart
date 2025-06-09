@@ -19,7 +19,8 @@ import '../../../data/models/get_chats_info_model/chat_info_model.dart';
 
 class ChatsListView extends StatelessWidget {
   const ChatsListView({
-    super.key, required this.chatInfoModel,
+    super.key,
+    required this.chatInfoModel,
   });
   final ChatInfoModel chatInfoModel;
   @override
@@ -49,10 +50,12 @@ class ChatsListView extends StatelessWidget {
                       isMe ? Alignment.centerRight : Alignment.centerLeft,
                   child: isMe
                       ? SenderMessageWidget(
-                          message: message, chatInfoModel: chatInfoModel,
+                          message: message,
+                          chatInfoModel: chatInfoModel,
                         )
                       : RecieverMessageWidget(
-                          message: message, chatInfoModel: chatInfoModel,
+                          message: message,
+                          chatInfoModel: chatInfoModel,
                         ),
                 );
               },

@@ -9,7 +9,6 @@ class CategoryContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       width: MediaQuery.of(context).size.width / 3.2,
       padding: const EdgeInsets.all(7),
       decoration: BoxDecoration(

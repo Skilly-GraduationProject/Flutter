@@ -56,10 +56,11 @@ final blocProviders = <BlocProvider>[
   ),
   BlocProvider<GetCategoryServiceProvidersCubit>(
     create: (context) => GetCategoryServiceProvidersCubit(
-       GetCategoryServiceProvidersUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetCategoryServiceProvidersUseCase(
+            userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<GetCategoryServicesCubit>(
     create: (context) => GetCategoryServicesCubit(
-       GetCategoryServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        GetCategoryServicesUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

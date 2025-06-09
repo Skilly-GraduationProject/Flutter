@@ -2,6 +2,7 @@ class ChatInfoModel {
   String? id;
   String? firstUserId;
   String? firstUserName;
+  String? firstUserImg;
   String? secondUserId;
   String? secondUserName;
   DateTime? createdAt;
@@ -13,6 +14,7 @@ class ChatInfoModel {
     this.id,
     this.firstUserId,
     this.firstUserName,
+    this.firstUserImg,
     this.secondUserId,
     this.secondUserName,
     this.createdAt,
@@ -25,6 +27,7 @@ class ChatInfoModel {
         id: json['id'] as String?,
         firstUserId: json['firstUserId'] as String?,
         firstUserName: json['firstUserName'] as String?,
+        firstUserImg: json['firstUserImg'] as String?,
         secondUserId: json['secondUserId'] as String?,
         secondUserName: json['secondUserName'] as String?,
         createdAt: json['createdAt'] == null
@@ -41,6 +44,7 @@ class ChatInfoModel {
         'id': id,
         'firstUserId': firstUserId,
         'firstUserName': firstUserName,
+        'firstUserImg': firstUserImg,
         'secondUserId': secondUserId,
         'secondUserName': secondUserName,
         'createdAt': createdAt?.toIso8601String(),

@@ -18,8 +18,10 @@ class ChatViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         Expanded(
-          child: ChatsListView(chatInfoModel: chat,),
+        Expanded(
+          child: ChatsListView(
+            chatInfoModel: chat,
+          ),
         ),
         SendChatBottomBar(
           recieverId: chat.secondUserId!,

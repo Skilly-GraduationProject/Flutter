@@ -34,7 +34,9 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        VerifiedName(name: 'hla',),
+                        VerifiedName(
+                          name: 'hla',
+                        ),
                       ],
                     ),
                     const SizedBox(height: 10),

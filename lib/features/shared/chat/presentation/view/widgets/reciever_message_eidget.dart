@@ -32,25 +32,27 @@ class RecieverMessageWidget extends StatelessWidget {
                 message.senderName ?? chatInfoModel.secondUserName!,
                 style: TextStyleManager.style12BoldSec,
               ),
-              message.content != null ? Container(
-                constraints:
-                    BoxConstraints(maxWidth: context.responsiveWidth(300)),
-                margin: const EdgeInsets.symmetric(vertical: 8),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: ColorManager.whiteShade,
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(12),
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
-                    topLeft: Radius.circular(0),
-                  ),
-                ),
-                child: Text(
-                  message.content ?? "",
-                  style: TextStyleManager.style12BoldSec,
-                ),
-              ) : SizedBox.shrink(),
+              message.content != null
+                  ? Container(
+                      constraints: BoxConstraints(
+                          maxWidth: context.responsiveWidth(300)),
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: ColorManager.whiteShade,
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(12),
+                          bottomLeft: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                          topLeft: Radius.circular(0),
+                        ),
+                      ),
+                      child: Text(
+                        message.content ?? "",
+                        style: TextStyleManager.style12BoldSec,
+                      ),
+                    )
+                  : SizedBox.shrink(),
               message.img != null
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(12.r),

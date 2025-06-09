@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:dio/dio.dart';
+
 class Servicesgallery {
   String? id;
   String? galleryName;
@@ -29,13 +33,26 @@ class Servicesgallery {
     );
   }
 
-  Map<String, dynamic> toJson() => {
+  FutureOr<Map<String, dynamic>> toJson() async=> {
         'id': id,
         'galleryName': galleryName,
         'description': description,
         'deliverytime': deliverytime,
         'video': video,
         'serviceProviderId': serviceProviderId,
-        'images': images,
+        if (images != null && images!.isNotEmpty)
+        'images': await Future.wait(
+          images!.map((image) async {
+            try {
+              MultipartFile file = await MultipartFile.fromFile(
+                image.path
+              );
+              return file;
+            } catch (e) {
+              // Handle the error, e.g., log it or return a default value
+              print('Error processing image: $e');
+            }
+          }),
+        ),
       };
 }

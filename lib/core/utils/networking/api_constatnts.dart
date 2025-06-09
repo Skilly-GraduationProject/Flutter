@@ -19,4 +19,5 @@ class ApiConstants {
   static const String getChats = 'Chat/GetChatsForUser';
   static const String getChat = 'Chat/GetMessagesForChatOfUser';
   static const String sendMessage = 'Chat/SendMessage';
+  static const String editProviderProfile = 'Provider/editServiceProvider';
 }

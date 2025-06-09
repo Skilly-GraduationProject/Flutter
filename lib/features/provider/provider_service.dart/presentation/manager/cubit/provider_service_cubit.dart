@@ -18,6 +18,15 @@ class ProviderServiceCubit extends Cubit<ProviderServiceState> {
           getServiceState: CubitState.success, service: service)),
     );
   }
+  Future<void> getGalleryService(String serviceId) async {
+    emit(state.editState(getGalleyServiceState: CubitState.loading));
+    final result = await providerServiceRepo.getGalleryService(serviceId);
+    result.fold(
+      (failure) => emit(state.editState(getGalleyServiceState: CubitState.failure)),
+      (service) => emit(state.editState(
+          getGalleyServiceState: CubitState.success, galleryService: service)),
+    );
+  }
 
   Future<void> deleteService(String serviceId) async {
     emit(state.editState(deleteServiceState: CubitState.loading));

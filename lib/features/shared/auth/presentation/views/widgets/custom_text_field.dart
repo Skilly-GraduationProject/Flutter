@@ -11,7 +11,8 @@ class CustomTextField extends StatefulWidget {
       this.obsecure,
       this.onChanged,
       this.maxLines,
-      this.validate});
+      this.validate,
+      this.keyboardType});
 
   final String title;
   final void Function(String?)? onSaved;
@@ -22,6 +23,7 @@ class CustomTextField extends StatefulWidget {
   final bool? obsecure;
   final int? maxLines;
   final bool? validate;
+  final TextInputType? keyboardType;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -34,12 +36,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextFormField(
+        controller: widget.controller,
         onTapOutside: (event) => focusNode.unfocus(),
         textDirection: TextDirection.rtl,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         maxLines: widget.maxLines ?? 1,
         onSaved: widget.onSaved,
         onChanged: widget.onChanged,
+        keyboardType: widget.keyboardType,
         validator: (val) {
           if (val!.isEmpty && widget.validate != false) {
             return "This Field is required";

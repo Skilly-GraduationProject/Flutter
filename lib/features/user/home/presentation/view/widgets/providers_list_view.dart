@@ -3,7 +3,6 @@ import 'package:grad_project/features/user/home/presentation/views/widgets/rate_
 import 'package:grad_project/features/user/home/presentation/views/widgets/verified_name.dart';
 import '../../../../../../core/managers/image_manager.dart';
 
-
 class ProvidersListView extends StatelessWidget {
   const ProvidersListView({super.key});
 

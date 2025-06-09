@@ -1,8 +1,8 @@
 class AllServicesEntity {
-  final String name, desc,img,providerName,time;
+  final String name, desc, img, providerName, time;
   final double price;
 
- AllServicesEntity( {
+  AllServicesEntity({
     required this.name,
     required this.desc,
     required this.price,

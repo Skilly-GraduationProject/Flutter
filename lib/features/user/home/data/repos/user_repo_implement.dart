@@ -31,7 +31,7 @@ class UserRepoImplement implements UserRepo {
         List<CategoryItemEntity> categories = items.map((item) {
           return CategoryItemModel.fromJson(item as Map<String, dynamic>);
         }).toList();
-        
+
         final CategoryEntity category = CategoryEntity(
           categories: categories,
         );
@@ -46,48 +46,37 @@ class UserRepoImplement implements UserRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<ServiceProvidersEntity>>> getCategoryServiceProviders({required String categoryId})async {
-     try {
-      final response = await apiService.get('$baseUrl/Provider/GetAllServiceProvidersBy/$categoryId');
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
+  Future<Either<Failure, List<ServiceProvidersEntity>>>
+      getCategoryServiceProviders({required String categoryId}) async {
+    try {
+      final response = await apiService
+          .get('$baseUrl/Provider/GetAllServiceProvidersBy/$categoryId');
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
       final providers = data['provider'] as List;
-       final provider =providers.map((json) => ServiceProvidersModel.fromJson(json).toEntity())
+      final provider = providers
+          .map((json) => ServiceProvidersModel.fromJson(json).toEntity())
           .toList();
 
       return Right(provider);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
-  
   }
-  
-  @override
-  Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices({required String categoryId}) async{
-     try {
-      final response = await apiService.get('$baseUrl/Provider/ProviderServices/GetAllServicesBy/$categoryId');
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
-      final services = data['service'] as List;
-       final service =services.map((json) => OfferedServicesModel.fromJson(json).toEntity())
-          .toList();
 
-      return Right(service);
-    } catch (e) {
-      return Left(ServerFailure(e.toString()));
-    }
-  }
-  
   @override
-  Future<Either<Failure, List<AllServicesEntity>>> getAllServices()async {
+  Future<Either<Failure, List<OfferedServicesEntity>>> getCategoryServices(
+      {required String categoryId}) async {
     try {
-      final response = await apiService.get('$baseUrl/Provider/ProviderServices/getAllServices');
-        final Map<String, dynamic> data = response.data;
-        print('data $data');
-      final services = data['services'] as List;
-       final service =services.map((json) => AllServicesModel.fromJson(json).toEntity())
+      final response = await apiService.get(
+          '$baseUrl/Provider/ProviderServices/GetAllServicesBy/$categoryId');
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
+      final services = data['service'] as List;
+      final service = services
+          .map((json) => OfferedServicesModel.fromJson(json).toEntity())
           .toList();
 
       return Right(service);
@@ -95,6 +84,22 @@ class UserRepoImplement implements UserRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
- 
+
+  @override
+  Future<Either<Failure, List<AllServicesEntity>>> getAllServices() async {
+    try {
+      final response = await apiService
+          .get('$baseUrl/Provider/ProviderServices/getAllServices');
+      final Map<String, dynamic> data = response.data;
+      print('data $data');
+      final services = data['services'] as List;
+      final service = services
+          .map((json) => AllServicesModel.fromJson(json).toEntity())
+          .toList();
+
+      return Right(service);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }

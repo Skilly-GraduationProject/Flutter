@@ -65,12 +65,15 @@ class _SendChatBottomBarState extends State<SendChatBottomBar> {
                   suffix: image == null
                       ? GestureDetector(
                           onTap: () async {
-                             await PickerHelper().showPickerBottomSheet(
-                                context: context, type: ImagePickerType.single).then((value){
-                                  setState(() {
-                                    image = value;
-                                  });
-                                });
+                            await PickerHelper()
+                                .showPickerBottomSheet(
+                                    context: context,
+                                    type: ImagePickerType.single)
+                                .then((value) {
+                              setState(() {
+                                image = value;
+                              });
+                            });
                           },
                           child: const Icon(Icons.image))
                       : ClipRRect(
@@ -117,7 +120,9 @@ class _SendChatBottomBarState extends State<SendChatBottomBar> {
               if (_messageController.text.isNotEmpty || image != null) {
                 context.read<ChatsCubit>().sendMessage(
                     receiverId: widget.recieverId,
-                    message: _messageController.text.isEmpty ? null : _messageController.text, 
+                    message: _messageController.text.isEmpty
+                        ? null
+                        : _messageController.text,
                     image: image?.path);
                 setState(() {
                   _messageController.clear();

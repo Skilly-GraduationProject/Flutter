@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad_project/core/helper/service_locator.dart';
+import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
 import 'package:grad_project/features/provider/profile/data/repos/provider_data_repo.dart';
 import 'package:grad_project/features/provider/profile/presentation/manager/cubit/provider_data_cubit.dart';
@@ -16,8 +17,8 @@ class ServiceProviderProfile extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
             child: ServiceProviderProfileViewBody(
-          providerProfileModel: providerProfileModel,
-        )),
+              providerProfileModel: providerProfileModel,
+            )),
       ),
     );
   }

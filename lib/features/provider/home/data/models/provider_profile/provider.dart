@@ -17,6 +17,7 @@ class Provider {
   String? userId;
   String? categoryId;
   double? review;
+  int? numberOfEndedservices;
 
   Provider({
     this.id,
@@ -37,6 +38,7 @@ class Provider {
     this.userId,
     this.categoryId,
     this.review,
+    this.numberOfEndedservices
   });
 
   factory Provider.fromJson(Map<String, dynamic> json) => Provider(
@@ -59,6 +61,7 @@ class Provider {
         userId: json['userId'] as String?,
         categoryId: json['categoryId'] as String?,
         review: json['review'].toDouble(),
+        numberOfEndedservices: json['numberOfEndedservices'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -80,5 +83,6 @@ class Provider {
         'userId': userId,
         'categoryId': categoryId,
         'review': review,
+        'numberOfEndedservices' : numberOfEndedservices
       };
 }

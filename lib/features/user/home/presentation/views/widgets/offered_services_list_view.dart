@@ -34,12 +34,12 @@ class _OfferedServicesListViewState extends State<OfferedServicesListView> {
             itemCount: services.length,
             separatorBuilder: (context, index) => const SizedBox(height: 15),
             itemBuilder: (context, index) {
-                     final OfferedServicesEntity service = services[index];
-             return CategoryServiceContainer(
-              name: service.name,
-              desc: service.desc,
-              price: '${service.price}',
-             );
+              final OfferedServicesEntity service = services[index];
+              return CategoryServiceContainer(
+                name: service.name,
+                desc: service.desc,
+                price: '${service.price}',
+              );
             });
       } else if (state is GetCategoryServicesFailure) {
         return Text(state.error);

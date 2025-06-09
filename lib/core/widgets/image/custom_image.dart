@@ -1,5 +1,7 @@
 // shared Network image widget
 // usd CachedNetworkImage package
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,15 +15,20 @@ class CustomImage extends StatelessWidget {
     this.height,
     this.width,
   });
+
   final String image;
   final BoxFit? fit;
   final double? height;
   final double? width;
+
   @override
   Widget build(BuildContext context) {
     final imageExtension = image.split('.').last.toLowerCase();
+
     if (isNetworkImage(image)) {
       return getNetworkImage(imageExtension);
+    } else if (isFileImage(image)) {
+      return getFileImage(imageExtension);
     } else {
       return getAssetImage(imageExtension);
     }
@@ -31,7 +38,11 @@ class CustomImage extends StatelessWidget {
     return url.startsWith('http://') || url.startsWith('https://');
   }
 
-  getAssetImage(String imageExtension) {
+  bool isFileImage(String path) {
+    return File(path).existsSync();
+  }
+
+  Widget getAssetImage(String imageExtension) {
     if (imageExtension == 'svg') {
       return SvgPicture.asset(
         image,
@@ -49,8 +60,30 @@ class CustomImage extends StatelessWidget {
     }
   }
 
-  getNetworkImage(String imageExtension) {
+  Widget getNetworkImage(String imageExtension) {
     return CustomNetworkImage(
-        image: image, fit: fit, height: height, width: width);
+      image: image,
+      fit: fit,
+      height: height,
+      width: width,
+    );
+  }
+
+  Widget getFileImage(String imageExtension) {
+    if (imageExtension == 'svg') {
+      return SvgPicture.file(
+        File(image),
+        height: height,
+        width: width,
+        fit: fit ?? BoxFit.cover,
+      );
+    } else {
+      return Image.file(
+        File(image),
+        height: height,
+        width: width,
+        fit: fit ?? BoxFit.cover,
+      );
+    }
   }
 }
