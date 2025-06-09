@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
@@ -14,6 +15,8 @@ import 'package:grad_project/features/provider/requested_service/presentation/wi
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/image_slider.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/send_offer_dialog.dart';
 import "package:grad_project/features/provider/requested_service/presentation/widgets/data_row.dart";
+
+import '../manager/cubit/service_cubit.dart';
 
 class GetServiceViewBody extends StatelessWidget {
   const GetServiceViewBody({super.key, required this.service});
