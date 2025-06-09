@@ -9,4 +9,7 @@ class IconManager {
       'assets/images/terms-and-conditions.svg';
   static const String info = 'assets/images/info.svg';
   static const String contactUs = 'assets/images/contact-us.svg';
+  static const String homeIcon = 'assets/images/home_icon.svg';
+  static const String notificationIcon = 'assets/images/notification_icon.svg';
+  static const String chatIcon = 'assets/images/chat_icon.svg';
 }

@@ -1,4 +1,4 @@
-package com.example.grad_project
+package com.skilly
 
 import io.flutter.embedding.android.FlutterActivity
 
