@@ -36,7 +36,7 @@ class _OfferedServicesListViewState extends State<OfferedServicesListView> {
             itemBuilder: (context, index) {
               final AllServicesEntity service = services[index];
               return CategoryServiceContainer(
-    offeredServicesEntity: service,
+  service: service,
                 name: service.name,
                 desc: service.desc,
                 price: '${service.price}',

@@ -28,7 +28,7 @@ class _OrdersListViewState extends State<OrdersListView> {
         return const SliverToBoxAdapter(child: CustomLoadingIndicator());
       } else if (state is GetUserOrdersSuccess) {
         final orders = state.orders;
-
+      
         return SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -58,7 +58,10 @@ class _OrdersListViewState extends State<OrdersListView> {
       } else if (state is GetUserOrdersFailure) {
         return SliverToBoxAdapter(child: Text(state.error));
       } else if (state is GetUserOrdersEmpty) {
-        return const SliverToBoxAdapter(child: EmptyWidget(text: 'Orders',));
+        return const SliverToBoxAdapter(
+            child: EmptyWidget(
+          text: 'Orders',
+        ));
       } else {
         return const SliverToBoxAdapter(child: Text('unknown'));
       }

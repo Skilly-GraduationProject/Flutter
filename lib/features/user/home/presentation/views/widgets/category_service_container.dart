@@ -7,7 +7,7 @@ import '../../../../../../core/widgets/buttons/small_primary_button.dart';
 import '../../../domain/entities/all_services_entity.dart';
 
 class CategoryServiceContainer extends StatelessWidget {
-  final AllServicesEntity offeredServicesEntity;
+  final AllServicesEntity service;
   const CategoryServiceContainer(
       {super.key,
       required this.name,
@@ -17,7 +17,7 @@ class CategoryServiceContainer extends StatelessWidget {
       required this.providerName,
       required this.date,
       required this.img,
-      required this.offeredServicesEntity});
+      required this.service});
   final String name, desc, price, providerImg, providerName, date, img;
 
   @override
@@ -99,7 +99,10 @@ class CategoryServiceContainer extends StatelessWidget {
                 color: ColorManager.primary,
                 onTap: () {
                   GoRouter.of(context)
-                      .push('/viewService', extra: offeredServicesEntity);
+                      .push('/viewService', extra: {
+    'service': service,
+    'showBuyOrOffer': true,
+  },);
                 },
               ),
               Text('$price ج.م', style: TextStyleManager.style12BoldPrimary),

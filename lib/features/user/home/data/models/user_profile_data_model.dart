@@ -10,10 +10,12 @@ class UserProfileDataModel {
   final String city;
   final String streetName;
   final int gender;
+  final int points;
   final String img;
   final String userId;
 
   UserProfileDataModel({
+    required this.points,
     required this.id,
     required this.firstName,
     required this.lastName,
@@ -38,6 +40,7 @@ class UserProfileDataModel {
       city: json['city'],
       streetName: json['streetName'],
       gender: json['gender'],
+      points: json['points'],
       img: json['img'],
       userId: json['userId'],
     );
@@ -45,6 +48,7 @@ class UserProfileDataModel {
 
   UserProfileDataEntity toEntity() {
     return UserProfileDataEntity(
+      points: points,
       name: '$firstName $lastName',
       phone: phoneNumber,
       email: email,

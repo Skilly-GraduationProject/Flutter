@@ -31,6 +31,7 @@ class UseDiscountButton extends StatelessWidget {
             isScrollControlled: true,
             builder: (_) => BuyServiceSheet(
               service: service,
+              useDiscount: true,
             ),
           );
         },

@@ -9,11 +9,15 @@ import 'info_box.dart';
 
 class BuyServiceSheet extends StatelessWidget {
   final AllServicesEntity service;
+   final bool useDiscount;
 
-  const BuyServiceSheet({super.key, required this.service});
+  const BuyServiceSheet({super.key, required this.service,this.useDiscount=false});
 
   @override
   Widget build(BuildContext context) {
+    final double price = useDiscount
+        ? service.discountPrice!
+        : service.price;
     return  Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -56,7 +60,7 @@ class BuyServiceSheet extends StatelessWidget {
                             style: TextStyleManager.style14BoldBlack,
                           ),
                           Text(
-                            '${service.price} ج.م',
+                            '$price ج.م',
                             style: TextStyleManager.style12BoldPrimary,
                           )
                         ],

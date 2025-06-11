@@ -56,6 +56,7 @@ class CollectPoints extends StatelessWidget {
                   text: 'جمع النقاط',
                   onTap: () {
                     GoRouter.of(context).pop();
+                    GoRouter.of(context).pop();
                   },
                 ),
                 const Gap(10),

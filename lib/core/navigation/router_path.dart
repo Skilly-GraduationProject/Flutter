@@ -2,6 +2,7 @@ class RouterPath {
   static const String userHome = '/userHome';
   static const String providerHome = '/serviceProviderHomeView';
   static const String providerProfile = '/serviceProviderProfile';
+  static const String userProfile = '/userProfile';
   static const String myReviewsView = '/myReviewsView';
   static const String myServicesView = '/myServicesView';
   static const String myWorkView = '/myWorkView';

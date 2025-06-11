@@ -4,9 +4,12 @@ import 'package:grad_project/core/extensions/context_extension.dart';
 
 import '../../../../../../core/managers/image_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
+import '../../../domain/entities/user_profile_data_entity.dart';
 
 class PointsInfoContainer extends StatelessWidget {
-  const PointsInfoContainer({super.key});
+  const PointsInfoContainer({super.key, required this.data});
+
+   final UserProfileDataEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +32,11 @@ class PointsInfoContainer extends StatelessWidget {
                   Text('النقاط الحالية',
                       style: TextStyleManager.style16BoldBlack),
                   const Gap(5),
-                  Text('15,000', style: TextStyleManager.style28BoldAmber),
+                  Text('${data.points}', style: TextStyleManager.style28BoldAmber),
                   const Gap(10),
-                  const Text(
-                    'معاك 100 نقطة؟\nاستخدمهم دلوقتي واحصل على خصم %15 من الخدمة!',
-                    style: TextStyle(fontSize: 12),
+                 Text(
+                    'معاك ${data.points} نقطة؟\nاستخدمهم دلوقتي واحصل على خصم %15 من الخدمة!',
+                    style:const TextStyle(fontSize: 12),
                   ),
                 ],
               ),

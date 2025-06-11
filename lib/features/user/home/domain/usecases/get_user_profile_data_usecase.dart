@@ -12,7 +12,6 @@ class GetUserProfileDataUseCase extends UseCase<UserProfileDataEntity, String> {
   @override
   Future<Either<Failure, UserProfileDataEntity>> call() async {
     final token = await loadToken();
-    print('Loaded token: $token');
     return userRepo.getUserProfileData(token: token!);
    
   }

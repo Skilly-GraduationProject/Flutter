@@ -9,7 +9,6 @@ import 'package:grad_project/features/provider/profile/presentation/view/my_serv
 import 'package:grad_project/features/provider/profile/presentation/view/my_work_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/service_provider_profile.dart';
 import 'package:grad_project/features/user/home/presentation/views/user_home_view.dart';
-
 import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
 import '../../features/shared/auth/presentation/views/provider_data_view.dart';
 import '../../features/shared/auth/presentation/views/update_pass_view.dart';
@@ -20,7 +19,6 @@ import '../../features/shared/auth/presentation/views/user_type_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_code_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_email_view.dart';
 import '../../features/shared/splash/presentation/views/splash_view.dart';
-import '../../features/user/home/domain/entities/all_services_entity.dart';
 import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
 import '../../features/user/home/presentation/views/all_categories_view.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
@@ -73,7 +71,7 @@ abstract class AppRouter {
         path: '/viewService',
         builder: (context, state) {
              final extra = state.extra as Map<String, dynamic>;
-    final service = extra['service'] as AllServicesEntity;
+    final service = extra['service'] ;
     final showBuyOrOffer = extra['showBuyOrOffer'] as bool? ?? false;
     final showDiscountButton = extra['showDiscountButton'] as bool? ?? false;
          
@@ -94,9 +92,10 @@ abstract class AppRouter {
       },
     ),
     GoRoute(
-      path: '/userProfile',
+      path:RouterPath.userProfile,
       builder: (context, state) {
         final data = state.extra as UserProfileDataEntity?;
+     
         if (data == null) {
           return const Scaffold(
             body: Center(child: Text("Data not found")),
@@ -163,7 +162,10 @@ abstract class AppRouter {
         builder: (context, state) => const PointsEntryView()),
     GoRoute(
         path: RouterPath.discountsView,
-        builder: (context, state) => const DiscountsView()),
+        builder: (context, state){
+       
+        return const DiscountsView();
+      },),
     GoRoute(
         path: RouterPath.discountServicesView,
         builder: (context, state) => const DiscountServicesView()),
