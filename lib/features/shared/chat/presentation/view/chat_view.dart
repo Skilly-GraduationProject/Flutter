@@ -18,7 +18,6 @@ class ChatView extends StatefulWidget {
 
 class _ChatViewState extends State<ChatView> {
   @override
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ChatsCubit(chatsRepo: getIt<ChatsRepo>())

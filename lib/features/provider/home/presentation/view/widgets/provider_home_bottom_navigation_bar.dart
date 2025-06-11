@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
+import 'package:grad_project/core/managers/icon_manager.dart';
+import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 
 class ProviderHomeBottomNavigationBar extends StatefulWidget {
@@ -12,22 +16,36 @@ class ProviderHomeBottomNavigationBar extends StatefulWidget {
 
 class _ProviderHomeBottomNavigationBarState
     extends State<ProviderHomeBottomNavigationBar> {
+  int _selectedIndex = 0;
+
   List<BottomNavigationBarItem> bottomBarItems = <BottomNavigationBarItem>[
     const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.home,
+      activeIcon: NavIcon(
+        icon: IconManager.homeIcon,
+        forActive: true,
+      ),
+      icon: NavIcon(
+        icon: IconManager.homeIcon,
       ),
       label: 'الرئيسية',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.chat_bubble_outline_rounded,
+      activeIcon: NavIcon(
+        icon: IconManager.chat,
+        forActive: true,
+      ),
+      icon: NavIcon(
+        icon: IconManager.chat,
       ),
       label: 'المحادثات',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.notifications,
+      activeIcon: NavIcon(
+        icon: IconManager.notificationIcon,
+        forActive: true,
+      ),
+      icon: NavIcon(
+        icon: IconManager.notificationIcon,
       ),
       label: 'الاشعارات',
     ),
@@ -38,7 +56,6 @@ class _ProviderHomeBottomNavigationBarState
       label: 'المزيد',
     ),
   ];
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +71,8 @@ class _ProviderHomeBottomNavigationBarState
         showUnselectedLabels: true,
         selectedLabelStyle: TextStyleManager.style12BoldPrimary,
         unselectedLabelStyle: TextStyleManager.style12BoldPrimary,
-        selectedIconTheme:
-            const IconThemeData(size: 24, color: ColorManager.secondary),
+        // selectedIconTheme:
+        //     const IconThemeData(size: 24, color: ColorManager.secondary),
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
@@ -67,5 +84,20 @@ class _ProviderHomeBottomNavigationBarState
         items: bottomBarItems,
       ),
     );
+  }
+}
+
+class NavIcon extends StatelessWidget {
+  const NavIcon({super.key, required this.icon, this.forActive = false});
+  final String icon;
+  final bool? forActive;
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(icon,
+        colorFilter: ColorFilter.mode(
+            forActive! ? ColorManager.secondary : ColorManager.darkGrey,
+            BlendMode.srcIn),
+            height: context.responsiveHeight(24),
+            );
   }
 }
