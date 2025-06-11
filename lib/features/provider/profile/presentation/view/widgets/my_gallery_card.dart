@@ -44,7 +44,7 @@ class MyGalleryCard extends StatelessWidget {
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: CustomImage(
-                          image: servicesgallery!.images!.first!,
+                          image: servicesgallery?.images?.first["img"] ?? "",
                           width: context.width,
                           height: context.responsiveHeight(100),
                           fit: BoxFit.cover)),

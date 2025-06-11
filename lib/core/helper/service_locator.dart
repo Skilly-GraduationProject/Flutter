@@ -8,6 +8,7 @@ import 'package:grad_project/features/provider/provider_service.dart/data/repos/
 import 'package:grad_project/features/provider/requested_service/data/repo/service_repo.dart';
 import 'package:grad_project/features/shared/chat/data/repo/chats_repo.dart';
 import 'package:grad_project/features/shared/notifications/data/repo/notifications_repo.dart';
+import 'package:grad_project/features/user/home/data/repos/user_repo_implement.dart';
 import '../../features/shared/auth/domain/usecases/updatePass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/verify_code_usecase.dart';
 import '../../features/shared/auth/presentation/manager/ResetPassCubit/updatePass_cubit.dart';
@@ -59,7 +60,6 @@ void setUp() {
       VerifyCodeUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<VerifycodeCubit>(
           () => VerifycodeCubit(getIt.get<VerifyCodeUseCase>()));
-
   getIt.registerSingleton<UpdatePassUseCase>(
       UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<UpdatePassCubit>(
@@ -76,4 +76,6 @@ void setUp() {
       ProviderServiceRepo(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<ChatsRepo>(
       ChatsRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<UserRepoImplement>(
+      UserRepoImplement(apiService: getIt.get<ApiService>()));
 }

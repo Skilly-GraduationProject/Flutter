@@ -63,11 +63,11 @@ class ProviderGalleryServiceViewBody extends StatelessWidget {
                 child: CustomScrollView(slivers: [
                   const SliverGap(20),
                   // service images slider
-                  // SliverToBoxAdapter(
-                  //   child: ImageSlider(
-                  //     images: service?.images ?? [],
-                  //   ),
-                  // ),
+                  SliverToBoxAdapter(
+                    child: ImageSlider(
+                      images: service?.images ?? [],
+                    ),
+                  ),
                   const SliverGap(20),
                   // service data
                   SliverToBoxAdapter(

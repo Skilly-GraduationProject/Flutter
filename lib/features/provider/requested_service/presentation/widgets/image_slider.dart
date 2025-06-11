@@ -7,6 +7,7 @@ import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/core/widgets/show_image.dart';
 import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 
 class ImageSlider extends StatefulWidget {
   const ImageSlider({
@@ -42,10 +43,10 @@ class _ImageSliderState extends State<ImageSlider> {
                             showMultiImages(
                                 context: context,
                                 images:
-                                    images.map((e) => e.toString()).toList());
+                                    images.map((e) => e is ImageModel ? e.image! : e["img"].toString()).toList());
                           },
                           child: CustomImage(
-                            image: b.image,
+                            image: b is ImageModel ? b.image! : b["img"],
                             fit: BoxFit.cover,
                           ),
                         ),
