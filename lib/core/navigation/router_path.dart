@@ -16,4 +16,5 @@ class RouterPath {
   static const String editProviderProfile = '/editProviderProfile';
   static const String providerGalleryServiceView = '/providerGalleryServiceView';
   static const String addGalleryServiceView = '/addGalleryServiceView';
+  static const String onBoardingView = '/onBoardingView';
 }

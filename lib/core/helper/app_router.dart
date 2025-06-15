@@ -22,6 +22,7 @@ import 'package:grad_project/features/provider/profile/presentation/view/my_revi
 import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_gallery_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/service_provider_profile.dart';
+import 'package:grad_project/features/shared/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:grad_project/features/user/home/presentation/views/user_home_view.dart';
 
 import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
@@ -145,5 +146,9 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.addGalleryServiceView,
         builder: (context, state) => const AddGalleryServiceView()),
-  ]);
+    GoRoute(
+        path: RouterPath.onBoardingView,
+        builder: (context, state) => const OnBoardingView()),
+  ],
+  );
 }

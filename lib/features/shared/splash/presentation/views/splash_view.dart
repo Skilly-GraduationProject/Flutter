@@ -31,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
         const Duration(
           seconds: 2,
         ), () {
-      GoRouter.of(context).push(RouterPath.providerHome);
+      GoRouter.of(context).push(RouterPath.onBoardingView);
     });
   }
 }
