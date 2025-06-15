@@ -34,7 +34,7 @@ class _EmergencyViewBodyState extends State<EmergencyViewBody> {
       final currentOffers =
           List.of((cubit.state as GetEmergencyProvidersSuccess).offers);
       currentOffers.removeAt(index);
-   //   cubit.emit(GetEmergencyProvidersSuccess(currentOffers));
+
     }
   }
 

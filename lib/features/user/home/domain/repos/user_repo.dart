@@ -35,7 +35,7 @@ abstract class UserRepo {
     required String category,
     required File? video,
       required String startDate,
-    required List<File>images,
+    required List<File>?images,
     required double price
     ,});
     Future<Either<Failure, void>> addOffer( {
