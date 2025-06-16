@@ -1,7 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
+import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../../core/helper/shared_prefrences.dart';
+import '../../manager/AddUserDataCubit/addUserData_cubit.dart';
 import 'custom_drop_down.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -16,24 +23,270 @@ class UserDataForm extends StatefulWidget {
 
 class _UserDataFormState extends State<UserDataForm> {
   final Map<String, List<String>> cities = {
-    'القاهرة': ['مدينة نصر', 'المعادي', 'حلوان', 'شبرا'],
-    'الإسكندرية': ['سموحة', 'العصافرة', 'محرم بك', 'المنتزه'],
-    'الجيزة': ['الهرم', 'الدقي', 'الشيخ زايد', '6 أكتوبر'],
-    'أسوان': ['أسوان الجديدة', 'كوم أمبو', 'دراو', 'إدفو'],
-    'الأقصر': ['الكرنك', 'الأقصر الجديدة', 'إسنا', 'أرمنت'],
-    'بورسعيد': ['الزهور', 'بورفؤاد', 'العرب', 'المناخ'],
-    'دمياط': ['الزرقا', 'كفر سعد', 'فارسكور'],
+    'القاهرة': [
+      'مدينة نصر',
+      'المعادي',
+      'حلوان',
+      'شبرا',
+      'مصر الجديدة',
+      'الزيتون',
+      'المرج',
+      'عين شمس',
+      'السيدة زينب',
+      'الزمالك',
+      'العباسية',
+      'التجمع الخامس',
+      'المطرية',
+      'البساتين',
+      'دار السلام',
+      'الخليفة',
+      'الوايلي'
+    ],
+    'الجيزة': [
+      'الهرم',
+      'الدقي',
+      'الشيخ زايد',
+      '6 أكتوبر',
+      'العجوزة',
+      'الوراق',
+      'البدرشين',
+      'العياط',
+      'أوسيم',
+      'الصف',
+      'أبو النمرس'
+    ],
+    'الإسكندرية': [
+      'سموحة',
+      'العصافرة',
+      'محرم بك',
+      'المنتزه',
+      'سيدي بشر',
+      'العجمي',
+      'المعمورة',
+      'ميامي',
+      'اللبان',
+      'كرموز',
+      'المنشية'
+    ],
+    'القليوبية': [
+      'بنها',
+      'شبرا الخيمة',
+      'طوخ',
+      'قليوب',
+      'الخانكة',
+      'كفر شكر',
+      'شبين القناطر',
+      'الخصوص'
+    ],
+    'الدقهلية': [
+      'المنصورة',
+      'طلخا',
+      'ميت غمر',
+      'دكرنس',
+      'الجمالية',
+      'شربين',
+      'المنزلة',
+      'بني عبيد',
+      'السنبلاوين',
+      'تمى الأمديد'
+    ],
+    'الشرقية': [
+      'الزقازيق',
+      'العاشر من رمضان',
+      'بلبيس',
+      'أبو كبير',
+      'ههيا',
+      'فاقوس',
+      'منيا القمح',
+      'الإبراهيمية',
+      'ديرب نجم'
+    ],
+    'الغربية': [
+      'طنطا',
+      'كفر الزيات',
+      'المحلة الكبرى',
+      'زفتى',
+      'السنطة',
+      'بسيون',
+      'سمنود'
+    ],
+    'المنوفية': [
+      'شبين الكوم',
+      'منوف',
+      'السادات',
+      'تلا',
+      'أشمون',
+      'الباجور',
+      'سرس الليان',
+      'بركة السبع'
+    ],
+    'كفر الشيخ': [
+      'كفر الشيخ',
+      'بلطيم',
+      'سيدي سالم',
+      'دسوق',
+      'الحامول',
+      'الرياض',
+      'فوه',
+      'قلين'
+    ],
+    'البحيرة': [
+      'دمنهور',
+      'كفر الدوار',
+      'إيتاي البارود',
+      'رشيد',
+      'أبو حمص',
+      'المحمودية',
+      'النوبارية',
+      'حوش عيسى'
+    ],
+    'دمياط': [
+      'دمياط',
+      'رأس البر',
+      'فارسكور',
+      'الزرقا',
+      'كفر سعد',
+      'السرو',
+      'عزبة البرج',
+      'دمياط الجديدة'
+    ],
+    'بورسعيد': ['بورسعيد', 'بورفؤاد', 'الزهور', 'العرب', 'المناخ', 'الضواحي'],
+    'الإسماعيلية': [
+      'الإسماعيلية',
+      'فايد',
+      'القنطرة شرق',
+      'القنطرة غرب',
+      'أبو صوير',
+      'التل الكبير'
+    ],
+    'السويس': ['حي السويس', 'حي الجناين', 'عتاقة', 'الأربعين'],
+    'بني سويف': [
+      'بني سويف',
+      'بني سويف الجديدة',
+      'الواسطى',
+      'إهناسيا',
+      'ناصر',
+      'ببا',
+      'الفشن'
+    ],
+    'الفيوم': [
+      'الفيوم',
+      'الفيوم الجديدة',
+      'سنورس',
+      'طامية',
+      'إطسا',
+      'يوسف الصديق'
+    ],
+    'المنيا': [
+      'المنيا',
+      'المنيا الجديدة',
+      'أبوقرقاص',
+      'ملوي',
+      'مطاي',
+      'بني مزار',
+      'سمالوط'
+    ],
+    'أسيوط': [
+      'أسيوط',
+      'أسيوط الجديدة',
+      'ديروط',
+      'منفلوط',
+      'البداري',
+      'أبو تيج',
+      'ساحل سليم',
+      'الفتح'
+    ],
+    'سوهاج': [
+      'سوهاج',
+      'سوهاج الجديدة',
+      'طهطا',
+      'جرجا',
+      'أخميم',
+      'المراغة',
+      'البلينا',
+      'دار السلام'
+    ],
+    'قنا': ['قنا', 'نجع حمادي', 'قوص', 'دشنا', 'أبوتشت', 'نقادة', 'قفط'],
+    'الأقصر': [
+      'الأقصر',
+      'الأقصر الجديدة',
+      'الكرنك',
+      'إسنا',
+      'أرمنت',
+      'الزينية'
+    ],
+    'أسوان': [
+      'أسوان',
+      'أسوان الجديدة',
+      'كوم أمبو',
+      'إدفو',
+      'دراو',
+      'نصر النوبة'
+    ],
+    'البحر الأحمر': [
+      'الغردقة',
+      'رأس غارب',
+      'القصير',
+      'سفاجا',
+      'مرسى علم',
+      'الشلاتين',
+      'حلايب'
+    ],
+    'الوادي الجديد': ['الخارجة', 'الداخلة', 'الفرافرة', 'باريس', 'بلاط'],
+    'مطروح': [
+      'مرسى مطروح',
+      'الضبعة',
+      'سيدي براني',
+      'السلوم',
+      'الحمام',
+      'النجيلة',
+      'سيوة'
+    ],
+    'جنوب سيناء': [
+      'شرم الشيخ',
+      'دهب',
+      'نويبع',
+      'سانت كاترين',
+      'أبو زنيمة',
+      'أبو رديس',
+      'طور سيناء'
+    ],
+    'شمال سيناء': ['العريش', 'الشيخ زويد', 'رفح', 'بئر العبد', 'الحسنة', 'نخل'],
   };
-  List<String> governs = [
-    'القاهرة',
-    'الإسكندرية',
-    'الجيزة',
-    'أسوان',
-    'الأقصر',
-    'بورسعيد',
-    'دمياط'
-  ];
-  String selectedGender = 'ذكر';
+  List<String> get governs => cities.keys.toList();
+
+  File? profileImage;
+
+  @override
+  void initState() {
+    super.initState();
+    loadImage();
+  }
+
+  Future<void> loadImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final imagePath = prefs.getString('profile_image');
+    if (imagePath != null && File(imagePath).existsSync()) {
+      setState(() {
+        profileImage = File(imagePath);
+      });
+    }
+  }
+
+  Future<void> pickImage() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+    if (result != null && result.files.single.path != null) {
+      final pickedFile = File(result.files.single.path!);
+      setState(() {
+        profileImage = pickedFile;
+      });
+    }
+  }
+
+  int selectedGender = 0;
   String? selectedCity, selectedGovern, age, streetName, firstName, secondName;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
@@ -42,28 +295,39 @@ class _UserDataFormState extends State<UserDataForm> {
         key: formKey,
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                    child: CustomTextField(
-                  title: 'الاسم الاخير',
-                  onSaved: (val) {
-                    secondName = val;
-                  },
-                )),
-                const SizedBox(
-                  width: 20,
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color(0xff1C274C),
+                  width: 1,
                 ),
-                Expanded(
-                    child: CustomTextField(
-                  title: 'الاسم الاول',
-                  onSaved: (val) {
-                    firstName = val;
-                  },
-                )),
-              ],
+              ),
+              child: GestureDetector(
+                onTap: pickImage,
+                child: CircleAvatar(
+                  radius: 35,
+                  backgroundColor: Colors.transparent,
+                  backgroundImage:
+                      profileImage != null ? FileImage(profileImage!) : null,
+                  child: profileImage == null
+                      ? const Icon(
+                          Icons.upload_outlined,
+                          size: 40,
+                          color: Color(0xff1C274C),
+                        )
+                      : null,
+                ),
+              ),
             ),
             const SizedBox(height: 20),
+            const Text(
+              'يرجى اختيار صورة شخصية واضحة و مناسبة',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+            ),
+            const Gap(20),
             CustomDropDown(
               selectedValue: selectedGovern,
               hint: 'المحافظة',
@@ -102,10 +366,10 @@ class _UserDataFormState extends State<UserDataForm> {
                 Expanded(
                     child: VerifyOption(
                   title: 'انثي',
-                  selected: selectedGender == 'انثي',
+                  selected: selectedGender == 1,
                   onTap: () {
                     setState(() {
-                      selectedGender = 'انثي';
+                      selectedGender = 1;
                     });
                   },
                 )),
@@ -115,22 +379,32 @@ class _UserDataFormState extends State<UserDataForm> {
                 Expanded(
                     child: VerifyOption(
                   title: 'ذكر',
-                  selected: selectedGender == 'ذكر',
+                  selected: selectedGender == 0,
                   onTap: () {
                     setState(() {
-                      selectedGender = 'ذكر';
+                      selectedGender = 0;
                     });
                   },
                 )),
               ],
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 100),
             CustomButton(
               text: 'حفظ',
-              onTap: () {
+              onTap: () async {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  GoRouter.of(context).push('/provider');
+                  final token = await loadToken();
+                  print('token $token');
+                  BlocProvider.of<AddUserDataCubit>(context).addUserData(
+                    selectedGovern!,
+                    selectedCity!,
+                    streetName!,
+                    profileImage!,
+                    selectedGender,
+                    token!,
+                  );
+                  GoRouter.of(context).push('/signIn');
                 }
               },
             )

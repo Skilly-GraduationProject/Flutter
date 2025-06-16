@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/review_card.dart';

@@ -14,7 +14,6 @@ import 'package:grad_project/core/widgets/buttons/notification_button.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 import 'package:grad_project/core/widgets/custom_error_widget.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/home/data/repo/home_repo.dart';
 import 'package:grad_project/features/provider/home/presentation/manager/cubit/provider_home_cubit_cubit.dart';
@@ -22,8 +21,9 @@ import 'package:grad_project/features/provider/home/presentation/manager/cubit/p
 import 'package:grad_project/features/provider/home/presentation/view/widgets/provider_home_data.dart';
 import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
-import 'package:grad_project/core/widgets/home_app_bar.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../../../user/home/presentation/views/widgets/image_banners.dart';
 
 class ServiceProviderViewBody extends StatelessWidget {
   const ServiceProviderViewBody({super.key});

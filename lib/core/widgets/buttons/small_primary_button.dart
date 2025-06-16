@@ -17,12 +17,13 @@ class SmallPrimaryButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: color ?? ColorManager.primary),
         child: Center(
           child: Text(
+            textAlign: TextAlign.center,
             text,
             style: TextStyleManager.style12BoldWhite,
           ),

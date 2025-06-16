@@ -1,52 +1,104 @@
 import 'package:flutter/material.dart';
-
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
+import 'package:grad_project/core/navigation/router_path.dart';
 import '../../../../../../core/managers/color_manager.dart';
-import '../../../../../../core/managers/image_manager.dart';
+import '../../../../../../core/managers/text_style_manager.dart';
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({super.key});
+  const OrderCard(
+      {super.key,
+      required this.name,
+      required this.id,
+      required this.desc,
+      required this.price,
+      required this.offersCount,
+      required this.img});
+
+  final String name, id, desc;
+  final String?img;
+  final int offersCount;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
+    
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(child: Image.asset(ImageManager.banner)),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+         img != null && img!.trim().isNotEmpty
+    ?
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(img!,
+                width: context.responsiveWidth(200),
+                height: context.responsiveWidth(100),
+                fit: BoxFit.fill),
+          ):const SizedBox(),
+          Padding(
+            padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'عنوان الخدمة',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  name,
+                  style: TextStyleManager.style14BoldBlack,
                 ),
+                const Gap(5),
                 Text(
-                  'تفاصيل قصيرة عن الخدمة تفاصيل قصيرة عن الخدمة',
-                  style: TextStyle(fontSize: 12, color: Colors.black54),
-                  maxLines: 2,
+                  desc,
+                  style: const TextStyle(fontSize: 12, color: Colors.black54),
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 5),
+                const Gap(10),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('العروض'),
+                    GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context)
+                            .push(RouterPath.offersView, extra: id);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32),
+                            color: ColorManager.secondary),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
+                          child: Text(
+                            'العروض',
+                            style: TextStyleManager.style12BoldWhite,
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
-                      width: 5,
+                      width: context.responsiveWidth(5),
                     ),
                     Text(
-                      '5',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: ColorManager.blue),
+                      '"$offersCount"',
+                      style: TextStyleManager.style12BoldSec,
                     ),
                   ],
-                )
+                ),
+                const Gap(10),
+                Row(
+          
+                  children: [
+                    Text(
+                      '$price ج.م',
+                      style: TextStyleManager.style14BoldPrimary,
+                    )
+                  ],
+                ),
               ],
             ),
           )

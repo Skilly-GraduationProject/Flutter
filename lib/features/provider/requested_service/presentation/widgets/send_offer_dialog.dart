@@ -10,7 +10,6 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/secondary_button.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/core/widgets/show_custom_loading.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/offer_model/send_offer_model.dart';

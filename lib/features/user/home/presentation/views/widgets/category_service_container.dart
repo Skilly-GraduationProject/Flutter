@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
 import '../../../../../../core/managers/color_manager.dart';
-import '../../../../../../core/managers/image_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../../../../core/widgets/buttons/small_primary_button.dart';
+import '../../../domain/entities/all_services_entity.dart';
 
 class CategoryServiceContainer extends StatelessWidget {
+  final AllServicesEntity service;
   const CategoryServiceContainer(
-      {super.key, required this.name, required this.desc, required this.price});
-  final String name, desc, price;
+      {super.key,
+      required this.name,
+      required this.desc,
+      required this.price,
+      required this.providerImg,
+      required this.providerName,
+      required this.date,
+      required this.img,
+      required this.service});
+  final String name, desc, price, providerImg, providerName, date, img;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +44,10 @@ class CategoryServiceContainer extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(200),
-                    child: Image.asset(
-                      ImageManager.avatar,
-                      height: 50,
-                      width: 50,
-                    ),
+                    child: Image.network(providerImg,
+                        width: context.responsiveWidth(50),
+                        height: context.responsiveWidth(50),
+                        fit: BoxFit.cover),
                   ),
                   const SizedBox(width: 8),
                   const Text(
@@ -61,8 +71,8 @@ class CategoryServiceContainer extends StatelessWidget {
           const SizedBox(height: 10),
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              ImageManager.banner,
+            child: Image.network(
+              img,
               fit: BoxFit.cover,
               width: double.infinity,
               height: 120,
@@ -84,19 +94,16 @@ class CategoryServiceContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  SmallPrimaryButton(
-                    text: 'شراء',
-                    color: ColorManager.secondary,
-                    onTap: () {},
-                  ),
-                  const SizedBox(width: 5),
-                  SmallPrimaryButton(
-                    text: 'عرض سعر',
-                    onTap: () {},
-                  ),
-                ],
+              SmallPrimaryButton(
+                text: 'عرض التفاصيل',
+                color: ColorManager.primary,
+                onTap: () {
+                  GoRouter.of(context)
+                      .push('/viewService', extra: {
+    'service': service,
+    'showBuyOrOffer': true,
+  },);
+                },
               ),
               Text('$price ج.م', style: TextStyleManager.style12BoldPrimary),
             ],

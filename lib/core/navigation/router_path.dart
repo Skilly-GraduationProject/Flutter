@@ -17,4 +17,17 @@ class RouterPath {
   static const String providerGalleryServiceView = '/providerGalleryServiceView';
   static const String addGalleryServiceView = '/addGalleryServiceView';
   static const String onBoardingView = '/onBoardingView';
+  static const String ordersView = '/ordersView';
+  static const String offersView = '/offersView';
+  static const String reviewsView = '/reviewsView';
+  static const String emergencyView = '/emergencyView';
+  static const String discountsView = '/discountsView';
+  static const String pointsView = '/pointsEntryView';
+  static const String paymentView = '/paymentView';
+  static const String paymentSuccessView = '/paymentSuccessView';
+  static const String allCategoriesView = '/allCategoriesView';
+  static const String discountServicesView = '/discountServicesView';
+  static const String offeredServicesView = '/offeredServicesView';
+  static const String userProfile = '/userProfile';
+
 }

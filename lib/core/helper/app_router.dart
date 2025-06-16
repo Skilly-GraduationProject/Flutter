@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
@@ -35,8 +36,20 @@ import '../../features/shared/auth/presentation/views/user_type_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_code_view.dart';
 import '../../features/shared/auth/presentation/views/verfication_email_view.dart';
 import '../../features/shared/splash/presentation/views/splash_view.dart';
+import '../../features/user/home/domain/entities/user_profile_data_entity.dart';
+import '../../features/user/home/presentation/views/all_categories_view.dart';
 import '../../features/user/home/presentation/views/category_view.dart';
+import '../../features/user/home/presentation/views/discount_services_view.dart';
+import '../../features/user/home/presentation/views/discounts_view.dart';
+import '../../features/user/home/presentation/views/emergency_view.dart';
+import '../../features/user/home/presentation/views/offered_services_view.dart';
+import '../../features/user/home/presentation/views/offers_view.dart';
+import '../../features/user/home/presentation/views/payment_success_view.dart';
+import '../../features/user/home/presentation/views/payment_view.dart';
+import '../../features/user/home/presentation/views/points_entry_view.dart';
 import '../../features/user/home/presentation/views/request_service_view.dart';
+import '../../features/user/home/presentation/views/reviews_view.dart';
+import '../../features/user/home/presentation/views/user_orders_view.dart';
 import '../../features/user/home/presentation/views/user_profile_view.dart';
 import '../../features/user/home/presentation/views/view_service_view.dart';
 
@@ -44,7 +57,14 @@ abstract class AppRouter {
   static final router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const SplashView()),
     GoRoute(path: '/signIn', builder: (context, state) => const SignInView()),
-    GoRoute(path: '/signUp', builder: (context, state) => const SignUpView()),
+    GoRoute(
+        path: '/signUp',
+        builder: (context, state) {
+          final userType = state.extra as int;
+          return SignUpView(
+            userType: userType,
+          );
+        }),
     GoRoute(
         path: '/forgotPass',
         builder: (context, state) => const ForgotPassView()),
@@ -66,19 +86,70 @@ abstract class AppRouter {
         builder: (context, state) => const RequestServiceView()),
     GoRoute(
         path: '/viewService',
-        builder: (context, state) => const ViewServiceView()),
+        builder: (context, state) {
+             final extra = state.extra as Map<String, dynamic>;
+    final service = extra['service'] ;
+    final showBuyOrOffer = extra['showBuyOrOffer'] as bool? ?? false;
+    final showDiscountButton = extra['showDiscountButton'] as bool? ?? false;
+
+          return ViewServiceView(
+      service: service,
+      showBuyOrOffer: showBuyOrOffer,
+      showDiscountButton: showDiscountButton,
+    );
+        }),
     GoRoute(
-        path: '/category',
-        builder: (context, state) => const CategoryView(
-              categoryId: '',
-              categoryName: '',
-            )),
+      path: '/category',
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+        return CategoryView(
+          categoryId: data['id'],
+          categoryName: data['name'],
+        );
+      },
+    ),
     GoRoute(
-        path: '/userProfile',
-        builder: (context, state) => const UserProfileView()),
+      path:RouterPath.userProfile,
+      builder: (context, state) {
+        final data = state.extra as UserProfileDataEntity?;
+
+        if (data == null) {
+          return const Scaffold(
+            body: Center(child: Text("Data not found")),
+          );
+        }
+        return UserProfileView(data: data);
+      },
+    ),
     GoRoute(
         path: RouterPath.userHome,
         builder: (context, state) => const UserHomeView()),
+    GoRoute(
+        path: RouterPath.ordersView,
+        builder: (context, state) => const UserOrdersView()),
+    GoRoute(
+        path: RouterPath.allCategoriesView,
+        builder: (context, state) => const AllCategoriesView()),
+         GoRoute(
+        path: RouterPath.paymentSuccessView,
+        builder: (context, state) => const PaymentSuccessView()),
+    GoRoute(
+        path: RouterPath.reviewsView,
+        builder: (context, state) {
+          final serviceId = state.extra as String?;
+          if (serviceId == null) {
+            return const Text('Missing service ID');
+          }
+          return ReviewsView(serviceId: serviceId);
+        }),
+         GoRoute(
+        path: RouterPath.paymentView,
+        builder: (context, state) {
+         final paymentUrl = state.extra as String?;
+          if (paymentUrl == null) {
+            return const Text('Missing paymentUrl');
+          }
+          return PaymentView(paymentUrl: paymentUrl,);},),
     GoRoute(
         path: RouterPath.providerHome,
         builder: (context, state) => const ServiceProviderHomeView()),
@@ -109,14 +180,42 @@ abstract class AppRouter {
         path: RouterPath.notificationView,
         builder: (context, state) => const NotificationView()),
     GoRoute(
+        path: RouterPath.emergencyView,
+        builder: (context, state) => const EmergencyView()),
+    GoRoute(
+        path: RouterPath.pointsView,
+        builder: (context, state) => const PointsEntryView()),
+    GoRoute(
+        path: RouterPath.discountsView,
+        builder: (context, state){
+
+        return const DiscountsView();
+      },),
+    GoRoute(
+        path: RouterPath.discountServicesView,
+        builder: (context, state) => const DiscountServicesView()),
+    GoRoute(
+        path: RouterPath.offeredServicesView,
+        builder: (context, state) => const OfferedServicesView()),
+    GoRoute(
+      path: RouterPath.offersView,
+      builder: (context, state) {
+        final orderId = state.extra as String?;
+        if (orderId == null) {
+          return const Text('Missing order ID');
+        }
+        return OffersView(orderId: orderId);
+      },
+    ),
+    GoRoute(
         path: RouterPath.getServiceView,
         builder: (context, state) =>
             GetServiceView(service: state.extra as RequestedService)),
     GoRoute(
         path: RouterPath.chatView,
         builder: (context, state) => ChatView(
-              chat: state.extra as ChatInfoModel,
-            )),
+          chat: state.extra as ChatInfoModel,
+        )),
     GoRoute(
         path: RouterPath.privacyPolicyView,
         builder: (context, state) => const PrivacyPolicyView()),
@@ -126,29 +225,31 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.providerServiceView,
         builder: (context, state) => ProviderServiceView(
-              serviceId: state.extra as String,
-            )),
+          serviceId: state.extra as String,
+        )),
     GoRoute(
         path: RouterPath.editServiceView,
         builder: (context, state) => EditServiceView(
-              service: state.extra as ProviderService,
-            )),
+          service: state.extra as ProviderService,
+        )),
     GoRoute(
         path: RouterPath.editProviderProfile,
         builder: (context, state) => EditProfileView(
-              providerProfileModel: state.extra as ProviderProfileModel,
-            )),
+          providerProfileModel: state.extra as ProviderProfileModel,
+        )),
     GoRoute(
         path: RouterPath.providerGalleryServiceView,
         builder: (context, state) => ProviderGalleryServiceView(
-              serviceId: state.extra as String,
-            )),
+          serviceId: state.extra as String,
+        )),
     GoRoute(
         path: RouterPath.addGalleryServiceView,
         builder: (context, state) => const AddGalleryServiceView()),
     GoRoute(
         path: RouterPath.onBoardingView,
         builder: (context, state) => const OnBoardingView()),
-  ],
-  );
+  ]);
+
+
+
 }

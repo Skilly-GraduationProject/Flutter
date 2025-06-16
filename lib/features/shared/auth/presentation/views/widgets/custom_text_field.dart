@@ -12,7 +12,9 @@ class CustomTextField extends StatefulWidget {
       this.onChanged,
       this.maxLines,
       this.validate,
-      this.keyboardType});
+      this.keyboardType,
+        this.suffix
+      });
 
   final String title;
   final void Function(String?)? onSaved;
@@ -24,6 +26,7 @@ class CustomTextField extends StatefulWidget {
   final int? maxLines;
   final bool? validate;
   final TextInputType? keyboardType;
+  final Widget? suffix;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -44,6 +47,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onSaved: widget.onSaved,
         onChanged: widget.onChanged,
         keyboardType: widget.keyboardType,
+
         validator: (val) {
           if (val!.isEmpty && widget.validate != false) {
             return "This Field is required";
@@ -52,6 +56,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           }
         },
         decoration: InputDecoration(
+          suffixIcon: widget.suffix,
           prefixIcon: widget.icon,
           hintTextDirection: TextDirection.rtl,
           hintText: widget.title,

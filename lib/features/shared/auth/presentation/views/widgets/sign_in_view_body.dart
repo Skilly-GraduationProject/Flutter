@@ -28,7 +28,7 @@ class SignInViewBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+             
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
@@ -57,7 +57,7 @@ class SignInViewBody extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        GoRouter.of(context).push('/signUp');
+                        GoRouter.of(context).push('/userType');
                       },
                       child: const Text(
                         'سجل',
@@ -67,17 +67,12 @@ class SignInViewBody extends StatelessWidget {
                             color: kPrimaryColor),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).push(RouterPath.providerHome);
-                      },
-                      child: const Text(
-                        ' ليس لديك حساب؟',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: Colors.grey),
-                      ),
+                    const Text(
+                      ' ليس لديك حساب؟',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: Colors.grey),
                     ),
                   ],
                 ),

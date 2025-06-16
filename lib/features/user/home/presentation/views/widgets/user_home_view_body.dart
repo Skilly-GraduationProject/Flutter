@@ -1,39 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/categories_list_view.dart';
-import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
-import 'package:grad_project/core/widgets/home_app_bar.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/home_services_listview.dart';
 
-class UserHomeViewbody extends StatelessWidget {
-  const UserHomeViewbody({super.key});
+import '../../../../../../core/navigation/router_path.dart';
+import '../../../../../../core/widgets/buttons/small_primary_button.dart';
+import 'clickable_banners.dart';
+import 'home_user_app_bar.dart';
+
+class UserHomeViewBody extends StatelessWidget {
+  const UserHomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          pinned: true,
-          primary: true,
-          foregroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          surfaceTintColor: Colors.transparent,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          leading: Image.asset(ImageManager.notificationIcon),
-        ),
-        const SliverGap(20),
         const SliverToBoxAdapter(
-          child: HomeAppBar(),
+          child: HomeUserAppBar(),
         ),
-        const SliverGap(20),
+        const SliverGap(10),
         const SliverToBoxAdapter(
-          child: HomeBanners(),
+          child: ClickableBanners(),
         ),
-        const SliverGap(20),
+        const SliverGap(15),
         SliverToBoxAdapter(
           child: PrimaryButton(
             text: "طلب خدمه",
@@ -42,31 +34,69 @@ class UserHomeViewbody extends StatelessWidget {
             },
           ),
         ),
-        const SliverGap(20),
+        const SliverGap(15),
         SliverToBoxAdapter(
-          child: Text(
-            "الاقسام",
-            style: TextStyleManager.style18BoldSec,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "الاقسام",
+              style: TextStyleManager.style18BoldSec,
+            ),
           ),
         ),
         const SliverGap(10),
         const SliverToBoxAdapter(
           child: CategoriesListView(),
         ),
-        const SliverGap(20),
+        const SliverGap(10),
         SliverToBoxAdapter(
-          child: Text(
-            "الخدمات المعروضه",
-            style: TextStyleManager.style18BoldSec,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SmallPrimaryButton(
+                text: 'استعراض جميع الخدمات',
+                onTap: () {
+                  GoRouter.of(context).push(RouterPath.allCategoriesView);
+                },
+              ),
+            ],
+          ),
+        ),
+        const SliverGap(15),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "الخدمات المعروضه",
+                  style: TextStyleManager.style18BoldSec,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(RouterPath.offeredServicesView);
+                  },
+                  child: const Row(
+                    children: [
+                      Text('عرض الكل'),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        size: 16,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         const SliverGap(10),
-        SliverList.separated(
-          itemCount: 10,
-          itemBuilder: (context, index) => const OfferedServiceCard(),
-          separatorBuilder: (context, index) {
-            return const Gap(15);
-          },
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 600, child: HomeServicesListView()),
         )
       ],
     );

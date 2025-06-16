@@ -10,12 +10,10 @@ import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 import 'package:grad_project/core/widgets/custom_network_image.dart';
-import 'package:grad_project/core/widgets/home_banners.dart';
 import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
-import 'package:grad_project/core/widgets/home_app_bar.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class RequestedServiceCard extends StatelessWidget {

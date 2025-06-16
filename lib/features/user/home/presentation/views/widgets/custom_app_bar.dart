@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key, required this.title});
@@ -6,7 +7,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
         children: [
           IconButton(
@@ -17,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
             color: Colors.black,
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.2,
+            width: context.responsiveWidth(100),
           ),
           Text(
             title,

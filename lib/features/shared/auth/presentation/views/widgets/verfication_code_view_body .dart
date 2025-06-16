@@ -99,11 +99,12 @@ class _VerficationCodeViewBodyState extends State<VerficationCodeViewBody> {
               CustomButton(
                 text: 'التالي',
                 onTap: () {
-                  final code = controller1.text +
-                      controller2.text +
+                  final code = controller4.text +
                       controller3.text +
-                      controller4.text;
-                  print('code $code');
+                      controller2.text +
+                      controller1.text;
+
+                  print(code);
                   BlocProvider.of<VerifycodeCubit>(context)
                       .verifyCode(code: code, email: email!);
                   print('email $email');

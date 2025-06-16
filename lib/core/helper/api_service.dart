@@ -8,7 +8,7 @@ class ApiService {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
-      
+
     }),
 
   );
@@ -21,9 +21,10 @@ class ApiService {
     return response;
   }
 
-  Future<Response> get(String endPoint, {String? token}) async {
+  Future<Response> get(String endPoint, {String? token,Map<String,dynamic>? queryParameters}) async {
     var response = await dio.get(
       endPoint,
+      queryParameters: queryParameters
     );
     print(response.data);
     return response;

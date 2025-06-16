@@ -32,12 +32,12 @@ class _CategoriesListViewState extends State<CategoriesListView> {
       } else if (state is GetAllCategoriesSuccess) {
         final categories = state.category.categories;
         return SizedBox(
-          height: context.responsiveHeight(80),
+          height: context.responsiveHeight(120),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            itemCount: 10,
-            separatorBuilder: (context, index) => const Gap(10),
+            itemCount: categories.length,
+            separatorBuilder: (context, index) => const Gap(15),
             itemBuilder: (context, index) {
               final CategoryItemEntity category = categories[index];
 

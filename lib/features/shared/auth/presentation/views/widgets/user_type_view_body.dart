@@ -12,7 +12,7 @@ class UserTypeViewBody extends StatefulWidget {
 }
 
 class _UserTypeViewBodyState extends State<UserTypeViewBody> {
-  String userType = 'user';
+  int userType = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,10 +46,10 @@ class _UserTypeViewBodyState extends State<UserTypeViewBody> {
                 title: 'موفر خدمه',
                 description:
                     'موفر الخدمه هو الشخص التي لديه مهاره معينه يقدمها كخدمه للمستخدين',
-                isSelected: userType == 'موفر خدمه',
+                isSelected: userType ==1,
                 onTap: () {
                   setState(() {
-                    userType = 'موفر خدمه';
+                    userType = 1;
                   });
                 },
               ),
@@ -58,10 +58,10 @@ class _UserTypeViewBodyState extends State<UserTypeViewBody> {
                 title: 'مستخدم',
                 description:
                     'المستخدم هو الشخص الذي يفحث عن خدمه من التي يقدمها موفري الخدمات',
-                isSelected: userType == 'مستخدم',
+                isSelected: userType ==0,
                 onTap: () {
                   setState(() {
-                    userType = 'مستخدم';
+                    userType = 0;
                   });
                 },
               )
@@ -73,7 +73,7 @@ class _UserTypeViewBodyState extends State<UserTypeViewBody> {
           CustomButton(
             text: 'التالي',
             onTap: () {
-              GoRouter.of(context).push('/signIn', extra: userType);
+              GoRouter.of(context).push('/signUp', extra: userType);
             },
           )
         ],

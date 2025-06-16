@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
+import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
 
-class OfferedServiceCard extends StatelessWidget {
-  const OfferedServiceCard({
-    super.key,
-  });
+import '../../../domain/entities/all_services_entity.dart';
 
+class OfferedServiceCard extends StatelessWidget {
+  const OfferedServiceCard({super.key, required this.service});
+
+  final AllServicesEntity service;
   @override
   Widget build(BuildContext context) {
+ 
+
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(12)),
+          color: Colors.grey.shade100, borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,26 +29,38 @@ class OfferedServiceCard extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(200),
-                    child: Image.asset(ImageManager.avatar),
+                    child: Image.network(service.providerImg,
+                        width: context.responsiveWidth(50),
+                        height: context.responsiveWidth(50),
+                        fit: BoxFit.cover),
                   ),
                   const Gap(10),
                   Text(
-                    "محمد خالد",
+                    service.providerName,
                     style: TextStyleManager.style14BoldSec,
                   ),
                 ],
               ),
-              const Text("13/10/2024")
+              Text(service.time)
             ],
           ),
           const Gap(10),
+          Row(children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(service.img,
+                  width: context.responsiveWidth(350),
+                  height: context.responsiveWidth(150),
+                  fit: BoxFit.cover),
+            ),
+          ]),
+          const Gap(10),
           Text(
-            "عمل غرفه نوم",
+            service.name,
             style: TextStyleManager.style12BoldBlue,
           ),
           const Gap(10),
-          const Text(
-              "مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب......"),
+          Text(service.desc),
           const Gap(10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,11 +68,14 @@ class OfferedServiceCard extends StatelessWidget {
               SmallPrimaryButton(
                 text: "عرض التفاصيل",
                 onTap: () {
-                  GoRouter.of(context).push('/viewService');
+                  GoRouter.of(context).push('/viewService', extra: {
+    'service': service,
+    'showBuyOrOffer': true,
+  },);
                 },
               ),
               Text(
-                "500 ج.م",
+                "${service.price} ج.م",
                 style: TextStyleManager.style12BoldPrimary,
               ),
             ],
