@@ -26,7 +26,7 @@ abstract class UserRepo {
       {required String token});
   Future<Either<Failure, List<UserOrdersEntity>>> getUserOrders(
       {required String token});
-  Future<Either<Failure, List<GetBannersEntity>>> getBanners();
+  Future<Either<Failure, List<GetBannersEntity>>> getBanners({required String token});
   Future<Either<Failure, void>> requestService( {
    required String token,
     required String deliveryTime,

@@ -37,7 +37,7 @@ class _ClickableBannersState extends State<ClickableBanners> {
           return const CustomLoadingIndicator();
         } else if (state is GetBannersSuccess) {
           final banners = state.banners;
-
+          print('banners $banners');
           return CarouselSlider(
             items: banners.map((banner) {
               return GestureDetector(

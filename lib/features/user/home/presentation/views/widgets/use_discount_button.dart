@@ -5,7 +5,6 @@ import '../../../../../../core/managers/color_manager.dart';
 import '../../../../../../core/managers/text_style_manager.dart';
 import '../../../domain/entities/all_services_entity.dart';
 import '../../manager/ApplyDiscount/apply_discount_cubit.dart';
-import 'buy_service_sheet.dart';
 
 class UseDiscountButton extends StatelessWidget {
   const UseDiscountButton({super.key, required this.service});
@@ -18,22 +17,8 @@ class UseDiscountButton extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: OutlinedButton(
         onPressed: () {
-          BlocProvider.of<ApplyDiscountCubit>(context).applyDiscount(
-            service.id,
-          );
-          showModalBottomSheet(
-            context: context,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(32),
-              ),
-            ),
-            isScrollControlled: true,
-            builder: (_) => BuyServiceSheet(
-              service: service,
-              useDiscount: true,
-            ),
-          );
+          BlocProvider.of<ApplyDiscountCubit>(context)
+              .applyDiscount(service.id, service);
         },
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: ColorManager.primary),

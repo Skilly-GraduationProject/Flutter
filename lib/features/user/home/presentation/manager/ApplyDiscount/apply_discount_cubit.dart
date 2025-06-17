@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import '../../../../../../core/helper/shared_prefrences.dart';
+import '../../../domain/entities/all_services_entity.dart';
 import '../../../domain/usecases/apply_discount_usecase.dart';
 import 'apply_discount_states.dart';
 
@@ -8,19 +9,26 @@ class ApplyDiscountCubit extends Cubit<ApplyDiscountStates> {
   final ApplyDiscountUseCase applyDiscountUseCase;
 
   Future<void> applyDiscount(
-        String serviceId,
-
+    String serviceId,
+  AllServicesEntity service,
   ) async {
-     final token = await loadToken();
-    try {
-      var result = await applyDiscountUseCase.call(
-        token: token!,
-        serviceId: serviceId,);
-      print('ApplyDiscount cubit success $result');
-      emit(ApplyDiscountSuccess());
-    } catch (error) {
-      print('ApplyDiscount cubit fails');
-      emit(ApplyDiscountFailure(error.toString()));
-    }
+    final token = await loadToken();
+  
+  emit(ApplyDiscountLoading());
+
+    var result = await applyDiscountUseCase.call(
+      token: token!,
+      serviceId: serviceId,
+    );
+    result.fold(
+      (failure) {
+        print('ApplyDiscount cubit fails: ${failure.errMessage}');
+        emit(ApplyDiscountFailure(failure.errMessage));
+      },
+      (_) {
+        print('ApplyDiscount cubit success');
+        emit(ApplyDiscountSuccess(service));
+      },
+    );
   }
 }

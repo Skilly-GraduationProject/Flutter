@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../../core/errors/failure.dart';
+import '../../../../../core/helper/shared_prefrences.dart';
 import '../entities/get_banners_entitiy.dart';
 import '../repos/user_repo.dart';
 
@@ -9,8 +10,11 @@ class GetBannersUseCase extends UseCase<List<GetBannersEntity>, String> {
   GetBannersUseCase({required this.userRepo});
 
   @override
-  Future<Either<Failure, List<GetBannersEntity>>> call() {
-    return userRepo.getBanners();
+  Future<Either<Failure, List<GetBannersEntity>>> call() async {
+    final token = await loadToken();
+    return userRepo.getBanners(
+      token: token!,
+    );
   }
 }
 

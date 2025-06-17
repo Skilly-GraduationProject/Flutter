@@ -45,7 +45,7 @@ class EmergencyOfferCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
                   Row(
@@ -94,7 +94,7 @@ class EmergencyOfferCard extends StatelessWidget {
                           child: InfoBox(
                         child: Text(formatDeliveryTime(offer.deliveryTime)),
                       )),
-                      const Gap(20),
+                      const Gap(10),
                       Expanded(
                           child: InfoBox(
                         child: Text('${offer.price} ج.م'),
