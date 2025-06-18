@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:grad_project/core/helper/shared_prefrences.dart';
 import 'package:grad_project/core/secure_storage_helper.dart';
 import 'package:grad_project/features/provider/home/data/repo/home_repo.dart';
 import 'package:grad_project/features/provider/profile/data/repos/provider_data_repo.dart';
@@ -67,18 +68,23 @@ import 'api_service.dart';
 
 final getIt = GetIt.instance;
 
-void setUp() {
+Future<void> setUp() async{
   //-------------------Secure Storage----------------
   getIt.registerLazySingleton<FlutterSecureStorage>(
           () => const FlutterSecureStorage());
   getIt.registerLazySingleton<SecureStorageHelper>(
           () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
-  getIt.registerSingleton<ApiService>(ApiService());
+          Dio dio = Dio(
+    BaseOptions(headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization':
+          'Bearer ${await loadToken()}',
+    }),
+  );
+  getIt.registerSingleton<ApiService>(ApiService(dio: dio));
   getIt.registerSingleton<AuthRepoImplement>(
       AuthRepoImplement(apiService: getIt.get<ApiService>()));
-
-  getIt.registerSingleton<UserRepoImplement>(
-      UserRepoImplement(apiService: getIt.get<ApiService>()));
 
   getIt.registerSingleton<LoginUseCase>(
       LoginUseCase(authRepo: getIt.get<AuthRepoImplement>()));

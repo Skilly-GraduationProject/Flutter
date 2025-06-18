@@ -16,7 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  setUp();
+  await setUp();
     // Bloc.observer = SimpleBlocObserver();
 
   LocalNotification localNotification = LocalNotification();
