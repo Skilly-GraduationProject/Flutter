@@ -4,7 +4,6 @@ import 'package:grad_project/core/helper/api_service.dart';
 import 'package:grad_project/core/utils/networking/api_constatnts.dart';
 import 'package:grad_project/core/utils/networking/errors/failure.dart';
 import 'package:grad_project/core/utils/networking/errors/server_failure.dart';
-import 'package:grad_project/features/provider/home/data/models/provider_profile/provider.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 
@@ -30,9 +29,9 @@ class ProviderServiceRepo {
   Future<Either<Failure, String>> addGalleryService(
       GalleryService galleryService) async {
     try {
-      FormData data = FormData.fromMap(await galleryService.toJson());
-      final response = await apiService.post(
-          "${ApiConstants.baseUrl}Provider/Servicegallery/AddGallery", data);
+      // FormData data = FormData.fromMap(await galleryService.toJson());
+      // final response = await apiService.post(
+      //     "${ApiConstants.baseUrl}Provider/Servicegallery/AddGallery", data);
       return right("");
     } on DioException catch (e) {
       print("errrrrror $e");

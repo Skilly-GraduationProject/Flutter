@@ -1,8 +1,5 @@
-// shared Network image widget
-// usd CachedNetworkImage package
-import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grad_project/core/widgets/custom_network_image.dart';

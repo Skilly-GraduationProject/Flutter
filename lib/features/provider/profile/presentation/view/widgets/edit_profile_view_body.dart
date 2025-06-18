@@ -14,7 +14,6 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:grad_project/features/user/home/presentation/manager/GetAllCategories/get_all_categories_cubit.dart';
 import 'package:grad_project/features/user/home/presentation/manager/GetAllCategories/get_all_categories_states.dart';
-import 'package:grad_project/features/user/home/domain/entities/category_item_entity.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key, required this.providerProfileModel});

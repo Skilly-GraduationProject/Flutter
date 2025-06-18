@@ -5,8 +5,6 @@ import 'package:grad_project/core/utils/networking/errors/server_failure.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/add_service_model/add_service_model.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/add_service_model/data.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/offer_model/send_offer_model.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/send_offer_dialog.dart';
-
 import '../../../../../core/utils/networking/api_constatnts.dart';
 
 class ServiceRepo {

@@ -8,7 +8,6 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/inherted_profile_widget.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 
 class ProviderInfoWidget extends StatelessWidget {
   const ProviderInfoWidget({

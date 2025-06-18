@@ -1,8 +1,8 @@
-import 'dart:convert';
+
 import 'dart:async';
 
 import 'package:signalr_netcore/signalr_client.dart';
-import 'package:flutter/foundation.dart';
+
 
 class SocketHelper {
   static final SocketHelper _instance = SocketHelper._internal();
@@ -26,10 +26,10 @@ class SocketHelper {
         )
         .build();
 
-    _hubConnection.onclose((error) {
-      print('SignalR Disconnected: $error');
-      _reconnect();
-    });
+    // _hubConnection.onclose((error) {
+    //   print('SignalR Disconnected: $error');
+    //   _reconnect();
+    // });
 
     _hubConnection.on("ReceiveMessage", (args) {
       print("Message from server: $args");

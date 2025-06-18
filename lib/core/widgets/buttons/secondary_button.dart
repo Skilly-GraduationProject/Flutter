@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 

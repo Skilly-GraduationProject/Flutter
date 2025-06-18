@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -16,12 +16,10 @@ import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/custom_toast.dart';
 import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/core/widgets/show_custom_loading.dart';
-import 'package:grad_project/features/provider/home/data/models/provider_profile/provider.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/manager/cubit/provider_service_cubit.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/manager/cubit/provider_service_state.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/add_service_view_body.dart';
-import 'package:grad_project/features/shared/auth/presentation/views/widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditServiceViewBody extends StatefulWidget {

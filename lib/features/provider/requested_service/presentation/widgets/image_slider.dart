@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/widgets/image/custom_image.dart';
 import 'package:grad_project/core/widgets/show_image.dart';
-import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 
 class ImageSlider extends StatefulWidget {

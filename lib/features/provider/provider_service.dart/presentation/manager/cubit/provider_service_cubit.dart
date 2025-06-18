@@ -4,7 +4,6 @@ import 'package:grad_project/features/provider/profile/data/models/get_my_galler
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/provider_service.dart/data/repos/provider_service.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/manager/cubit/provider_service_state.dart';
-import 'package:meta/meta.dart';
 
 class ProviderServiceCubit extends Cubit<ProviderServiceState> {
   ProviderServiceCubit({required this.providerServiceRepo})

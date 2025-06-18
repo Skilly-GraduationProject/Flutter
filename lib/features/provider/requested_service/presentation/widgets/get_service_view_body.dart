@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:grad_project/core/extensions/context_extension.dart';
-import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/secondary_button.dart';
 import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/add_service_view_body.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/data_column.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/image_slider.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/send_offer_dialog.dart';
 import "package:grad_project/features/provider/requested_service/presentation/widgets/data_row.dart";
 
-import '../manager/cubit/service_cubit.dart';
 
 class GetServiceViewBody extends StatelessWidget {
   const GetServiceViewBody({super.key, required this.service});

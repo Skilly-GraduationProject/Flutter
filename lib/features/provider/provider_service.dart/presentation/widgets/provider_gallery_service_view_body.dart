@@ -6,13 +6,10 @@ import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
-import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/secondary_button.dart';
 import 'package:grad_project/core/widgets/custom_error_widget.dart';
 import 'package:grad_project/core/widgets/show_custom_loading.dart';
-import 'package:grad_project/features/provider/home/data/models/provider_profile/provider.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
-import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/review_card.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/manager/cubit/provider_service_cubit.dart';
@@ -20,7 +17,6 @@ import 'package:grad_project/features/provider/provider_service.dart/presentatio
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/data_column.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/data_row.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/image_slider.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/send_offer_dialog.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -222,7 +218,7 @@ class ReviewsSection extends StatelessWidget {
           itemCount: reviews?.length ?? 0,
           separatorBuilder: (context, index) => const Gap(10),
           itemBuilder: (context, index) {
-            Review reviewModel = reviews![index]!;
+           // Review reviewModel = reviews![index]!;
             return ReviewCard(
               review: reviews?[index] ?? Review(),
             );

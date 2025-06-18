@@ -1,7 +1,7 @@
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
@@ -9,16 +9,12 @@ import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/buttons/secondary_button.dart';
 import 'package:grad_project/core/widgets/show_custom_loading.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/offer_model/send_offer_model.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_cubit.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_state.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/add_service_view_body.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/custom_toast.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/image_slider.dart';
-import 'package:grad_project/generated/l10n.dart';
 
 import '../../../../../core/helper/service_locator.dart';
 import '../../data/repo/service_repo.dart';

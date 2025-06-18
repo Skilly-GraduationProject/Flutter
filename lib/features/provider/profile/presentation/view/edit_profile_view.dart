@@ -1,4 +1,4 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +13,6 @@ import 'package:grad_project/features/provider/profile/presentation/manager/cubi
 import 'package:grad_project/features/provider/profile/presentation/manager/cubit/provider_data_state.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/edit_profile_view_body.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/custom_toast.dart';
 
 class EditProfileView extends StatelessWidget {
   const EditProfileView({super.key, required this.providerProfileModel});

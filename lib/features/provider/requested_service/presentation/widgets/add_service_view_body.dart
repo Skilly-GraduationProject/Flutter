@@ -10,11 +10,9 @@ import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/helper/picker_helper.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/icon_manager.dart';
-import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/add_service_model/data.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_cubit.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_state.dart';
@@ -40,7 +38,7 @@ class AddServiceViewBody extends StatelessWidget {
               toastStyle: const ToastStyle(
                 backgroundColor: Colors.lightGreen,
               ),
-              context: context,
+             context,
               title: Text(
                 "تمت الاضافه بنجاح",
                 style: TextStyleManager.style12RegWhite,
@@ -53,7 +51,7 @@ class AddServiceViewBody extends StatelessWidget {
               toastStyle: const ToastStyle(
                   backgroundColor: Colors.red,
                   progressBarColor: ColorManager.blue),
-              context: context,
+              context,
               title: Text(
                 "حدث خطأ",
                 style: TextStyleManager.style12RegWhite,

@@ -127,7 +127,7 @@ class CategoryNameDisplay extends StatelessWidget {
             (cat) => cat.id == categoryId,
           );
           return InfoBox(
-            child: Text(category.name),
+            child: Text(category.name!),
           );
         } else {
           return const Text('فشل تحميل القسم');

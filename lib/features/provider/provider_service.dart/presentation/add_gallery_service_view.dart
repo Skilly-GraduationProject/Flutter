@@ -6,9 +6,7 @@ import 'package:grad_project/features/provider/profile/presentation/view/widgets
 import 'package:grad_project/features/provider/provider_service.dart/data/repos/provider_service.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/manager/cubit/provider_service_cubit.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/widgets/add_gallery_service_view_body.dart';
-import 'package:grad_project/features/provider/requested_service/data/repo/service_repo.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_cubit.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/add_service_view_body.dart';
+
 
 class AddGalleryServiceView extends StatelessWidget {
   const AddGalleryServiceView({super.key});

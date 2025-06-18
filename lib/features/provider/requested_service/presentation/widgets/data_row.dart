@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
-import 'package:grad_project/core/widgets/buttons/primary_button.dart';
-import 'package:grad_project/core/widgets/buttons/secondary_button.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/widgets/service_provider_profile_body.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/add_service_view_body.dart';
-import 'package:grad_project/features/provider/requested_service/presentation/widgets/image_slider.dart';
 
 class ServiceDataRow extends StatelessWidget {
   const ServiceDataRow({

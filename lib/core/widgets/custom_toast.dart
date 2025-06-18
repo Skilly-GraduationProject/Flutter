@@ -11,7 +11,7 @@ showCustomToast(
         backgroundColor:
             type == ToastType.failure ? Colors.red : Colors.lightGreen,
       ),
-      context: context,
+      context,
       title: Text(
         message ??
             (type == ToastType.failure ? "فشلت العمليه" : "تمت العمليه بنجاح"),

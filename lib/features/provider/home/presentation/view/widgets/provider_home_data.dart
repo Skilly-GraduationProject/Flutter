@@ -7,7 +7,6 @@ import 'package:grad_project/core/managers/text_style_manager.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/core/widgets/image/custom_image.dart';
-import 'package:grad_project/features/provider/home/data/models/provider_profile/provider.dart';
 import 'package:grad_project/features/provider/home/presentation/manager/cubit/provider_home_cubit_cubit.dart';
 import 'package:grad_project/features/provider/home/presentation/manager/cubit/provider_home_cubit_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';

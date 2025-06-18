@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
-import 'package:grad_project/features/provider/requested_service/data/models/add_service_model/add_service_model.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/add_service_model/data.dart';
 import 'package:grad_project/features/provider/requested_service/data/models/offer_model/send_offer_model.dart';
 import 'package:grad_project/features/provider/requested_service/data/repo/service_repo.dart';

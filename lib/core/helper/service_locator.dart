@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:grad_project/core/secure_storage_helper.dart';
@@ -22,7 +22,6 @@ import '../../features/shared/auth/presentation/manager/ForgetpassCubit/forgetPa
 import '../../features/shared/auth/presentation/manager/LoginCubit/login_cubit.dart';
 import '../../features/shared/auth/presentation/manager/RegisterCubit/register_cubit.dart';
 import '../../features/shared/auth/presentation/manager/VerifyEmailCubit/verifyemail_cubit.dart';
-import '../../features/user/home/data/repos/user_repo_implement.dart';
 import '../../features/user/home/domain/usecases/accept_e_offer_usecase.dart';
 import '../../features/user/home/domain/usecases/accept_offer_usecase.dart';
 import '../../features/user/home/domain/usecases/add_offer_usecase.dart';
