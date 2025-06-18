@@ -7,8 +7,7 @@ final class GetAllCategoriesInitial extends GetAllCategoriesStates {}
 final class GetAllCategoriesLoading extends GetAllCategoriesStates {}
 
 final class GetAllCategoriesSuccess extends GetAllCategoriesStates {
-
-    final CategoryEntity category;
+  final CategoryEntity category;
 
   GetAllCategoriesSuccess(this.category);
 }

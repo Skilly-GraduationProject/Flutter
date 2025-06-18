@@ -52,8 +52,8 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                   );
                 },
                 child: CategoryContainer(
-                  name: category.name,
-                  image: category.img,
+                  name: category.name!,
+                  image: category.img!,
                 ),
               );
             },

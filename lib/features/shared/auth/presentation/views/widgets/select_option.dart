@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:grad_project/features/shared/auth/presentation/views/widgets/verify_option.dart';
 import 'custom_button.dart';

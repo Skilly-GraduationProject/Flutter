@@ -12,7 +12,8 @@ class UserTypeCard extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.description,
-    required this.isSelected, required this.onTap,
+    required this.isSelected,
+    required this.onTap,
   });
 
   @override
@@ -25,7 +26,8 @@ class UserTypeCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xffF6F7F9),
           borderRadius: BorderRadius.circular(16),
-          border: isSelected ? Border.all(color: Colors.black, width: 2.5) : null,
+          border:
+              isSelected ? Border.all(color: Colors.black, width: 2.5) : null,
         ),
         child: Column(
           children: [

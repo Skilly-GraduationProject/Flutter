@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/extensions/context_extension.dart';
 import 'package:grad_project/core/managers/color_manager.dart';
 import 'package:grad_project/core/managers/image_manager.dart';
 import 'package:grad_project/core/managers/shadow_manager.dart';
 import 'package:grad_project/core/managers/text_style_manager.dart';
+import 'package:grad_project/core/navigation/router_path.dart';
+import 'package:grad_project/core/widgets/buttons/primary_button.dart';
 import 'package:grad_project/core/widgets/buttons/small_primary_button.dart';
+import 'package:grad_project/core/widgets/custom_network_image.dart';
+import 'package:grad_project/core/widgets/image/custom_image.dart';
+import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
+import 'package:grad_project/features/provider/home/presentation/view/widgets/requested_service_card.dart';
+import 'package:grad_project/features/user/home/presentation/views/widgets/offered_service_card.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class RequestedServiceCard extends StatelessWidget {
   const RequestedServiceCard({
     super.key,
+    this.service,
   });
-
+  final RequestedService? service;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,44 +38,55 @@ class RequestedServiceCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(200),
-                    child: Image.asset(ImageManager.avatar),
+                  ClipOval(
+                    child: CustomImage(
+                      image: service?.userImg ?? ImageManager.avatar,
+                      height: context.responsiveHeight(60),
+                      width: context.responsiveHeight(60),
+                    ),
                   ),
                   const Gap(10),
                   // user name
                   Text(
-                    "محمد خالد",
+                    service?.userName ?? "",
                     style: TextStyleManager.style14BoldSec,
                   ),
                 ],
               ),
               //post date
-              const Text("13/10/2024")
+              Text(service?.serviceRequestTime ?? "")
             ],
           ),
           const Gap(10),
           //post image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              ImageManager.banner,
-              width: context.width,
-              fit: BoxFit.fill,
-            ),
-          ),
+          service!.images!.isNotEmpty
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CustomNetworkImage(
+                      width: context.width,
+                      height: context.responsiveHeight(150),
+                      image: service?.images?[0].image ?? ImageManager.avatar))
+              : const SizedBox.shrink(),
           const Gap(10),
           //post title
           Text(
-            "عمل غرفه نوم",
+            service?.name ?? "",
             style: TextStyleManager.style12BoldBlue,
           ),
 
           const Gap(10),
           //post description
-          const Text(
-              "مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب خدمه  مطلوب......"),
-          const Gap(10),
+          Offstage(
+            offstage: service?.notes == null,
+            child: Column(
+              children: [
+                Text(
+                  service?.notes ?? "",
+                ),
+                const Gap(10),
+              ],
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -75,28 +96,34 @@ class RequestedServiceCard extends StatelessWidget {
                   style: TextStyleManager.style12BoldSec,
                 ),
                 Gap(context.responsiveWidth(10)),
-                
-                Container(
-                  padding: const EdgeInsets.all(7),
-                  decoration: const BoxDecoration(
-                      color: ColorManager.secondary, shape: BoxShape.circle),
-                  child: Text(
-                    "5",
-                    style: TextStyleManager.style12BoldWhite,
+                Skeleton.shade(
+                  child: Container(
+                    padding: const EdgeInsets.all(7),
+                    decoration: const BoxDecoration(
+                        color: ColorManager.secondary, shape: BoxShape.circle),
+                    child: Text(
+                      service?.offerSalaries?.length.toString() ?? "0",
+                      style: TextStyleManager.style12BoldWhite,
+                    ),
                   ),
                 )
               ]),
               Row(
                 children: [
                   // show details button
-                  SmallPrimaryButton(
-                    text: "عرض التفاصيل",
-                    onTap: () {},
+                  Skeleton.shade(
+                    child: SmallPrimaryButton(
+                      text: "عرض التفاصيل",
+                      onTap: () {
+                        GoRouter.of(context)
+                            .push(RouterPath.getServiceView, extra: service);
+                      },
+                    ),
                   ),
                   Gap(context.responsiveWidth(10)),
                   // requested price
                   Text(
-                    "500 ج.م",
+                    "${service?.price ?? 0} EGP",
                     style: TextStyleManager.style12BoldPrimary,
                   ),
                 ],

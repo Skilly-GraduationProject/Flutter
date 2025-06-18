@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grad_project/core/navigation/router_path.dart';
-import 'package:grad_project/features/provider/add_service/presentation/add_service_view.dart';
+import 'package:grad_project/features/provider/home/data/models/get_requested_services_model/service.dart';
+import 'package:grad_project/features/provider/home/data/models/provider_profile/provider_profile.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/edit_profile_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/add_gallery_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/edit_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/provider_gallery_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/provider_service_view.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
+import 'package:grad_project/features/provider/requested_service/presentation/get_service_view.dart';
+import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
+import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
+import 'package:grad_project/features/shared/more/presentation/view/widgets/privacy.dart';
+import 'package:grad_project/features/shared/more/presentation/view/widgets/terms.dart';
 import 'package:grad_project/features/shared/notifications/presentation/view/notification_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_reviews_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
-import 'package:grad_project/features/provider/profile/presentation/view/my_work_view.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/my_gallery_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/service_provider_profile.dart';
 import 'package:grad_project/features/user/home/domain/entities/user_orders_entity.dart';
+
+import 'package:grad_project/features/shared/on_boarding/presentation/view/on_boarding_view.dart';
+
 import 'package:grad_project/features/user/home/presentation/views/user_home_view.dart';
+
 import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
 import '../../features/shared/auth/presentation/views/provider_data_view.dart';
 import '../../features/shared/auth/presentation/views/update_pass_view.dart';
@@ -86,6 +105,7 @@ abstract class AppRouter {
           final showDiscountButton =
               extra['showDiscountButton'] as bool? ?? false;
 
+
           return ViewServiceView(
             service: service,
             showBuyOrOffer: showBuyOrOffer,
@@ -153,16 +173,24 @@ abstract class AppRouter {
         builder: (context, state) => const ServiceProviderHomeView()),
     GoRoute(
         path: RouterPath.providerProfile,
-        builder: (context, state) => const ServiceProviderProfile()),
+        builder: (context, state) => ServiceProviderProfile(
+              providerProfileModel: state.extra as ProviderProfileModel,
+            )),
     GoRoute(
         path: RouterPath.myReviewsView,
-        builder: (context, state) => const MyReviewsView()),
+        builder: (context, state) => MyReviewsView(
+              reviews: state.extra as List<Review?>,
+            )),
     GoRoute(
         path: RouterPath.myServicesView,
-        builder: (context, state) => const MyServicesView()),
+        builder: (context, state) => MyServicesView(
+              services: state.extra as List<ProviderService>,
+            )),
     GoRoute(
         path: RouterPath.myWorkView,
-        builder: (context, state) => const MyWorkView()),
+        builder: (context, state) => MyWorkView(
+              servicesgallery: state.extra as List<GalleryService>,
+            )),
     GoRoute(
         path: RouterPath.addServiceView,
         builder: (context, state) => const AddServiceView()),
@@ -178,6 +206,7 @@ abstract class AppRouter {
     GoRoute(
       path: RouterPath.discountsView,
       builder: (context, state) {
+
         return const DiscountsView();
       },
     ),
@@ -197,5 +226,49 @@ abstract class AppRouter {
         return OffersView(orderId: orderId);
       },
     ),
+    GoRoute(
+        path: RouterPath.getServiceView,
+        builder: (context, state) =>
+            GetServiceView(service: state.extra as RequestedService)),
+    GoRoute(
+        path: RouterPath.chatView,
+        builder: (context, state) => ChatView(
+          chat: state.extra as ChatInfoModel,
+        )),
+    GoRoute(
+        path: RouterPath.privacyPolicyView,
+        builder: (context, state) => const PrivacyPolicyView()),
+    GoRoute(
+        path: RouterPath.termsView,
+        builder: (context, state) => const TermsView()),
+    GoRoute(
+        path: RouterPath.providerServiceView,
+        builder: (context, state) => ProviderServiceView(
+          serviceId: state.extra as String,
+        )),
+    GoRoute(
+        path: RouterPath.editServiceView,
+        builder: (context, state) => EditServiceView(
+          service: state.extra as ProviderService,
+        )),
+    GoRoute(
+        path: RouterPath.editProviderProfile,
+        builder: (context, state) => EditProfileView(
+          providerProfileModel: state.extra as ProviderProfileModel,
+        )),
+    GoRoute(
+        path: RouterPath.providerGalleryServiceView,
+        builder: (context, state) => ProviderGalleryServiceView(
+          serviceId: state.extra as String,
+        )),
+    GoRoute(
+        path: RouterPath.addGalleryServiceView,
+        builder: (context, state) => const AddGalleryServiceView()),
+    GoRoute(
+        path: RouterPath.onBoardingView,
+        builder: (context, state) => const OnBoardingView()),
   ]);
+
+
+
 }

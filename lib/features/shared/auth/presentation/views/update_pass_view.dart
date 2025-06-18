@@ -8,6 +8,7 @@ class ResetPassView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-body: ResetPassViewBody(),    );
+      body: ResetPassViewBody(),
+    );
   }
 }

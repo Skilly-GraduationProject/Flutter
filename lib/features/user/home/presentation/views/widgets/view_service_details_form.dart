@@ -39,7 +39,6 @@ class _ViewServiceDetailsFormState extends State<ViewServiceDetailsForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CustomAppBar(title: 'الخدمة'),
-     
           ImagesBanner(images: widget.service.images),
           const SizedBox(height: 10),
           Text(widget.service.name, style: TextStyleManager.style16BoldBlack),

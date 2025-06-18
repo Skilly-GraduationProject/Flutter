@@ -82,7 +82,6 @@ class _VerficationBottomSheetState extends State<VerficationBottomSheet> {
             text: 'ارسال',
             onTap: () {
               Navigator.pop(context);
-
             },
           ),
         ],
