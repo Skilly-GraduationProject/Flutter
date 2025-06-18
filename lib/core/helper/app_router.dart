@@ -23,7 +23,10 @@ import 'package:grad_project/features/provider/profile/presentation/view/my_revi
 import 'package:grad_project/features/provider/profile/presentation/view/my_services_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/my_gallery_view.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/service_provider_profile.dart';
+import 'package:grad_project/features/user/home/domain/entities/user_orders_entity.dart';
+
 import 'package:grad_project/features/shared/on_boarding/presentation/view/on_boarding_view.dart';
+
 import 'package:grad_project/features/user/home/presentation/views/user_home_view.dart';
 
 import '../../features/shared/auth/presentation/views/forgot_pass_view.dart';
@@ -44,6 +47,7 @@ import '../../features/user/home/presentation/views/discounts_view.dart';
 import '../../features/user/home/presentation/views/emergency_view.dart';
 import '../../features/user/home/presentation/views/offered_services_view.dart';
 import '../../features/user/home/presentation/views/offers_view.dart';
+import '../../features/user/home/presentation/views/order_detialed_view.dart';
 import '../../features/user/home/presentation/views/payment_success_view.dart';
 import '../../features/user/home/presentation/views/payment_view.dart';
 import '../../features/user/home/presentation/views/points_entry_view.dart';
@@ -82,21 +86,29 @@ abstract class AppRouter {
         path: '/provider',
         builder: (context, state) => const ProviderDataView()),
     GoRoute(
+        path: RouterPath.orderDetailedView,
+        builder: (context, state) {
+          final order = state.extra as UserOrdersEntity;
+       return OrderDetialedView(order: order,);
+        }),
+    GoRoute(
         path: '/requestService',
         builder: (context, state) => const RequestServiceView()),
     GoRoute(
         path: '/viewService',
         builder: (context, state) {
-             final extra = state.extra as Map<String, dynamic>;
-    final service = extra['service'] ;
-    final showBuyOrOffer = extra['showBuyOrOffer'] as bool? ?? false;
-    final showDiscountButton = extra['showDiscountButton'] as bool? ?? false;
+          final extra = state.extra as Map<String, dynamic>;
+          final service = extra['service'];
+          final showBuyOrOffer = extra['showBuyOrOffer'] as bool? ?? false;
+          final showDiscountButton =
+              extra['showDiscountButton'] as bool? ?? false;
+
 
           return ViewServiceView(
-      service: service,
-      showBuyOrOffer: showBuyOrOffer,
-      showDiscountButton: showDiscountButton,
-    );
+            service: service,
+            showBuyOrOffer: showBuyOrOffer,
+            showDiscountButton: showDiscountButton,
+          );
         }),
     GoRoute(
       path: '/category',
@@ -109,7 +121,7 @@ abstract class AppRouter {
       },
     ),
     GoRoute(
-      path:RouterPath.userProfile,
+      path: RouterPath.userProfile,
       builder: (context, state) {
         final data = state.extra as UserProfileDataEntity?;
 
@@ -130,7 +142,7 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.allCategoriesView,
         builder: (context, state) => const AllCategoriesView()),
-         GoRoute(
+    GoRoute(
         path: RouterPath.paymentSuccessView,
         builder: (context, state) => const PaymentSuccessView()),
     GoRoute(
@@ -142,14 +154,18 @@ abstract class AppRouter {
           }
           return ReviewsView(serviceId: serviceId);
         }),
-         GoRoute(
-        path: RouterPath.paymentView,
-        builder: (context, state) {
-         final paymentUrl = state.extra as String?;
-          if (paymentUrl == null) {
-            return const Text('Missing paymentUrl');
-          }
-          return PaymentView(paymentUrl: paymentUrl,);},),
+    GoRoute(
+      path: RouterPath.paymentView,
+      builder: (context, state) {
+        final paymentUrl = state.extra as String?;
+        if (paymentUrl == null) {
+          return const Text('Missing paymentUrl');
+        }
+        return PaymentView(
+          paymentUrl: paymentUrl,
+        );
+      },
+    ),
     GoRoute(
         path: RouterPath.providerHome,
         builder: (context, state) => const ServiceProviderHomeView()),
@@ -186,11 +202,12 @@ abstract class AppRouter {
         path: RouterPath.pointsView,
         builder: (context, state) => const PointsEntryView()),
     GoRoute(
-        path: RouterPath.discountsView,
-        builder: (context, state){
+      path: RouterPath.discountsView,
+      builder: (context, state) {
 
         return const DiscountsView();
-      },),
+      },
+    ),
     GoRoute(
         path: RouterPath.discountServicesView,
         builder: (context, state) => const DiscountServicesView()),

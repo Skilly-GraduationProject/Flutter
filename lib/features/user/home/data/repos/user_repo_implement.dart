@@ -165,10 +165,11 @@ class UserRepoImplement implements UserRepo {
   }
 
   @override
-  Future<Either<Failure, List<GetBannersEntity>>> getBanners() async {
+  Future<Either<Failure, List<GetBannersEntity>>> getBanners({required String token}) async {
     try {
       final response = await apiService.get(
         '$baseUrl/Banner/GetAllBanners',
+        token: token,
       );
       final Map<String, dynamic> data = response.data;
       print('data $data');

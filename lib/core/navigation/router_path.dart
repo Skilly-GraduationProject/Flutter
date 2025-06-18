@@ -18,6 +18,7 @@ class RouterPath {
   static const String addGalleryServiceView = '/addGalleryServiceView';
   static const String onBoardingView = '/onBoardingView';
   static const String ordersView = '/ordersView';
+  static const String orderDetailedView = '/orderDetailedView';
   static const String offersView = '/offersView';
   static const String reviewsView = '/reviewsView';
   static const String emergencyView = '/emergencyView';

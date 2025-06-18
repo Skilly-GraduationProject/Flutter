@@ -28,27 +28,18 @@ class _OrdersListViewState extends State<OrdersListView> {
         return const SliverToBoxAdapter(child: CustomLoadingIndicator());
       } else if (state is GetUserOrdersSuccess) {
         final orders = state.orders;
-      
+
         return SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Wrap(
-              spacing: 10,
-              runSpacing: 10,
+              spacing: 8,
+              runSpacing: 8,
               children: orders.map((order) {
                 return SizedBox(
                   width: (MediaQuery.of(context).size.width) / 2.3,
                   child: OrderCard(
-                    id: order.id,
-                    offersCount: order.offersCount,
-                    desc: order.desc,
-                    img: (order.images != null &&
-                            order.images!.any((e) => e.trim().isNotEmpty))
-                        ? order.images!.firstWhere((e) => e.trim().isNotEmpty,
-                            orElse: () => '')
-                        : null,
-                    name: order.name,
-                    price: order.price,
+                    order: order,
                   ),
                 );
               }).toList(),

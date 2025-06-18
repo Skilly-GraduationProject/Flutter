@@ -13,8 +13,8 @@ class GetBannersCubit extends Cubit<GetBannersStates> {
     var result = await getBannersUseCase.call();
     result.fold((failure) {
       emit(GetBannersFailure(failure.errMessage));
-    }, (providers) {
-        emit(GetBannersSuccess(providers));
+    }, (banners) {
+        emit(GetBannersSuccess(banners));
     });
   }
 }

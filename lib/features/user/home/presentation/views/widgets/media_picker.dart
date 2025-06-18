@@ -110,66 +110,7 @@ class _MediaPickerWidgetState extends State<MediaPickerWidget> {
   @override
   Widget build(BuildContext context) {
     return 
-    // Column(
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     const TitleWidget(title: 'الصور المرفقة:'),
-    //     Wrap(
-    //       children: [
-    //         ...images!.map(
-    //           (file) => MediaFilePreview(
-    //             file: file,
-    //             icon: Icons.image,
-    //             onRemove: () {
-    //               setState(() {
-    //                 images!.remove(file);
-    //               });
-    //               notifyParent();
-    //             },
-    //           ),
-    //         ),
-    //         IconButton(
-    //             icon: const Icon(Icons.add_photo_alternate),
-    //             onPressed: pickImages),
-    //       ],
-    //     ),
-    //     const SizedBox(height: 20),
-    //     const TitleWidget(title: 'الفيديو المرفق:'),
-    //     video != null
-    //         ? MediaFilePreview(
-    //             file: video!,
-    //             icon: Icons.videocam,
-    //             onRemove: () {
-    //               setState(() {
-    //                 video = null;
-    //               });
-    //               notifyParent();
-    //             },
-    //           )
-    //         : IconButton(
-    //             icon: const Icon(Icons.videocam), onPressed: pickVideo),
-    //     const SizedBox(height: 20),
-    //     const TitleWidget(title: 'الملفات المرفقة (PDF):'),
-    //     Wrap(
-    //       children: [
-    //         ...pdfs!.map(
-    //           (file) => MediaFilePreview(
-    //             file: file,
-    //             icon: Icons.picture_as_pdf,
-    //             onRemove: () {
-    //               setState(() {
-    //                 pdfs!.remove(file);
-    //               });
-    //               notifyParent();
-    //             },
-    //           ),
-    //         ),
-    //         IconButton(
-    //             icon: const Icon(Icons.picture_as_pdf), onPressed: pickPDFs),
-    //       ],
-    //     ),
-    //   ],
-    // );
+
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
