@@ -51,7 +51,7 @@ class _DropDownListState extends State<DropDownList> {
             items: categories.map((cat) {
               return DropdownMenuItem<String>(
                 value: cat.name,
-                child: Text(cat.name),
+                child: Text(cat.name!),
               );
             }).toList(),
             onChanged: (value) {

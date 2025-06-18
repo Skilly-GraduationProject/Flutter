@@ -25,9 +25,9 @@ class ViewServiceDetailsForm extends StatelessWidget {
           children: [
             const CustomAppBar(title: 'الخدمة'),
             const SizedBox(height: 16),
-            ImagesBanner(
-              images: service.images,
-            ),
+            // ImagesBanner(
+            //   images: service.images,
+            // ),
             const SizedBox(height: 10),
             Text(
               service.name,

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.title,
-    required this.onSaved,
-    this.validator,
-    this.icon,
-    this.controller,
-    this.obsecure,
-    this.onChanged,
-    this.maxLines,
-    this.suffix,
-    this.initialValue,
-  });
+class CustomTextField extends StatefulWidget {
+  const CustomTextField(
+      {super.key,
+      required this.title,
+      this.onSaved,
+      this.validator,
+      this.icon,
+      this.controller,
+      this.obsecure,
+      this.onChanged,
+      this.maxLines,
+      this.validate,
+      this.keyboardType,
+        this.suffix
+      });
 
   final String title;
   final void Function(String?)? onSaved;
@@ -23,42 +24,42 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final bool? obsecure;
   final int? maxLines;
+  final bool? validate;
+  final TextInputType? keyboardType;
   final Widget? suffix;
-  final String? initialValue; 
 
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  FocusNode focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextFormField(
-        controller: controller,
-        obscureText: obsecure ?? false,
-        initialValue: controller == null ? initialValue : null,
+        controller: widget.controller,
+        onTapOutside: (event) => focusNode.unfocus(),
         textDirection: TextDirection.rtl,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        maxLines: maxLines ?? 1,
-        onSaved: onSaved,
-        onChanged: onChanged,
-        validator: validator ??
-            (val) {
-              if (val?.isEmpty ?? true) {
-                return "This Field is required";
-              } else {
-                return null;
-              }
-            },
-       
+        maxLines: widget.maxLines ?? 1,
+        onSaved: widget.onSaved,
+        onChanged: widget.onChanged,
+        keyboardType: widget.keyboardType,
+
+        validator: (val) {
+          if (val!.isEmpty && widget.validate != false) {
+            return "This Field is required";
+          } else {
+            return null;
+          }
+        },
         decoration: InputDecoration(
-          prefixIcon: icon,
-          suffixIcon: suffix != null
-              ? Container(
-                  alignment: Alignment.center,
-                  width: 50,
-                  child: suffix,
-                )
-              : null,
+          suffixIcon: widget.suffix,
+          prefixIcon: widget.icon,
           hintTextDirection: TextDirection.rtl,
-          hintText: title,
+          hintText: widget.title,
           hintStyle: const TextStyle(
             color: Colors.grey,
             fontSize: 14,
@@ -71,7 +72,6 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
         ),
-
         style: const TextStyle(
           fontSize: 16,
         ),

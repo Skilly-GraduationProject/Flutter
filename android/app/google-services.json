@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:885059926299:android:aa79b6bfbf75c1d4057bbe",
+        "mobilesdk_app_id": "1:885059926299:android:ce9be75e7947c493057bbe",
         "android_client_info": {
-          "package_name": "com.example.grad_project"
+          "package_name": "com.skilly"
         }
       },
       "oauth_client": [],

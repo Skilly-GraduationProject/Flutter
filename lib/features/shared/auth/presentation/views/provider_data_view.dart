@@ -8,7 +8,7 @@ class ProviderDataView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-      body:ProviderDataViewBody(),
+      body: ProviderDataViewBody(),
     );
   }
 }

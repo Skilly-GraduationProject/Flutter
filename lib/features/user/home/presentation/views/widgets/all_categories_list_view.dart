@@ -47,7 +47,7 @@ class _AllCategoriesListViewState extends State<AllCategoriesListView> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      category.img,
+                      category.img!,
                       width: 80,
                       height: 80,
                       fit: BoxFit.cover,
@@ -55,7 +55,7 @@ class _AllCategoriesListViewState extends State<AllCategoriesListView> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    category.name,
+                    category.name!,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),

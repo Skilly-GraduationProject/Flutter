@@ -2,6 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:grad_project/core/secure_storage_helper.dart';
+import 'package:grad_project/features/provider/home/data/repo/home_repo.dart';
+import 'package:grad_project/features/provider/profile/data/repos/provider_data_repo.dart';
+import 'package:grad_project/features/provider/provider_service.dart/data/repos/provider_service.dart';
+import 'package:grad_project/features/provider/requested_service/data/repo/service_repo.dart';
+import 'package:grad_project/features/shared/chat/data/repo/chats_repo.dart';
+import 'package:grad_project/features/shared/notifications/data/repo/notifications_repo.dart';
+import 'package:grad_project/features/user/home/data/repos/user_repo_implement.dart';
 import '../../features/shared/auth/domain/usecases/updatePass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/verify_code_usecase.dart';
 import '../../features/shared/auth/presentation/manager/ResetPassCubit/updatePass_cubit.dart';
@@ -63,11 +70,10 @@ final getIt = GetIt.instance;
 void setUp() {
   //-------------------Secure Storage----------------
   getIt.registerLazySingleton<FlutterSecureStorage>(
-      () => const FlutterSecureStorage());
+          () => const FlutterSecureStorage());
   getIt.registerLazySingleton<SecureStorageHelper>(
-      () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
-  getIt.registerSingleton<ApiService>(ApiService(Dio(BaseOptions())));
-
+          () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
+  getIt.registerSingleton<ApiService>(ApiService());
   getIt.registerSingleton<AuthRepoImplement>(
       AuthRepoImplement(apiService: getIt.get<ApiService>()));
 
@@ -82,27 +88,40 @@ void setUp() {
   getIt.registerSingleton<RegisterUseCase>(
       RegisterUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<RegisterCubit>(
-      () => RegisterCubit(getIt.get<RegisterUseCase>()));
+          () => RegisterCubit(getIt.get<RegisterUseCase>()));
 
   getIt.registerSingleton<ForgetPassUseCase>(
       ForgetPassUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<ForgetPassCubit>(
-      () => ForgetPassCubit(getIt.get<ForgetPassUseCase>()));
+          () => ForgetPassCubit(getIt.get<ForgetPassUseCase>()));
 
   getIt.registerSingleton<VerifyEmailUseCase>(
       VerifyEmailUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<VerifyEmailCubit>(
-      () => VerifyEmailCubit(getIt.get<VerifyEmailUseCase>()));
+          () => VerifyEmailCubit(getIt.get<VerifyEmailUseCase>()));
 
   getIt.registerSingleton<VerifyCodeUseCase>(
       VerifyCodeUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<VerifycodeCubit>(
-      () => VerifycodeCubit(getIt.get<VerifyCodeUseCase>()));
-
+          () => VerifycodeCubit(getIt.get<VerifyCodeUseCase>()));
   getIt.registerSingleton<UpdatePassUseCase>(
       UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<UpdatePassCubit>(
-      () => UpdatePassCubit(getIt.get<UpdatePassUseCase>()));
+          () => UpdatePassCubit(getIt.get<UpdatePassUseCase>()));
+  getIt.registerSingleton<ProviderHomeRepo>(
+      ProviderHomeRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<ProviderDataRepo>(
+      ProviderDataRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<ServiceRepo>(
+      ServiceRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<NotificationsRepo>(
+      NotificationsRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<ProviderServiceRepo>(
+      ProviderServiceRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<ChatsRepo>(
+      ChatsRepo(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<UserRepoImplement>(
+      UserRepoImplement(apiService: getIt.get<ApiService>()));
 
   getIt.registerSingleton<GetAllCategoriesUseCase>(
       GetAllCategoriesUseCase(userRepo: getIt.get<UserRepoImplement>()));
@@ -149,60 +168,60 @@ void setUp() {
   getIt.registerSingleton<RequestServiceUseCase>(
       RequestServiceUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<RequestServiceCubit>(
-      () => RequestServiceCubit(getIt.get<RequestServiceUseCase>()));  
+      () => RequestServiceCubit(getIt.get<RequestServiceUseCase>()));
 
   getIt.registerSingleton<BuyServiceUseCase>(
       BuyServiceUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<BuyServiceCubit>(
-      () => BuyServiceCubit(getIt.get<BuyServiceUseCase>()));  
-  
+      () => BuyServiceCubit(getIt.get<BuyServiceUseCase>()));
+
   getIt.registerSingleton<GetServiceOffersUseCase>(
       GetServiceOffersUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetServiceOffersCubit>(
-      () => GetServiceOffersCubit(getIt.get<GetServiceOffersUseCase>()));  
+      () => GetServiceOffersCubit(getIt.get<GetServiceOffersUseCase>()));
 
   getIt.registerSingleton<GetServiceReviewsUseCase>(
       GetServiceReviewsUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetServiceReviewsCubit>(
-      () => GetServiceReviewsCubit(getIt.get<GetServiceReviewsUseCase>()));  
+      () => GetServiceReviewsCubit(getIt.get<GetServiceReviewsUseCase>()));
 
   getIt.registerSingleton<GetEmergencyProvidersUseCase>(
       GetEmergencyProvidersUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<GetEmergencyProvidersCubit>(
-      () => GetEmergencyProvidersCubit(getIt.get<GetEmergencyProvidersUseCase>()));  
+      () => GetEmergencyProvidersCubit(getIt.get<GetEmergencyProvidersUseCase>()));
 
   getIt.registerSingleton<RequestEmergencyUseCase>(
       RequestEmergencyUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<RequestEmergencyCubit>(
-      () => RequestEmergencyCubit(getIt.get<RequestEmergencyUseCase>()));  
+      () => RequestEmergencyCubit(getIt.get<RequestEmergencyUseCase>()));
 
  getIt.registerSingleton<StartPaymentUseCase>(
       StartPaymentUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<StartPaymentCubit>(
-      () => StartPaymentCubit(getIt.get<StartPaymentUseCase>()));  
+      () => StartPaymentCubit(getIt.get<StartPaymentUseCase>()));
 
   getIt.registerSingleton<ApplyDiscountUseCase>(
       ApplyDiscountUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<ApplyDiscountCubit>(
-      () => ApplyDiscountCubit(getIt.get<ApplyDiscountUseCase>()));  
+      () => ApplyDiscountCubit(getIt.get<ApplyDiscountUseCase>()));
 
   getIt.registerSingleton<AcceptOfferUseCase>(
       AcceptOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<AcceptOfferCubit>(
-      () => AcceptOfferCubit(getIt.get<AcceptOfferUseCase>())); 
+      () => AcceptOfferCubit(getIt.get<AcceptOfferUseCase>()));
 
   getIt.registerSingleton<RejectOfferUseCase>(
       RejectOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<RejectOfferCubit>(
-      () => RejectOfferCubit(getIt.get<RejectOfferUseCase>())); 
+      () => RejectOfferCubit(getIt.get<RejectOfferUseCase>()));
 
   getIt.registerSingleton<AcceptEOfferUseCase>(
       AcceptEOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<AcceptEOfferCubit>(
-      () => AcceptEOfferCubit(getIt.get<AcceptEOfferUseCase>())); 
+      () => AcceptEOfferCubit(getIt.get<AcceptEOfferUseCase>()));
 
   getIt.registerSingleton<RejectEOfferUseCase>(
       RejectEOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<RejectEOfferCubit>(
-      () => RejectEOfferCubit(getIt.get<RejectEOfferUseCase>())); 
+      () => RejectEOfferCubit(getIt.get<RejectEOfferUseCase>()));
 }

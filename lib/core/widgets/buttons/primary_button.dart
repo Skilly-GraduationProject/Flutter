@@ -17,20 +17,16 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
-        width: context.width,
-        height: context.responsiveHeight(60),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: ColorManager.primary,
-          ),
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyleManager.style16BoldWhite,
-            ),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: ColorManager.primary,
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyleManager.style16BoldWhite,
           ),
         ),
       ),
