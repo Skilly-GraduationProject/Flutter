@@ -10,6 +10,8 @@ abstract class AuthRepo {
       {required String password,
       required String phone,
       required bool remember});
+        Future<void> loginWithGoogle(
+      {required String idToken});
   Future<void> register({
     required String firstName,
     required String secondName,

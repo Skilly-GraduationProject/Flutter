@@ -7,15 +7,15 @@ import 'custom_app_bar.dart';
 import 'home_services_listview.dart';
 import 'sort_icon.dart';
 
-class OfferedServicesViewBody extends StatefulWidget {
-  const OfferedServicesViewBody({super.key});
+class ServicesViewBody extends StatefulWidget {
+  const ServicesViewBody({super.key});
 
   @override
-  State<OfferedServicesViewBody> createState() =>
-      _OfferedServicesViewBodyState();
+  State<ServicesViewBody> createState() =>
+      _ServicesViewBodyState();
 }
 
-class _OfferedServicesViewBodyState extends State<OfferedServicesViewBody> {
+class _ServicesViewBodyState extends State<ServicesViewBody> {
   String currentSort = 'nearest';
 
   @override
@@ -53,7 +53,7 @@ class _OfferedServicesViewBodyState extends State<OfferedServicesViewBody> {
           ),
         ),
         const SliverGap(10),
-      const  SliverToBoxAdapter(child: HomeServicesListView()),
+     SliverToBoxAdapter(child: HomeServicesListView(currentSort: currentSort,)),
       ]),
     );
   }

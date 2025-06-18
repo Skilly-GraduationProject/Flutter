@@ -26,7 +26,7 @@ import '../../features/user/home/presentation/views/category_view.dart';
 import '../../features/user/home/presentation/views/discount_services_view.dart';
 import '../../features/user/home/presentation/views/discounts_view.dart';
 import '../../features/user/home/presentation/views/emergency_view.dart';
-import '../../features/user/home/presentation/views/offered_services_view.dart';
+import '../../features/user/home/presentation/views/services_view.dart';
 import '../../features/user/home/presentation/views/offers_view.dart';
 import '../../features/user/home/presentation/views/order_detialed_view.dart';
 import '../../features/user/home/presentation/views/payment_success_view.dart';
@@ -70,7 +70,9 @@ abstract class AppRouter {
         path: RouterPath.orderDetailedView,
         builder: (context, state) {
           final order = state.extra as UserOrdersEntity;
-       return OrderDetialedView(order: order,);
+          return OrderDetialedView(
+            order: order,
+          );
         }),
     GoRoute(
         path: '/requestService',
@@ -184,7 +186,7 @@ abstract class AppRouter {
         builder: (context, state) => const DiscountServicesView()),
     GoRoute(
         path: RouterPath.offeredServicesView,
-        builder: (context, state) => const OfferedServicesView()),
+        builder: (context, state) => const ServicesView()),
     GoRoute(
       path: RouterPath.offersView,
       builder: (context, state) {

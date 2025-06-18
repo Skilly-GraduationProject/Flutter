@@ -32,6 +32,10 @@ class AuthRepoImplement implements AuthRepo {
     await storeToken(token);
     return AuthResponse(token: token);
   }
+    @override
+  Future<void> loginWithGoogle({required String idToken})async {
+     
+  }
 
   @override
   Future<void> register({
@@ -206,4 +210,6 @@ class AuthRepoImplement implements AuthRepo {
     SharedPreferences preference = await SharedPreferences.getInstance();
     return preference.getString('token');
   }
+  
+
 }

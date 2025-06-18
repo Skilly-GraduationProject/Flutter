@@ -6,7 +6,8 @@ import '../../manager/GetAllServices/get_all_services_cubit.dart';
 import '../../manager/GetAllServices/get_all_services_states.dart';
 
 class HomeServicesListView extends StatefulWidget {
-  const HomeServicesListView({super.key});
+  const HomeServicesListView({super.key, required this.currentSort});
+  final String currentSort;
 
   @override
   State<HomeServicesListView> createState() => _HomeServicesListViewState();
@@ -16,8 +17,17 @@ class _HomeServicesListViewState extends State<HomeServicesListView> {
   @override
   void initState() {
     super.initState();
-    context.read<GetAllServicesCubit>().getAllServices('');
+    context.read<GetAllServicesCubit>().getAllServices(widget.currentSort);
   }
+
+ @override
+void didUpdateWidget(covariant HomeServicesListView oldWidget) {
+  super.didUpdateWidget(oldWidget);
+  if (oldWidget.currentSort != widget.currentSort) {
+    context.read<GetAllServicesCubit>().getAllServices(widget.currentSort);
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
