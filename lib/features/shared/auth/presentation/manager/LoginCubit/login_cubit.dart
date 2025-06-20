@@ -10,7 +10,6 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> login(String phone, String password, bool rememeber) async {
     emit(LoginInitial());
-
     try {
       var result = await loginUseCase.call(
           phone: phone, password: password, remember: rememeber);

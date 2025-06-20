@@ -17,13 +17,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await setUp();
-    // Bloc.observer = SimpleBlocObserver();
-
+    // Bloc.observer = 
   LocalNotification localNotification = LocalNotification();
   await localNotification.initialize();
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

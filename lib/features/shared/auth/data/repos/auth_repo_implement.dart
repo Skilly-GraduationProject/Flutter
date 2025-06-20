@@ -30,7 +30,8 @@ class AuthRepoImplement implements AuthRepo {
     print(response);
     final token = response.data['token'] ?? '';
     await storeToken(token);
-    return AuthResponse(token: token);
+    await storeUserType(response.data['userType']);
+    return AuthResponse(token: token,userType:  response.data['userType']);
   }
 
   @override
@@ -163,20 +164,20 @@ class AuthRepoImplement implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>>addUserData(
+  Future<Either<Failure, void>> addUserData(
       {required String govern,
       required String token,
       required String city,
       required String streetName,
       required int gender,
       required File image}) async {
-        final formData = FormData.fromMap({
+    final formData = FormData.fromMap({
       'Governorate': govern,
       'City': city,
       'StreetName': streetName,
       'Gender': gender,
     });
-        final mimeType = lookupMimeType(image.path)?.split('/') ?? ['image', 'png'];
+    final mimeType = lookupMimeType(image.path)?.split('/') ?? ['image', 'png'];
     formData.files.add(
       MapEntry(
         'Img',
@@ -192,7 +193,7 @@ class AuthRepoImplement implements AuthRepo {
       token: token,
       formData,
     );
-     print('add rpovider response ${response.data}');
+    print('add rpovider response ${response.data}');
     return response.data;
   }
 
@@ -200,6 +201,11 @@ class AuthRepoImplement implements AuthRepo {
     SharedPreferences prefrence = await SharedPreferences.getInstance();
     await prefrence.setString('token', token);
     await prefrence.setBool('loggedIn', true);
+  }
+
+  Future<void> storeUserType(String userType) async {
+    SharedPreferences prefrence = await SharedPreferences.getInstance();
+    await prefrence.setString('userType', userType);
   }
 
   Future<String?> loadToken() async {
