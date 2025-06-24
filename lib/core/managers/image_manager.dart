@@ -8,4 +8,7 @@ class ImageManager {
   static const String emergency = 'assets/images/emergency.jpg';
   static const String points = 'assets/images/points.png';
   static const String trophy = 'assets/images/trophy.png';
+  static const String onBoarding1 = 'assets/images/on_boarding_1.png';
+  static const String onBoarding2 = 'assets/images/on_boarding_2.png';
+  static const String onBoarding3 = 'assets/images/on_boarding_3.png';
 }
