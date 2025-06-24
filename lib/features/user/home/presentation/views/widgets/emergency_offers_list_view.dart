@@ -7,17 +7,17 @@ import '../../manager/GetEmergencyProviders/get_emergency_providers_cubit.dart';
 import '../../manager/GetEmergencyProviders/get_emergency_providers_states.dart';
 
 class EmergencyOffersListView extends StatefulWidget {
-
   const EmergencyOffersListView({
     super.key,
   });
 
   @override
-  State<EmergencyOffersListView> createState() => _EmergencyOffersListViewState();
+  State<EmergencyOffersListView> createState() =>
+      _EmergencyOffersListViewState();
 }
 
 class _EmergencyOffersListViewState extends State<EmergencyOffersListView> {
-    List<EmergencyProvidersEntity> myOffers = [];
+  List<EmergencyProvidersEntity> myOffers = [];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetEmergencyProvidersCubit, GetEmergencyProvidersStates>(
@@ -26,7 +26,7 @@ class _EmergencyOffersListViewState extends State<EmergencyOffersListView> {
           return const Center(child: CircularProgressIndicator());
         } else if (state is GetEmergencyProvidersSuccess) {
           if (myOffers.isEmpty) {
-            myOffers = List.from(state.offers); 
+            myOffers = List.from(state.offers);
           }
 
           return Padding(
@@ -39,9 +39,9 @@ class _EmergencyOffersListViewState extends State<EmergencyOffersListView> {
                 final offer = myOffers[index];
                 return EmergencyOfferCard(
                   offer: offer,
-                 onReject: () {
+                  onReject: () {
                     BlocProvider.of<RejectEOfferCubit>(context)
-                        .rejectEOffer(offer.requestId,offer.providerId)
+                        .rejectEOffer(offer.requestId, offer.providerId)
                         .then((_) {
                       setState(() {
                         myOffers.removeAt(index);

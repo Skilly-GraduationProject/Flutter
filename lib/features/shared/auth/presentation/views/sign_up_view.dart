@@ -9,7 +9,10 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(child: SignUpViewBody(userType: userType,)),
+      body: SafeArea(
+          child: SignUpViewBody(
+        userType: userType,
+      )),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:grad_project/core/helper/service_locator.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +32,7 @@ class AuthRepoImplement implements AuthRepo {
     final token = response.data['token'] ?? '';
     await storeToken(token);
     await storeUserType(response.data['userType']);
-    return AuthResponse(token: token,userType:  response.data['userType']);
+    return AuthResponse(token: token, userType: response.data['userType']);
   }
 
   @override

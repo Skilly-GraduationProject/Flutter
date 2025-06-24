@@ -44,19 +44,17 @@ class EditProfileView extends StatelessWidget {
         },
         child: Scaffold(
           appBar: AppBar(
-              foregroundColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              surfaceTintColor: Colors.transparent,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              leading: const BackIcon(),
-             
-              title: Text(
-                "تعديل البيانات",
-                style: TextStyleManager.style18BoldSec,
-              ),
-              centerTitle: true,
+            foregroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            leading: const BackIcon(),
+            title: Text(
+              "تعديل البيانات",
+              style: TextStyleManager.style18BoldSec,
             ),
-          
+            centerTitle: true,
+          ),
           body: EditProfileViewBody(providerProfileModel: providerProfileModel),
         ),
       ),

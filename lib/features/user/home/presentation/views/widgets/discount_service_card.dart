@@ -16,11 +16,13 @@ class DiscountServiceCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).push('/viewService',
+            GoRouter.of(context).push(
+              '/viewService',
               extra: {
-    'service': service,
-    'showDiscountButton': true,
-  },);
+                'service': service,
+                'showDiscountButton': true,
+              },
+            );
           },
           child: Card(
             shape: RoundedRectangleBorder(
@@ -76,8 +78,8 @@ class DiscountServiceCard extends StatelessWidget {
             ),
           ),
         ),
-       const Gap(10),
-       UseDiscountButton(service: service) ,
+        const Gap(10),
+        UseDiscountButton(service: service),
       ],
     );
   }

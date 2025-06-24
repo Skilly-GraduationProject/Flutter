@@ -76,7 +76,7 @@ class _SignInFormState extends State<SignInForm> {
             child: BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccess) {
-                  GoRouter.of(context).push(RouterPath.userHome);
+                  // GoRouter.of(context).push(RouterPath.userHome);
                 } else if (state is LoginFailure) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.error)),

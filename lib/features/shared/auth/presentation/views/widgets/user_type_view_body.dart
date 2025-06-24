@@ -46,7 +46,7 @@ class _UserTypeViewBodyState extends State<UserTypeViewBody> {
                 title: 'موفر خدمه',
                 description:
                     'موفر الخدمه هو الشخص التي لديه مهاره معينه يقدمها كخدمه للمستخدين',
-                isSelected: userType ==1,
+                isSelected: userType == 1,
                 onTap: () {
                   setState(() {
                     userType = 1;
@@ -58,7 +58,7 @@ class _UserTypeViewBodyState extends State<UserTypeViewBody> {
                 title: 'مستخدم',
                 description:
                     'المستخدم هو الشخص الذي يفحث عن خدمه من التي يقدمها موفري الخدمات',
-                isSelected: userType ==0,
+                isSelected: userType == 0,
                 onTap: () {
                   setState(() {
                     userType = 0;

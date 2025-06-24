@@ -12,9 +12,6 @@ class AcceptOfferUseCase {
     required String token,
     required String offerId,
   }) async {
-    return await userRepo.acceptOffer(
-      token: token,
-      offerId: offerId
-    );
+    return await userRepo.acceptOffer(token: token, offerId: offerId);
   }
 }

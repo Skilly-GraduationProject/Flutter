@@ -9,7 +9,7 @@ import '../../../domain/entities/user_profile_data_entity.dart';
 class PointsInfoContainer extends StatelessWidget {
   const PointsInfoContainer({super.key, required this.data});
 
-   final UserProfileDataEntity data;
+  final UserProfileDataEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +32,12 @@ class PointsInfoContainer extends StatelessWidget {
                   Text('النقاط الحالية',
                       style: TextStyleManager.style16BoldBlack),
                   const Gap(5),
-                  Text('${data.points}', style: TextStyleManager.style28BoldAmber),
+                  Text('${data.points}',
+                      style: TextStyleManager.style28BoldAmber),
                   const Gap(10),
-                 Text(
+                  Text(
                     'معاك ${data.points} نقطة؟\nاستخدمهم دلوقتي واحصل على خصم %15 من الخدمة!',
-                    style:const TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                   ),
                 ],
               ),

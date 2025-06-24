@@ -30,7 +30,9 @@ class ProviderContainer extends StatelessWidget {
               VerifiedName(
                 name: name,
               ),
-              const RateWidget(rate:'',),
+              const RateWidget(
+                rate: '',
+              ),
             ],
           ),
         ],

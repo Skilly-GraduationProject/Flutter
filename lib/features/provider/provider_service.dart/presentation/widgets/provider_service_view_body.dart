@@ -16,6 +16,7 @@ import 'package:grad_project/features/provider/profile/data/models/get_reviews_m
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/review_card.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/manager/cubit/provider_service_cubit.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/manager/cubit/provider_service_state.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/widgets/provider_gallery_service_view_body.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/data_column.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/data_row.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/image_slider.dart';
@@ -110,16 +111,19 @@ class ProviderServiceViewBody extends StatelessWidget {
                           value: service?.notes ?? "",
                         ),
                         const Gap(20),
-                        // service video (if exists) (optional)
-                        // Column(
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: [
-                        //     Text(
-                        //       "الفيديو",
-                        //       style: TextStyleManager.style12BoldSec,
-                        //     ),
-                        //   ],
-                        // ),
+                        if (service?.video != null &&
+                            service!.video!.isNotEmpty)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "الفيديو",
+                                style: TextStyleManager.style12BoldSec,
+                              ),
+                              const Gap(10),
+                              VideoPlayerWidget(videoUrl: service.video!),
+                            ],
+                          ),
                       ],
                     ),
                   ),

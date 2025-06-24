@@ -473,7 +473,6 @@ class _ProviderDataFormState extends State<ProviderDataForm> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                  
                   ],
                 )
               ],

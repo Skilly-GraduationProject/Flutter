@@ -1,5 +1,3 @@
-
-
 sealed class RejectEOfferStates {}
 
 final class RejectEOfferInitial extends RejectEOfferStates {}
@@ -7,7 +5,6 @@ final class RejectEOfferInitial extends RejectEOfferStates {}
 final class RejectEOfferLoading extends RejectEOfferStates {}
 
 final class RejectEOfferSuccess extends RejectEOfferStates {
-
   RejectEOfferSuccess();
 }
 

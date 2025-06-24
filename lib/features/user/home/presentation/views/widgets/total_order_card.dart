@@ -13,9 +13,7 @@
 //   final UserOrdersEntity order;
 //   @override
 //   Widget build(BuildContext context) {
-   
-    
-    
+
 //     return Padding(
 //       padding: const EdgeInsets.symmetric(horizontal: 12),
 //       child: Container(
@@ -34,7 +32,7 @@
 //                     width: context.responsiveWidth(370),
 //                     height: context.responsiveWidth(150),
 //                     fit: BoxFit.cover,
-//           errorBuilder: (context, error, stackTrace) => 
+//           errorBuilder: (context, error, stackTrace) =>
 //             Container(
 //               width: context.responsiveWidth(200),
 //               height: context.responsiveWidth(100),
@@ -43,7 +41,7 @@
 //             ),
 //         ),
 //       ),
-            
+
 //             const Gap(10),
 //             Text(
 //               order.name,

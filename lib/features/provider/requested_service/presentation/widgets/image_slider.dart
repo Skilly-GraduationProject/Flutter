@@ -42,8 +42,11 @@ class _ImageSliderState extends State<ImageSlider> {
                           onTap: () {
                             showMultiImages(
                                 context: context,
-                                images:
-                                    images.map((e) => e is ImageModel ? e.image! : e["img"].toString()).toList());
+                                images: images
+                                    .map((e) => e is ImageModel
+                                        ? e.image!
+                                        : e["img"].toString())
+                                    .toList());
                           },
                           child: CustomImage(
                             image: b is ImageModel ? b.image! : b["img"],

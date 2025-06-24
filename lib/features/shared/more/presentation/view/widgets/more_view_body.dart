@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -44,13 +45,17 @@ class MoreViewBody extends StatelessWidget {
         MoreButton(
           title: 'تواصل معنا',
           icon: IconManager.contactUs,
-          onTap: () {},
+          onTap: () {
+            context.push(RouterPath.contactUsView);
+          },
         ),
         gap,
         MoreButton(
           title: 'نبذه عن التطبيق',
           icon: IconManager.info,
-          onTap: () {},
+          onTap: () {
+            context.push(RouterPath.aboutView);
+          },
         ),
         gap,
         LogoutButton(

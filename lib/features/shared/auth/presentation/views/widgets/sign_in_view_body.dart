@@ -15,16 +15,15 @@ class SignInViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
       if (state is LoginSuccess) {
-        if(state.authResponse.userType == "ServiceProvider") {
+        if (state.authResponse.userType == "ServiceProvider") {
           print("userType ==${state.authResponse.userType}");
           GoRouter.of(context).pushReplacement(RouterPath.providerHome);
-        }else{
-        GoRouter.of(context).pushReplacement(RouterPath.userHome);
+        } else {
+          GoRouter.of(context).pushReplacement(RouterPath.userHome);
         }
-
+        print("login sucesssss");
       } else if (state is LoginFailure) {
         print(state.error);
       }
@@ -35,62 +34,60 @@ class SignInViewBody extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(
-          child: Column(
-             
-              crossAxisAlignment: CrossAxisAlignment.center,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            const SizedBox(
+              height: 100,
+            ),
+            Center(
+              child: Image.asset('assets/images/logo.png'),
+            ),
+            const Text(
+              'تسجيل الدخول',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+            ),
+            const Text(
+              'قم بتسجيل الدخول للإنضمام ',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const SignInForm(),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 100,
-                ),
-                Center(
-                  child: Image.asset('assets/images/logo.png'),
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push('/userType');
+                  },
+                  child: const Text(
+                    'سجل',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        color: kPrimaryColor),
+                  ),
                 ),
                 const Text(
-                  'تسجيل الدخول',
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                  ' ليس لديك حساب؟',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Colors.grey),
                 ),
-                const Text(
-                  'قم بتسجيل الدخول للإنضمام ',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const SignInForm(),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).push('/userType');
-                      },
-                      child: const Text(
-                        'سجل',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14,
-                            color: kPrimaryColor),
-                      ),
-                    ),
-                    const Text(
-                      ' ليس لديك حساب؟',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Colors.grey),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const DividerWidget(),
-                const SizedBox(height: 20),
-                const GoogleSign()
-              ]),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const DividerWidget(),
+            const SizedBox(height: 20),
+            const GoogleSign()
+          ]),
         ),
       );
     });

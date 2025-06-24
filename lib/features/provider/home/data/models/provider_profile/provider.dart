@@ -19,27 +19,26 @@ class Provider {
   double? review;
   int? numberOfEndedservices;
 
-  Provider({
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.phoneNumber,
-    this.email,
-    this.governorate,
-    this.city,
-    this.streetName,
-    this.age,
-    this.gender,
-    this.img,
-    this.profession,
-    this.numberOfYearExperience,
-    this.briefSummary,
-    this.nationalNumberPdf,
-    this.userId,
-    this.categoryId,
-    this.review,
-    this.numberOfEndedservices
-  });
+  Provider(
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.phoneNumber,
+      this.email,
+      this.governorate,
+      this.city,
+      this.streetName,
+      this.age,
+      this.gender,
+      this.img,
+      this.profession,
+      this.numberOfYearExperience,
+      this.briefSummary,
+      this.nationalNumberPdf,
+      this.userId,
+      this.categoryId,
+      this.review,
+      this.numberOfEndedservices});
 
   factory Provider.fromJson(Map<String, dynamic> json) => Provider(
         id: json['id'] as String?,
@@ -83,6 +82,6 @@ class Provider {
         'userId': userId,
         'categoryId': categoryId,
         'review': review,
-        'numberOfEndedservices' : numberOfEndedservices
+        'numberOfEndedservices': numberOfEndedservices
       };
 }

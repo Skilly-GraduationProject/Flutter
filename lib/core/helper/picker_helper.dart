@@ -49,6 +49,44 @@ class PickerHelper {
     );
   }
 
+  Future<dynamic> showVideoPickerBottomSheet({
+    required BuildContext context,
+  }) async {
+    return await showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: const Center(child: Text("التقاط فيديو بالكاميرا")),
+              onTap: () async {
+                final video = await _takeVideoWithCamera();
+                Navigator.pop(context, video);
+              },
+            ),
+            Divider(indent: 20, endIndent: 20, color: Colors.grey[300]),
+            ListTile(
+              title: const Center(child: Text("اختيار من المعرض")),
+              onTap: () async {
+                final video = await _pickVideo();
+                Navigator.pop(context, video);
+              },
+            ),
+            Divider(indent: 20, endIndent: 20, color: Colors.grey[300]),
+            ListTile(
+              title: const Center(child: Text("إلغاء")),
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<List<XFile>?> _pickMultipleImages() async {
     try {
       return await _picker.pickMultiImage();
@@ -72,6 +110,24 @@ class PickerHelper {
       return await _picker.pickImage(source: ImageSource.camera);
     } catch (e) {
       print("Error capturing image: $e");
+      return null;
+    }
+  }
+
+  Future<XFile?> _pickVideo() async {
+    try {
+      return await _picker.pickVideo(source: ImageSource.gallery);
+    } catch (e) {
+      print("Error picking video: $e");
+      return null;
+    }
+  }
+
+  Future<XFile?> _takeVideoWithCamera() async {
+    try {
+      return await _picker.pickVideo(source: ImageSource.camera);
+    } catch (e) {
+      print("Error capturing video: $e");
       return null;
     }
   }

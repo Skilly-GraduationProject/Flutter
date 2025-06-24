@@ -18,11 +18,11 @@ class RequestServiceUseCase {
       required String category,
       required File? video,
       required String startDate,
-      required List<File>?images,
+      required List<File>? images,
       required double price}) async {
     return await userRepo.requestService(
-      token: token,
-      images: images,
+        token: token,
+        images: images,
         name: name,
         deliveryTime: deliveryTime,
         notes: notes,

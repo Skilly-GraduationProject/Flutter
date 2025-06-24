@@ -13,8 +13,7 @@ class CustomTextField extends StatefulWidget {
       this.maxLines,
       this.validate,
       this.keyboardType,
-        this.suffix
-      });
+      this.suffix});
 
   final String title;
   final void Function(String?)? onSaved;
@@ -47,7 +46,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onSaved: widget.onSaved,
         onChanged: widget.onChanged,
         keyboardType: widget.keyboardType,
-
         validator: (val) {
           if (val!.isEmpty && widget.validate != false) {
             return "This Field is required";

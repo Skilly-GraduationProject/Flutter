@@ -68,7 +68,10 @@ class _ReviewsListViewState extends State<ReviewsListView> {
         } else if (state is GetServiceReviewsFailure) {
           return SliverToBoxAdapter(child: Text(state.error));
         } else if (state is GetServiceReviewsEmpty) {
-          return const SliverToBoxAdapter(child: EmptyWidget(text: 'Reviews',));
+          return const SliverToBoxAdapter(
+              child: EmptyWidget(
+            text: 'Reviews',
+          ));
         } else {
           return const SliverToBoxAdapter(child: Text('unknown'));
         }

@@ -5,7 +5,11 @@ import 'info_box.dart';
 
 class MyPersonalDataWidget extends StatelessWidget {
   const MyPersonalDataWidget({
-    super.key, required this.email, required this.phone, required this.streetName, required this.city,
+    super.key,
+    required this.email,
+    required this.phone,
+    required this.streetName,
+    required this.city,
   });
   final String email, phone, streetName, city;
 

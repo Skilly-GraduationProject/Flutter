@@ -19,6 +19,7 @@ import 'package:grad_project/features/provider/requested_service/data/models/add
 import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_cubit.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/manager/cubit/service_state.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:video_player/video_player.dart';
 
 class AddServiceViewBody extends StatelessWidget {
   const AddServiceViewBody({super.key});
@@ -94,6 +95,9 @@ class _AddServiceFormState extends State<AddServiceForm> {
   late TextEditingController serviceDurationController;
   late TextEditingController serviceNotesController;
   late TextEditingController serviceImageController;
+  VideoPlayerController? _videoController;
+  XFile? _video;
+  final List<XFile> _images = [];
 
   @override
   void initState() {
@@ -117,10 +121,9 @@ class _AddServiceFormState extends State<AddServiceForm> {
     serviceDurationController.dispose();
     serviceNotesController.dispose();
     serviceImageController.dispose();
+    _videoController?.dispose();
     super.dispose();
   }
-
-  final List<XFile> _images = [];
 
   @override
   Widget build(BuildContext context) {
@@ -270,38 +273,205 @@ class _AddServiceFormState extends State<AddServiceForm> {
                 }),
           ),
           const Gap(20),
-          // Text(
-          //   'اضافه فيديو',
-          //   style: TextStyleManager.style14BoldSec,
-          // ),
-          // const Gap(20),
-          // Container(
-          //   height: context.responsiveHeight(140),
-          //   padding: const EdgeInsets.all(20),
-          //   decoration: BoxDecoration(
-          //     color: ColorManager.whiteShade,
-          //     borderRadius: BorderRadius.circular(12),
-          //   ),
-          //   child: Center(
-          //     child: SvgPicture.asset(
-          //       IconManager.addImage,
-          //       height: context.responsiveHeight(40),
-          //     ),
-          //   ),
-          // ),
+          Text(
+            'اضافه فيديو',
+            style: TextStyleManager.style14BoldSec,
+          ),
+          const Gap(20),
+          _video != null
+              ? Container(
+                  height: context.responsiveHeight(200),
+                  decoration: BoxDecoration(
+                    color: ColorManager.whiteShade,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Stack(
+                      children: [
+                        _videoController != null &&
+                                _videoController!.value.isInitialized
+                            ? Center(
+                                child: AspectRatio(
+                                  aspectRatio:
+                                      _videoController!.value.aspectRatio,
+                                  child: VideoPlayer(_videoController!),
+                                ),
+                              )
+                            : const Center(
+                                child: CircularProgressIndicator(
+                                  color: ColorManager.primary,
+                                ),
+                              ),
+                        Positioned(
+                          top: 8,
+                          right: 8,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.close,
+                                  color: Colors.white, size: 20),
+                              onPressed: () {
+                                setState(() {
+                                  _videoController?.dispose();
+                                  _videoController = null;
+                                  _video = null;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                        if (_videoController != null &&
+                            _videoController!.value.isInitialized)
+                          Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.5),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: IconButton(
+                                icon: Icon(
+                                  _videoController!.value.isPlaying
+                                      ? Icons.pause
+                                      : Icons.play_arrow,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    if (_videoController!.value.isPlaying) {
+                                      _videoController!.pause();
+                                    } else {
+                                      _videoController!.play();
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        if (_videoController != null &&
+                            _videoController!.value.isInitialized)
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.7),
+                                  ],
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: VideoProgressIndicator(
+                                      _videoController!,
+                                      allowScrubbing: true,
+                                      colors: const VideoProgressColors(
+                                        playedColor: ColorManager.primary,
+                                        bufferedColor: Colors.grey,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  const Gap(8),
+                                  ValueListenableBuilder(
+                                    valueListenable: _videoController!,
+                                    builder: (context, VideoPlayerValue value,
+                                        child) {
+                                      return Text(
+                                        '${_formatDuration(value.position)} / ${_formatDuration(value.duration)}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                )
+              : GestureDetector(
+                  onTap: () async {
+                    await PickerHelper()
+                        .showVideoPickerBottomSheet(context: context)
+                        .then((v) {
+                      if (v != null) {
+                        setState(() {
+                          _video = v;
+                          _initializeVideoController();
+                        });
+                      }
+                    });
+                  },
+                  child: Container(
+                    height: context.responsiveHeight(140),
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: ColorManager.whiteShade,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        IconManager.addImage,
+                        height: context.responsiveHeight(40),
+                      ),
+                    ),
+                  ),
+                ),
           const Gap(30),
           PrimaryButton(
             text: "اضافه الخدمه",
             onTap: () {
               if (formKey.currentState!.validate()) {
+                // Additional validation for price
+                if (servicePriceController.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('يرجى إدخال السعر'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
+
+                int? price;
+                try {
+                  price = int.parse(servicePriceController.text);
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('يرجى إدخال سعر صحيح'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
                 AddedService serviceModel = AddedService(
-                  name: serviceTitleController.text,
-                  description: serviceDescriptionController.text,
-                  price: int.parse(servicePriceController.text),
-                  deliverytime: serviceDurationController.text,
-                  notes: serviceNotesController.text,
+                  name: serviceTitleController.text.trim(),
+                  description: serviceDescriptionController.text.trim(),
+                  price: price,
+                  deliverytime: serviceDurationController.text.trim(),
+                  notes: serviceNotesController.text.trim(),
                   images: _images.map((e) => e.path).toList(),
+                  video: _video!.path,
                 );
+                print("video type: ${_video!.mimeType}");
                 context
                     .read<ServiceCubit>()
                     .addService(serviceModel: serviceModel);
@@ -311,6 +481,23 @@ class _AddServiceFormState extends State<AddServiceForm> {
         ],
       ),
     );
+  }
+
+  void _initializeVideoController() {
+    if (_video != null) {
+      _videoController = VideoPlayerController.file(File(_video!.path));
+      _videoController!.initialize().then((_) {
+        setState(() {});
+      });
+    }
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return '$hours:$minutes:$seconds';
   }
 }
 

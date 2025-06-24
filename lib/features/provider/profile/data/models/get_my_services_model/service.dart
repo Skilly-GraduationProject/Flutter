@@ -16,6 +16,8 @@ class ProviderService {
   String? categoryId;
   List<String>? deletedImages;
   List<Review>? reviews;
+  String? video;
+  int? countOfOffers;
 
   ProviderService({
     this.id,
@@ -32,6 +34,8 @@ class ProviderService {
     this.categoryId,
     this.deletedImages,
     this.reviews,
+    this.video,
+    this.countOfOffers,
   });
 
   factory ProviderService.fromJson(Map<String, dynamic> json) =>
@@ -59,6 +63,8 @@ class ProviderService {
                     (review) => Review.fromJson(review as Map<String, dynamic>))
                 .toList()
             : null,
+        video: json['video'] as String?,
+        countOfOffers: json['countOfOffers'] as int?,
       );
 
   Future<Map<String, dynamic>> toJson() async {

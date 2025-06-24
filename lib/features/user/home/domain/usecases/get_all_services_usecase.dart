@@ -13,7 +13,6 @@ class GetAllServicesUseCase extends UseCase<List<AllServicesEntity>, String> {
   Future<Either<Failure, List<AllServicesEntity>>> call(String? sort) async {
     final token = await loadToken();
     return userRepo.getAllServices(sort: sort, token: token!);
-
   }
 }
 

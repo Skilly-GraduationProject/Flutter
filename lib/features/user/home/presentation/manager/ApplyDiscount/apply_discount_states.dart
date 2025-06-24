@@ -1,5 +1,3 @@
-
-
 sealed class ApplyDiscountStates {}
 
 final class ApplyDiscountInitial extends ApplyDiscountStates {}
@@ -7,7 +5,6 @@ final class ApplyDiscountInitial extends ApplyDiscountStates {}
 final class ApplyDiscountLoading extends ApplyDiscountStates {}
 
 final class ApplyDiscountSuccess extends ApplyDiscountStates {
-
   ApplyDiscountSuccess();
 }
 

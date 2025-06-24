@@ -7,6 +7,7 @@ import 'package:grad_project/core/utils/networking/errors/server_failure.dart';
 import 'package:grad_project/features/provider/home/data/models/provider_profile/provider.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
+import 'package:grad_project/features/provider/requested_service/data/models/offer_model.dart';
 
 class ProviderServiceRepo {
   final ApiService apiService;
@@ -93,6 +94,38 @@ class ProviderServiceRepo {
       return right(response.data["message"]);
     } on DioException catch (e) {
       print(e.response);
+      ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);
+      return left(serverFailure);
+    }
+  }
+
+  Future<Either<Failure, String>> completeService(String serviceId) async {
+    try {
+      final response = await apiService.post(
+        "${ApiConstants.baseUrl}Provider/ProviderServices/Complete-Service/$serviceId",
+        {},
+      );
+      return right(response.data["message"]);
+    } on DioException catch (e) {
+      print(e.response);
+      ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);
+      return left(serverFailure);
+    }
+  }
+
+  Future<Either<Failure, List<OfferModel>>> getServiceOffers(
+      String serviceId) async {
+    try {
+      final response = await apiService.get(
+        "${ApiConstants.baseUrl}OfferSalary/getAllOffersBy/$serviceId",
+      );
+      List<dynamic> offersData = response.data["offers"] ?? [];
+      List<OfferModel> offers = offersData
+          .map((offerJson) => OfferModel.fromJson(offerJson))
+          .toList();
+      return right(offers);
+    } on DioException catch (e) {
+      print("Error getting service offers: $e");
       ServerFailure serverFailure = ServerFailure.fromDioError(dioException: e);
       return left(serverFailure);
     }

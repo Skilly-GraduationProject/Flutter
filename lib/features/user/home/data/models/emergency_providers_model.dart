@@ -1,9 +1,7 @@
-
 import '../../domain/entities/emergency_providers_entity.dart';
 
 class EmergencyProvidersModel {
-  final String 
-  requestId,
+  final String requestId,
       providerId,
       providerName,
       providerImg,
@@ -19,21 +17,19 @@ class EmergencyProvidersModel {
     required this.providerName,
     required this.providerImg,
     required this.deliveryTime,
-      required this.rate,
+    required this.rate,
     required this.profession,
   });
 
   factory EmergencyProvidersModel.fromJson(Map<String, dynamic> json) {
-
-
     return EmergencyProvidersModel(
       requestId: json['requestId'],
       providerId: json['id'],
       price: json['price'],
       providerName: json['name'],
       providerImg: json['imageUrl'],
-     profession: json['categoryName'],
-     rate: json['review'],
+      profession: json['categoryName'],
+      rate: json['review'],
       deliveryTime: json['estimatedTimeFormatted'],
     );
   }
@@ -43,10 +39,10 @@ class EmergencyProvidersModel {
       providerId: providerId,
       requestId: requestId,
       price: price,
-     img: providerImg,
-     name: providerName,
-     profession: profession,
-     rate: rate,
+      img: providerImg,
+      name: providerName,
+      profession: profession,
+      rate: rate,
       deliveryTime: deliveryTime,
     );
   }

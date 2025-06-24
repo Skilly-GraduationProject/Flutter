@@ -27,15 +27,12 @@ class PopUpEmergency extends StatelessWidget {
                       height: context.responsiveWidth(120),
                       fit: BoxFit.fill),
                 ),
-
-
                 Text(
                   'تم ارسال طلبك بنجاح برجاء الانتظار وسيتم ارسال موفر خدمة للمشكه في اقرب وقت',
                   style: TextStyleManager.style14BoldBlack,
                   textAlign: TextAlign.center,
                 ),
                 const Gap(15),
-
                 SmallPrimaryButton(
                   text: 'اغلاق',
                   color: Colors.red,

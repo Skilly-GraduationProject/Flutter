@@ -17,7 +17,7 @@ class ProviderGalleryServiceView extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProviderServiceCubit(
           providerServiceRepo: getIt<ProviderServiceRepo>())
-        ..getGalleryService(serviceId),   
+        ..getGalleryService(serviceId),
       child: Scaffold(
         appBar: AppBar(
           primary: true,

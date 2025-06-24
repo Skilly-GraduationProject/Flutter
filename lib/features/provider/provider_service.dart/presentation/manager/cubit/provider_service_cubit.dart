@@ -74,4 +74,26 @@ class ProviderServiceCubit extends Cubit<ProviderServiceState> {
           emit(state.editState(updateServiceState: CubitState.success)),
     );
   }
+
+  Future<void> completeService(String serviceId) async {
+    emit(state.editState(completeServiceState: CubitState.loading));
+    final result = await providerServiceRepo.completeService(serviceId);
+    result.fold(
+      (failure) =>
+          emit(state.editState(completeServiceState: CubitState.failure)),
+      (success) =>
+          emit(state.editState(completeServiceState: CubitState.success)),
+    );
+  }
+
+  Future<void> getServiceOffers(String serviceId) async {
+    emit(state.editState(getServiceOffersState: CubitState.loading));
+    final result = await providerServiceRepo.getServiceOffers(serviceId);
+    result.fold(
+      (failure) =>
+          emit(state.editState(getServiceOffersState: CubitState.failure)),
+      (offers) => emit(state.editState(
+          getServiceOffersState: CubitState.success, offers: offers)),
+    );
+  }
 }

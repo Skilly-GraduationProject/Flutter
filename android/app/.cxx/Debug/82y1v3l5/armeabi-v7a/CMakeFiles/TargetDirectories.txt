@@ -1,0 +1,2 @@
+D:/Skilly/skilly/android/app/.cxx/Debug/82y1v3l5/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Skilly/skilly/android/app/.cxx/Debug/82y1v3l5/armeabi-v7a/CMakeFiles/rebuild_cache.dir

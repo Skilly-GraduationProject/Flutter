@@ -132,7 +132,6 @@ class ViewServiceDetailsForm extends StatelessWidget {
             //           fontSize: 16),
             //     ),
             //   ),
-       
           ],
         ),
       ),

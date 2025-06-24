@@ -13,7 +13,6 @@ class GetUserProfileDataUseCase extends UseCase<UserProfileDataEntity, String> {
   Future<Either<Failure, UserProfileDataEntity>> call() async {
     final token = await loadToken();
     return userRepo.getUserProfileData(token: token!);
-   
   }
 }
 

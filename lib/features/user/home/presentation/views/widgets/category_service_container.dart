@@ -98,11 +98,13 @@ class CategoryServiceContainer extends StatelessWidget {
                 text: 'عرض التفاصيل',
                 color: ColorManager.primary,
                 onTap: () {
-                  GoRouter.of(context)
-                      .push('/viewService', extra: {
-    'service': service,
-    'showBuyOrOffer': true,
-  },);
+                  GoRouter.of(context).push(
+                    '/viewService',
+                    extra: {
+                      'service': service,
+                      'showBuyOrOffer': true,
+                    },
+                  );
                 },
               ),
               Text('$price ج.م', style: TextStyleManager.style12BoldPrimary),

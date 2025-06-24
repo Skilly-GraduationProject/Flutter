@@ -17,8 +17,8 @@ class ServiceProviderProfile extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
             child: ServiceProviderProfileViewBody(
-              providerProfileModel: providerProfileModel,
-            )),
+          providerProfileModel: providerProfileModel,
+        )),
       ),
     );
   }

@@ -5,8 +5,6 @@ class AuthResponse {
   AuthResponse({required this.token, this.userType});
   factory AuthResponse.fromJson(Map<String, dynamic> json) {
     return AuthResponse(
-      token: json['token']['result'],
-      userType: json["userType"]
-    );
+        token: json['token']['result'], userType: json["userType"]);
   }
 }

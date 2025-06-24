@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -34,7 +33,6 @@ class _EmergencyViewBodyState extends State<EmergencyViewBody> {
       final currentOffers =
           List.of((cubit.state as GetEmergencyProvidersSuccess).offers);
       currentOffers.removeAt(index);
-
     }
   }
 
@@ -144,11 +142,9 @@ class _EmergencyViewBodyState extends State<EmergencyViewBody> {
               ],
             ),
           ),
-         const Positioned(
+          const Positioned(
             child: Expanded(
-              child: EmergencyOffersListView(
-          
-              ),
+              child: EmergencyOffersListView(),
             ),
           )
         ],

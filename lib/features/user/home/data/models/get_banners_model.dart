@@ -1,4 +1,3 @@
-
 import '../../domain/entities/get_banners_entitiy.dart';
 
 class GetBannersModel {
@@ -19,7 +18,7 @@ class GetBannersModel {
   GetBannersEntity toEntity() {
     return GetBannersEntity(
       img: img,
-      imgUrl:imgUrl,
+      imgUrl: imgUrl,
     );
   }
 }

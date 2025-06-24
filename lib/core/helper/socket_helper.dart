@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 
+import 'package:grad_project/core/helper/shared_prefrences.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 import 'package:flutter/foundation.dart';
 
@@ -13,15 +14,12 @@ class SocketHelper {
 
   late HubConnection _hubConnection;
 
-  bool get isConnected => _hubConnection.state == HubConnectionState.Connected;
-
   Future<void> connect() async {
     _hubConnection = HubConnectionBuilder()
         .withUrl(
           _serverUrl,
           options: HttpConnectionOptions(
-            accessTokenFactory: () async =>
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImM4Y2YxNzc2LTY3ZTAtNGNhOC05NGEzLTZhMWY1Yzk1MWIzYyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDEwMjk3NjI2MDQiLCJqdGkiOiI0YTIzNjE3ZC1iNTBmLTRkMzUtYTJlMS1lYmY1MjE5YWIxYTQiLCJleHAiOjE3NTAyNjEzMTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTI3MSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCJ9.9tFNMpiTbKB3HXxwxXZzmftcXzYvBsf2G4IGhCbgOdQ",
+            accessTokenFactory: () async => await loadToken() ?? "",
           ),
         )
         .build();

@@ -28,19 +28,18 @@ class MyWorkView extends StatelessWidget {
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: AppBar(
-                          primary: true,
-                          foregroundColor: Colors.transparent,
-                          shadowColor: Colors.transparent,
-                          surfaceTintColor: Colors.transparent,
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          leading: const BackIcon(),
-                          title: Text(
-                            "اخر الاعمال",
-                            style: TextStyleManager.style20BoldSec,
-                          ),
-                          centerTitle: true,
-                        ),
+            primary: true,
+            foregroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            leading: const BackIcon(),
+            title: Text(
+              "اخر الاعمال",
+              style: TextStyleManager.style20BoldSec,
+            ),
+            centerTitle: true,
+          ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: ColorManager.primary,
             shape: const CircleBorder(),

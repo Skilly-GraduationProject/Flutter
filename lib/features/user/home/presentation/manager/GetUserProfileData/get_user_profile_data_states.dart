@@ -1,4 +1,3 @@
-
 import '../../../domain/entities/user_profile_data_entity.dart';
 
 sealed class GetUserProfileDataStates {}
@@ -8,8 +7,7 @@ final class GetUserProfileDataInitial extends GetUserProfileDataStates {}
 final class GetUserProfileDataLoading extends GetUserProfileDataStates {}
 
 final class GetUserProfileDataSuccess extends GetUserProfileDataStates {
-
-    final UserProfileDataEntity data;
+  final UserProfileDataEntity data;
 
   GetUserProfileDataSuccess(this.data);
 }

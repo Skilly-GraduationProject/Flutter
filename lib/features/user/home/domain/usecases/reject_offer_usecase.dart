@@ -13,6 +13,8 @@ class RejectOfferUseCase {
     required String offerId,
   }) async {
     return await userRepo.rejectOffer(
-      token: token, offerId: offerId,);
+      token: token,
+      offerId: offerId,
+    );
   }
 }

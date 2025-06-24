@@ -23,6 +23,7 @@ import 'package:grad_project/features/provider/requested_service/presentation/wi
 import 'package:grad_project/features/provider/requested_service/presentation/widgets/send_offer_dialog.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:video_player/video_player.dart';
 
 class ProviderGalleryServiceViewBody extends StatelessWidget {
   const ProviderGalleryServiceViewBody({super.key, required this.serviceId});
@@ -112,15 +113,19 @@ class ProviderGalleryServiceViewBody extends StatelessWidget {
                         ),
                         const Gap(20),
                         // service video (if exists) (optional)
-                        // Column(
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: [
-                        //     Text(
-                        //       "الفيديو",
-                        //       style: TextStyleManager.style12BoldSec,
-                        //     ),
-                        //   ],
-                        // ),
+                        if (service?.video != null &&
+                            service!.video!.isNotEmpty)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "الفيديو",
+                                style: TextStyleManager.style12BoldSec,
+                              ),
+                              const Gap(10),
+                              VideoPlayerWidget(videoUrl: service.video!),
+                            ],
+                          ),
                       ],
                     ),
                   ),
@@ -230,5 +235,160 @@ class ReviewsSection extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class VideoPlayerWidget extends StatefulWidget {
+  const VideoPlayerWidget({
+    super.key,
+    required this.videoUrl,
+  });
+
+  final String videoUrl;
+
+  @override
+  State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
+}
+
+class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
+  VideoPlayerController? _videoController;
+  bool _isInitialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeVideoController();
+  }
+
+  @override
+  void dispose() {
+    _videoController?.dispose();
+    super.dispose();
+  }
+
+  void _initializeVideoController() {
+    _videoController =
+        VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
+    _videoController!.initialize().then((_) {
+      if (mounted) {
+        setState(() {
+          _isInitialized = true;
+        });
+      }
+    }).catchError((error) {
+      print('Error initializing video: $error');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+        color: ColorManager.whiteShade,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Stack(
+          children: [
+            if (_isInitialized && _videoController != null)
+              AspectRatio(
+                aspectRatio: _videoController!.value.aspectRatio,
+                child: VideoPlayer(_videoController!),
+              )
+            else
+              const Center(
+                child: CircularProgressIndicator(
+                  color: ColorManager.primary,
+                ),
+              ),
+            if (_isInitialized && _videoController != null)
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      _videoController!.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        if (_videoController!.value.isPlaying) {
+                          _videoController!.pause();
+                        } else {
+                          _videoController!.play();
+                        }
+                      });
+                    },
+                  ),
+                ),
+              ),
+            if (_isInitialized && _videoController != null)
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(0.7),
+                      ],
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: VideoProgressIndicator(
+                          _videoController!,
+                          allowScrubbing: true,
+                          colors: const VideoProgressColors(
+                            playedColor: ColorManager.primary,
+                            bufferedColor: Colors.grey,
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const Gap(8),
+                      ValueListenableBuilder(
+                        valueListenable: _videoController!,
+                        builder: (context, VideoPlayerValue value, child) {
+                          return Text(
+                            '${_formatDuration(value.position)} / ${_formatDuration(value.duration)}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return '$hours:$minutes:$seconds';
   }
 }

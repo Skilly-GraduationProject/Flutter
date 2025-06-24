@@ -7,7 +7,6 @@ class PointsEntryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body:PointsEntryViewBody());
+    return const Scaffold(body: PointsEntryViewBody());
   }
 }

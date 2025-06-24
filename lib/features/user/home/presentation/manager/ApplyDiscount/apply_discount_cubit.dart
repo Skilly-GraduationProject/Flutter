@@ -8,14 +8,14 @@ class ApplyDiscountCubit extends Cubit<ApplyDiscountStates> {
   final ApplyDiscountUseCase applyDiscountUseCase;
 
   Future<void> applyDiscount(
-        String serviceId,
-
+    String serviceId,
   ) async {
-     final token = await loadToken();
+    final token = await loadToken();
     try {
       var result = await applyDiscountUseCase.call(
         token: token!,
-        serviceId: serviceId,);
+        serviceId: serviceId,
+      );
       print('ApplyDiscount cubit success $result');
       emit(ApplyDiscountSuccess());
     } catch (error) {

@@ -1,5 +1,3 @@
-
-
 sealed class RequestServiceStates {}
 
 final class RequestServiceInitial extends RequestServiceStates {}
@@ -7,7 +5,6 @@ final class RequestServiceInitial extends RequestServiceStates {}
 final class RequestServiceLoading extends RequestServiceStates {}
 
 final class RequestServiceSuccess extends RequestServiceStates {
-
   RequestServiceSuccess();
 }
 

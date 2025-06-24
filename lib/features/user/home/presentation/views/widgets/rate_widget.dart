@@ -6,10 +6,10 @@ class RateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
-       const Icon(Icons.star, color: Colors.amber, size: 16),
-      const  SizedBox(width: 3),
+        const Icon(Icons.star, color: Colors.amber, size: 16),
+        const SizedBox(width: 3),
         Text(
           rate,
           style: const TextStyle(fontSize: 14),

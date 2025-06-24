@@ -7,6 +7,9 @@ class PaymentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(body: PaymentViewBody(paymentUrl: paymentUrl,));
+    return Scaffold(
+        body: PaymentViewBody(
+      paymentUrl: paymentUrl,
+    ));
   }
 }

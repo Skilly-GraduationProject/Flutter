@@ -26,19 +26,19 @@ class AddProviderDataCubit extends Cubit<AddProviderDataState> {
     try {
       var result = await addProviderDataUseCase.call(
         token: token,
-          govern: govern,
-          city: city,
-          streetName: streetName,
-          age: age,
-          yearsOfExp: yearsOfExpert,
-          gender: gender,
-          image: image,
-          pdf: pdf,
-          categoryId: categoryId,
-          briefSummary: brief,
-         );
+        govern: govern,
+        city: city,
+        streetName: streetName,
+        age: age,
+        yearsOfExp: yearsOfExpert,
+        gender: gender,
+        image: image,
+        pdf: pdf,
+        categoryId: categoryId,
+        briefSummary: brief,
+      );
       print('add provider cubit success $result');
- 
+
       emit(AddProviderDataSuccess());
     } catch (error) {
       print('add provider data cubit fails $error');

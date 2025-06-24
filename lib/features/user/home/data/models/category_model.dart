@@ -17,5 +17,4 @@ class CategoryModel {
   Map<String, dynamic> toJson() => {
         'categories': categories?.map((e) => e.toJson()).toList(),
       };
-
 }

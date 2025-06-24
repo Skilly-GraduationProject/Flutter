@@ -145,7 +145,6 @@ final blocProviders = <BlocProvider>[
     create: (context) => GetServiceReviewsCubit(
         GetServiceReviewsUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
-
   BlocProvider<GetEmergencyProvidersCubit>(
     create: (context) => GetEmergencyProvidersCubit(
         GetEmergencyProvidersUseCase(userRepo: getIt.get<UserRepoImplement>())),
@@ -154,7 +153,7 @@ final blocProviders = <BlocProvider>[
     create: (context) => RequestEmergencyCubit(
         RequestEmergencyUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
-   BlocProvider<StartPaymentCubit>(
+  BlocProvider<StartPaymentCubit>(
     create: (context) => StartPaymentCubit(
         StartPaymentUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
@@ -168,7 +167,7 @@ final blocProviders = <BlocProvider>[
   ),
   BlocProvider<RejectOfferCubit>(
     create: (context) => RejectOfferCubit(
-       RejectOfferUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        RejectOfferUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
   BlocProvider<AcceptEOfferCubit>(
     create: (context) => AcceptEOfferCubit(
@@ -176,6 +175,6 @@ final blocProviders = <BlocProvider>[
   ),
   BlocProvider<RejectEOfferCubit>(
     create: (context) => RejectEOfferCubit(
-       RejectEOfferUseCase(userRepo: getIt.get<UserRepoImplement>())),
+        RejectEOfferUseCase(userRepo: getIt.get<UserRepoImplement>())),
   ),
 ];

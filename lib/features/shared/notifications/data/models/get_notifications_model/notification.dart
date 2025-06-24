@@ -1,7 +1,8 @@
 class NotificationModel {
   String? id;
   String? userId;
-  dynamic userImg;
+  String? serviceId;
+  String? userImg;
   String? title;
   String? body;
   bool? isRead;
@@ -10,6 +11,7 @@ class NotificationModel {
   NotificationModel({
     this.id,
     this.userId,
+    this.serviceId,
     this.userImg,
     this.title,
     this.body,
@@ -21,7 +23,8 @@ class NotificationModel {
       NotificationModel(
         id: json['id'] as String?,
         userId: json['userId'] as String?,
-        userImg: json['userImg'] as dynamic,
+        serviceId: json['serviceId'] as String?,
+        userImg: json['userImg'] as String?,
         title: json['title'] as String?,
         body: json['body'] as String?,
         isRead: json['isRead'] as bool?,
@@ -31,6 +34,7 @@ class NotificationModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'userId': userId,
+        'serviceId': serviceId,
         'userImg': userImg,
         'title': title,
         'body': body,

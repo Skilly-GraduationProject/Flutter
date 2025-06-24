@@ -10,6 +10,7 @@ import 'package:grad_project/features/provider/requested_service/data/repo/servi
 import 'package:grad_project/features/shared/chat/data/repo/chats_repo.dart';
 import 'package:grad_project/features/shared/notifications/data/repo/notifications_repo.dart';
 import 'package:grad_project/features/user/home/data/repos/user_repo_implement.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../features/shared/auth/domain/usecases/updatePass_usecase.dart';
 import '../../features/shared/auth/domain/usecases/verify_code_usecase.dart';
 import '../../features/shared/auth/presentation/manager/ResetPassCubit/updatePass_cubit.dart';
@@ -68,19 +69,32 @@ import 'api_service.dart';
 
 final getIt = GetIt.instance;
 
-Future<void> setUp() async{
+Future<void> setUp() async {
   //-------------------Secure Storage----------------
   getIt.registerLazySingleton<FlutterSecureStorage>(
-          () => const FlutterSecureStorage());
+      () => const FlutterSecureStorage());
   getIt.registerLazySingleton<SecureStorageHelper>(
-          () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
-          Dio dio = Dio(
+      () => SecureStorageHelper(secureStorage: getIt<FlutterSecureStorage>()));
+  Dio dio = Dio(
     BaseOptions(headers: {
-      'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization':
-          'Bearer ${await loadToken()}',
+      'Authorization': 'Bearer ${await loadToken()}',
     }),
+  );
+  dio.interceptors.add(
+    PrettyDioLogger(
+      responseBody: true,
+      error: true,
+      requestHeader: true,
+      request: true,
+      compact: true,
+      maxWidth: 90,
+      requestBody: true,
+      responseHeader: true,
+      logPrint: (object) {
+        print(object);
+      },
+    ),
   );
   getIt.registerSingleton<ApiService>(ApiService(dio: dio));
   getIt.registerSingleton<AuthRepoImplement>(
@@ -94,26 +108,26 @@ Future<void> setUp() async{
   getIt.registerSingleton<RegisterUseCase>(
       RegisterUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<RegisterCubit>(
-          () => RegisterCubit(getIt.get<RegisterUseCase>()));
+      () => RegisterCubit(getIt.get<RegisterUseCase>()));
 
   getIt.registerSingleton<ForgetPassUseCase>(
       ForgetPassUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<ForgetPassCubit>(
-          () => ForgetPassCubit(getIt.get<ForgetPassUseCase>()));
+      () => ForgetPassCubit(getIt.get<ForgetPassUseCase>()));
 
   getIt.registerSingleton<VerifyEmailUseCase>(
       VerifyEmailUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<VerifyEmailCubit>(
-          () => VerifyEmailCubit(getIt.get<VerifyEmailUseCase>()));
+      () => VerifyEmailCubit(getIt.get<VerifyEmailUseCase>()));
 
   getIt.registerSingleton<VerifyCodeUseCase>(
       VerifyCodeUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<VerifycodeCubit>(
-          () => VerifycodeCubit(getIt.get<VerifyCodeUseCase>()));
+      () => VerifycodeCubit(getIt.get<VerifyCodeUseCase>()));
   getIt.registerSingleton<UpdatePassUseCase>(
       UpdatePassUseCase(authRepo: getIt.get<AuthRepoImplement>()));
   getIt.registerFactory<UpdatePassCubit>(
-          () => UpdatePassCubit(getIt.get<UpdatePassUseCase>()));
+      () => UpdatePassCubit(getIt.get<UpdatePassUseCase>()));
   getIt.registerSingleton<ProviderHomeRepo>(
       ProviderHomeRepo(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<ProviderDataRepo>(
@@ -193,15 +207,15 @@ Future<void> setUp() async{
 
   getIt.registerSingleton<GetEmergencyProvidersUseCase>(
       GetEmergencyProvidersUseCase(userRepo: getIt.get<UserRepoImplement>()));
-  getIt.registerFactory<GetEmergencyProvidersCubit>(
-      () => GetEmergencyProvidersCubit(getIt.get<GetEmergencyProvidersUseCase>()));
+  getIt.registerFactory<GetEmergencyProvidersCubit>(() =>
+      GetEmergencyProvidersCubit(getIt.get<GetEmergencyProvidersUseCase>()));
 
   getIt.registerSingleton<RequestEmergencyUseCase>(
       RequestEmergencyUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<RequestEmergencyCubit>(
       () => RequestEmergencyCubit(getIt.get<RequestEmergencyUseCase>()));
 
- getIt.registerSingleton<StartPaymentUseCase>(
+  getIt.registerSingleton<StartPaymentUseCase>(
       StartPaymentUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<StartPaymentCubit>(
       () => StartPaymentCubit(getIt.get<StartPaymentUseCase>()));

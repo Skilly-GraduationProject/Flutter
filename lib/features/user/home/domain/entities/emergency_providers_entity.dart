@@ -1,5 +1,5 @@
 class EmergencyProvidersEntity {
-  final String name, img, rate, profession, providerId, requestId,deliveryTime;
+  final String name, img, rate, profession, providerId, requestId, deliveryTime;
   final double price;
 
   EmergencyProvidersEntity({
@@ -9,7 +9,7 @@ class EmergencyProvidersEntity {
     required this.price,
     required this.img,
     required this.rate,
-       required this.profession,
+    required this.profession,
     required this.deliveryTime,
   });
 }

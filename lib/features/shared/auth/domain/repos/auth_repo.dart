@@ -45,6 +45,5 @@ abstract class AuthRepo {
     required File image,
     required File pdf,
     required String briefSummary,
-
   });
 }

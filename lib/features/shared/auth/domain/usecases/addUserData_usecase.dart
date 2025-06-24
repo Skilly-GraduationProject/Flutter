@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -20,9 +19,9 @@ class AddUserDataUseCase {
     required String token,
   }) async {
     final token = await loadToken();
-     
+
     return await authRepo.addUserData(
-      token: token!,
+        token: token!,
         govern: govern,
         city: city,
         streetName: streetName,

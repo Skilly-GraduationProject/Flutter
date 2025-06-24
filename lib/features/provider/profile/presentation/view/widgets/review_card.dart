@@ -39,7 +39,7 @@ class ReviewCard extends StatelessWidget {
             children: [
               ClipOval(
                 child: CustomImage(
-                  image: review.userImage!,
+                  image: review.userImage ?? ImageManager.avatar,
                   height: context.responsiveHeight(46),
                   width: context.responsiveHeight(46),
                   fit: BoxFit.cover,
@@ -56,7 +56,8 @@ class ReviewCard extends StatelessWidget {
           const Gap(10),
           GestureDetector(
             onTap: () {
-              GoRouter.of(context).push(RouterPath.providerServiceView,extra: review.serviceId);
+              GoRouter.of(context).push(RouterPath.providerServiceView,
+                  extra: review.serviceId);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

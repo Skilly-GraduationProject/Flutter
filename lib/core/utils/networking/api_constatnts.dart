@@ -7,6 +7,8 @@ class ApiConstants {
       'Provider/GetServiceProviderByUserId';
   static const String getMyServices =
       'Provider/ProviderServices/GetAllServicesByproviderId';
+  static const String getServicesInProgress =
+      'Provider/ProviderServices/Get-Services-InProgress';
   static const String getMyGallery =
       'Provider/Servicegallery/GetAllServicegalleryByproviderId';
   static const String getMyReviews =
@@ -16,8 +18,15 @@ class ApiConstants {
   static const String deleteNotification =
       'Notification/Delete-Notification-By';
   static const String sendOffer = 'OfferSalary/AddOffer';
+  static const String getOfferById = 'OfferSalary/GetOfferBy/';
+  static const String acceptOffer = 'OfferSalary/AcceptOffer/';
+  static const String rejectOffer = 'OfferSalary/RejectOffer/';
   static const String getChats = 'Chat/GetChatsForUser';
   static const String getChat = 'Chat/GetMessagesForChatOfUser';
   static const String sendMessage = 'Chat/SendMessage';
   static const String editProviderProfile = 'Provider/editServiceProvider';
+  static const String getRequestedServiceById =
+      'UserProfile/requestServices/GetRequestsBy/';
+  static const String acceptService =
+      'UserProfile/requestServices/AcceptService/';
 }

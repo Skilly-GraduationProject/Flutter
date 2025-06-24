@@ -11,7 +11,8 @@ class SortIcon extends StatelessWidget {
       itemBuilder: (context) => [
         const PopupMenuItem(value: 'nearest', child: Text('الاقرب لموقعك')),
         const PopupMenuItem(value: 'price-asc', child: Text('السعر من الأقل')),
-        const PopupMenuItem(value: 'latest', child: Text('من الاحدث الي الاقدم')),
+        const PopupMenuItem(
+            value: 'latest', child: Text('من الاحدث الي الاقدم')),
       ],
       child: Container(
         padding: const EdgeInsets.all(10),

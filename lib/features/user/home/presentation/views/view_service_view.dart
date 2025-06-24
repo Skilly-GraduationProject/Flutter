@@ -1,15 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/view_service_view_body.dart';
 
 import '../../domain/entities/all_services_entity.dart';
 
 class ViewServiceView extends StatelessWidget {
-  const ViewServiceView({super.key, required this.service, required this.showBuyOrOffer, required this.showDiscountButton});
+  const ViewServiceView(
+      {super.key,
+      required this.service,
+      required this.showBuyOrOffer,
+      required this.showDiscountButton});
   final AllServicesEntity service;
-    final bool showBuyOrOffer;
+  final bool showBuyOrOffer;
   final bool showDiscountButton;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,8 @@ class ViewServiceView extends StatelessWidget {
       body: ViewServiceViewBody(
         service: service,
         showBuyOrOffer: showBuyOrOffer,
-        showDiscountButton:showDiscountButton ,),
+        showDiscountButton: showDiscountButton,
+      ),
     );
   }
 }

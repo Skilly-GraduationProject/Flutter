@@ -93,11 +93,12 @@ class NavIcon extends StatelessWidget {
   final bool? forActive;
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(icon,
-        colorFilter: ColorFilter.mode(
-            forActive! ? ColorManager.secondary : ColorManager.darkGrey,
-            BlendMode.srcIn),
-            height: context.responsiveHeight(24),
-            );
+    return SvgPicture.asset(
+      icon,
+      colorFilter: ColorFilter.mode(
+          forActive! ? ColorManager.secondary : ColorManager.darkGrey,
+          BlendMode.srcIn),
+      height: context.responsiveHeight(24),
+    );
   }
 }

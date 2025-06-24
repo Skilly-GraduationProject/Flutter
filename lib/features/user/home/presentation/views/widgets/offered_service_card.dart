@@ -13,8 +13,6 @@ class OfferedServiceCard extends StatelessWidget {
   final AllServicesEntity service;
   @override
   Widget build(BuildContext context) {
- 
-
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -68,10 +66,13 @@ class OfferedServiceCard extends StatelessWidget {
               SmallPrimaryButton(
                 text: "عرض التفاصيل",
                 onTap: () {
-                  GoRouter.of(context).push('/viewService', extra: {
-    'service': service,
-    'showBuyOrOffer': true,
-  },);
+                  GoRouter.of(context).push(
+                    '/viewService',
+                    extra: {
+                      'service': service,
+                      'showBuyOrOffer': true,
+                    },
+                  );
                 },
               ),
               Text(

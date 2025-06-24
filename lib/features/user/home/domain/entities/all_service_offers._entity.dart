@@ -1,9 +1,8 @@
 class AllServiceOffersEntity {
-  final String id, notes, providerName,providerImg,deliveryTime;
-  final double price ;
+  final String id, notes, providerName, providerImg, deliveryTime;
+  final double price;
 
-
- AllServiceOffersEntity({
+  AllServiceOffersEntity({
     required this.notes,
     required this.price,
     required this.id,

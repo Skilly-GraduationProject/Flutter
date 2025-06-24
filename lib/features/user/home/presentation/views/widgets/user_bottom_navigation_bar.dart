@@ -31,8 +31,7 @@ class _UserBottomNavigationBarState extends State<UserBottomNavigationBar> {
     //   label: 'notification',
     // ),
     const BottomNavigationBarItem(
-      icon:
-         Icon(Icons.wallet_giftcard),
+      icon: Icon(Icons.wallet_giftcard),
       //     Image.asset(
       //   'assets/images/points_icon.png',
       //   width: 40,
@@ -50,7 +49,13 @@ class _UserBottomNavigationBarState extends State<UserBottomNavigationBar> {
       icon: Icon(
         Icons.payment_outlined,
       ),
-      label:'الدفع',
+      label: 'الدفع',
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(
+        Icons.chat,
+      ),
+      label: 'chat',
     ),
   ];
   int _selectedIndex = 0;

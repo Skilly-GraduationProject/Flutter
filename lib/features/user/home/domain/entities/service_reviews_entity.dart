@@ -1,7 +1,6 @@
 class ServiceReviewsEntity {
-  final String name,img,feedback,id;
+  final String name, img, feedback, id;
   final double rate;
-
 
   ServiceReviewsEntity({
     required this.id,
@@ -9,7 +8,5 @@ class ServiceReviewsEntity {
     required this.feedback,
     required this.img,
     required this.rate,
-
-
   });
 }

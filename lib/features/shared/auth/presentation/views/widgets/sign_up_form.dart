@@ -25,76 +25,73 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-
-      return Form(
-        key: formKey,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: CustomTextField(
-                  title: 'الاسم الاول',
-                  onSaved: (val) {
-                    firstName = val;
-                  },
-                )),
-                const Gap(10),
-                Expanded(
-                    child: CustomTextField(
-                  title: 'الاسم الاخير',
-                  onSaved: (val) {
-                    secondName = val;
-                  },
-                )),
-              ],
-            ),
-            CustomTextField(
-              title: 'البريد الالكتروني',
-              onSaved: (val) {
-                email = val;
-              },
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextField(
-              title: 'رقم الهاتف',
-              icon: Image.asset('assets/images/EG.png'),
-              onSaved: (val) {
-                phone = val;
-              },
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextField(
-              title: 'الرقم السري',
-              icon: Image.asset('assets/images/Hide.png'),
-              onSaved: (val) {
-                password = val;
-              },
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            CustomButton(
-              text: 'انشاء حساب',
-              onTap: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  widget.emailSaved(email!);
-                  widget.phoneSaved(phone!);
-                  BlocProvider.of<RegisterCubit>(context).register(firstName!,
-                      secondName!, email!, password!, phone!, widget.userType);
-                  
-                }
-              },
-            ),
-          ],
-        ),
-      );
-  
+    return Form(
+      key: formKey,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                  child: CustomTextField(
+                title: 'الاسم الاول',
+                onSaved: (val) {
+                  firstName = val;
+                },
+              )),
+              const Gap(10),
+              Expanded(
+                  child: CustomTextField(
+                title: 'الاسم الاخير',
+                onSaved: (val) {
+                  secondName = val;
+                },
+              )),
+            ],
+          ),
+          CustomTextField(
+            title: 'البريد الالكتروني',
+            onSaved: (val) {
+              email = val;
+            },
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          CustomTextField(
+            title: 'رقم الهاتف',
+            icon: Image.asset('assets/images/EG.png'),
+            onSaved: (val) {
+              phone = val;
+            },
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          CustomTextField(
+            title: 'الرقم السري',
+            icon: Image.asset('assets/images/Hide.png'),
+            onSaved: (val) {
+              password = val;
+            },
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          CustomButton(
+            text: 'انشاء حساب',
+            onTap: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+                widget.emailSaved(email!);
+                widget.phoneSaved(phone!);
+                BlocProvider.of<RegisterCubit>(context).register(firstName!,
+                    secondName!, email!, password!, phone!, widget.userType);
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

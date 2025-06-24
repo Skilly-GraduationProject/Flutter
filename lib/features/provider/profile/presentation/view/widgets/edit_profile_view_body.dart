@@ -353,16 +353,16 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
           professions = state.category.categories
               .map((item) => item.professionName!)
               .toList();
-              if(selectedProfession == null){
-if (professions
-              .contains(widget.providerProfileModel.provider?.profession)) {
-            selectedProfession =
-                widget.providerProfileModel.provider?.profession;
-          } else {
-            selectedProfession = null;
+          if (selectedProfession == null) {
+            if (professions
+                .contains(widget.providerProfileModel.provider?.profession)) {
+              selectedProfession =
+                  widget.providerProfileModel.provider?.profession;
+            } else {
+              selectedProfession = null;
+            }
           }
-              }
-          
+
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Form(

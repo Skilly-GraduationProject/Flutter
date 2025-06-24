@@ -8,14 +8,14 @@ class AcceptOfferCubit extends Cubit<AcceptOfferStates> {
   final AcceptOfferUseCase acceptOfferUseCase;
 
   Future<void> acceptOffer(
-        String offerId,
-
+    String offerId,
   ) async {
-     final token = await loadToken();
+    final token = await loadToken();
     try {
       var result = await acceptOfferUseCase.call(
         token: token!,
-       offerId: offerId,);
+        offerId: offerId,
+      );
       print('AcceptOffer cubit success $result');
       emit(AcceptOfferSuccess());
     } catch (error) {

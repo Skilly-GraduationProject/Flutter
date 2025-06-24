@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 
 class GalleryService {
   String? id;
@@ -38,7 +39,11 @@ class GalleryService {
         'galleryName': galleryName,
         'description': description,
         'deliverytime': deliverytime,
-        'video': video,
+        if (video != null)
+          'video': await MultipartFile.fromFile(
+            video!,
+            contentType: MediaType('video', 'mp4'),
+          ),
         'serviceProviderId': serviceProviderId,
         if (images != null && images!.isNotEmpty)
           'Images': await Future.wait(

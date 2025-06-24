@@ -6,7 +6,6 @@ import '../../../../../../core/helper/loading_indicator.dart';
 import '../../manager/GetAllServices/get_all_services_cubit.dart';
 import '../../manager/GetAllServices/get_all_services_states.dart';
 
-
 class DiscountServicesListView extends StatefulWidget {
   const DiscountServicesListView({super.key});
 
@@ -29,8 +28,9 @@ class _DiscountServicesListViewState extends State<DiscountServicesListView> {
       if (state is GetAllServicesLoading) {
         return const SliverToBoxAdapter(child: CustomLoadingIndicator());
       } else if (state is GetAllServicesSuccess) {
-        final services = state.services.where((service) => service.discountPrice != null)
-      .toList();
+        final services = state.services
+            .where((service) => service.discountPrice != null)
+            .toList();
 
         return SliverToBoxAdapter(
           child: Padding(

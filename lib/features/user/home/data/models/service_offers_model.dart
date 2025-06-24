@@ -1,14 +1,7 @@
-
-
 import '../../domain/entities/all_service_offers._entity.dart';
 
 class ServiceOffersModel {
-  final String 
-      notes,
-      id,
-      providerName,
-      providerImg,
-      deliveryTime;
+  final String notes, id, providerName, providerImg, deliveryTime;
   final double price;
 
   ServiceOffersModel({
@@ -21,8 +14,6 @@ class ServiceOffersModel {
   });
 
   factory ServiceOffersModel.fromJson(Map<String, dynamic> json) {
-
-
     return ServiceOffersModel(
       id: json['id'],
       price: json['salary'],

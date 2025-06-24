@@ -4,13 +4,15 @@ import '../../../../../core/helper/shared_prefrences.dart';
 import '../entities/all_services_entity.dart';
 import '../repos/user_repo.dart';
 
-class GetCategoryServicesUseCase extends UseCase<List<AllServicesEntity>, GetCategoryServicesParams> {
+class GetCategoryServicesUseCase
+    extends UseCase<List<AllServicesEntity>, GetCategoryServicesParams> {
   final UserRepo userRepo;
 
   GetCategoryServicesUseCase({required this.userRepo});
 
   @override
-  Future<Either<Failure, List<AllServicesEntity>>> call(GetCategoryServicesParams params) async {
+  Future<Either<Failure, List<AllServicesEntity>>> call(
+      GetCategoryServicesParams params) async {
     final token = await loadToken();
     return userRepo.getCategoryServices(
       categoryId: params.categoryId,
@@ -19,7 +21,6 @@ class GetCategoryServicesUseCase extends UseCase<List<AllServicesEntity>, GetCat
     );
   }
 }
-
 
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);

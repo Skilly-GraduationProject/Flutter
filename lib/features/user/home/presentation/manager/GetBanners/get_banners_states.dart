@@ -1,7 +1,4 @@
-
 import '../../../domain/entities/get_banners_entitiy.dart';
-
-
 
 sealed class GetBannersStates {}
 
@@ -10,8 +7,7 @@ final class GetBannersInitial extends GetBannersStates {}
 final class GetBannersLoading extends GetBannersStates {}
 
 final class GetBannersSuccess extends GetBannersStates {
-
-    final List<GetBannersEntity> banners;
+  final List<GetBannersEntity> banners;
 
   GetBannersSuccess(this.banners);
 }

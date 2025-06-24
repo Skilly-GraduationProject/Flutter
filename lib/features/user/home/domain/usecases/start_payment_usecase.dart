@@ -12,7 +12,9 @@ class StartPaymentUseCase {
     required String token,
     required String serviceId,
   }) async {
-     
-    return await userRepo.startPayment(token: token, serviceId: serviceId,);
+    return await userRepo.startPayment(
+      token: token,
+      serviceId: serviceId,
+    );
   }
 }

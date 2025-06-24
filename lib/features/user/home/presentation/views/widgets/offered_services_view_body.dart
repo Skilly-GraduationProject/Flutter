@@ -46,14 +46,14 @@ class _OfferedServicesViewBodyState extends State<OfferedServicesViewBody> {
                   });
                   context
                       .read<GetAllServicesCubit>()
-                      .getAllServices(currentSort); 
+                      .getAllServices(currentSort);
                 },
               ),
             ],
           ),
         ),
         const SliverGap(10),
-      const  SliverToBoxAdapter(child: HomeServicesListView()),
+        const SliverToBoxAdapter(child: HomeServicesListView()),
       ]),
     );
   }

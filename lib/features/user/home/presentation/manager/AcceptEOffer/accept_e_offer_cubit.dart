@@ -9,15 +9,15 @@ class AcceptEOfferCubit extends Cubit<AcceptEOfferStates> {
 
   Future<void> acceptEOffer(
     String requestId,
-        String providerId,
-
+    String providerId,
   ) async {
-     final token = await loadToken();
+    final token = await loadToken();
     try {
       var result = await acceptEOfferUseCase.call(
         token: token!,
         requestId: requestId,
-       providerId:providerId ,);
+        providerId: providerId,
+      );
 
       print('AcceptEOffer cubit success $result');
       emit(AcceptEOfferSuccess());

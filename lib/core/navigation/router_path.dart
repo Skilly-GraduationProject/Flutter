@@ -14,7 +14,8 @@ class RouterPath {
   static const String providerServiceView = '/providerServiceView';
   static const String editServiceView = '/editServiceView';
   static const String editProviderProfile = '/editProviderProfile';
-  static const String providerGalleryServiceView = '/providerGalleryServiceView';
+  static const String providerGalleryServiceView =
+      '/providerGalleryServiceView';
   static const String addGalleryServiceView = '/addGalleryServiceView';
   static const String onBoardingView = '/onBoardingView';
   static const String ordersView = '/ordersView';
@@ -29,5 +30,9 @@ class RouterPath {
   static const String discountServicesView = '/discountServicesView';
   static const String offeredServicesView = '/offeredServicesView';
   static const String userProfile = '/userProfile';
-
+  static const String aboutView = '/aboutView';
+  static const String contactUsView = '/contactUsView';
+  static const String inProgressServicesView = '/inProgressServicesView';
+  static const String inProgressServiceView = '/inProgressServiceView';
+  static const String serviceOffersScreen = '/serviceOffersScreen';
 }

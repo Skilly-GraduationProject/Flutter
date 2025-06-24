@@ -40,8 +40,7 @@ class RequestedService {
         price: json['price'] as double?,
         deliverytime: json['deliverytime'] as String?,
         startDate: json['startDate'] as String?,
-        serviceRequestTime:
-            DateFormatter.formatDate(json['serviceRequestTime']) as String?,
+        serviceRequestTime: json['serviceRequestTime'] as String?,
         categoryId: json['categoryId'] as String?,
         notes: json['notes'] as String?,
         userId: json['userId'] as String?,

@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 class CategoryContainer extends StatelessWidget {
   const CategoryContainer({super.key, required this.name, required this.image});

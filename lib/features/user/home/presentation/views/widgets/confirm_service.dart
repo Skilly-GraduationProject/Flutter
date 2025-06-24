@@ -31,7 +31,8 @@ class _ConfirmServiceState extends State<ConfirmService> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<StartPaymentCubit>(context).startPayment(widget.service!.id);
+    BlocProvider.of<StartPaymentCubit>(context)
+        .startPayment(widget.service!.id);
   }
 
   @override

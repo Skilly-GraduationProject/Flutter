@@ -8,6 +8,45 @@ class TermsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<_TermsSection> sections = [
+      _TermsSection(
+        title: '١. قبول الشروط',
+        titleStyle: TextStyleManager.style16BoldPrimary,
+        content: [
+          'باستخدام هذا الابلكيشن، فإنك توافق على الالتزام بهذه الشروط والأحكام، وإذا لم توافق على أي جزء منها، نرجو عدم استخدام الابلكيشن.',
+        ],
+      ),
+      _TermsSection(
+        title: '٢. التعديلات على الشروط',
+        titleStyle: TextStyleManager.style16BoldPrimary,
+        content: [
+          'نحتفظ بالحق في تعديل أو تحديث هذه الشروط في أي وقت دون إشعار مسبق. استمرارك في استخدام الابلكيشن بعد التعديلات يعتبر موافقة منك على الشروط المعدّلة.',
+        ],
+      ),
+      _TermsSection(
+        title: '٣. استخدام الابلكيشن',
+        titleStyle: TextStyleManager.style16BoldPrimary,
+        content: [
+          '• لا يجوز لك استخدام الموقع لأي غرض غير قانوني، أو ممنوع بموجب هذه الشروط.',
+          '• يجب أن تلتزم بعدم التسبب بأي ضرر للموقع أو تعطيله أو تحميله بشكل مفرط.',
+        ],
+      ),
+      _TermsSection(
+        title: '٤. الملكية الفكرية',
+        titleStyle: TextStyleManager.style16BoldPrimary,
+        content: [
+          'جميع المحتويات المعروضة على الابلكيشن ، بما في ذلك النصوص، الصور، التصاميم، والشعارات، مملوكة لنا أو نستخدمها بموجب ترخيص. لا يجوز نسخها أو إعادة استخدامها دون إذن كتابي مسبق.',
+        ],
+      ),
+      _TermsSection(
+        title: '٥. المسؤولية',
+        titleStyle: TextStyleManager.style16BoldPrimary,
+        content: [
+          'نحن لا نتحمل أي مسؤولية عن أي خسائر أو أضرار قد تنتج عن استخدامك للابلكيشن أو اعتمادك على أي من المعلومات المتاحة فيه.',
+        ],
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         primary: true,
@@ -25,34 +64,40 @@ class TermsView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              """مرحبًا بك في الابلكيشن الخاص بنا! من خلال استخدامك لهذا الابلكيشن، فإنك توافق على الالتزام بالشروط والأحكام التالية. يُرجى قراءتها بعناية قبل استخدام الابلكيشن.""",
+              'مرحبًا بك في الابلكيشن الخاص بنا! من خلال استخدامك لهذا الابلكيشن، فإنك توافق على الالتزام بالشروط والأحكام التالية. يُرجى قراءتها بعناية قبل استخدام الابلكيشن.',
               style: TextStyleManager.style16RegSec,
               textAlign: TextAlign.start,
             ),
             const Gap(20),
             Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Column(
+              child: ListView.separated(
+                itemCount: sections.length,
+                separatorBuilder: (context, index) => const Gap(20),
+                itemBuilder: (context, index) {
+                  final section = sections[index];
+                  return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${index + 1}. قبول الشروط",
-                        style: TextStyleManager.style16BoldPrimary,
-                      ),
-                      const Gap(5),
-                      Text(
-                        """باستخدام هذا الابلكيشن، فإنك توافق على الالتزام بهذه الشروط والأحكام، وإذا لم توافق على أي جزء منها، نرجو عدم استخدام الابلكيشن.""",
-                        style: TextStyleManager.style16RegSec,
+                        section.title,
+                        style: section.titleStyle,
                         textAlign: TextAlign.start,
                       ),
+                      const Gap(8),
+                      ...section.content.map((line) => Padding(
+                            padding: const EdgeInsets.only(bottom: 6),
+                            child: Text(
+                              line,
+                              style: TextStyleManager.style16RegSec,
+                              textAlign: TextAlign.start,
+                            ),
+                          )),
                     ],
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ],
@@ -60,4 +105,15 @@ class TermsView extends StatelessWidget {
       ),
     );
   }
+}
+
+class _TermsSection {
+  final String title;
+  final TextStyle titleStyle;
+  final List<String> content;
+  _TermsSection({
+    required this.title,
+    required this.titleStyle,
+    required this.content,
+  });
 }

@@ -97,7 +97,9 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
               ),
               GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push(RouterPath.ordersView, );
+                  GoRouter.of(context).push(
+                    RouterPath.ordersView,
+                  );
                 },
                 child: const Row(
                   children: [

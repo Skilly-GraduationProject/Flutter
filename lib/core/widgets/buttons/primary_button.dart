@@ -8,20 +8,23 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.text,
     this.onTap,
+    this.color, this.width,
   });
 
   final String text;
   final void Function()? onTap;
-
+  final Color? color;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: width,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: ColorManager.primary,
+          color: color ?? ColorManager.primary,
         ),
         child: Center(
           child: Text(

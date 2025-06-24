@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad_project/core/utils/cubit_states.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
+import 'package:grad_project/features/provider/requested_service/data/models/offer_model.dart';
 
 class ProviderServiceState {
   final CubitState? getServiceState;
@@ -11,6 +12,9 @@ class ProviderServiceState {
   final CubitState? deleteServiceState;
   final CubitState? updateServiceState;
   final CubitState? addGalleryServiceState;
+  final CubitState? completeServiceState;
+  final CubitState? getServiceOffersState;
+  final List<OfferModel>? offers;
 
   ProviderServiceState({
     this.getServiceState,
@@ -20,6 +24,9 @@ class ProviderServiceState {
     this.deleteServiceState,
     this.updateServiceState,
     this.addGalleryServiceState,
+    this.completeServiceState,
+    this.getServiceOffersState,
+    this.offers,
   });
 
   ProviderServiceState editState({
@@ -30,6 +37,9 @@ class ProviderServiceState {
     CubitState? deleteServiceState,
     CubitState? updateServiceState,
     CubitState? addGalleryServiceState,
+    CubitState? completeServiceState,
+    CubitState? getServiceOffersState,
+    List<OfferModel>? offers,
   }) {
     return ProviderServiceState(
       getServiceState: getServiceState ?? this.getServiceState,
@@ -41,6 +51,10 @@ class ProviderServiceState {
       updateServiceState: updateServiceState ?? this.updateServiceState,
       addGalleryServiceState:
           addGalleryServiceState ?? this.addGalleryServiceState,
+      completeServiceState: completeServiceState ?? this.completeServiceState,
+      getServiceOffersState:
+          getServiceOffersState ?? this.getServiceOffersState,
+      offers: offers ?? this.offers,
     );
   }
 }

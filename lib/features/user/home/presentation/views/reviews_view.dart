@@ -7,8 +7,10 @@ class ReviewsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: ReviewsViewBody(serviceId: serviceId,),
+    return Scaffold(
+      body: ReviewsViewBody(
+        serviceId: serviceId,
+      ),
     );
   }
 }

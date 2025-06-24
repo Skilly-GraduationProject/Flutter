@@ -55,7 +55,8 @@ class ProviderInfoWidget extends StatelessWidget {
                 height: context.responsiveHeight(20),
               ),
               const Gap(3),
-              Text("4.5", style: TextStyleManager.style14RegSec)
+              Text(providerProfileModel.provider?.review.toString() ?? "5.0",
+                  style: TextStyleManager.style14RegSec)
             ],
           ),
         ],

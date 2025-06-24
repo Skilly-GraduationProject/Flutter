@@ -1,6 +1,4 @@
-
 import '../../../domain/entities/service_reviews_entity.dart';
-
 
 sealed class GetServiceReviewsStates {}
 
@@ -11,8 +9,7 @@ final class GetServiceReviewsLoading extends GetServiceReviewsStates {}
 final class GetServiceReviewsEmpty extends GetServiceReviewsStates {}
 
 final class GetServiceReviewsSuccess extends GetServiceReviewsStates {
-
-    final List<ServiceReviewsEntity> reviews;
+  final List<ServiceReviewsEntity> reviews;
 
   GetServiceReviewsSuccess(this.reviews);
 }

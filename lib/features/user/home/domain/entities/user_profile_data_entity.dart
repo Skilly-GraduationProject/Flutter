@@ -2,7 +2,7 @@ class UserProfileDataEntity {
   final String name, img, city, streetName, email, phone;
   final int points;
 
-  UserProfileDataEntity( {
+  UserProfileDataEntity({
     required this.points,
     required this.name,
     required this.img,

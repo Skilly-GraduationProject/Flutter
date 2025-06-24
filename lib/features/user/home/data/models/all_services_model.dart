@@ -15,7 +15,7 @@ class AllServicesModel {
   final double price;
 
   AllServicesModel({
-    required this.discountPrice, 
+    required this.discountPrice,
     required this.name,
     required this.desc,
     required this.id,
@@ -59,7 +59,7 @@ class AllServicesModel {
 
   AllServicesEntity toEntity() {
     return AllServicesEntity(
-      discountPrice:discountPrice,
+      discountPrice: discountPrice,
       id: id,
       name: name,
       desc: desc,

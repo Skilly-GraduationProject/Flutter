@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/managers/color_manager.dart';
 
 class Calender extends StatefulWidget {
-  final void Function(String) onSelected; 
+  final void Function(String) onSelected;
 
   const Calender({super.key, required this.onSelected});
 

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
+import 'package:grad_project/features/shared/chat/presentation/view/chats_view.dart';
+import 'package:grad_project/features/shared/more/presentation/view/more_view.dart';
 import 'package:grad_project/features/user/home/presentation/views/widgets/user_home_view_body.dart';
 
 import 'emergency_view.dart';
@@ -16,7 +19,8 @@ class _UserHomeViewState extends State<UserHomeView> {
   List<Widget> homeWidgets = <Widget>[
     const UserHomeViewBody(),
     const PointsEntryView(),
-    const EmergencyView(),
+    const MoreView(),
+    const ChatsView(),
     // const MoreView()
   ];
 

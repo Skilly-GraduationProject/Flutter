@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import '../../../domain/usecases/get_category_services.dart';
 import 'get_category_services_states.dart';
@@ -8,9 +7,10 @@ class GetCategoryServicesCubit extends Cubit<GetCategoryServicesStates> {
       : super(GetCategoryServicesInitial());
   final GetCategoryServicesUseCase getCategoryServiceProvidersUseCase;
 
-   Future<void> getCategoryServices({required String categoryId,String?sort}) async {
+  Future<void> getCategoryServices(
+      {required String categoryId, String? sort}) async {
     emit(GetCategoryServicesLoading());
-     final params = GetCategoryServicesParams(
+    final params = GetCategoryServicesParams(
       categoryId: categoryId,
       sort: sort,
     );
@@ -19,7 +19,7 @@ class GetCategoryServicesCubit extends Cubit<GetCategoryServicesStates> {
     result.fold((failure) {
       emit(GetCategoryServicesFailure(failure.errMessage));
     }, (services) {
-        emit(GetCategoryServicesSuccess(services));
+      emit(GetCategoryServicesSuccess(services));
     });
   }
 }

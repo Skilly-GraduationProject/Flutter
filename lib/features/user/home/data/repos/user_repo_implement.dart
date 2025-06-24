@@ -233,19 +233,18 @@ class UserRepoImplement implements UserRepo {
         ),
       );
     }
-try{
-    final response = await apiService.post(
-      '$baseUrl/UserProfile/requestServices/AddrequestService',
-      formData,
-      token: token,
-    );
-    print('response ${response.data}');
-     return right(null);
+    try {
+      final response = await apiService.post(
+        '$baseUrl/UserProfile/requestServices/AddrequestService',
+        formData,
+        token: token,
+      );
+      print('response ${response.data}');
+      return right(null);
     } catch (e) {
       print('request service error: $e');
       return left(ServerFailure(e.toString()));
     }
- 
   }
 
   @override

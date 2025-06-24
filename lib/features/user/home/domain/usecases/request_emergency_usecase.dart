@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/errors/failure.dart';
@@ -18,6 +17,5 @@ class RequestEmergencyUseCase {
       categoryId: categoryId,
       desc: desc,
     );
-
   }
 }

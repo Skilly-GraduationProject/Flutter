@@ -20,6 +20,7 @@ import 'package:grad_project/features/provider/profile/data/models/get_my_servic
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
 import 'package:grad_project/features/provider/profile/presentation/manager/cubit/provider_data_cubit.dart';
 import 'package:grad_project/features/provider/profile/presentation/manager/cubit/provider_data_state.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/widgets/in_progress_services_section.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/inherted_profile_widget.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_gallery_section.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/widgets/my_reviews_section.dart';
@@ -40,13 +41,14 @@ class ServiceProviderProfileViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-          onRefresh: () async {
-            context.read<ProviderDataCubit>().getProviderProfile();
-          },
-          color: ColorManager.blue,
+      onRefresh: () async {
+        context.read<ProviderDataCubit>().getProviderProfile();
+      },
+      color: ColorManager.blue,
       child: BlocBuilder<ProviderDataCubit, ProviderDataState>(
         builder: (context, state) {
-           ProviderProfileModel  providerProfileModel = state.providerProfile ?? this.providerProfileModel;
+          ProviderProfileModel providerProfileModel =
+              state.providerProfile ?? this.providerProfileModel;
           return Skeletonizer(
             enabled: state.getProviderProfileState == CubitState.loading,
             ignorePointers: state.getProviderProfileState == CubitState.loading,
@@ -62,7 +64,8 @@ class ServiceProviderProfileViewBody extends StatelessWidget {
                       foregroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
                       surfaceTintColor: Colors.transparent,
-                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
                       leading: const BackIcon(),
                       actions: [
                         GestureDetector(
@@ -124,7 +127,9 @@ class ServiceProviderProfileViewBody extends StatelessWidget {
                                 color: ColorManager.secondary,
                                 shape: BoxShape.circle),
                             child: Text(
-                              providerProfileModel.provider!.numberOfEndedservices.toString(),
+                              providerProfileModel
+                                  .provider!.numberOfEndedservices
+                                  .toString(),
                               style: TextStyleManager.style16BoldWhite,
                             ),
                           )
@@ -141,6 +146,7 @@ class ServiceProviderProfileViewBody extends StatelessWidget {
                   ),
                   const MyServicesSection(),
                   const MyGallerySection(),
+                  const InProgressServicesSection(),
                   const SliverGap(20),
                   const MyReviewsSection(),
                 ],

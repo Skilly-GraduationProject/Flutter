@@ -17,7 +17,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await setUp();
-    // Bloc.observer = 
+  // Bloc.observer =
   LocalNotification localNotification = LocalNotification();
   await localNotification.initialize();
   runApp(const MyApp());

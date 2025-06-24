@@ -8,14 +8,14 @@ class RejectOfferCubit extends Cubit<RejectOfferStates> {
   final RejectOfferUseCase rejectOfferUseCase;
 
   Future<void> rejectOffer(
-        String offerId,
-
+    String offerId,
   ) async {
-     final token = await loadToken();
+    final token = await loadToken();
     try {
       var result = await rejectOfferUseCase.call(
         token: token!,
-       offerId: offerId,);
+        offerId: offerId,
+      );
       print('Reject Offer cubit success $result');
       emit(RejectOfferSuccess());
     } catch (error) {

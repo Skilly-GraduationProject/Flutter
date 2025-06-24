@@ -7,12 +7,13 @@ import 'package:grad_project/features/provider/home/data/models/provider_profile
 import 'package:grad_project/features/provider/profile/data/models/edit_profile_model.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/get_my_gallery_model.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/get_my_services_model.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_services_in_progress/get_services_in_progress.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/get_reviews_model.dart';
 
 class ProviderDataRepo {
   final ApiService apiService;
   ProviderDataRepo({required this.apiService});
-        getProviderProfile() async {
+  getProviderProfile() async {
     try {
       var response = await apiService
           .get(ApiConstants.baseUrl + ApiConstants.getProviderProfile);
@@ -24,11 +25,26 @@ class ProviderDataRepo {
       return Left(serverFailure);
     }
   }
+
   Future<Either<ServerFailure, GetMyServicesModel>> getMyServices() async {
     try {
       var response = await apiService
           .get(ApiConstants.baseUrl + ApiConstants.getMyServices);
       GetMyServicesModel model = GetMyServicesModel.fromJson(response.data);
+      return right(model);
+    } on DioException catch (e) {
+      ServerFailure failure = ServerFailure.fromDioError(dioException: e);
+      return left(failure);
+    }
+  }
+
+  Future<Either<ServerFailure, GetServicesInProgress>>
+      getServicesInProgress() async {
+    try {
+      var response = await apiService
+          .get(ApiConstants.baseUrl + ApiConstants.getServicesInProgress);
+      GetServicesInProgress model =
+          GetServicesInProgress.fromJson(response.data);
       return right(model);
     } on DioException catch (e) {
       ServerFailure failure = ServerFailure.fromDioError(dioException: e);

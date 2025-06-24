@@ -6,16 +6,22 @@ import 'package:grad_project/features/provider/home/data/models/provider_profile
 import 'package:grad_project/features/provider/profile/data/models/get_my_gallery_model/servicesgallery.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_my_services_model/service.dart';
 import 'package:grad_project/features/provider/profile/data/models/get_reviews_model/review.dart';
+import 'package:grad_project/features/provider/profile/data/models/get_services_in_progress/request_service.dart';
 import 'package:grad_project/features/provider/profile/presentation/view/edit_profile_view.dart';
+import 'package:grad_project/features/provider/profile/presentation/view/in_progress_services_view.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/add_gallery_service_view.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/edit_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/in_progress_service_view.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/provider_gallery_service_view.dart';
 import 'package:grad_project/features/provider/provider_service.dart/presentation/provider_service_view.dart';
+import 'package:grad_project/features/provider/provider_service.dart/presentation/service_offers.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/add_service_view.dart';
 import 'package:grad_project/features/provider/home/presentation/view/service_provider_home_view.dart';
 import 'package:grad_project/features/provider/requested_service/presentation/get_service_view.dart';
 import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
 import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
+import 'package:grad_project/features/shared/more/presentation/view/widgets/about.dart';
+import 'package:grad_project/features/shared/more/presentation/view/widgets/contact_us.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/privacy.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/terms.dart';
 import 'package:grad_project/features/shared/notifications/presentation/view/notification_view.dart';
@@ -87,16 +93,17 @@ abstract class AppRouter {
     GoRoute(
         path: '/viewService',
         builder: (context, state) {
-             final extra = state.extra as Map<String, dynamic>;
-    final service = extra['service'] ;
-    final showBuyOrOffer = extra['showBuyOrOffer'] as bool? ?? false;
-    final showDiscountButton = extra['showDiscountButton'] as bool? ?? false;
+          final extra = state.extra as Map<String, dynamic>;
+          final service = extra['service'];
+          final showBuyOrOffer = extra['showBuyOrOffer'] as bool? ?? false;
+          final showDiscountButton =
+              extra['showDiscountButton'] as bool? ?? false;
 
           return ViewServiceView(
-      service: service,
-      showBuyOrOffer: showBuyOrOffer,
-      showDiscountButton: showDiscountButton,
-    );
+            service: service,
+            showBuyOrOffer: showBuyOrOffer,
+            showDiscountButton: showDiscountButton,
+          );
         }),
     GoRoute(
       path: '/category',
@@ -109,7 +116,7 @@ abstract class AppRouter {
       },
     ),
     GoRoute(
-      path:RouterPath.userProfile,
+      path: RouterPath.userProfile,
       builder: (context, state) {
         final data = state.extra as UserProfileDataEntity?;
 
@@ -130,7 +137,7 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.allCategoriesView,
         builder: (context, state) => const AllCategoriesView()),
-         GoRoute(
+    GoRoute(
         path: RouterPath.paymentSuccessView,
         builder: (context, state) => const PaymentSuccessView()),
     GoRoute(
@@ -142,14 +149,18 @@ abstract class AppRouter {
           }
           return ReviewsView(serviceId: serviceId);
         }),
-         GoRoute(
-        path: RouterPath.paymentView,
-        builder: (context, state) {
-         final paymentUrl = state.extra as String?;
-          if (paymentUrl == null) {
-            return const Text('Missing paymentUrl');
-          }
-          return PaymentView(paymentUrl: paymentUrl,);},),
+    GoRoute(
+      path: RouterPath.paymentView,
+      builder: (context, state) {
+        final paymentUrl = state.extra as String?;
+        if (paymentUrl == null) {
+          return const Text('Missing paymentUrl');
+        }
+        return PaymentView(
+          paymentUrl: paymentUrl,
+        );
+      },
+    ),
     GoRoute(
         path: RouterPath.providerHome,
         builder: (context, state) => const ServiceProviderHomeView()),
@@ -186,11 +197,11 @@ abstract class AppRouter {
         path: RouterPath.pointsView,
         builder: (context, state) => const PointsEntryView()),
     GoRoute(
-        path: RouterPath.discountsView,
-        builder: (context, state){
-
+      path: RouterPath.discountsView,
+      builder: (context, state) {
         return const DiscountsView();
-      },),
+      },
+    ),
     GoRoute(
         path: RouterPath.discountServicesView,
         builder: (context, state) => const DiscountServicesView()),
@@ -210,12 +221,12 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.getServiceView,
         builder: (context, state) =>
-            GetServiceView(service: state.extra as RequestedService)),
+            GetServiceView(serviceId: state.extra as String)),
     GoRoute(
         path: RouterPath.chatView,
         builder: (context, state) => ChatView(
-          chat: state.extra as ChatInfoModel,
-        )),
+              chat: state.extra as ChatInfoModel,
+            )),
     GoRoute(
         path: RouterPath.privacyPolicyView,
         builder: (context, state) => const PrivacyPolicyView()),
@@ -225,31 +236,44 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.providerServiceView,
         builder: (context, state) => ProviderServiceView(
-          serviceId: state.extra as String,
-        )),
+              serviceId: state.extra as String,
+            )),
     GoRoute(
         path: RouterPath.editServiceView,
         builder: (context, state) => EditServiceView(
-          service: state.extra as ProviderService,
-        )),
+              service: state.extra as ProviderService,
+            )),
     GoRoute(
         path: RouterPath.editProviderProfile,
         builder: (context, state) => EditProfileView(
-          providerProfileModel: state.extra as ProviderProfileModel,
-        )),
+              providerProfileModel: state.extra as ProviderProfileModel,
+            )),
     GoRoute(
         path: RouterPath.providerGalleryServiceView,
         builder: (context, state) => ProviderGalleryServiceView(
-          serviceId: state.extra as String,
-        )),
+              serviceId: state.extra as String,
+            )),
     GoRoute(
         path: RouterPath.addGalleryServiceView,
         builder: (context, state) => const AddGalleryServiceView()),
     GoRoute(
         path: RouterPath.onBoardingView,
         builder: (context, state) => const OnBoardingView()),
+    GoRoute(
+        path: RouterPath.aboutView,
+        builder: (context, state) => const AboutView()),
+    GoRoute(
+        path: RouterPath.contactUsView,
+        builder: (context, state) => const ContactUsView()),
+    GoRoute(
+        path: RouterPath.inProgressServicesView,
+        builder: (context, state) =>  InProgressServicesView(services: state.extra as List<RequestService>,)),
+      GoRoute(
+          path: RouterPath.inProgressServiceView,
+          builder: (context, state) =>  InProgressServiceView(service: state.extra as RequestService,)),
+      GoRoute(
+          path: RouterPath.serviceOffersScreen,
+          builder: (context, state) =>  ServiceOffersScreen(serviceId: state.extra as String,)),
+      
   ]);
-
-
-
 }

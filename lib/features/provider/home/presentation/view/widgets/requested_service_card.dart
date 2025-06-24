@@ -24,113 +24,97 @@ class RequestedServiceCard extends StatelessWidget {
   final RequestedService? service;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [ShadowManager.cardShadow]),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  ClipOval(
-                    child: CustomImage(
-                      image: service?.userImg ?? ImageManager.avatar,
-                      height: context.responsiveHeight(60),
-                      width: context.responsiveHeight(60),
-                    ),
-                  ),
-                  const Gap(10),
-                  // user name
-                  Text(
-                    service?.userName ?? "",
-                    style: TextStyleManager.style14BoldSec,
-                  ),
-                ],
-              ),
-              //post date
-              Text(service?.serviceRequestTime ?? "")
-            ],
-          ),
-          const Gap(10),
-          //post image
-          service!.images!.isNotEmpty
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: CustomNetworkImage(
-                      width: context.width,
-                      height: context.responsiveHeight(150),
-                      image: service?.images?[0].image ?? ImageManager.avatar))
-              : const SizedBox.shrink(),
-          const Gap(10),
-          //post title
-          Text(
-            service?.name ?? "",
-            style: TextStyleManager.style12BoldBlue,
-          ),
-
-          const Gap(10),
-          //post description
-          Offstage(
-            offstage: service?.notes == null,
-            child: Column(
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context)
+            .push(RouterPath.getServiceView, extra: service!.id);
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [ShadowManager.cardShadow]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  service?.notes ?? "",
+                Row(
+                  children: [
+                    ClipOval(
+                      child: CustomImage(
+                        image: service?.userImg ?? ImageManager.avatar,
+                        height: context.responsiveHeight(60),
+                        width: context.responsiveHeight(60),
+                      ),
+                    ),
+                    const Gap(10),
+                    // user name
+                    Text(
+                      service?.userName ?? "",
+                      style: TextStyleManager.style14BoldSec,
+                    ),
+                  ],
                 ),
-                const Gap(10),
+                //post date
+                Text(service?.serviceRequestTime ?? "")
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(children: [
-                Text(
-                  "العروض",
-                  style: TextStyleManager.style12BoldSec,
-                ),
-                Gap(context.responsiveWidth(10)),
-                Skeleton.shade(
-                  child: Container(
-                    padding: const EdgeInsets.all(7),
-                    decoration: const BoxDecoration(
-                        color: ColorManager.secondary, shape: BoxShape.circle),
-                    child: Text(
-                      service?.offerSalaries?.length.toString() ?? "0",
-                      style: TextStyleManager.style12BoldWhite,
-                    ),
-                  ),
-                )
-              ]),
-              Row(
+            const Gap(10),
+            //post image
+            service!.images!.isNotEmpty
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: CustomNetworkImage(
+                        width: context.width,
+                        height: context.responsiveHeight(150),
+                        image:
+                            service?.images?[0].image ?? ImageManager.avatar))
+                : const SizedBox.shrink(),
+            const Gap(10),
+            //post title
+            Text(
+              service?.name ?? "",
+              style: TextStyleManager.style12BoldBlue,
+            ),
+
+            const Gap(10),
+            //post description
+            Offstage(
+              offstage: service?.notes == null,
+              child: Column(
                 children: [
-                  // show details button
-                  Skeleton.shade(
-                    child: SmallPrimaryButton(
-                      text: "عرض التفاصيل",
-                      onTap: () {
-                        GoRouter.of(context)
-                            .push(RouterPath.getServiceView, extra: service);
-                      },
-                    ),
-                  ),
-                  Gap(context.responsiveWidth(10)),
-                  // requested price
                   Text(
-                    "${service?.price ?? 0} EGP",
-                    style: TextStyleManager.style12BoldPrimary,
+                    service?.notes ?? "",
                   ),
+                  const Gap(10),
                 ],
               ),
-            ],
-          )
-        ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                // show details button
+                // Skeleton.shade(
+                //   child: SmallPrimaryButton(
+                //     text: "عرض التفاصيل",
+                //     onTap: () {
+
+                //     },
+                //   ),
+                // ),
+                Gap(context.responsiveWidth(10)),
+                // requested price
+                Text(
+                  "${service?.price ?? 0} EGP",
+                  style: TextStyleManager.style12BoldPrimary,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
