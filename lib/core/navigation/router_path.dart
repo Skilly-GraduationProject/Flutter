@@ -35,4 +35,5 @@ class RouterPath {
   static const String inProgressServicesView = '/inProgressServicesView';
   static const String inProgressServiceView = '/inProgressServiceView';
   static const String serviceOffersScreen = '/serviceOffersScreen';
+  static const String transactionsView = '/transactionsView';
 }

@@ -578,6 +578,8 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                                 .id,
                         briefSummary: briefSummaryController.text,
                         img: imageFile?.path,
+                        firstName: firstNameController.text,
+                        lastName: lastNameController.text,
                       );
                       print(selectedProfession);
                       if (selectedCity == null || selectedGovern == null) {

@@ -12,4 +12,5 @@ class IconManager {
   static const String homeIcon = 'assets/images/home_icon.svg';
   static const String notificationIcon = 'assets/images/notification_icon.svg';
   static const String chatIcon = 'assets/images/chat_icon.svg';
+  static const String transactions = 'assets/images/transactions.svg';
 }

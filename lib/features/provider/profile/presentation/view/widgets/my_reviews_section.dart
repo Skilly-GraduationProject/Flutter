@@ -94,11 +94,14 @@ class MyReviewsSection extends StatelessWidget {
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   sliver: SliverList.separated(
-                    itemCount: state.getMyReviewsModel?.reviews?.length ?? 0,
+                    itemCount:
+                        (state.getMyReviewsModel?.reviews?.length ?? 0) < 2
+                            ? state.getMyReviewsModel?.reviews?.length
+                            : 2,
                     separatorBuilder: (context, index) => const Gap(10),
                     itemBuilder: (context, index) {
                       Review reviewModel =
-                          state.getMyReviewsModel!.reviews![index];
+                          state.getMyReviewsModel?.reviews?[index] ?? Review();
                       return ReviewCard(
                         review: reviewModel,
                       );

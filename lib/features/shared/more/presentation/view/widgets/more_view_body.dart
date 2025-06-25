@@ -25,7 +25,16 @@ class MoreViewBody extends StatelessWidget {
       children: [
         gap,
         const MoreProviderData(),
+
         const Gap(20),
+        MoreButton(
+          title: 'المعاملات',
+          icon: IconManager.transactions,
+          onTap: () {
+            context.push(RouterPath.transactionsView);
+          },
+        ),
+        gap,
         MoreButton(
           title: 'سياسه الخصوصيه',
           icon: IconManager.privacyPolicy,

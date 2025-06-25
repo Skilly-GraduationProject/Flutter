@@ -70,21 +70,29 @@ class MyServicesCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      context.push(RouterPath.serviceOffersScreen,
-                          extra: service.id);
-                    },
-                    child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(
-                          color: ColorManager.secondary,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Text(
-                          service.countOfOffers?.toString() ?? "0",
-                          style: TextStyleManager.style12BoldWhite,
-                        )),
+                  Row(
+                    children: [
+                      // Text(
+                      //   "العروض",
+                      //   style: TextStyleManager.style12BoldSec,
+                      // ),
+                      GestureDetector(
+                        onTap: () {
+                          context.push(RouterPath.serviceOffersScreen,
+                              extra: service.id);
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: const BoxDecoration(
+                              color: ColorManager.secondary,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              service.countOfOffers?.toString() ?? "0",
+                              style: TextStyleManager.style12BoldWhite,
+                            )),
+                      ),
+                    ],
                   ),
                   const Gap(8),
                   Align(

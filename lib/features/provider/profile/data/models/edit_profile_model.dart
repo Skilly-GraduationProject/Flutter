@@ -11,6 +11,8 @@ class EditProfileModel {
   String? briefSummary;
   dynamic nationalNumberPdf;
   String? categoryId;
+  String? firstName;
+  String? lastName;
 
   EditProfileModel({
     this.governorate,
@@ -23,6 +25,8 @@ class EditProfileModel {
     this.briefSummary,
     this.nationalNumberPdf,
     this.categoryId,
+    this.firstName,
+    this.lastName,
   });
 
   factory EditProfileModel.fromJson(Map<String, dynamic> json) {
@@ -37,6 +41,8 @@ class EditProfileModel {
       briefSummary: json['briefSummary'] as String?,
       nationalNumberPdf: json['nationalNumberPDF'] as dynamic,
       categoryId: json['categoryId'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
     );
   }
 
@@ -54,6 +60,8 @@ class EditProfileModel {
       if (briefSummary != null) 'briefSummary': briefSummary,
       if (nationalNumberPdf != null) 'nationalNumberPDF': nationalNumberPdf,
       if (categoryId != null) 'categoryId': categoryId,
+      if (firstName != null) 'firstName': firstName,
+      if (lastName != null) 'lastName': lastName,
     };
   }
 }

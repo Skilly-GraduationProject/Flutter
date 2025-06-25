@@ -20,6 +20,7 @@ import 'package:grad_project/features/provider/home/presentation/view/service_pr
 import 'package:grad_project/features/provider/requested_service/presentation/get_service_view.dart';
 import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
 import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
+import 'package:grad_project/features/shared/more/presentation/view/transactions_view.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/about.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/contact_us.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/privacy.dart';
@@ -267,13 +268,21 @@ abstract class AppRouter {
         builder: (context, state) => const ContactUsView()),
     GoRoute(
         path: RouterPath.inProgressServicesView,
-        builder: (context, state) =>  InProgressServicesView(services: state.extra as List<RequestService>,)),
-      GoRoute(
-          path: RouterPath.inProgressServiceView,
-          builder: (context, state) =>  InProgressServiceView(service: state.extra as RequestService,)),
-      GoRoute(
-          path: RouterPath.serviceOffersScreen,
-          builder: (context, state) =>  ServiceOffersScreen(serviceId: state.extra as String,)),
-      
+        builder: (context, state) => InProgressServicesView(
+              services: state.extra as List<RequestService>,
+            )),
+    GoRoute(
+        path: RouterPath.inProgressServiceView,
+        builder: (context, state) => InProgressServiceView(
+              service: state.extra as RequestService,
+            )),
+    GoRoute(
+        path: RouterPath.serviceOffersScreen,
+        builder: (context, state) => ServiceOffersScreen(
+              serviceId: state.extra as String,
+            )),
+    GoRoute(
+        path: RouterPath.transactionsView,
+        builder: (context, state) => const TransactionsView()),
   ]);
 }

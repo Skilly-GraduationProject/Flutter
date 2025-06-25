@@ -48,75 +48,80 @@ class InProgressServicesSection extends StatelessWidget {
         } else {
           List<RequestService>? services =
               state.getServicesInProgressModel?.service?.requestServices ?? [];
-          return SliverSkeletonizer(
-            enabled: state.getServicesInProgressState == CubitState.loading,
-            ignorePointers:
-                state.getServicesInProgressState == CubitState.loading,
-            child: MultiSliver(
-              children: [
-                const SliverGap(20),
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  sliver: SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              "طلبات قيد التنفيذ",
-                              style: TextStyleManager.style16BoldSec,
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: () {
-                                GoRouter.of(context).push(
-                                    RouterPath.inProgressServicesView,
-                                    extra: state.getServicesInProgressModel
-                                            ?.service?.requestServices ??
-                                        []);
-                              },
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "عرض الكل",
-                                    style: TextStyleManager.style14RegSec,
-                                  ),
-                                  const Gap(3),
-                                  const Icon(
-                                    Icons.arrow_forward_outlined,
-                                    color: ColorManager.secondary,
-                                  )
-                                ],
+          if (services.isNotEmpty ||
+              state.getServicesInProgressState == CubitState.loading) {
+            return SliverSkeletonizer(
+              enabled: state.getServicesInProgressState == CubitState.loading,
+              ignorePointers:
+                  state.getServicesInProgressState == CubitState.loading,
+              child: MultiSliver(
+                children: [
+                  const SliverGap(20),
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    sliver: SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "طلبات قيد التنفيذ",
+                                style: TextStyleManager.style16BoldSec,
                               ),
-                            )
-                          ],
-                        ),
-                      ],
+                              const Spacer(),
+                              GestureDetector(
+                                onTap: () {
+                                  GoRouter.of(context).push(
+                                      RouterPath.inProgressServicesView,
+                                      extra: state.getServicesInProgressModel
+                                              ?.service?.requestServices ??
+                                          []);
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "عرض الكل",
+                                      style: TextStyleManager.style14RegSec,
+                                    ),
+                                    const Gap(3),
+                                    const Icon(
+                                      Icons.arrow_forward_outlined,
+                                      color: ColorManager.secondary,
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SliverGap(20),
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  sliver: SliverGrid.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: context.responsiveWidth(200) /
-                          context.responsiveHeight(300),
+                  const SliverGap(20),
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    sliver: SliverGrid.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: context.responsiveWidth(200) /
+                            context.responsiveHeight(300),
+                      ),
+                      itemCount: services.length < 2 ? services.length : 2,
+                      itemBuilder: (context, index) {
+                        return InProgressServiceCard(
+                          requestService: services[index],
+                        );
+                      },
                     ),
-                    itemCount: services.length < 2 ? services.length : 2,
-                    itemBuilder: (context, index) {
-                      return InProgressServiceCard(
-                        requestService: services[index],
-                      );
-                    },
                   ),
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
+          } else {
+            return const SliverToBoxAdapter();
+          }
         }
       },
     );
