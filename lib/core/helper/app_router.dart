@@ -21,6 +21,7 @@ import 'package:grad_project/features/provider/requested_service/presentation/ge
 import 'package:grad_project/features/shared/chat/data/models/get_chats_info_model/chat_info_model.dart';
 import 'package:grad_project/features/shared/chat/presentation/view/chat_view.dart';
 import 'package:grad_project/features/shared/more/presentation/view/transactions_view.dart';
+import 'package:grad_project/features/shared/more/presentation/view/wallet_withdraw_view.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/about.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/contact_us.dart';
 import 'package:grad_project/features/shared/more/presentation/view/widgets/privacy.dart';
@@ -284,5 +285,8 @@ abstract class AppRouter {
     GoRoute(
         path: RouterPath.transactionsView,
         builder: (context, state) => const TransactionsView()),
+    GoRoute(
+        path: RouterPath.walletWithdrawView,
+        builder: (context, state) => const WalletWithdrawView()),
   ]);
 }

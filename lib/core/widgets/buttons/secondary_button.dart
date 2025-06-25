@@ -8,7 +8,8 @@ class SecondaryButton extends StatelessWidget {
     super.key,
     required this.text,
     this.onTap,
-    this.color, this.width,
+    this.color,
+    this.width,
   });
 
   final String text;

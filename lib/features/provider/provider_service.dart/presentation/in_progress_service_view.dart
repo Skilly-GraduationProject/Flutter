@@ -11,14 +11,16 @@ import 'package:grad_project/features/provider/provider_service.dart/presentatio
 import 'package:grad_project/features/provider/provider_service.dart/presentation/widgets/provider_service_view_body.dart';
 
 class InProgressServiceView extends StatelessWidget {
-  const InProgressServiceView({super.key, required this.service,});
+  const InProgressServiceView({
+    super.key,
+    required this.service,
+  });
   final RequestService service;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProviderServiceCubit(
           providerServiceRepo: getIt<ProviderServiceRepo>()),
-        
       child: Scaffold(
         appBar: AppBar(
           primary: true,

@@ -93,8 +93,9 @@ class OnBoardingView extends StatelessWidget {
         done: PrimaryButton(
           text: "Done",
           onTap: () {
-             GoRouter.of(context).pushReplacement("/signin");
-          getIt<SecureStorageHelper>().write(key: "first_open", value: "true");
+            GoRouter.of(context).pushReplacement("/signin");
+            getIt<SecureStorageHelper>()
+                .write(key: "first_open", value: "true");
           },
         ),
         next: Text(
@@ -112,7 +113,6 @@ class OnBoardingView extends StatelessWidget {
         bodyPadding:
             EdgeInsets.symmetric(vertical: context.height / 7, horizontal: 20),
         allowImplicitScrolling: true,
-
       ),
     );
   }

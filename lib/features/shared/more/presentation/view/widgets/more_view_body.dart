@@ -25,7 +25,6 @@ class MoreViewBody extends StatelessWidget {
       children: [
         gap,
         const MoreProviderData(),
-
         const Gap(20),
         MoreButton(
           title: 'المعاملات',

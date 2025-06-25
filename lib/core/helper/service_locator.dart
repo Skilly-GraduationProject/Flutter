@@ -8,6 +8,7 @@ import 'package:grad_project/features/provider/profile/data/repos/provider_data_
 import 'package:grad_project/features/provider/provider_service.dart/data/repos/provider_service.dart';
 import 'package:grad_project/features/provider/requested_service/data/repo/service_repo.dart';
 import 'package:grad_project/features/shared/chat/data/repo/chats_repo.dart';
+import 'package:grad_project/features/shared/more/data/repos/more_repo.dart';
 import 'package:grad_project/features/shared/notifications/data/repo/notifications_repo.dart';
 import 'package:grad_project/features/user/home/data/repos/user_repo_implement.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -244,4 +245,6 @@ Future<void> setUp() async {
       RejectEOfferUseCase(userRepo: getIt.get<UserRepoImplement>()));
   getIt.registerFactory<RejectEOfferCubit>(
       () => RejectEOfferCubit(getIt.get<RejectEOfferUseCase>()));
+  getIt.registerFactory<MoreRepo>(
+      () => MoreRepo( apiService: getIt.get<ApiService>(),));
 }

@@ -94,19 +94,18 @@ class InProgressServiceViewBody extends StatelessWidget {
                     value: "${service.deliverytime} ايام",
                   ),
                   const Gap(20),
-                  if (service?.video != null &&
-                            service!.video!.isNotEmpty)
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "الفيديو",
-                                style: TextStyleManager.style12BoldSec,
-                              ),
-                              const Gap(10),
-                              VideoPlayerWidget(videoUrl: service.video!),
-                            ],
-                          ),
+                  if (service?.video != null && service!.video!.isNotEmpty)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "الفيديو",
+                          style: TextStyleManager.style12BoldSec,
+                        ),
+                        const Gap(10),
+                        VideoPlayerWidget(videoUrl: service.video!),
+                      ],
+                    ),
                   // service details
                   // ServiceDataColumn(
                   //   title: 'ملاحظات',

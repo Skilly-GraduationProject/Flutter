@@ -36,4 +36,5 @@ class RouterPath {
   static const String inProgressServiceView = '/inProgressServiceView';
   static const String serviceOffersScreen = '/serviceOffersScreen';
   static const String transactionsView = '/transactionsView';
+  static const String walletWithdrawView = '/walletWithdrawView';
 }
